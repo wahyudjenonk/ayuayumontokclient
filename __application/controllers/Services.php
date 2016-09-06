@@ -19,7 +19,7 @@ class Services extends JINGGA_Controller {
 					'owner_name_first'=>'Cuyzz',
 					'title'=>'Mr.',
 					'id_number'=>'20031299091200',
-					'email'=>'goyz87@gmail.com'
+					'email'=>'goyz837@gmail.com'
 		);//DATA UNTUK PUT
 		$method='post';
 		$balikan="json";
