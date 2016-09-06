@@ -392,6 +392,40 @@ class lib {
 		
 		return $arrayform;
 	}
+	function jingga_curl($url,$data,$method,$balikan){
+		$username = 'admin';
+		$password = '123';
+		$curl_handle = curl_init();
+		curl_setopt($curl_handle, CURLOPT_URL, $url);
+		curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, 1);
+		if($method=='post'){
+			curl_setopt($curl_handle, CURLOPT_POST, 1);
+			curl_setopt($curl_handle, CURLOPT_POSTFIELDS, $data);
+		}
+		if($method=='put'){
+			curl_setopt($curl_handle, CURLOPT_CUSTOMREQUEST, "PUT");
+			curl_setopt($curl_handle, CURLOPT_POSTFIELDS,http_build_query($data));
+		}
+		if($method=='delete'){
+			curl_setopt($curl_handle, CURLOPT_CUSTOMREQUEST, "delete");
+			
+		}
+		curl_setopt($curl_handle, CURLOPT_USERPWD, $username . ':' . $password);
+		 
+		$kirim = curl_exec($curl_handle);
+		curl_close($curl_handle);
+		if($balikan=='json'){
+			$result = json_decode($kirim);
+		}
+		else if($balikan=='xml'){
+			$result = json_decode($kirim);
+		}else{
+			$result=$kirim;
+		}
+		return $result;
+		
+	}
+	
 	//End Generate Form Via Field Table
 	
 	
