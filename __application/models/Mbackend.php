@@ -6,31 +6,26 @@ class Mbackend extends CI_Model{
 		$this->auth = unserialize(base64_decode($this->session->userdata('mLandkli333n')));
 	}
 	
-	function getdata($type="", $balikan="", $p1="", $p2="",$p3="",$p4=""){
-		$where = " WHERE 1=1 ";
-		if($this->input->post('key')){
-				$where .=" AND ".$this->input->post('kat')." like '%".$this->db->escape_str($this->input->post('key'))."%'";
-		}
+	function getdata($type="", $p1="", $p2="",$p3="",$p4=""){
+		
 		switch($type){
 			case "data_login":
-				$sql = "
-					SELECT *
-					FROM tbl_user 
-					WHERE nama_user = '".$p1."'
-				";
+				$data = array();
+				$data['method'] = 'read';
+				$data['modul'] = 'login';
+				$data['submodul'] = '';
+				$data['email_address'] = $p1;
+				$data['pwd'] = $p2;
+
+				$method = 'post';
+				$balikan = "json";
+				$url = $this->config->item('service_url');
+				$res = $this->lib->jingga_curl($url,$data,$method,$balikan);
+				
+				return $res;
 			break;
 		}
 		
-		if($balikan == 'json'){
-			return $this->lib->json_grid($sql);
-		}elseif($balikan == 'row_array'){
-			return $this->db->query($sql)->row_array();
-		}elseif($balikan == 'result'){
-			return $this->db->query($sql)->result();
-		}elseif($balikan == 'result_array'){
-			return $this->db->query($sql)->result_array();
-		}
-
 	}
 	
 	function get_combo($type="", $p1="", $p2=""){

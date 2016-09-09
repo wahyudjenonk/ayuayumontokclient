@@ -51,3 +51,5 @@ $config['compress_output'] = FALSE;
 $config['time_reference'] = 'local';
 $config['rewrite_short_tags'] = FALSE;
 $config['proxy_ips'] = '';
+
+$config['service_url'] = 'http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';

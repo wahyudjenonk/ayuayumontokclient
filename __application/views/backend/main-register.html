@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Register New User</title>
+	<link rel="stylesheet" href="{$host}__assets/css/style-register.css">
+	<link rel="stylesheet" href="{$host}__assets/plugin/easyui/themes/metro-gray/easyui.css">
+    <link rel="stylesheet" type="text/css" href="{$host}__assets/plugin/zebradate/css/default.css">	
+	<script src="{$host}__assets/js/jquery.js"></script>	
+	<script src="{$host}__assets/plugin/easyui/jquery.easyui.min.js"></script>
+	<script src="{$host}__assets/plugin/zebradate/js/zebra_datepicker.js"></script>	
+	<script src="{$host}__assets/js/blockui.js"></script>	
+	<script src="{$host}__assets/js/fungsi.js"></script>	
+</head>
+<body>
+	<div class="main-content">
+		<form id='regsbro' class="form-labels-on-top" method="post" url="{$host}submit-register" enctype="multipart/form-data">
+			<div class="form-title-row">
+                <h1>Register New User</h1>
+            </div>
+
+            <div class="form-row">
+                <label>
+                    <span>Form Number</span>
+                    <input type="text" name="formnu" readonly value='{$frmnu}'>
+                </label>
+            </div>
+            <div class="form-row">
+                <label>
+                    <span>Registration Date</span>
+                    <input type="text" name="regdate" readonly value='{$regdate}'>
+                </label>
+            </div>
+			<hr style='margin-top:25px;'/>
+			OWNER INFORMATION
+			<hr style=''/>
+            <div class="form-row">
+                <label>
+                    <span>Owner is a</span>
+                    <select name="owntype" class='validasi'>
+						{$ownsts}
+					</select>
+                </label>
+            </div>
+            <div class="form-row">
+                <label>
+                    <span>Owner Name (First Name)</span>
+                    <input type="text" name="frstnm" class='validasi'>
+                </label>
+            </div>
+            <div class="form-row">
+                <label>
+                    <span>Owner Name (Last Name)</span>
+                    <input type="text" name="lstnm" class='validasi'>
+                </label>
+            </div>
+            <div class="form-row">
+                <label>
+                    <span>Title</span>
+                    <select name="ttl" class='validasi'>
+						{$title}
+					</select>
+                </label>
+            </div>
+            <div class="form-row">
+                <label>
+                    <span>ID Number (KTP / Passport)</span>
+                    <input type="text" name="idnmb" class='validasi'>
+                </label>
+            </div>
+            <div class="form-row">
+                <label>
+                    <span>Place Of Birth</span>
+                    <input type="text" name="plcbirth" class='validasi'>
+                </label>
+            </div>
+            <div class="form-row">
+                <label>
+                    <span>Date Of Birth</span>
+                    <input type="text" name="brtdate" id="brtdate" class='validasi'>
+                </label>
+            </div>
+			<div class="form-row">
+                <label>
+                    <span>Address</span>
+                    <textarea name="addr" rows='3' cols='35' class='validasi'></textarea>
+                </label>
+            </div>	
+			<div class="form-row">
+                <label>
+                    <span>City</span>
+                    <input type="text" name="cty" class='validasi'>
+                </label>
+            </div>
+			<div class="form-row">
+                <label>
+                    <span>State</span>
+                    <input type="text" name="stt" class='validasi'>
+                </label>
+            </div>
+			<div class="form-row">
+                <label>
+                    <span>Zip Code</span>
+                    <input type="text" name="zpco" class='validasi'>
+                </label>
+            </div>
+			<div class="form-row">
+                <label>
+                    <span>Phone (Home)</span>
+                    <input type="text" name="phhom" class='validasi'>
+                </label>
+            </div>
+			<div class="form-row">
+                <label>
+                    <span>Phone (Mobile)</span>
+                    <input type="text" name="phmob" class='validasi'>
+                </label>
+            </div>
+			<div class="form-row">
+                <label>
+                    <span>Email Address</span>
+                    <input type="text" name="emadd" class='validasi'>
+                </label>
+            </div>
+			<div class="form-row">
+                <label>
+                    <span>Current Occupation</span>
+                    <input type="text" name="curroccu" >
+                </label>
+            </div>
+			<div class="form-row">
+                <label>
+                    <span>Previous Education</span>
+                    <select name="preved">
+						{$preved}
+					</select>
+                </label>
+            </div>
+			<hr style='margin-top:25px;'/>
+			Please fill if under Corporation/Partnership
+			<hr style=''/>
+			<div class="form-row">
+                <label>
+                    <span style='width:210px !important;'>Name CEO/Managing Partner</span>
+                    <input type="text" name="ceopart" >
+                </label>
+            </div>
+			<div class="form-row">
+                <label>
+                    <span>Company Name</span>
+                    <input type="text" name="compname" >
+                </label>
+            </div>
+			<div class="form-row">
+                <label>
+                    <span>Company Address</span>
+                    <textarea name="compaddr" rows='3' cols='35'></textarea>
+                </label>
+            </div>	
+			<div class="form-row">
+                <label>
+                    <span>Company Phone</span>
+                    <input type="text" name="comphone" >
+                </label>
+            </div>
+			<div class="form-row">
+                <button id='sbmfrm'>Register</button>
+            </div>
+			<br/>
+			<br/>
+			<br/>
+			<a class="form-forgotten-password" href="{$host}forgotpassword">Forgotten Password</a>
+			<a class="form-create-an-account" href="{$host}">Login Account</a>
+		
+			<div style="text-align:center;margin-top:30px">
+				<span style="color:#0000;">Homtel Services &copy; Margahayu Land</span>
+			</div>
+		</form>
+	</div>
+	
+	<script>
+		$(".validasi").validatebox({ required:true }); 
+		$('#brtdate').Zebra_DatePicker();	
+		
+		$('#sbmfrm').on('click', function(){
+			validasi = $('#regsbro').form('validate');
+			if(validasi){
+				$.blockUI({ message: '<h3>Processing Data...</h3>' });			
+			}
+			submit_form('regsbro',function(r){
+				if(r==1){
+					alert('Thank For Register, Please Check Your Email.');
+					location.href('{$host}');
+				}else{
+					alert('Email is already registered.');
+				}
+			});
+		});
+		//*/
+	</script>
+</body>
+</html>

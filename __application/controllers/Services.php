@@ -10,7 +10,7 @@ class Services extends JINGGA_Controller {
 	function tes_registrasi()
 	{
 		$this->load->library('lib');
-		$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
+		$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
 		$data=array('method' => 'create',//ISI METHOD NYA CRUD YE CUNG.. CREATE READ UPDATE DELETE
 					'modul'=>'registrasi',
 					'sub_modul'=>'',
@@ -23,34 +23,37 @@ class Services extends JINGGA_Controller {
 		);//DATA UNTUK PUT
 		$method='post';
 		$balikan="json";
-		$res=$this->lib->jingga_curl($url,$data,$method,$balikan);
+		$res = $this->lib->jingga_curl($url,$data,$method,$balikan);
 		print_r($res);
+		//echo $res['msg'];
 	}
 	function tes_aktivasi_user()
 	{
 		$this->load->library('lib');
-		$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
+		$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
 		$data=array('method' => 'update',//ISI METHOD NYA CRUD YE CUNG.. CREATE READ UPDATE DELETE
 					'modul'=>'registrasi',
 					'sub_modul'=>'',
-					'email_address'=>'goyz87@gmail.com',
+					'member_user'=>'AB384X',
+					//'email'=>'goyz837@gmail.com',
+					'email_address'=>'goyz837@gmail.com',
 					'pwd'=>'12345'
-		);//DATA UNTUK PUT
+		);
 		$method='post';
 		$balikan="json";
-		$res=$this->lib->jingga_curl($url,$data,$method,$balikan);
+		$res = $this->lib->jingga_curl($url,$data,$method,$balikan);
 		print_r($res);
 	}
 	function tes_login()
 	{
 		$this->load->library('lib');
-		$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
+		$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
 		$data=array('method' => 'read',
 					'modul'=>'login',
 					'sub_modul'=>'',
 					'member_user'=>'',
-					'email_address'=>'goyz87@gmail.com',
-					'pwd'=>'12345'
+					'email_address'=>'triwahyunugroho11@gmail.com',
+					'pwd'=>'D36CE6'
 		);//DATA UNTUK PUT
 		$method='post';
 		$balikan="json";

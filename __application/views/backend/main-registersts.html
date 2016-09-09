@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Register New User</title>
+	<link rel="stylesheet" href="{$host}__assets/css/style-register.css">
+	<script>
+		setTimeout(function () {
+		   window.location.href = "{$host}"; 
+		}, 3000);
+	</script>
+</head>
+<body>
+	<div class="main-content">
+		{if $type eq 'registrasi'}
+		<div class="form-labels-on-top">
+			{if $res.msg eq 'sukses'}
+				<div class="form-title-row">
+					<h1>Register Success</h1>
+				</div>
+				
+				Thank For Register, Please Check Your Email Soon.
+			{else}
+				<div class="form-title-row">
+					<h1>Register Failed</h1>
+				</div>
+				
+				{$res.pesan}
+			{/if}
+		</div>
+		{elseif $type eq 'aktivasi'}
+		<div class="form-labels-on-top">
+			<div class="form-title-row">
+				<h1>Activation User Success</h1>
+			</div>
+			
+			Thank For Activation, Now You Can Login to Homtel Service.
+		</div>
+		{/if}
+	</div>
+</body>
+</html>

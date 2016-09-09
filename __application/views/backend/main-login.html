@@ -1,26 +1,51 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>Margahayu Land - Homtel Portal Service</title>
-  <link rel="stylesheet" href="{$host}__assets/css/style-login.css" media="screen" type="text/css" />
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Login Homtel Services</title>
+	<link rel="stylesheet" href="{$host}__assets/css/style-register.css">
+	
 </head>
 <body>
-	<br/>
-	<div class="login-card">
-		<form name='frmLogin' action="{$host}property-in" method="post">
-			<input type="text" name="user" placeholder="Username">
-			<input type="password" name="pwd" placeholder="Password">
-			<input type="submit" id="login" class="login login-submit" value="Login">
-		</form>
-		<div class="login-help">
-			Homtel Portal Service &copy; Margahayu Land
-		</div>
-		{if isset($error)}
-            <div style="text-align:center;margin-top:30px">
-				<span style="color:red;"><b><i>{$error}</i></b></span>
+	<div class="main-content">
+		<form name='frmLogin' class="form-labels-on-top" action="{$host}property-in" method="post">
+			<div class="form-title-row">
+                <h1>Login Homtel</h1>
+            </div>
+			<div class="form-row">
+                <label>
+                    <span>Email</span>
+                    <input type="text" name="user" placeholder="Your Mail">
+                </label>
+            </div>
+            <div class="form-row">
+                <label>
+                    <span>Password</span>
+                    <input type="password" name="pwd" placeholder="Your Password">
+                </label>
+            </div>
+			<div class="form-row form-last-row">
+                <button type='submit' id='login'>Login</button>
+            </div>
+			
+			{if isset($error)}
+				<div style="text-align:center;margin-top:30px">
+					<span style="color:red;"><b><i>{$error}</i></b></span>
+				</div>
+			{/if}
+			<br/>
+			
+			<a class="form-forgotten-password" href="{$host}forgotpassword">Forgotten Password</a>
+			<a class="form-create-an-account" href="{$host}register">Register Account</a>
+		
+			<div style="text-align:center;margin-top:30px">
+				<span style="color:#0000;">Homtel Services &copy; Margahayu Land</span>
 			</div>
-		{/if}	
+		</form>
+		
 	</div>
 </body>
 </html>

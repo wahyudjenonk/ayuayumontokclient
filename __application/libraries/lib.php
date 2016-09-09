@@ -112,54 +112,33 @@ class lib {
 		$html = "";
 		$subject = "";
 		switch($type){
-			case "email_invoice":
-				$ci->nsmarty->assign('data_cart', $p1);
-				$ci->nsmarty->assign('penunjang', $p2);
-				$html = $ci->nsmarty->fetch('frontend/modul/email_invoice.html');
-				$subject = "EMAIL INVOICE - ".$p2['no_order'];
-			break;
-			case "email_konfirmasi":	
-				$ci->nsmarty->assign('no_order', $p1);
-				$subject = "EMAIL KONFIRMASI PEMBAYARAN";
-				$html = $ci->nsmarty->fetch('frontend/modul/email_konfirmasi.html');
-			break;
-			case "email_pembatalan":
-				$ci->nsmarty->assign('kode_pembatalan', $p1);
-				$ci->nsmarty->assign('no_order', $p2);
-				$html = $ci->nsmarty->fetch('frontend/modul/email_pembatalan.html');
-				$subject = "EMAIL PEMBATALAN PESANAN";
+			case "email_register":				
+				$emails = urlencode(base64_encode($p1['data']['email_address']));
+				$pwd = urlencode(base64_encode($p1['data']['pwd']));
+				$member_user = urlencode(base64_encode($p1['data']['member_user']));
+				$link = $p2.'activate/'.$emails.'/'.$pwd.'/'.$member_user;
+				
+				$ci->nsmarty->assign('datax', $p1);
+				$ci->nsmarty->assign('link', $link);
+				$html = $ci->nsmarty->fetch('backend/email-register.html');
+				$subject = "Register Homtel Services";
 			break;
 		}
-		
-		/*
-		$config = array(
-			"protocol"	=>"smtp"
-			,"mailtype" => "html"
-			,"smtp_host" => "ssl://server.jingga.co.id"
-			,"smtp_user" => "webstore@aldeaz.id"
-			,"smtp_pass" => "merdeka18"
-			,"smtp_port" => "465",
-			'charset' => 'utf-8',
-            'wordwrap' => TRUE,
-		);
-		*/
-		
+				
 		$config = array(
 			"protocol"	=>"smtp"
 			,"mailtype" => "html"
 			,"smtp_host" => "ssl://smtp.gmail.com"
-			,"smtp_user" => "aldeaz.id@gmail.com"
-			,"smtp_pass" => "merdeka18"
+			,"smtp_user" => "triwahyunugros@gmail.com"
+			,"smtp_pass" => "ms6713saa"
 			,"smtp_port" => "465",
 			'charset' => 'utf-8',
             'wordwrap' => TRUE,
 		);
 		
-		//,"smtp_user" => "aldeaz.id@gmail.com","smtp_pass" => "merdeka18" */
 		
 		$ci->email->initialize($config);
-		//$ci->email->from("aldeaz.id@gmail.com", "Aldeaz Notifikasi");
-		$ci->email->from("webstore@aldeaz.id", "Aldeaz Notifikasi");
+		$ci->email->from("triwahyunugros@gmail.com", "Homtel Notifikasi");
 		$ci->email->to($email);
 		$ci->email->subject($subject);
 		$ci->email->message($html);
@@ -261,25 +240,29 @@ class lib {
 			$selTxt = $p1;
 		}
 		
-		$optTemp = '<option value=""> -- Pilih -- </option>';
+		$optTemp = '<option value=""> -- Choose -- </option>';
 		switch($type){
-			case "jenis_pembayaran":
+			case "owner_status":
 				$data = array(
-					'0' => array('id'=>'CASH','txt'=>'CASH'),
-					'1' => array('id'=>'DEBIT','txt'=>'KARTU DEBIT'),
-					'2' => array('id'=>'KREDIT','txt'=>'KARTU KREDIT'),
+					'0' => array('id'=>'1','txt'=>'Individual'),
+					'1' => array('id'=>'2','txt'=>'Corporate / Partnership'),
 				);
 			break;
-			case "jenis_kelamin":
+			case "owner_title":
 				$data = array(
-					'0' => array('id'=>'L','txt'=>'Laki-Laki'),
-					'1' => array('id'=>'P','txt'=>'Perempuan'),
+					'0' => array('id'=>'Mr.','txt'=>'Mr.'),
+					'1' => array('id'=>'Mrs.','txt'=>'Mrs.'),
+					'2' => array('id'=>'Ms.','txt'=>'Ms.'),
 				);
 			break;
-			case "tipe_status":
+			case "prev_education":
 				$data = array(
-					'0' => array('id'=>'1','txt'=>'Aktif'),
-					'1' => array('id'=>'0','txt'=>'Tidak Aktif'),
+					'0' => array('id'=>'highschool','txt'=>'Highschool'),
+					'1' => array('id'=>'s1','txt'=>'S1'),
+					'2' => array('id'=>'s2','txt'=>'S2'),
+					'3' => array('id'=>'s3','txt'=>'S3'),
+					'4' => array('id'=>'d3','txt'=>'D1/D3'),
+					'5' => array('id'=>'other','txt'=>'Other'),
 				);
 			break;
 			default:
@@ -415,10 +398,10 @@ class lib {
 		$kirim = curl_exec($curl_handle);
 		curl_close($curl_handle);
 		if($balikan=='json'){
-			$result = json_decode($kirim);
+			$result = json_decode($kirim, true);
 		}
 		else if($balikan=='xml'){
-			$result = json_decode($kirim);
+			$result = json_decode($kirim, true);
 		}else{
 			$result=$kirim;
 		}

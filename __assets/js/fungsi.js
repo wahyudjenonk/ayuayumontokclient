@@ -1,5 +1,7 @@
 $(function() {
-	loadUrl(host+'dashboard');
+	if(typeof host != "undefined"){
+		loadUrl(host+'dashboard');
+	}
 });
 
 

@@ -12,6 +12,11 @@ $route['backoffice-grid/(:any)'] = 'backend/get_grid/$1';
 $route['backoffice-form/(:any)'] = 'backend/get_form/$1';
 
 // Modul Core
+$route['register'] = 'login/registrasiuser';
+$route['submit-register'] = 'login/submitregistrasi';
+$route['activate/(:any)/(:any)/(:any)'] = 'login/aktivasiuser/$1/$2/$3';
+$route['forgotpassword'] = 'login/forgotpasssss';
+
 $route['dashboard'] = 'backend/modul/dashboard/main';
 
 
