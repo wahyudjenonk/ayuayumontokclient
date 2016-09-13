@@ -9,20 +9,38 @@
 	<link rel="stylesheet" href="{$host}__assets/css/style-register.css">
 	<script>
 		setTimeout(function () {
-		   window.location.href = "{$host}"; 
-		}, 3000);
+		window.location.href = "{$host}"; 
+		}, 5000);
 	</script>
+			
 </head>
 <body>
 	<div class="main-content">
-		{if $type eq 'registrasi'}
+		{if $type eq 'registrasi-step1'}
+		<div class="form-labels-on-top">
+			{if $status eq 'dataavailable'}
+				<div class="form-title-row">
+					<h1>Register Success</h1>
+				</div>
+				
+				Thank For Register, Please Check Your Email Soon.
+			{else}
+				<div class="form-title-row">
+					<h1>Register Failed</h1>
+				</div>
+				
+				Your Email Address was registered in our system database, <br />
+				Please Try Again with another Email Address.
+			{/if}
+		</div>
+		{elseif $type eq 'registrasi-step2'}
 		<div class="form-labels-on-top">
 			{if $res.msg eq 'sukses'}
 				<div class="form-title-row">
 					<h1>Register Success</h1>
 				</div>
 				
-				Thank For Register, Please Check Your Email Soon.
+				Thank For Register, Please Check Your Email For Your Account Detail.
 			{else}
 				<div class="form-title-row">
 					<h1>Register Failed</h1>

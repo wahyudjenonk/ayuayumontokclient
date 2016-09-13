@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Register New User</title>
+	<link rel="stylesheet" href="{$host}__assets/css/style-register.css">
+	<link rel="stylesheet" href="{$host}__assets/plugin/easyui/themes/metro-gray/easyui.css">
+    <link rel="stylesheet" type="text/css" href="{$host}__assets/plugin/zebradate/css/default.css">	
+	<script src="{$host}__assets/js/jquery.js"></script>	
+	<script src="{$host}__assets/plugin/easyui/jquery.easyui.min.js"></script>
+	<script src="{$host}__assets/plugin/zebradate/js/zebra_datepicker.js"></script>	
+	<script src="{$host}__assets/js/blockui.js"></script>	
+	<script src="{$host}__assets/js/fungsi.js"></script>	
+</head>
+<body>
+	<div class="main-content">
+		<form id='regsbro' class="form-labels-on-top" method="post" url="{$host}submit-step1-register" enctype="multipart/form-data">
+			<input type='hidden' name='step' value='step-1-registration' />
+			<div class="form-title-row">
+                <h1>Register New User</h1>
+            </div>
+            <div class="form-row">
+                <label>
+                    <span>Owner Name (First Name)</span>
+                    <input type="text" name="frstnm" class='validasi'>
+                </label>
+            </div>
+            <div class="form-row">
+                <label>
+                    <span>Owner Name (Last Name)</span>
+                    <input type="text" name="lstnm" class='validasi'>
+                </label>
+            </div>
+            <div class="form-row">
+                <label>
+                    <span>Date Of Birth</span>
+                    <input type="text" name="brtdate" id="brtdate" class='validasi'>
+                </label>
+            </div>
+			<div class="form-row">
+                <label>
+                    <span>Email Address</span>
+                    <input type="text" name="emadd" class='validasi'>
+                </label>
+            </div>
+			<div class="form-row">
+                <label>
+                   <span>Captcha</span>
+				   {$html_captcha}
+                </label>
+            </div>
+			<div class="form-row">
+                <button id='sbmfrm'>Register</button>
+            </div>
+			<br/>
+			<br/>
+			<br/>
+			<a class="form-forgotten-password" href="{$host}forgotpassword">Forgotten Password</a>
+			<a class="form-create-an-account" href="{$host}">Login Account</a>
+		
+			<div style="text-align:center;margin-top:30px">
+				<span style="color:#0000;">Homtel Services &copy; Margahayu Land</span>
+			</div>
+		</form>
+	</div>
+	
+	<script>
+		$(".validasi").validatebox({ required:true }); 
+		$('#brtdate').Zebra_DatePicker();	
+		
+		$('#sbmfrm').on('click', function(){
+			validasi = $('#regsbro').form('validate');
+			if(validasi){
+				$.blockUI({ message: '<h3>Processing Data...</h3>' });			
+			}
+			submit_form('regsbro',function(r){
+				if(r==1){
+					alert('Thank For Register, Please Check Your Email.');
+					location.href('{$host}');
+				}else{
+					alert('Email is already registered.');
+				}
+			});
+		});
+		//*/
+	</script>
+</body>
+</html>

@@ -61,4 +61,18 @@ class Services extends JINGGA_Controller {
 		print_r($res);
 	}
 	
+	function tes_forgot(){
+		$this->load->library('lib');
+		$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
+		$data=array('method' => 'read',
+					'modul'=>'forgot_pwd',
+					'sub_modul'=>'',
+					'email_address'=>'triwahyunugroho11@gmail.com',
+		);//DATA UNTUK PUT
+		$method='post';
+		$balikan="json";
+		$res=$this->lib->jingga_curl($url,$data,$method,$balikan);
+		print_r($res);
+	}
+	
 }

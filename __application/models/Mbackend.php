@@ -14,6 +14,7 @@ class Mbackend extends CI_Model{
 				$data['method'] = 'read';
 				$data['modul'] = 'login';
 				$data['submodul'] = '';
+				$data['member_user'] = '';
 				$data['email_address'] = $p1;
 				$data['pwd'] = $p2;
 

@@ -112,16 +112,31 @@ class lib {
 		$html = "";
 		$subject = "";
 		switch($type){
-			case "email_register":				
-				$emails = urlencode(base64_encode($p1['data']['email_address']));
-				$pwd = urlencode(base64_encode($p1['data']['pwd']));
-				$member_user = urlencode(base64_encode($p1['data']['member_user']));
+			case "email_register_step1":				
+				$firstname = trim($p1['frstnm']);
+				$lastname = trim($p1['lstnm']);
+				$datebirth = trim($p1['brtdate']);
+				$emails = trim($p1['emadd']);
+				$encoding_word = $firstname."|".$lastname."|".$datebirth."|".$emails;
+				$encoding = $this->base64url_encode($encoding_word);
+				$link = $p2."register-step2/".$encoding;
+				
+				$ci->nsmarty->assign('type', "email-step1");
+				$ci->nsmarty->assign('link', $link);
+				$html = $ci->nsmarty->fetch('backend/email-register.html');
+				$subject = "Register Step 1 - Homtel Services";
+			break;
+			case "email_register_step2":				
+				$emails = $this->base64url_encode($p1['data']['email_address']);
+				$pwd = $this->base64url_encode($p1['data']['pwd']);
+				$member_user = $this->base64url_encode($p1['data']['member_user']);
 				$link = $p2.'activate/'.$emails.'/'.$pwd.'/'.$member_user;
 				
 				$ci->nsmarty->assign('datax', $p1);
+				$ci->nsmarty->assign('type', "email-step2");
 				$ci->nsmarty->assign('link', $link);
 				$html = $ci->nsmarty->fetch('backend/email-register.html');
-				$subject = "Register Homtel Services";
+				$subject = "Register Successfull";
 			break;
 		}
 				
@@ -411,6 +426,40 @@ class lib {
 	
 	//End Generate Form Via Field Table
 	
+	//Function Encoding Decoding
+	function base62encode($data) {
+		$outstring = '';
+		$l = strlen($data);
+		for ($i = 0; $i < $l; $i += 8) {
+			$chunk = substr($data, $i, 8);
+			$outlen = ceil((strlen($chunk) * 8)/6); //8bit/char in, 6bits/char out, round up
+			$x = bin2hex($chunk);  //gmp won't convert from binary, so go via hex
+			$w = gmp_strval(gmp_init(ltrim($x, '0'), 16), 62); //gmp doesn't like leading 0s
+			$pad = str_pad($w, $outlen, '0', STR_PAD_LEFT);
+			$outstring .= $pad;
+		}
+		return $outstring;
+	}
+
+	function base62decode($data) {
+		$outstring = '';
+		$l = strlen($data);
+		for ($i = 0; $i < $l; $i += 11) {
+			$chunk = substr($data, $i, 11);
+			$outlen = floor((strlen($chunk) * 6)/8); //6bit/char in, 8bits/char out, round down
+			$y = gmp_strval(gmp_init(ltrim($chunk, '0'), 62), 16); //gmp doesn't like leading 0s
+			$pad = str_pad($y, $outlen * 2, '0', STR_PAD_LEFT); //double output length as as we're going via hex (4bits/char)
+			$outstring .= pack('H*', $pad); //same as hex2bin
+		}
+		return $outstring;
+	}
 	
-	
+	function base64url_encode($data) { 
+	  return rtrim(strtr(base64_encode($data), '+/', '-_'), '='); 
+	} 
+
+	function base64url_decode($data) { 
+	  return base64_decode(str_pad(strtr($data, '-_', '+/'), strlen($data) % 4, '=', STR_PAD_RIGHT)); 
+	} 	
+	//End Function Encoding Decoding
 }

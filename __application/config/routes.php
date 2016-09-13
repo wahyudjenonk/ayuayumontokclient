@@ -13,7 +13,9 @@ $route['backoffice-form/(:any)'] = 'backend/get_form/$1';
 
 // Modul Core
 $route['register'] = 'login/registrasiuser';
-$route['submit-register'] = 'login/submitregistrasi';
+$route['register-step2/(:any)'] = 'login/registrasiuser2/$1';
+$route['submit-step1-register'] = 'login/submitregistrasi';
+$route['submit-step2-register'] = 'login/submitregistrasi';
 $route['activate/(:any)/(:any)/(:any)'] = 'login/aktivasiuser/$1/$2/$3';
 $route['forgotpassword'] = 'login/forgotpasssss';
 

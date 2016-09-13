@@ -3,9 +3,24 @@
 	<table width='80%' style='margin-left:10%;background:#fff;'>
 		<tr>
 			<td style='padding:10px;'>
-			
+				
 			</td>
 		</tr>
+		{if $type eq 'email-step1'}
+		<tr>
+			<td style='padding:10px;'>
+				Thank For Register On Homtel Service.
+			</td>
+		</tr>		
+		<tr>
+			<td style='padding:10px;'>
+				Please click this link below to complete step your registration.
+				<br />
+				<br />
+				<a href='{$link}'>{$link}</a>
+			</td>
+		</tr>
+		{elseif $type eq 'email-step2'}
 		<tr>
 			<td style='padding:10px;'>
 				Thank For Register, This is your Account Detail :
@@ -32,6 +47,7 @@
 				<a href='{$link}'>{$link}</a>
 			</td>
 		</tr>
+		{/if}
 		<tr>
 			<td style='padding:10px;'>
 				<br/>

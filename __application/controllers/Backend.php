@@ -71,7 +71,6 @@ class Backend extends JINGGA_Controller {
 			if($this->input->post($k)!=""){
 				$post[$k] = $this->input->post($k);
 			}
-			
 		}
 		if(isset($post['editstatus'])){$editstatus = $post['editstatus'];unset($post['editstatus']);}
 		else $editstatus = $p2;
