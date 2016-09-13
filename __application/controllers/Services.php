@@ -47,13 +47,14 @@ class Services extends JINGGA_Controller {
 	function tes_login()
 	{
 		$this->load->library('lib');
-		$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
+		//$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
+		$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
 		$data=array('method' => 'read',
 					'modul'=>'login',
 					'sub_modul'=>'',
 					'member_user'=>'',
-					'email_address'=>'triwahyunugroho11@gmail.com',
-					'pwd'=>'D36CE6'
+					'email_address'=>'goyz87@gmail.com',
+					'pwd'=>'12345'
 		);//DATA UNTUK PUT
 		$method='post';
 		$balikan="json";
