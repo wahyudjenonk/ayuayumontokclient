@@ -90,4 +90,111 @@ class Services extends JINGGA_Controller {
 		print_r($res);
 	}
 	
+	function tes_property_insert()
+	{
+		$this->load->library('lib');
+		//$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
+		$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
+		
+		$data_compulsary_unit=array(1,3);//ISI CEKLIST FORM DARI LOOKUP CL_COMPULSARY...
+		$data_facility_unit=array(2,6,3);//ISI CEKLIST FORM DARI LOOKUP CL_FACILITY... MESTI DIPOST AMA QTY
+		$data_qty=array(20,65,380);//DATA QTY DAN FACLITIY TABLE tbl_unit_facility_member
+		$data_room_type=array(1,3,4);//ISI CEKLIST FORM DARI LOOKUP CL_ROOM TYPE
+		
+		$data=array('method' => 'create',//ISI METHOD NYA CRUD YE CUNG.. CREATE READ UPDATE DELETE
+					'modul'=>'property',
+					'sub_modul'=>'',
+					'tbl_member_user'=>'99B009',
+					'unit_number'=>100,
+					'unit_size_nett'=>200,
+					'unit_size_gross'=>1000,
+					'flag'=>'P',
+					'cl_compulsary_periodic_payment_id'=>$data_compulsary_unit,
+					'cl_facility_unit_id'=>$data_facility_unit,
+					'qty'=>$data_qty,
+					'cl_room_type_id'=>$data_room_type
+		);//DATA UNTUK PUT
+		$method='post';
+		$balikan="json";
+		$res = $this->lib->jingga_curl($url,$data,$method,$balikan);
+		print_r($res);
+		//echo $res['msg'];
+	}
+	function tes_property_edit()
+	{
+		$this->load->library('lib');
+		//$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
+		$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
+		
+		$data_compulsary_unit=array(1,3);//ISI CEKLIST FORM DARI LOOKUP CL_COMPULSARY...
+		$data_facility_unit=array(20,60,30);//ISI CEKLIST FORM DARI LOOKUP CL_FACILITY... MESTI DIPOST AMA QTY
+		$data_qty=array(200,650,3800);//DATA QTY DAN FACLITIY TABLE tbl_unit_facility_member
+		$data_room_type=array(1,3,4);//ISI CEKLIST FORM DARI LOOKUP CL_ROOM TYPE
+		
+		$data=array('method' => 'update',//ISI METHOD NYA CRUD YE CUNG.. CREATE READ UPDATE DELETE
+					'modul'=>'property',
+					'sub_modul'=>'',
+					'id'=>1,
+					'unit_number'=>5000,
+					'unit_size_nett'=>200,
+					'unit_size_gross'=>1000,
+					'flag'=>'P',
+					'cl_compulsary_periodic_payment_id'=>$data_compulsary_unit,
+					'cl_facility_unit_id'=>$data_facility_unit,
+					'qty'=>$data_qty,
+					'cl_room_type_id'=>$data_room_type
+		);//DATA UNTUK PUT
+		$method='post';
+		$balikan="json";
+		$res = $this->lib->jingga_curl($url,$data,$method,$balikan);
+		print_r($res);
+		//echo $res['msg'];
+	}
+	function tes_property_delete()
+	{
+		$this->load->library('lib');
+		//$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
+		$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
+		$data=array('method' => 'delete',//ISI METHOD NYA CRUD YE CUNG.. CREATE READ UPDATE DELETE
+					'modul'=>'property',
+					'sub_modul'=>'',
+					'id'=>1
+		);//DATA UNTUK PUT
+		$method='post';
+		$balikan="json";
+		$res = $this->lib->jingga_curl($url,$data,$method,$balikan);
+		print_r($res);
+		//echo $res['msg'];
+	}
+	function tes_get_data_property()
+	{
+		$this->load->library('lib');
+		//$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
+		$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
+		$data=array('method' => 'read',//ISI METHOD NYA CRUD YE CUNG.. CREATE READ UPDATE DELETE
+					'modul'=>'property',
+					'sub_modul'=>'',
+		);//DATA UNTUK PUT
+		$method='post';
+		$balikan="json";
+		$res = $this->lib->jingga_curl($url,$data,$method,$balikan);
+		print_r($res);
+		//echo $res['msg'];
+	}
+	function tes_get_data_property_detil()
+	{
+		$this->load->library('lib');
+		//$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
+		$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
+		$data=array('method' => 'read',//ISI METHOD NYA CRUD YE CUNG.. CREATE READ UPDATE DELETE
+					'modul'=>'property',
+					'sub_modul'=>'detil',
+					'id'=>2,
+		);//DATA UNTUK PUT
+		$method='post';
+		$balikan="json";
+		$res = $this->lib->jingga_curl($url,$data,$method,$balikan);
+		print_r($res);
+		//echo $res['msg'];
+	}
 }

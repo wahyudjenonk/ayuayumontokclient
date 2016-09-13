@@ -397,8 +397,11 @@ class lib {
 		curl_setopt($curl_handle, CURLOPT_URL, $url);
 		curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, 1);
 		if($method=='post'){
+			//curl_setopt($curl_handle, CURLOPT_HTTPHEADER, array("Content-type: multipart/form-data"));
 			curl_setopt($curl_handle, CURLOPT_POST, 1);
-			curl_setopt($curl_handle, CURLOPT_POSTFIELDS, $data);
+			//curl_setopt($curl_handle, CURLOPT_POSTFIELDS, $data);
+			curl_setopt($curl_handle, CURLOPT_POSTFIELDS, urldecode(http_build_query($data)));
+			
 		}
 		if($method=='put'){
 			curl_setopt($curl_handle, CURLOPT_CUSTOMREQUEST, "PUT");
