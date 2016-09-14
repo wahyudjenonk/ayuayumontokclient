@@ -13,7 +13,7 @@ class Services extends JINGGA_Controller {
 		$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
 		$data=array('method' => 'create',//ISI METHOD NYA CRUD YE CUNG.. CREATE READ UPDATE DELETE
 					'modul'=>'registrasi',
-					'sub_modul'=>'',
+					'submodul'=>'',
 					'cl_owner_type_id'=>1,
 					'owner_name_last'=>'Goyzzz',
 					'owner_name_first'=>'Cuyzz',
@@ -33,7 +33,7 @@ class Services extends JINGGA_Controller {
 		$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
 		$data=array('method' => 'update',//ISI METHOD NYA CRUD YE CUNG.. CREATE READ UPDATE DELETE
 					'modul'=>'registrasi',
-					'sub_modul'=>'',
+					'submodul'=>'',
 					'member_user'=>'AB384X',
 					//'email'=>'goyz837@gmail.com',
 					'email_address'=>'goyz837@gmail.com',
@@ -51,7 +51,7 @@ class Services extends JINGGA_Controller {
 		$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
 		$data=array('method' => 'read',
 					'modul'=>'login',
-					'sub_modul'=>'',
+					'submodul'=>'',
 					'member_user'=>'',
 					'email_address'=>'goyz87@gmail.com',
 					'pwd'=>'12345'
@@ -67,7 +67,7 @@ class Services extends JINGGA_Controller {
 		$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
 		$data=array('method' => 'read',
 					'modul'=>'forgot_pwd',
-					'sub_modul'=>'',
+					'submodul'=>'',
 					//'member_user'=>'',
 					'email_address'=>'goyz87@gmail.com',
 					//'pwd'=>'D36CE6'
@@ -82,7 +82,7 @@ class Services extends JINGGA_Controller {
 		$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
 		$data=array('method' => 'read',
 					'modul'=>'forgot_pwd',
-					'sub_modul'=>'',
+					'submodul'=>'',
 					'email_address'=>'triwahyunugroho11@gmail.com',
 		);//DATA UNTUK PUT
 		$method='post';
@@ -104,7 +104,7 @@ class Services extends JINGGA_Controller {
 		
 		$data=array('method' => 'create',//ISI METHOD NYA CRUD YE CUNG.. CREATE READ UPDATE DELETE
 					'modul'=>'property',
-					'sub_modul'=>'',
+					'submodul'=>'',
 					'tbl_member_user'=>'99B009',
 					'unit_number'=>100,
 					'unit_size_nett'=>200,
@@ -134,7 +134,7 @@ class Services extends JINGGA_Controller {
 		
 		$data=array('method' => 'update',//ISI METHOD NYA CRUD YE CUNG.. CREATE READ UPDATE DELETE
 					'modul'=>'property',
-					'sub_modul'=>'',
+					'submodul'=>'',
 					'id'=>1,
 					'unit_number'=>5000,
 					'unit_size_nett'=>200,
@@ -158,7 +158,7 @@ class Services extends JINGGA_Controller {
 		$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
 		$data=array('method' => 'delete',//ISI METHOD NYA CRUD YE CUNG.. CREATE READ UPDATE DELETE
 					'modul'=>'property',
-					'sub_modul'=>'',
+					'submodul'=>'',
 					'id'=>1
 		);//DATA UNTUK PUT
 		$method='post';
@@ -174,7 +174,7 @@ class Services extends JINGGA_Controller {
 		$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
 		$data=array('method' => 'read',//ISI METHOD NYA CRUD YE CUNG.. CREATE READ UPDATE DELETE
 					'modul'=>'property',
-					'sub_modul'=>'',
+					'submodul'=>'',
 		);//DATA UNTUK PUT
 		$method='post';
 		$balikan="json";
@@ -189,7 +189,7 @@ class Services extends JINGGA_Controller {
 		$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
 		$data=array('method' => 'read',//ISI METHOD NYA CRUD YE CUNG.. CREATE READ UPDATE DELETE
 					'modul'=>'property',
-					'sub_modul'=>'detil',
+					'submodul'=>'detil',
 					'id'=>2,
 		);//DATA UNTUK PUT
 		$method='post';
@@ -201,11 +201,11 @@ class Services extends JINGGA_Controller {
 	function tes_get_data_combo()
 	{
 		$this->load->library('lib');
-		$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
-		//$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
+		//$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
+		$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
 		$data=array('method' => 'read',//ISI METHOD NYA CRUD YE CUNG.. CREATE READ UPDATE DELETE
 					'modul'=>'combo_all',
-					'sub_modul'=>'cl_room_type',
+					'submodul'=>'cl_room_type',
 					'id'=>2,
 		);//DATA UNTUK PUT
 		$method='post';

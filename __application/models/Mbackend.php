@@ -29,7 +29,7 @@ class Mbackend extends CI_Model{
 			case "roomtype":
 				$data['method'] = 'read';
 				$data['modul'] = 'combo_all';
-				$data['submodul'] = 'cl_room_type';
+				$data['submodul'] = 'cl_compulsary_periodic_payment';
 				$data['id'] = 2;
 			break;
 		}
