@@ -201,16 +201,17 @@ class Services extends JINGGA_Controller {
 	function tes_get_data_combo()
 	{
 		$this->load->library('lib');
-		//$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
-		$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
+		$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
+		//$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
 		$data=array('method' => 'read',//ISI METHOD NYA CRUD YE CUNG.. CREATE READ UPDATE DELETE
 					'modul'=>'combo_all',
-					'sub_modul'=>'cl_compulsary_periodic_payment',
+					'sub_modul'=>'cl_room_type',
 					'id'=>2,
 		);//DATA UNTUK PUT
 		$method='post';
 		$balikan="json";
 		$res = $this->lib->jingga_curl($url,$data,$method,$balikan);
+		echo "<pre>";
 		print_r($res);
 		//echo $res['msg'];
 	}

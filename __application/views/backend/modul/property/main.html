@@ -1,0 +1,43 @@
+<div id="page-wrapper">
+    <div class="container-fluid">
+		<div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                    Property Manager
+                </h1>
+                <div class="breadcrumb" style='height:50px;'>
+					<div style='float:left;width:50%'>
+						<input placeholder="Search Property" style='width:200px !important;' class="form-control">
+					</div>
+                    <div style='float:right;width:50%'>
+						<button style='float:right;' class="btn btn-sm btn-primary" onClick="kumpulAction('form-property', 'add');" type="button">Add Property</button>
+					</div>
+                </div>
+            </div>
+        </div>
+		<div class="row" style='min-height:410px !important;'>
+            {if $dataproperty}
+				{foreach from=$dataproperty.data item=rows}
+					<div class="col-lg-4 text-center">
+						<div class="panel panel-default">
+							<div class="panel-body">
+								{$rows.apartment_name}
+								<hr style='margin-top:10px !important;'/>
+								<a href='#'>Services</a> | <a href='#'>Edit</a> | <a href='#'>Delete</a>
+							</div>
+						</div>
+					</div>
+				{/foreach}
+			{else}
+			<div class="col-lg-12 text-center">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        ..:: No Data Available ::..
+                    </div>
+                </div>
+            </div>
+			{/if}
+        </div>
+    </div>
+</div>
+

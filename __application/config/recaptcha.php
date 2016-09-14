@@ -7,12 +7,9 @@
  * 
  * Author   : Andi Irwandi Langgara <irwandi@ourbluecode.com>
  */
-
-$config['public_key']   = '6LeT3yETAAAAAF6SVrgzN-6eUDoHpUZB5WXbn3DU';
-$config['private_key']  = '6LeT3yETAAAAAMvbAfRrSKsw76LYCzeVhWr9l1y8';
-
-// Set Recaptcha options
-// Reference at https://developers.google.com/recaptcha/docs/customization
+/*
+$config['public_key']   = '6Le13iETAAAAAM07B9yj_W7CIoxGt73qNpypbjzT';
+$config['private_key']  = '6Le13iETAAAAACrdU736_A5_goWa7X52WR7RjAeo';
 $config['recaptcha_options']  = array(
     'theme'=>'red', // red/white/blackglass/clean
     'lang' => 'en' // en/nl/fl/de/pt/ru/es/tr
@@ -20,5 +17,15 @@ $config['recaptcha_options']  = array(
     //  'custom_theme_widget' - When using custom theming, this is a div element which contains the widget. See the custom theming section for how to use this.
     //  'tabindex' - Sets a tabindex for the reCAPTCHA text box. If other elements in the form use a tabindex, this should be set so that navigation is easier for the user
 );
+*/
+
+
+$config['recaptcha_sitekey']   = '6Le13iETAAAAAM07B9yj_W7CIoxGt73qNpypbjzT';
+$config['recaptcha_secretkey']  = '6Le13iETAAAAACrdU736_A5_goWa7X52WR7RjAeo';
+$config['lang'] = 'en';
+
+
+// Set Recaptcha options
+// Reference at https://developers.google.com/recaptcha/docs/customization
 
 ?>

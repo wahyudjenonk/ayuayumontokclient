@@ -30,12 +30,47 @@ class Backend extends JINGGA_Controller {
 				case "dashboard":
 					
 				break;
+				case "property":
+					switch($p2){
+						case "main":
+							$dataproperty = $this->mbackend->getdata('property');
+							$this->nsmarty->assign('dataproperty', $dataproperty);
+						break;
+						case "form":
+							$editstatus = $this->input->post('eds');
+							$temp = 'backend/modul/'.$p1.'/formproperty.html';
+							if($editstatus == 'edit'){
+								
+							}elseif($editstatus == 'add'){
+								$roomtype = $this->mbackend->getdata('roomtype');
+								
+								$this->nsmarty->assign('roomtype', $roomtype);
+							}
+							
+
+						break;
+					}
+				break;
 			}
+			
 			
 			$this->nsmarty->assign("main", $p1);
 			$this->nsmarty->assign("mod", $p2);
-			if(!file_exists($this->config->item('appl').APPPATH.'views/'.$temp)){$this->nsmarty->display('konstruksi.html');}
-			else{$this->nsmarty->display($temp);}	
+			if(!file_exists($this->config->item('appl').APPPATH.'views/'.$temp)){
+				$page = $this->nsmarty->fetch('konstruksi.html');}
+			else{
+				$page = $this->nsmarty->fetch($temp);
+			}
+			
+			$array_page = array(
+				'loadbalancedt' => md5('Ymd'),
+				'loadbalancetm' => md5('H:i:s'),
+				'loadtmr' => md5('YmdHis'),
+				'page' => $page
+			);
+			
+			echo json_encode($array_page);
+			//*/
 		}
 	}	
 		
@@ -78,5 +113,8 @@ class Backend extends JINGGA_Controller {
 		echo $this->mbackend->simpandata($p1, $post, $editstatus);
 	}
 	
-	
+	function test(){
+		$roomtype = $this->mbackend->getdata('roomtype');
+		print_r($roomtype);
+	}
 }

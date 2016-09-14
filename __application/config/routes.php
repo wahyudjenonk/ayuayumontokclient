@@ -21,6 +21,9 @@ $route['forgotpassword'] = 'login/forgotpasssss';
 
 $route['dashboard'] = 'backend/modul/dashboard/main';
 
+$route['propertymanager'] = 'backend/modul/property/main';
+$route['propertymanager-form'] = 'backend/modul/property/form';
+
 
 
 /*

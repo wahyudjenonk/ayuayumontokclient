@@ -6,11 +6,10 @@ $(function() {
 
 
 function loadUrl(urls){
-	//$("#konten").empty();
     $("#konten").empty().addClass("loading");
-   // $("#konten").html("").addClass("loading");
 	$.get(urls,function (html){
-	    $("#konten").html(html).removeClass("loading");
+	    var parsing = $.parseJSON(html);
+		$("#konten").html(parsing.page).removeClass("loading");
     });
 }
 
@@ -432,95 +431,23 @@ function genTab(div, mod, sub_mod, tab_array, div_panel, judul_panel, mod_num, h
 function kumpulAction(type, p1, p2, p3, p4, p5){
 	var param = {};
 	switch(type){
-		case "reservation":
-			grid = $('#grid_reservasi').datagrid('getSelected');
-			$.post(host+'backend/simpan_data/tbl_reservasi_confirm', { 'id':grid.id, 'confirm':p1 }, function(rsp){
-				if(rsp == 1){
-					$.messager.alert('Roger Salon',"Confirm OK",'info');
-				}else{
-					$.messager.alert('Roger Salon',"Failed Confirm",'error');
-				}
-				$('#grid_reservasi').datagrid('reload');	
-			} );
-		break;
-		case "detail-meja":
-			param['id_meja'] = p1;
-			param['status_meja'] = p2;
-			param['nomor_meja'] = p3;
-			
-			$('#konten').html('').addClass('loading');
-			$.post(host+'detail-meja', param, function(r){
-				$('#konten').removeClass('loading').html(r);
-			});
-		break;
-		case "hapus-item":
-			var row = $('#pes_kasir').datagrid('getSelected');
-			if(row){
-				$.post(host+'hapus-item', { 'id':row.id, 'editstatus':'edit', 'id_meja':p1, 'tbl_produk_id':row.tbl_produk_id }, function(resp){
-					if(resp == 1){
-						$('#pes_kasir').datagrid('reload');
-						$.post(host+'total-pesanan', { 'id_meja':p1 }, function(resp){
-							var parsing = $.parseJSON(resp);
-							$('#total_qty').val(parsing.tot_qty);
-							$('#total_hrg').val(NumberFormat(parsing.tot_harga));
-						});
-					}else{
-						$.messager.alert('Error','Error System','error');
-					}
-				});
-			}else{
-				$.messager.alert('Error','Pilih Data List Pesanan!','error');
-			}
-		break;
-		case "selesai-transaksi":
-			loadingna();
-			$.post(host+'selesai-transaksi', { 'id_meja':p1, 'nomor_meja':p2 }, function(resp){
-				winLoadingClose();
-				windowForm(resp, 'Pembayaran Transaksi', 500, 600);
-			});
-		break;
-		case "kalkulasi":
-			console.log(parseInt(jml_uang));
-			
-			var tot_byr = $('#tot_byr_bnr').val();
-			
-			if($('#jumlah_uang_'+p2).val()){
-				var jml_uang = $('#jumlah_uang_'+p2).val();
-			}else{
-				var jml_uang = 0;
+		case "form-property":
+			switch(p1){
+				case "add":
+					param['eds'] = 'add';
+				break;
+				case "edit":
+					param['eds'] = 'edit';
+					param['ixd'] = p2;
+				break;
 			}
 			
-			var uang_trm = (parseInt(p1) + parseInt(jml_uang));
-			var uang_kmb = (parseInt(uang_trm) - parseInt(tot_byr));
-			
-			$('#jumlah_uang_'+p2).val(uang_trm);
-			$('#jml_uang_'+p2).val(NumberFormat(uang_trm));
-			$('#jumlah_kembalian_'+p2).val(uang_kmb);
-			$('#uang_kembalian_'+p2).val(NumberFormat(uang_kmb));
-			
-			return false;
-		break;
-		case "reset_jmluang_kembalian":
-			$('#jumlah_uang_'+p1).val('');
-			$('#jml_uang_'+p1).val('');
-			$('#jumlah_kembalian_'+p1).val('');
-			$('#uang_kembalian_'+p1).val('');
-		break;
-		case "tutup-transaksi":
-			submit_form('form_pembayaran_transaksi',function(r){
-				loadingna();
-				if(r==1){
-					$.messager.alert('JResto Soft',"Data Tersimpan",'info');
-					loadUrl(host+'kasir');
-					winLoadingClose();
-				}else{
-					$.messager.alert('JResto Soft', "Gagal", 'error');
-					console.log(r);
-					winLoadingClose();
-				}
-				closeWindow2();
+			$("#konten").empty().addClass("loading");
+			$.post(host+'propertymanager-form', param, function(rsp){
+				var parsing = $.parseJSON(rsp);
+				$("#konten").html(parsing.page).removeClass("loading");	
 			});
-		break;		
+		break;
 	}
 }	
 
