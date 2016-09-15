@@ -11,47 +11,49 @@
             </div>
         </div>
 		<div class="row" style='min-height:410px !important;'>
-			<form role="form">
+			<form role="form" id='regspro' url='{$host}submit-property' method='post' enctype="multipart/form-data">
+				<input type='hidden' name='editstatus' value='{$editstatus}'>
+				<input type='hidden' name='ifdx' value="{$data.id|default:''}">
 				<div class="col-lg-6">
 					<div class="form-group">
 						<label>Unit Number</label>
-						<input style='width:300px !important;' class="form-control" name='untmem' id='untmem' value="{$data.unit_member|default:''}" />
+						<input style='width:300px !important;' class="form-control validasi" name='untmem' id='untmem' value="{$data.unit_member|default:''}" />
 					</div>
 					<div class="form-group">
 						<label>Unit Size Nett (sqm/m<sup>2</sup>)</label>
-						<input style='width:300px !important;' class="form-control" name='untmem' id='untmem' value="{$data.unit_member|default:''}" />
+						<input style='width:300px !important;' class="form-control" name='untsizenett' id='untsizenett' value="{$data.unit_member|default:''}" />
 					</div>
 					<div class="form-group">
 						<label>Unit Size Gross (sqm/m<sup>2</sup>)</label>
-						<input style='width:300px !important;' class="form-control" name='untmem' id='untmem' value="{$data.unit_member|default:''}" />
+						<input style='width:300px !important;' class="form-control" name='untsizegros' id='untsizegros' value="{$data.unit_member|default:''}" />
 					</div>
 					<div class="form-group">
 						<label>Unit Type</label>
-						<input class="form-control" name='untmem' id='untmem' value="{$data.unit_member|default:''}" />
+						<input class="form-control" name='unttyp' id='unttyp' value="{$data.unit_member|default:''}" />
 					</div>
 					<div class="form-group">
 						<label>Number Of Room(s)</label>
-						<input class="form-control" name='untmem' id='untmem' value="{$data.unit_member|default:''}" />
+						<input class="form-control" name='numroom' id='numroom' value="{$data.unit_member|default:''}" />
 					</div>
 					<div class="form-group">
 						<label>Floor Number</label>
-						<input class="form-control" name='untmem' id='untmem' value="{$data.unit_member|default:''}" />
+						<input class="form-control" name='flrnum' id='flrnum' value="{$data.unit_member|default:''}" />
 					</div>
 					<div class="form-group">
 						<label>View</label>
-						<input class="form-control" name='untmem' id='untmem' value="{$data.unit_member|default:''}" />
+						<input class="form-control" name='untviw' id='untviw' value="{$data.unit_member|default:''}" />
 					</div>
 					<div class="form-group">
 						<label>Apartment Name</label>
-						<input class="form-control" name='untmem' id='untmem' value="{$data.unit_member|default:''}" />
+						<input class="form-control validasi" name='apartnm' id='apartnm' value="{$data.unit_member|default:''}" />
 					</div>
 					<div class="form-group">
 						<label>Apartment Developer Name</label>
-						<input class="form-control" name='untmem' id='untmem' value="{$data.unit_member|default:''}" />
+						<input class="form-control validasi" name='apartdevnm' id='apartdevnm' value="{$data.unit_member|default:''}" />
 					</div>
 					<div class="form-group">
 						<label>Apartment Address</label>
-						<textarea rows="3" class="form-control"></textarea>
+						<textarea rows="3"  name='apartaddr' id='apartaddr' class="form-control"></textarea>
 					</div>
 				</div>
 				<div class="col-lg-6">
@@ -61,14 +63,77 @@
 							{foreach from=$roomtype.data item=rom}
 								<div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name='rmtype[]' value="{$rom.id}"> {$rom.room_type}
+										{assign var="chkrom" value={$rom.flagcheck|default:''}}
+                                        <input type="checkbox" name='rmtype[]' value="{$rom.id}" {$chkrom} /> {$rom.room_type}
+                                    </label>
+                                </div>
+							{/foreach}
+						{/if}
+					</div>
+					
+					<div class="form-group">
+						<label>General Facility Check</label>
+						{if $generalfacility}
+							<div class="table-responsive">
+								<table class="table table-bordered">
+									 <tbody>
+									{foreach from=$generalfacility.data item=gf}
+										<tr>
+											<td>{$gf.facility_name}</td>
+											<td>
+												<input type="hidden" name='idxfacun[]' value='{$gf.id}'/>
+												<input type="text" name='facility_unit_qty[]' value="{$gf.qty|default:''}"> {$gf.unit}
+											</td>
+										</tr>
+									{/foreach}
+									</tbody>
+								</table>
+							</div>
+						{/if}
+					</div>
+					
+					<div class="form-group">
+						<label>Compulsary Periodic Payment</label>
+						{if $compulsary}
+							{foreach from=$compulsary.data item=rom}
+								<div class="checkbox">
+                                    <label>
+                                        {assign var="chkcom" value={$rom.flagcheck|default:''}}
+										<input type="checkbox" name='compultype[]' value="{$rom.id}" {$chkcom} /> {$rom.compulsary_periodic_payment}
                                     </label>
                                 </div>
 							{/foreach}
 						{/if}
 					</div>
 				</div>
+				<div class="col-lg-12">
+					<hr/>
+					<button class="btn btn-primary" id='sbmfrmpro' type="submit">Submit</button>
+					<button class="btn btn-danger" onClick="loadUrl('{$host}propertymanager');">Back</button>
+				</div>
 			</form>
 		</div>
 	</div>
 </div>
+
+<script>
+	$(".validasi").validatebox({ required:true }); 	
+	$('#sbmfrmpro').on('click', function(){
+		validasi = $('#regspro').form('validate');
+		if(validasi){
+			$.blockUI({ message: '<h3>Processing Data...</h3>' });			
+		}
+		submit_form('regspro',function(r){
+			if(r==1){
+				alert('Successfully Register Your Unit Property');
+				loadUrl('{$host}propertymanager');
+			}else{
+				alert(r);
+			}
+			$.unblockUI();
+		});
+		
+		return false
+	});
+	//*/
+</script>

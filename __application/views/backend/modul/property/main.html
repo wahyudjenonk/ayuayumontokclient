@@ -16,14 +16,14 @@
             </div>
         </div>
 		<div class="row" style='min-height:410px !important;'>
-            {if $dataproperty}
+            {if $dataproperty.data}
 				{foreach from=$dataproperty.data item=rows}
 					<div class="col-lg-4 text-center">
 						<div class="panel panel-default">
 							<div class="panel-body">
 								{$rows.apartment_name}
 								<hr style='margin-top:10px !important;'/>
-								<a href='#'>Services</a> | <a href='#'>Edit</a> | <a href='#'>Delete</a>
+								<a href='#'>Services</a> | <a href='{$host}property-edit/{$rows.id}'>Edit</a> | <a href='#'>Delete</a>
 							</div>
 						</div>
 					</div>

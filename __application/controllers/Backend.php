@@ -22,7 +22,7 @@ class Backend extends JINGGA_Controller {
 		}
 	}
 	
-	function modul($p1,$p2){
+	function modul($p1,$p2,$p3=""){
 		if($this->auth){
 			$temp = 'backend/modul/'.$p1.'/'.$p2.'.html';
 			
@@ -39,15 +39,51 @@ class Backend extends JINGGA_Controller {
 						case "form":
 							$editstatus = $this->input->post('eds');
 							$temp = 'backend/modul/'.$p1.'/formproperty.html';
+							$roomtype = $this->mbackend->getdata('roomtype');
+							$generalfacility = $this->mbackend->getdata('generalfacility');
+							$compulsary = $this->mbackend->getdata('compulsary');
+							
 							if($editstatus == 'edit'){
+								$id = $this->input->post('iixd');
+								$data = $this->mbackend->getdata('property_detail', $id);
+								if($data['data']['room_type']){
+									foreach($roomtype['data'] as $k => $v){
+										$roomtype['data'][$k]['flagcheck'] = '';
+										foreach($data['data']['room_type'] as $t => $y){
+											if($y['cl_room_type_id'] == $v['id']){
+												$roomtype['data'][$k]['flagcheck'] = 'checked';
+											}
+										}
+									}
+								}
 								
-							}elseif($editstatus == 'add'){
-								$roomtype = $this->mbackend->getdata('roomtype');
+								if($data['data']['compulsary']){
+									foreach($compulsary['data'] as $kk => $vv){
+										$compulsary['data'][$kk]['flagcheck'] = '';
+										foreach($data['data']['compulsary'] as $tt => $yy){
+											if($yy['cl_compulsary_periodic_payment_id'] == $vv['id']){
+												$compulsary['data'][$kk]['flagcheck'] = 'checked';
+											}
+										}
+									}
+								}
 								
-								$this->nsmarty->assign('roomtype', $roomtype);
+								if($data['data']['facility']){
+									foreach($generalfacility['data'] as $z => $x){
+										$generalfacility['data'][$z]['qty'] = '';
+										foreach($data['data']['facility'] as $u => $b){
+											if($b['cl_facility_unit_id'] == $x['id']){
+												$generalfacility['data'][$z]['qty'] = $b['qty'];
+											}
+										}
+									}
+								}
 							}
 							
-
+							$this->nsmarty->assign('roomtype', $roomtype);
+							$this->nsmarty->assign('generalfacility', $generalfacility);
+							$this->nsmarty->assign('compulsary', $compulsary);
+							$this->nsmarty->assign('editstatus', $editstatus);
 						break;
 					}
 				break;
@@ -100,21 +136,67 @@ class Backend extends JINGGA_Controller {
 	}
 	
 	function simpandata($p1="",$p2=""){
-		if($this->input->post('mod'))$p1=$this->input->post('mod');
+		//if($this->input->post('mod'))$p1=$this->input->post('mod');
+		
 		$post = array();
         foreach($_POST as $k=>$v){
 			if($this->input->post($k)!=""){
 				$post[$k] = $this->input->post($k);
+			}else{
+				$post[$k] = null;
 			}
 		}
-		if(isset($post['editstatus'])){$editstatus = $post['editstatus'];unset($post['editstatus']);}
-		else $editstatus = $p2;
+				
+		if(isset($post['editstatus'])){
+			$editstatus = $post['editstatus'];unset($post['editstatus']);
+		}else{ 
+			$editstatus = $p2; 
+		}
 		
 		echo $this->mbackend->simpandata($p1, $post, $editstatus);
 	}
 	
-	function test(){
+	function test($p1){
+		$data = $this->mbackend->getdata('property_detail', $p1);
 		$roomtype = $this->mbackend->getdata('roomtype');
-		print_r($roomtype);
+		$generalfacility = $this->mbackend->getdata('generalfacility');
+		$compulsary = $this->mbackend->getdata('compulsary');
+		
+		if($data['data']['room_type']){
+			foreach($roomtype['data'] as $k => $v){
+				$roomtype['data'][$k]['flagcheck'] = 'false';
+				foreach($data['data']['room_type'] as $t => $y){
+					if($y['cl_room_type_id'] == $v['id']){
+						$roomtype['data'][$k]['flagcheck'] = 'true';
+					}
+				}
+			}
+		}
+		
+		if($data['data']['compulsary']){
+			foreach($compulsary['data'] as $kk => $vv){
+				$compulsary['data'][$kk]['flagcheck'] = 'false';
+				foreach($data['data']['compulsary'] as $tt => $yy){
+					if($yy['cl_compulsary_periodic_payment_id'] == $vv['id']){
+						$compulsary['data'][$kk]['flagcheck'] = 'true';
+					}
+				}
+			}
+		}
+		
+		if($data['data']['facility']){
+			foreach($generalfacility['data'] as $z => $x){
+				$generalfacility['data'][$z]['qty'] = '';
+				foreach($data['data']['facility'] as $u => $b){
+					if($b['cl_facility_unit_id'] == $x['id']){
+						$generalfacility['data'][$z]['qty'] = $b['qty'];
+					}
+				}
+			}
+		}
+		
+		echo "<pre>";
+		print_r($generalfacility);exit;
+		
 	}
 }

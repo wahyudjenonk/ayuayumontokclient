@@ -23,6 +23,8 @@ $route['dashboard'] = 'backend/modul/dashboard/main';
 
 $route['propertymanager'] = 'backend/modul/property/main';
 $route['propertymanager-form'] = 'backend/modul/property/form';
+$route['property-edit/(:any)'] = 'backend/test/$1';
+$route['submit-property'] = 'backend/simpandata/property';
 
 
 
