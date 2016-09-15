@@ -101,7 +101,7 @@ class Services extends JINGGA_Controller {
 		$data_facility_unit=array(2,6,3);//ISI CEKLIST FORM DARI LOOKUP CL_FACILITY... MESTI DIPOST AMA QTY
 		$data_qty=array(20,65,380);//DATA QTY DAN FACLITIY TABLE tbl_unit_facility_member
 		$data_room_type=array(1,3,4);//ISI CEKLIST FORM DARI LOOKUP CL_ROOM TYPE
-		
+		$data_photo=array('Xxx.JPG','YY.jpg');//ISI FOTO NYA
 		$data=array('method' => 'create',//ISI METHOD NYA CRUD YE CUNG.. CREATE READ UPDATE DELETE
 					'modul'=>'property',
 					'submodul'=>'',
@@ -113,7 +113,8 @@ class Services extends JINGGA_Controller {
 					'cl_compulsary_periodic_payment_id'=>$data_compulsary_unit,
 					'cl_facility_unit_id'=>$data_facility_unit,
 					'qty'=>$data_qty,
-					'cl_room_type_id'=>$data_room_type
+					'cl_room_type_id'=>$data_room_type,
+					'photo_unit'=>$data_photo
 		);//DATA UNTUK PUT
 		$method='post';
 		$balikan="json";
@@ -131,11 +132,11 @@ class Services extends JINGGA_Controller {
 		$data_facility_unit=array(20,60,30);//ISI CEKLIST FORM DARI LOOKUP CL_FACILITY... MESTI DIPOST AMA QTY
 		$data_qty=array(200,650,3800);//DATA QTY DAN FACLITIY TABLE tbl_unit_facility_member
 		$data_room_type=array(1,3,4);//ISI CEKLIST FORM DARI LOOKUP CL_ROOM TYPE
-		
+		$data_photo=array('x.JPG','Y.jpg');//ISI FOTO NYA
 		$data=array('method' => 'update',//ISI METHOD NYA CRUD YE CUNG.. CREATE READ UPDATE DELETE
 					'modul'=>'property',
 					'submodul'=>'',
-					'id'=>1,
+					'id'=>4,
 					'unit_number'=>5000,
 					'unit_size_nett'=>200,
 					'unit_size_gross'=>1000,
@@ -143,7 +144,8 @@ class Services extends JINGGA_Controller {
 					'cl_compulsary_periodic_payment_id'=>$data_compulsary_unit,
 					'cl_facility_unit_id'=>$data_facility_unit,
 					'qty'=>$data_qty,
-					'cl_room_type_id'=>$data_room_type
+					'cl_room_type_id'=>$data_room_type,
+					'photo_unit'=>$data_photo
 		);//DATA UNTUK PUT
 		$method='post';
 		$balikan="json";
@@ -159,7 +161,7 @@ class Services extends JINGGA_Controller {
 		$data=array('method' => 'delete',//ISI METHOD NYA CRUD YE CUNG.. CREATE READ UPDATE DELETE
 					'modul'=>'property',
 					'submodul'=>'',
-					'id'=>1
+					'id'=>4
 		);//DATA UNTUK PUT
 		$method='post';
 		$balikan="json";
