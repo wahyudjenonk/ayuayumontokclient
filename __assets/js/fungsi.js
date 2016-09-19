@@ -448,36 +448,62 @@ function kumpulAction(type, p1, p2, p3, p4, p5){
 				$("#konten").html(parsing.page).removeClass("loading");	
 			});
 		break;
+		case "property-delete":
+			var r = confirm("Are You Sure to Delete This Data?");
+			if (r == true) {
+				param['editstatus'] = 'delete';
+				param['uui'] = p1;
+				
+				$.post(host+'delete-property', param, function(rsp){
+					if(rsp == 1){
+						alert('Success Delete Your Data');
+						loadUrl(host+'propertymanager');
+					}else{
+						alert(rsp);
+					}
+				});
+			}
+		break;
+		case "request-services":
+			param['uuii'] = p1;
+			param['nmii'] = p2;
+			
+			$("#konten").empty().addClass("loading");
+			$.post(host+'request-services-form', param, function(rsp){
+				var parsing = $.parseJSON(rsp);
+				$("#konten").html(parsing.page).removeClass("loading");	
+			});
+		break;
 	}
 }	
 
 function submit_form(frm,func){
 	var url = jQuery('#'+frm).attr("url");
     jQuery('#'+frm).form('submit',{
-            url:url,
-            onSubmit: function(){
-                  return $(this).form('validate');
-            },
-            success:function(data){
-				//$.unblockUI();
-                if (func == undefined ){
-                     if (data == "1"){
-                        pesan('Data Sudah Disimpan ','Sukses');
-                    }else{
-                         pesan(data,'Result');
-                    }
+        url:url,
+        onSubmit: function(){
+              return $(this).form('validate');
+        },
+        success:function(data){
+			//$.unblockUI();
+            if (func == undefined ){
+                 if (data == "1"){
+                    pesan('Data Sudah Disimpan ','Sukses');
                 }else{
-                    func(data);
+                     pesan(data,'Result');
                 }
-            },
-            error:function(data){
-				//$.unblockUI();
-                 if (func == undefined ){
-                     pesan(data,'Error');
-                }else{
-                    func(data);
-                }
+            }else{
+                func(data);
             }
+        },
+        error:function(data){
+			//$.unblockUI();
+             if (func == undefined ){
+                 pesan(data,'Error');
+            }else{
+                func(data);
+            }
+        }
     });
 }
 
