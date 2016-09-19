@@ -44,6 +44,9 @@ class Login extends JINGGA_Controller {
 	function registrasiuser(){
 		$this->load->library('Recaptcha');		
 		$this->nsmarty->assign('html_captcha', $this->recaptcha->render());
+		$this->nsmarty->assign('tgl_lahir', $this->lib->fillcombo('tgl_register', 'return') );
+		$this->nsmarty->assign('bln_lahir', $this->lib->fillcombo('bln_register', 'return') );
+		$this->nsmarty->assign('thn_lahir', $this->lib->fillcombo('thn_register', 'return') );
 		$this->nsmarty->display('backend/main-register-1.html');
 	}
 	
@@ -59,6 +62,7 @@ class Login extends JINGGA_Controller {
 		$lastname 	= $decoding[1];
 		$datebirth 	= $decoding[2];
 		$emailaddr 	= $decoding[3];
+		$phone 		= $decoding[4];
 		
 		$this->nsmarty->assign('html_captcha', $this->recaptcha->render());		
 		$this->nsmarty->assign("ownsts", $this->lib->fillcombo('owner_status', 'return') );
@@ -70,12 +74,35 @@ class Login extends JINGGA_Controller {
 		$this->nsmarty->assign("lastname", $lastname);
 		$this->nsmarty->assign("datebirth", $datebirth);
 		$this->nsmarty->assign("emailaddr", $emailaddr);
+		$this->nsmarty->assign("phone", $phone);
 		
 		$this->nsmarty->display('backend/main-register-2.html');
 	}
 	
 	function forgotpasssss(){
 		$this->nsmarty->display('backend/main-forgotpassword.html');
+	}
+	
+	function submitforgotpass(){
+		$this->load->library('encrypt');
+		$method = 'post';
+		$balikan = "json";
+		$url = $this->config->item('service_url');
+		$data = array();
+		$data['method'] = 'read';
+		$data['modul'] = 'forgot_pwd';
+		$data['submodul'] = '';
+		$data['email_address'] = $this->input->post('mail');
+		
+		$res = $this->lib->jingga_curl($url,$data,$method,$balikan);
+		if($res['msg'] == 'sukses'){
+			$res['data']['pwd'] = $this->encrypt->decode($res['data']['pwd']);
+			$this->lib->kirimemail('email_forgot', $this->input->post('mail'), $res);
+		}
+		
+		$this->nsmarty->assign('type', 'forgot-password');
+		$this->nsmarty->assign('res', $res);
+		$this->nsmarty->display('backend/main-registersts.html');
 	}
 	
 	function submitregistrasi(){
@@ -104,6 +131,7 @@ class Login extends JINGGA_Controller {
 				$data['modul'] = 'forgot_pwd';
 				$data['submodul'] = '';
 				$data['email_address'] = $post['emadd'];
+				$data['phone_mobile'] = $post['phmob'];
 				
 				$res = $this->lib->jingga_curl($url,$data,$method,$balikan);
 				if($res['data'] == ''){
@@ -124,7 +152,7 @@ class Login extends JINGGA_Controller {
 					$nm = str_replace(' ', '', $post['frstnm']);
 					$file = date('YmdHis')."_".strtolower($nm);
 					$filename =  $this->lib->uploadnong($path, 'fileidnumb', $file);
-					//$data['foto_scan_ktp'] = $filename;
+					$data['photo_id_number'] = $filename;
 				}
 				
 				$data['form_number'] = $post['formnu'];

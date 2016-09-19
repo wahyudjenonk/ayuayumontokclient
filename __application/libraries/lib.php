@@ -115,9 +115,10 @@ class lib {
 			case "email_register_step1":				
 				$firstname = trim($p1['frstnm']);
 				$lastname = trim($p1['lstnm']);
-				$datebirth = trim($p1['brtdate']);
+				$datebirth = $p1['thn']."-".$p1['bln']."-".$p1['tgl'];
 				$emails = trim($p1['emadd']);
-				$encoding_word = $firstname."|".$lastname."|".$datebirth."|".$emails;
+				$phone = trim($p1['phmob']);
+				$encoding_word = $firstname."|".$lastname."|".$datebirth."|".$emails."|".$phone;
 				$encoding = $this->base64url_encode($encoding_word);
 				$link = $p2."register-step2/".$encoding;
 				
@@ -136,7 +137,13 @@ class lib {
 				$ci->nsmarty->assign('type', "email-step2");
 				$ci->nsmarty->assign('link', $link);
 				$html = $ci->nsmarty->fetch('backend/email-register.html');
-				$subject = "Register Successfull";
+				$subject = "Register Successfull - Homtel Setvices";
+			break;
+			case "email_forgot":
+				$ci->nsmarty->assign('datax', $p1);
+				$ci->nsmarty->assign('type', "email-forgot");
+				$html = $ci->nsmarty->fetch('backend/email-register.html');
+				$subject = "Request Forgot Password - Homtel Services";
 			break;
 		}
 				
@@ -279,6 +286,70 @@ class lib {
 					'4' => array('id'=>'d3','txt'=>'D1/D3'),
 					'5' => array('id'=>'other','txt'=>'Other'),
 				);
+			break;
+			case "tgl_register":
+				$optTemp = '<option value="">Date</option>';
+				$data = array(
+					'0' => array('id'=>'1','txt'=>'1'),
+					'1' => array('id'=>'2','txt'=>'2'),
+					'2' => array('id'=>'3','txt'=>'3'),
+					'3' => array('id'=>'4','txt'=>'4'),
+					'4' => array('id'=>'5','txt'=>'5'),
+					'5' => array('id'=>'6','txt'=>'6'),
+					'6' => array('id'=>'7','txt'=>'7'),
+					'7' => array('id'=>'8','txt'=>'8'),
+					'8' => array('id'=>'9','txt'=>'9'),
+					'9' => array('id'=>'10','txt'=>'10'),
+					'10' => array('id'=>'11','txt'=>'11'),
+					'11' => array('id'=>'12','txt'=>'12'),
+					'12' => array('id'=>'13','txt'=>'13'),
+					'13' => array('id'=>'14','txt'=>'14'),
+					'14' => array('id'=>'15','txt'=>'15'),
+					'15' => array('id'=>'16','txt'=>'16'),
+					'16' => array('id'=>'17','txt'=>'17'),
+					'17' => array('id'=>'18','txt'=>'18'),
+					'18' => array('id'=>'19','txt'=>'19'),
+					'19' => array('id'=>'20','txt'=>'20'),
+					'20' => array('id'=>'21','txt'=>'21'),
+					'21' => array('id'=>'22','txt'=>'22'),
+					'22' => array('id'=>'23','txt'=>'23'),
+					'23' => array('id'=>'24','txt'=>'24'),
+					'24' => array('id'=>'25','txt'=>'25'),
+					'25' => array('id'=>'26','txt'=>'26'),
+					'26' => array('id'=>'27','txt'=>'27'),
+					'27' => array('id'=>'28','txt'=>'28'),
+					'28' => array('id'=>'29','txt'=>'29'),
+					'29' => array('id'=>'30','txt'=>'30'),
+					'30' => array('id'=>'31','txt'=>'31'),
+				);
+			break;
+			case "bln_register":
+				$optTemp = '<option value="">Month</option>';
+				$data = array(
+					'0' => array('id'=>'1','txt'=>'January'),
+					'1' => array('id'=>'2','txt'=>'February'),
+					'2' => array('id'=>'3','txt'=>'Maret'),
+					'3' => array('id'=>'4','txt'=>'April'),
+					'4' => array('id'=>'5','txt'=>'May'),
+					'5' => array('id'=>'6','txt'=>'Jun2'),
+					'6' => array('id'=>'7','txt'=>'July'),
+					'7' => array('id'=>'8','txt'=>'August'),
+					'8' => array('id'=>'9','txt'=>'September'),
+					'9' => array('id'=>'10','txt'=>'October'),
+					'10' => array('id'=>'11','txt'=>'November'),
+					'11' => array('id'=>'12','txt'=>'December'),
+				);
+			break;
+			case "thn_register":
+				$optTemp = '<option value="">Year</option>';
+				$data = array();
+				$year = date('Y');
+				$year_kurang = ($year-17);
+				$no = 0;
+				while($year_kurang >= 1960 ){
+					array_push($data, array('id' => $year_kurang, 'txt'=>$year_kurang));
+					$year_kurang--;
+				}
 			break;
 			default:
 				$data = $ci->mbackend->get_combo($type, $p1, $p2);

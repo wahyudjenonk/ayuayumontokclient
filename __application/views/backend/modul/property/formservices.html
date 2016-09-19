@@ -1,0 +1,47 @@
+<div id="page-wrapper">
+    <div class="container-fluid">
+		<div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                    Form Request Service
+                </h1>
+                <div class="breadcrumb" style='height:35px;'>
+					Choose Our Services, You Need.
+				</div>
+            </div>
+        </div>
+		<div class="row" style='min-height:410px !important;'>
+			<form role="form" id='' url='{$host}' method='post' enctype="multipart/form-data">
+				<div class="col-lg-6">
+					<div class="form-group">
+						<label>Unit Name</label>
+						<input readonly class="form-control" name='nmap' id='nmap' value="{$unit_name|default:''}" />
+					</div>
+				</div>
+				<div class="col-lg-12">
+					<hr/>
+					<div class="form-group">
+						{foreach from=$arrayservices item=srv}
+							<label>{$srv.nmparentserv}</label>
+							{if $srv.detail}
+								{foreach from=$srv.detail item=det}
+									<div class="checkbox">
+										<label>
+											<input type="checkbox" name='srvdet[]' value="{$det.idchildserv}" /> {$det.nmchildserv} ({$det.pricechildserv})
+										</label>
+									</div>
+								{/foreach}
+							{/if}
+							<br/>
+						{/foreach}
+					</div>
+				</div>
+				<div class="col-lg-12">
+					<hr/>
+					<button class="btn btn-primary" id='sbmfrmpro' type="submit">Next</button>
+					<button class="btn btn-danger" onClick="loadUrl('{$host}propertymanager');">Back</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

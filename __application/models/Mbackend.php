@@ -107,6 +107,42 @@ class Mbackend extends CI_Model{
 					}
 				}
 				
+				$arrayphotounit = array();
+				if(isset($post['uplfileold'])){
+					$countphotoold = (count($post['uplfileold']) - 1);
+					$idx = 0;
+					for($q=0; $q <= $countphotoold; $q++){
+						if(isset($post['uplfileold'][$q])){
+							$arrayphotounit[$idx] = $post['uplfileold'][$q];
+						}
+						$idx++;
+					}
+				}
+				if($_FILES['uplfile']){
+					$path = '__repository/property/';
+					$countphoto = (count($_FILES['uplfile']['name']) - 1);					
+					if(isset($idx)){
+						$idx2 = $idx;
+					}else{
+						$idx2 = 0;
+					}
+					for($o=0; $o <= $countphoto; $o++){
+						$t = microtime(true);
+						$micro = sprintf("%06d",($t - floor($t)) * 1000000);
+						$d = new DateTime( date('Y-m-d H:i:s.'.$micro, $t) );
+						
+						if($_FILES['uplfile']['name'][$o] != ''){
+							$apart_name = str_replace(" ","", $post['apartnm']);
+							$file_p = $d->format("YmdHisu")."-".strtolower($apart_name);
+							$filename_p =  $this->lib->uploadmultiplenong($path, 'uplfile', $file_p, $o); 
+							$arrayphotounit[$idx2] = $filename_p;
+						}						
+						$idx2++;
+					}
+				}
+				
+				//echo "<pre>";print_r($arrayphotounit);exit;
+				
 				$data['modul'] = 'property';
 				$data['submodul'] = '';
 				$data['tbl_member_user'] = $this->auth['member_user'];
@@ -124,10 +160,17 @@ class Mbackend extends CI_Model{
 				$data['cl_facility_unit_id'] = $arraycountfacilityunit;
 				$data['qty'] = $arraycountfacilityqty;
 				$data['cl_compulsary_periodic_payment_id'] = $arraycompultype;
+				$data['photo_unit'] = $arrayphotounit;
 				
 				//echo "<pre>";
 				//print_r($arraycountroomtype);
 				//exit;				
+			break;
+			case "property_delete":
+				$data['method'] = 'delete';
+				$data['modul'] = 'property';
+				$data['submodul'] = '';
+				$data['id'] = $post['uui'];
 			break;
 		}
 		

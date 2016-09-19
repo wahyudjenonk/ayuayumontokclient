@@ -88,14 +88,14 @@ class Services extends JINGGA_Controller {
 		$method='post';
 		$balikan="json";
 		$res=$this->lib->jingga_curl($url,$data,$method,$balikan);
-		print_r($res);
+		echo "<pre>";print_r($res);
 	}
 	
 	function tes_property_insert()
 	{
 		$this->load->library('lib');
-		//$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
-		$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
+		$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
+		//$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
 		
 		$data_compulsary_unit=array(1,3);//ISI CEKLIST FORM DARI LOOKUP CL_COMPULSARY...
 		$data_facility_unit=array(2,6,3);//ISI CEKLIST FORM DARI LOOKUP CL_FACILITY... MESTI DIPOST AMA QTY
@@ -172,8 +172,8 @@ class Services extends JINGGA_Controller {
 	function tes_get_data_property()
 	{
 		$this->load->library('lib');
-		//$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
-		$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
+		$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
+		//$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
 		$data=array('method' => 'read',//ISI METHOD NYA CRUD YE CUNG.. CREATE READ UPDATE DELETE
 					'modul'=>'property',
 					'submodul'=>'',
@@ -181,6 +181,7 @@ class Services extends JINGGA_Controller {
 		$method='post';
 		$balikan="json";
 		$res = $this->lib->jingga_curl($url,$data,$method,$balikan);
+		echo "<pre>";
 		print_r($res);
 		//echo $res['msg'];
 	}
@@ -192,7 +193,7 @@ class Services extends JINGGA_Controller {
 		$data=array('method' => 'read',//ISI METHOD NYA CRUD YE CUNG.. CREATE READ UPDATE DELETE
 					'modul'=>'property',
 					'submodul'=>'detil',
-					'id'=>2,
+					'id'=>7,
 		);//DATA UNTUK PUT
 		$method='post';
 		$balikan="json";

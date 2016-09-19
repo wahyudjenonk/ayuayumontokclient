@@ -17,43 +17,47 @@
 				<div class="col-lg-6">
 					<div class="form-group">
 						<label>Unit Number</label>
-						<input style='width:300px !important;' class="form-control validasi" name='untmem' id='untmem' value="{$data.unit_member|default:''}" />
+						<input style='width:300px !important;' class="form-control validasi" name='untmem' id='untmem' value="{$data.unit_number|default:''}" />
 					</div>
 					<div class="form-group">
 						<label>Unit Size Nett (sqm/m<sup>2</sup>)</label>
-						<input style='width:300px !important;' class="form-control" name='untsizenett' id='untsizenett' value="{$data.unit_member|default:''}" />
+						<input style='width:300px !important;' class="form-control" name='untsizenett' id='untsizenett' value="{$data.unit_size_nett|default:''}" />
 					</div>
 					<div class="form-group">
 						<label>Unit Size Gross (sqm/m<sup>2</sup>)</label>
-						<input style='width:300px !important;' class="form-control" name='untsizegros' id='untsizegros' value="{$data.unit_member|default:''}" />
+						<input style='width:300px !important;' class="form-control" name='untsizegros' id='untsizegros' value="{$data.unit_size_gross|default:''}" />
 					</div>
 					<div class="form-group">
 						<label>Unit Type</label>
-						<input class="form-control" name='unttyp' id='unttyp' value="{$data.unit_member|default:''}" />
+						<input class="form-control" name='unttyp' id='unttyp' value="{$data.unit_type|default:''}" />
 					</div>
 					<div class="form-group">
 						<label>Number Of Room(s)</label>
-						<input class="form-control" name='numroom' id='numroom' value="{$data.unit_member|default:''}" />
+						<input class="form-control" name='numroom' id='numroom' value="{$data.number_of_room|default:''}" />
 					</div>
 					<div class="form-group">
 						<label>Floor Number</label>
-						<input class="form-control" name='flrnum' id='flrnum' value="{$data.unit_member|default:''}" />
+						<input class="form-control" name='flrnum' id='flrnum' value="{$data.floor_number|default:''}" />
 					</div>
 					<div class="form-group">
 						<label>View</label>
-						<input class="form-control" name='untviw' id='untviw' value="{$data.unit_member|default:''}" />
+						<input class="form-control" name='untviw' id='untviw' value="{$data.view|default:''}" />
+					</div>
+					<div class="form-group">
+						<label>IPL Cost (IDR)</label>
+						<input class="form-control" name='untviw' id='untviw' value="{$data.view|default:''}" />
 					</div>
 					<div class="form-group">
 						<label>Apartment Name</label>
-						<input class="form-control validasi" name='apartnm' id='apartnm' value="{$data.unit_member|default:''}" />
+						<input class="form-control validasi" name='apartnm' id='apartnm' value="{$data.apartment_name|default:''}" />
 					</div>
 					<div class="form-group">
 						<label>Apartment Developer Name</label>
-						<input class="form-control validasi" name='apartdevnm' id='apartdevnm' value="{$data.unit_member|default:''}" />
+						<input class="form-control validasi" name='apartdevnm' id='apartdevnm' value="{$data.apartment_developer|default:''}" />
 					</div>
 					<div class="form-group">
 						<label>Apartment Address</label>
-						<textarea rows="3"  name='apartaddr' id='apartaddr' class="form-control"></textarea>
+						<textarea rows="3"  name='apartaddr' id='apartaddr' class="form-control">{$data.apartment_address|default:''}</textarea>
 					</div>
 				</div>
 				<div class="col-lg-6">
@@ -104,7 +108,36 @@
                                 </div>
 							{/foreach}
 						{/if}
+					</div>	
+				</div>
+				
+				<div class="col-lg-12">
+					<div class="form-group">
+						<label>Upload Gambar</label>
+						<input type='file' name='uplfile[]' id='uplfile' multiple />
 					</div>
+					{if isset($foto)}
+					<div class="form-group" >
+						<label class="col-sm-2 control-label"></label>
+						<div class="col-sm-12">
+							<div class="row">
+							{foreach from=$foto item=i}
+								<input type='hidden' name='uplfileold[]' value="{$i.photo_unit|default:''}">
+								  <div class="col-xs-6 col-md-3" id="list_{$acak}_{$i.id}">
+									<div class="thumbnail">
+									  <img src="{$host}__repository/property/{$i.photo_unit|default:''}" alt="...">
+									   <div class="caption">
+										<center>
+										<a href="javascript:void(0);" onclick="hapus_file('photo_unit',{$i.id},'list_{$acak}_{$i.id}')" class="btn btn-primary" role="button">Hapus</a>
+										</center>
+									   </div>
+									</div>
+								  </div>
+							{/foreach}
+							</div>
+						</div>
+					</div>
+					{/if}
 				</div>
 				<div class="col-lg-12">
 					<hr/>
@@ -117,12 +150,22 @@
 </div>
 
 <script>
+	var number_of_uploads;
+	$("#uplfile").change(function() {
+		if(number_of_uploads > 3){
+			alert('To Many File');
+		}else{
+			number_of_uploads = number_of_uploads + 1;
+		}
+	});
+	
 	$(".validasi").validatebox({ required:true }); 	
 	$('#sbmfrmpro').on('click', function(){
 		validasi = $('#regspro').form('validate');
 		if(validasi){
 			$.blockUI({ message: '<h3>Processing Data...</h3>' });			
 		}
+		
 		submit_form('regspro',function(r){
 			if(r==1){
 				alert('Successfully Register Your Unit Property');

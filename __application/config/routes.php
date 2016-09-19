@@ -18,6 +18,7 @@ $route['submit-step1-register'] = 'login/submitregistrasi';
 $route['submit-step2-register'] = 'login/submitregistrasi';
 $route['activate/(:any)/(:any)/(:any)'] = 'login/aktivasiuser/$1/$2/$3';
 $route['forgotpassword'] = 'login/forgotpasssss';
+$route['submit-forgot'] = 'login/submitforgotpass';
 
 $route['dashboard'] = 'backend/modul/dashboard/main';
 
@@ -25,6 +26,9 @@ $route['propertymanager'] = 'backend/modul/property/main';
 $route['propertymanager-form'] = 'backend/modul/property/form';
 $route['property-edit/(:any)'] = 'backend/test/$1';
 $route['submit-property'] = 'backend/simpandata/property';
+$route['delete-property'] = 'backend/simpandata/property_delete';
+
+$route['request-services-form'] = 'backend/modul/property/request_services';
 
 
 

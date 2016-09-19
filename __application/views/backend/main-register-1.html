@@ -8,10 +8,8 @@
 	<title>Register New User</title>
 	<link rel="stylesheet" href="{$host}__assets/css/style-register.css">
 	<link rel="stylesheet" href="{$host}__assets/plugin/easyui/themes/metro-gray/easyui.css">
-    <link rel="stylesheet" type="text/css" href="{$host}__assets/plugin/zebradate/css/default.css">	
 	<script src="{$host}__assets/js/jquery.js"></script>	
 	<script src="{$host}__assets/plugin/easyui/jquery.easyui.min.js"></script>
-	<script src="{$host}__assets/plugin/zebradate/js/zebra_datepicker.js"></script>	
 	<script src="{$host}__assets/js/blockui.js"></script>	
 	<script src="{$host}__assets/js/fungsi.js"></script>	
 </head>
@@ -36,8 +34,16 @@
             </div>
             <div class="form-row">
                 <label>
-                    <span>Date Of Birth</span>
-                    <input type="text" name="brtdate" id="brtdate" class='validasi'>
+                    <span>Date Of Birth</span>					
+					<select name="tgl" style='width:85px !important;' class='validasi'>
+						{$tgl_lahir}
+					</select>
+					<select name="bln" style='width:95px !important;' class='validasi'>
+						{$bln_lahir}
+					</select>
+					<select name="thn" style='width:100px !important;' class='validasi'>
+						{$thn_lahir}
+					</select>
                 </label>
             </div>
 			<div class="form-row">
@@ -46,6 +52,12 @@
                     <input type="text" name="emadd" class='validasi'>
                 </label>
             </div>
+			<div class="form-row">
+                <label>
+                    <span>Phone (Mobile)</span>
+                    <input type="text" name="phmob" class='validasi'>
+                </label>
+            </div>			
 			<div class="form-row">
                 <label>
 				   {$html_captcha}
@@ -67,9 +79,7 @@
 	</div>
 	
 	<script>
-		$(".validasi").validatebox({ required:true }); 
-		$('#brtdate').Zebra_DatePicker();	
-		
+		$(".validasi").validatebox({ required:true }); 		
 		$('#sbmfrm').on('click', function(){
 			validasi = $('#regsbro').form('validate');
 			if(validasi){

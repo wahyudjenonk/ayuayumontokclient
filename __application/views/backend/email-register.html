@@ -47,6 +47,27 @@
 				<a href='{$link}'>{$link}</a>
 			</td>
 		</tr>
+		{elseif $type eq 'email-forgot'}
+		<tr>
+			<td style='padding:10px;'>
+				Request Forgot Password, This is your Account Detail :
+				<br />
+				<table width='100%' style='margin-top:10px;margin-bottom:10px;'>
+					<tr>
+						<td width='25%'>Username</td>
+						<td width='5%'>:</td>
+						<td width='70%'>{$datax.data.email_address}</td>
+					</tr>
+					<tr>
+						<td>Password</td>
+						<td>:</td>
+						<td>{$datax.data.pwd}</td>
+					</tr>
+				</table>
+				<br />
+				Please keep your password correctly.
+			</td>
+		</tr>
 		{/if}
 		<tr>
 			<td style='padding:10px;'>

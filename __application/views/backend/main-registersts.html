@@ -72,6 +72,22 @@
 			
 			Incorrect Your Captcha Submission.
 		</div>
+		{elseif $type eq 'forgot-password'}
+		<div class="form-labels-on-top">
+			{if $res.msg eq 'sukses'}
+				<div class="form-title-row">
+					<h1>Your Password Was Send</h1>
+				</div>
+				
+				Please Check Your Email For Your Account Detail.
+			{else}
+				<div class="form-title-row">
+					<h1>Request Failed</h1>
+				</div>
+				
+				{$res.pesan}
+			{/if}
+		</div>	
 		{/if}
 	</div>
 </body>

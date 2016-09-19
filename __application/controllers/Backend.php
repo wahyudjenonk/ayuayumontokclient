@@ -44,8 +44,9 @@ class Backend extends JINGGA_Controller {
 							$compulsary = $this->mbackend->getdata('compulsary');
 							
 							if($editstatus == 'edit'){
-								$id = $this->input->post('iixd');
+								$id = $this->input->post('ixd');
 								$data = $this->mbackend->getdata('property_detail', $id);
+								
 								if($data['data']['room_type']){
 									foreach($roomtype['data'] as $k => $v){
 										$roomtype['data'][$k]['flagcheck'] = '';
@@ -78,12 +79,49 @@ class Backend extends JINGGA_Controller {
 										}
 									}
 								}
+								
+								$this->nsmarty->assign('data', $data['data']['properti']);
+								$this->nsmarty->assign('foto', $data['data']['photo']);
 							}
 							
 							$this->nsmarty->assign('roomtype', $roomtype);
 							$this->nsmarty->assign('generalfacility', $generalfacility);
 							$this->nsmarty->assign('compulsary', $compulsary);
 							$this->nsmarty->assign('editstatus', $editstatus);
+						break;
+						case "request_services":
+							$temp = 'backend/modul/'.$p1.'/formservices.html';
+							$id = $this->input->post('uuii');
+							$unit_name = $this->input->post('nmii');
+							
+							$contoharray = array();
+							$contoharray[0]['idserv'] = "1";
+							$contoharray[0]['nmparentserv'] = "Services House Keeping";
+							$contoharray[0]['detail'] = array();
+							$contoharray[0]['detail'][0]['idchildserv'] = '1.1';
+							$contoharray[0]['detail'][0]['nmchildserv'] = 'House Keeping 1 Area';
+							$contoharray[0]['detail'][0]['pricechildserv'] = 'Rp. 8.000,-';
+							$contoharray[0]['detail'][1]['idchildserv'] = '1.2';
+							$contoharray[0]['detail'][1]['nmchildserv'] = 'House Keeping 2 Area';
+							$contoharray[0]['detail'][1]['pricechildserv'] = 'Rp. 9.000,-';
+							$contoharray[0]['detail'][1]['idchildserv'] = '1.3';
+							$contoharray[0]['detail'][1]['nmchildserv'] = 'House Keeping 3 Area';
+							$contoharray[0]['detail'][1]['pricechildserv'] = 'Rp. 10.000,-';
+							$contoharray[1]['idserv'] = "2";
+							$contoharray[1]['nmparentserv'] = "Services Linen";
+							$contoharray[1]['detail'] = array();
+							$contoharray[1]['detail'][0]['idchildserv'] = '2.1';
+							$contoharray[1]['detail'][0]['nmchildserv'] = 'Towel';
+							$contoharray[1]['detail'][0]['pricechildserv'] = 'Rp. 8.000,-';
+							$contoharray[1]['detail'][1]['idchildserv'] = '2.2';
+							$contoharray[1]['detail'][1]['nmchildserv'] = 'Bed Cover';
+							$contoharray[1]['detail'][1]['pricechildserv'] = 'Rp. 9.000,-';
+							$contoharray[1]['detail'][1]['idchildserv'] = '2.3';
+							$contoharray[1]['detail'][1]['nmchildserv'] = 'Duck Pillow';
+							$contoharray[1]['detail'][1]['pricechildserv'] = 'Rp. 10.000,-';
+							
+							$this->nsmarty->assign('unit_name', $unit_name);
+							$this->nsmarty->assign('arrayservices', $contoharray);
 						break;
 					}
 				break;
@@ -155,6 +193,33 @@ class Backend extends JINGGA_Controller {
 		
 		echo $this->mbackend->simpandata($p1, $post, $editstatus);
 	}
+	
+	function upload(){
+		//print_r($_FILES);exit;
+		//echo microtime();exit;
+		$t = microtime(true);
+		$micro = sprintf("%06d",($t - floor($t)) * 1000000);
+		$d = new DateTime( date('Y-m-d H:i:s.'.$micro, $t) );
+		$mod=$this->input->post('mod');
+		switch($mod){
+			case "property":				
+				$upload_path='__repository/property/';
+				$object='file_nya';
+				if(isset($_FILES['file_nya'])){
+					$file=$_FILES['file_nya']['name'];
+					$nameFile =$d->format("YmdHisu");// $this->string_sanitize(pathinfo($file, PATHINFO_FILENAME));
+					$upload=$this->lib->uploadnong($upload_path, $object, $nameFile);
+					if($upload){
+						echo 1;
+					}else{
+						echo 2;
+					}
+				}
+			break;
+			
+		}
+		//echo $upload;
+	}	
 	
 	function test($p1){
 		$data = $this->mbackend->getdata('property_detail', $p1);

@@ -21,9 +21,18 @@
 					<div class="col-lg-4 text-center">
 						<div class="panel panel-default">
 							<div class="panel-body">
+								{if $rows.photo_unit}
+									<img class='img-thumbnail' src="{$host}__repository/property/{$rows.photo_unit}" style='height:200px !important;' />
+								{else}
+									<img class='img-thumbnail' src="{$host}__repository/no-image.jpeg" style='height:200px !important;' />
+								{/if}
+								<br/>
+								<br/>
 								{$rows.apartment_name}
 								<hr style='margin-top:10px !important;'/>
-								<a href='#'>Services</a> | <a href='{$host}property-edit/{$rows.id}'>Edit</a> | <a href='#'>Delete</a>
+								<a href='javascript:void(0);' onClick="kumpulAction('request-services', '{$rows.id}', '{$rows.apartment_name}');" >Services</a> | 
+								<a href='javascript:void(0);' onClick="kumpulAction('form-property', 'edit', '{$rows.id}');" >Edit</a> | 
+								<a href='javascript:void(0);' onClick="kumpulAction('property-delete', '{$rows.id}');" >Delete</a>
 							</div>
 						</div>
 					</div>
