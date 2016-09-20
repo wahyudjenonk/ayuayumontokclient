@@ -462,8 +462,8 @@ class lib {
 		return $arrayform;
 	}
 	function jingga_curl($url,$data,$method,$balikan){
-		$username = 'admin';
-		$password = '123';
+		$username = 'jingga_api';
+		$password = 'Plokiju_123';
 		$curl_handle = curl_init();
 		curl_setopt($curl_handle, CURLOPT_URL, $url);
 		curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, 1);
