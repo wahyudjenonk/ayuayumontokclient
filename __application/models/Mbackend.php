@@ -50,6 +50,17 @@ class Mbackend extends CI_Model{
 				$data['submodul'] = 'cl_compulsary_periodic_payment';
 				$data['id'] = 2;
 			break;
+			case "services":
+				$data['method'] = 'read';
+				$data['modul'] = 'services';
+				$data['submodul'] = '';
+			break;
+			case "detailservices":
+				$data['method'] = 'read';
+				$data['modul'] = 'services';
+				$data['submodul'] = '';
+				$data['type_services'] = $p1;
+			break;
 		}
 		
 		$res = $this->lib->jingga_curl($url,$data,$method,$balikan);
@@ -156,6 +167,7 @@ class Mbackend extends CI_Model{
 				$data['apartment_name'] = $post['apartnm'];
 				$data['apartment_developer'] = $post['apartdevnm'];
 				$data['apartment_address'] = $post['apartaddr'];
+				$data['ipl'] = $post['untipl'];
 				$data['cl_room_type_id'] = $arraycountroomtype;
 				$data['cl_facility_unit_id'] = $arraycountfacilityunit;
 				$data['qty'] = $arraycountfacilityqty;

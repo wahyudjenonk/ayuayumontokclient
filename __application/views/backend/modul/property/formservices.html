@@ -11,17 +11,45 @@
             </div>
         </div>
 		<div class="row" style='min-height:410px !important;'>
-			<form role="form" id='' url='{$host}' method='post' enctype="multipart/form-data">
+			<form role="form">
 				<div class="col-lg-6">
 					<div class="form-group">
 						<label>Unit Name</label>
 						<input readonly class="form-control" name='nmap' id='nmap' value="{$unit_name|default:''}" />
 					</div>
 				</div>
+				<div class="col-lg-6">
+					<div class="form-group">
+						<label>Unit Number</label>
+						<input readonly class="form-control" name='nmap' id='nmap' value="{$unit_name|default:''}" />
+					</div>
+				</div>
 				<div class="col-lg-12">
 					<hr/>
-					<div class="form-group">
-						{foreach from=$arrayservices item=srv}
+					<div id='detailservice'>
+					{foreach from=$services item=srv}
+						<a href='javascript:void(0);' onClick="kumpulAction('detailservice', '{$srv.idserv}')">
+						<div class="col-lg-6 text-center">
+							<div class="panel panel-default">
+								<div class="panel-body">
+									<img class='img-thumbnail' src="{$host}__repository/no-image.jpeg" style='height:200px !important;' />
+									<br/>
+									<br/>
+									{$srv.serv}
+									<hr style='margin-top:10px !important;'/>
+								</div>
+							</div>
+						</div>
+						</a>
+					{/foreach}
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+							{*
 							<label>{$srv.nmparentserv}</label>
 							{if $srv.detail}
 								{foreach from=$srv.detail item=det}
@@ -33,15 +61,4 @@
 								{/foreach}
 							{/if}
 							<br/>
-						{/foreach}
-					</div>
-				</div>
-				<div class="col-lg-12">
-					<hr/>
-					<button class="btn btn-primary" id='sbmfrmpro' type="submit">Next</button>
-					<button class="btn btn-danger" onClick="loadUrl('{$host}propertymanager');">Back</button>
-				</div>
-			</form>
-		</div>
-	</div>
-</div>
+							*}

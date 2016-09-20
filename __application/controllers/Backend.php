@@ -93,35 +93,30 @@ class Backend extends JINGGA_Controller {
 							$temp = 'backend/modul/'.$p1.'/formservices.html';
 							$id = $this->input->post('uuii');
 							$unit_name = $this->input->post('nmii');
+							$dataservices = $this->mbackend->getdata('services');
 							
-							$contoharray = array();
-							$contoharray[0]['idserv'] = "1";
-							$contoharray[0]['nmparentserv'] = "Services House Keeping";
-							$contoharray[0]['detail'] = array();
-							$contoharray[0]['detail'][0]['idchildserv'] = '1.1';
-							$contoharray[0]['detail'][0]['nmchildserv'] = 'House Keeping 1 Area';
-							$contoharray[0]['detail'][0]['pricechildserv'] = 'Rp. 8.000,-';
-							$contoharray[0]['detail'][1]['idchildserv'] = '1.2';
-							$contoharray[0]['detail'][1]['nmchildserv'] = 'House Keeping 2 Area';
-							$contoharray[0]['detail'][1]['pricechildserv'] = 'Rp. 9.000,-';
-							$contoharray[0]['detail'][1]['idchildserv'] = '1.3';
-							$contoharray[0]['detail'][1]['nmchildserv'] = 'House Keeping 3 Area';
-							$contoharray[0]['detail'][1]['pricechildserv'] = 'Rp. 10.000,-';
-							$contoharray[1]['idserv'] = "2";
-							$contoharray[1]['nmparentserv'] = "Services Linen";
-							$contoharray[1]['detail'] = array();
-							$contoharray[1]['detail'][0]['idchildserv'] = '2.1';
-							$contoharray[1]['detail'][0]['nmchildserv'] = 'Towel';
-							$contoharray[1]['detail'][0]['pricechildserv'] = 'Rp. 8.000,-';
-							$contoharray[1]['detail'][1]['idchildserv'] = '2.2';
-							$contoharray[1]['detail'][1]['nmchildserv'] = 'Bed Cover';
-							$contoharray[1]['detail'][1]['pricechildserv'] = 'Rp. 9.000,-';
-							$contoharray[1]['detail'][1]['idchildserv'] = '2.3';
-							$contoharray[1]['detail'][1]['nmchildserv'] = 'Duck Pillow';
-							$contoharray[1]['detail'][1]['pricechildserv'] = 'Rp. 10.000,-';
+							
+							$arrayservice = array();
+							$arrayservice[0]['idserv'] = "1";
+							$arrayservice[0]['serv'] = "Independent";
+							$arrayservice[1]['idserv'] = "2";
+							$arrayservice[1]['serv'] = "Package";						
 							
 							$this->nsmarty->assign('unit_name', $unit_name);
-							$this->nsmarty->assign('arrayservices', $contoharray);
+							$this->nsmarty->assign('services', $arrayservice);
+						break;
+						case "detail_services":
+							$temp = 'backend/modul/'.$p1.'/detailservices.html';
+							$tpsr = $this->input->post('uuii');
+							$datadetailservice = $this->mbackend->getdata('detailservices', $tpsr);
+							
+							/*
+							echo "<pre>";
+							print_r($datadetailservice);
+							*/
+							
+							$this->nsmarty->assign('type_service', $tpsr);
+							$this->nsmarty->assign('detailservices', $datadetailservice['data']);
 						break;
 					}
 				break;

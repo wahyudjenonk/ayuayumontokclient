@@ -1,0 +1,73 @@
+<table class="table table-bordered">
+	<thead>
+		<tr style='background:#F9F9F9;'>
+			<td width='5%' style="text-align:center;font-weight:bold;">Code</td>
+			<td width='30%' style="text-align:center;font-weight:bold;">Services</td>
+			<td width='10%' style="text-align:center;font-weight:bold;">Rate</td>
+			<td width='10%' style="text-align:center;font-weight:bold;">Remarks</td>
+		</tr>
+	</thead>
+	<tbody>
+		{foreach from=$detailservices item=detsrv}
+			<tr>
+				<td><b>{$detsrv.code}</b></td>
+				<td><b>{$detsrv.services_name}</b></td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			{if isset($detsrv.child) }
+				{foreach from=$detsrv.child item=child}
+					<tr>
+						<td>{$child.code}</td>
+						<td colspan='3'>{$child.services_name}</td>
+					</tr>
+					{if isset($child.price) }
+						{foreach from=$child.price item=prices}
+						<tr>
+							<td>&nbsp;</td>
+							<td>
+								{if $prices.type_choice eq 'R'}
+									<input type='radio' data='{$prices.tbl_services_id}' class='pricing' name='{$prices.tbl_services_id}_test'/> {$child.services_name} {$prices.of_area_item} {$prices.uom}
+								{elseif $prices.type_choice eq 'C'}
+									<input type='checkbox' data='{$prices.tbl_services_id}' class='pricing' name='checkboxserv[]' value='{$prices.id_price}'> {$child.services_name}  {$prices.of_area_item} {$prices.uom}
+								{/if}
+							</td>
+							<td>{$prices.rate} &nbsp; {$prices.type}</td>
+							<td>{$prices.remark}</td>
+						</tr>
+						{/foreach}
+					{/if}
+					
+					{if isset($child.child) }
+						{foreach from=$child.child item=chld}
+							{foreach from=$chld.price item=prices}
+							<tr>
+								<td>&nbsp;</td>
+								<td>
+									{if $prices.type_choice eq 'R'}
+										<input type='radio' data='{$prices.tbl_services_id}' class='pricing' name='{$prices.tbl_services_id}_test'/> {$chld.services_name}
+									{elseif $prices.type_choice eq 'C'}
+										<input type='checkbox' data='{$prices.tbl_services_id}' class='pricing' name='checkboxserv[]' value='{$prices.id_price}'> {$chld.services_name} 
+									{/if}
+								</td>
+								<td>{$prices.rate} &nbsp; {$prices.type}</td>
+								<td>{$prices.remark}</td>
+							</tr>
+							{/foreach}
+						{/foreach}
+					{/if}
+				{/foreach}
+			{/if}
+		{/foreach}
+	</tbody>
+</table>
+
+{*
+<script>
+$( ".pricing" ).each(function( index ) {
+  if($(this).is(':checked')){
+     console.log( $(this).attr('data')); 
+  }
+});
+</script>
+*}

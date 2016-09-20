@@ -222,8 +222,8 @@ class Services extends JINGGA_Controller {
 	function tes_get_data_services()
 	{
 		$this->load->library('lib');
-		//$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
-		$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
+		$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
+		//$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
 		$data=array('method' => 'read',//ISI METHOD NYA CRUD YE CUNG.. CREATE READ UPDATE DELETE
 					'modul'=>'services',
 					'submodul'=>'',
@@ -239,8 +239,8 @@ class Services extends JINGGA_Controller {
 	function tes_get_data_services_header()
 	{
 		$this->load->library('lib');
-		//$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
-		$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
+		$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
+		//$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
 		$data=array('method' => 'read',//ISI METHOD NYA CRUD YE CUNG.. CREATE READ UPDATE DELETE
 					'modul'=>'services_header',
 					'submodul'=>'',
@@ -301,8 +301,8 @@ class Services extends JINGGA_Controller {
 	function tes_get_data_services_pilih()
 	{
 		$this->load->library('lib');
-		//$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
-		$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
+		$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
+		//$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
 		$tbl_pricing_services_id=array(2,4,5);
 		$data=array('method' => 'read',//ISI METHOD NYA CRUD YE CUNG.. CREATE READ UPDATE DELETE
 					'modul'=>'pricing_pilih',
