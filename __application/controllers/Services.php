@@ -276,7 +276,7 @@ class Services extends JINGGA_Controller {
 		//$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
 		$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
 		
-		$tbl_services_id=array(11,12,13);//ISI CEKLIST FORM DARI TBL_PRICING_SERVICES DIAMBIL tbl_services_id nyaaaa...
+		$tbl_pricing_services_id=array(11,12,13);//ISI CEKLIST FORM DARI TBL_PRICING_SERVICES DIAMBIL tbl_services_id nyaaaa...
 		$data_qty=array(1,1,1);//DATA QTY ATAU JUMLAH BERAPA KALI
 		$total=array(202000,211000,211000);//TOTAL DARI PENJUMLAHAN ANTARA HARGA SERVICES DIKALI QTY
 		$flag_transaction=array('H','H','H');//FLAG TRANSACTION DIISI NILAI JIKA HARIAN H, MINGGUAN M, BULANAN B
@@ -287,7 +287,7 @@ class Services extends JINGGA_Controller {
 					'cl_method_payment_id'=>1,
 					'grand_total'=>200000,
 					'flag'=>'P',
-					'tbl_services_id'=>$tbl_services_id,
+					'tbl_pricing_services_id'=>$tbl_pricing_services_id,
 					'qty'=>$data_qty,
 					'total'=>$total,
 					'flag_transaction'=>$flag_transaction
