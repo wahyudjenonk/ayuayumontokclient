@@ -227,7 +227,7 @@ class Services extends JINGGA_Controller {
 		$data=array('method' => 'read',//ISI METHOD NYA CRUD YE CUNG.. CREATE READ UPDATE DELETE
 					'modul'=>'services',
 					'submodul'=>'',
-					//'id'=>2,
+					'type_services'=>1,
 		);//DATA UNTUK PUT
 		$method='post';
 		$balikan="json";
