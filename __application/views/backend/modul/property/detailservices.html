@@ -1,73 +1,172 @@
-<table class="table table-bordered">
-	<thead>
-		<tr style='background:#F9F9F9;'>
-			<td width='5%' style="text-align:center;font-weight:bold;">Code</td>
-			<td width='30%' style="text-align:center;font-weight:bold;">Services</td>
-			<td width='10%' style="text-align:center;font-weight:bold;">Rate</td>
-			<td width='10%' style="text-align:center;font-weight:bold;">Remarks</td>
-		</tr>
-	</thead>
-	<tbody>
-		{foreach from=$detailservices item=detsrv}
-			<tr>
-				<td><b>{$detsrv.code}</b></td>
-				<td><b>{$detsrv.services_name}</b></td>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-			</tr>
-			{if isset($detsrv.child) }
-				{foreach from=$detsrv.child item=child}
-					<tr>
-						<td>{$child.code}</td>
-						<td colspan='3'>{$child.services_name}</td>
-					</tr>
-					{if isset($child.price) }
-						{foreach from=$child.price item=prices}
-						<tr>
-							<td>&nbsp;</td>
-							<td>
-								{if $prices.type_choice eq 'R'}
-									<input type='radio' data='{$prices.tbl_services_id}' class='pricing' name='{$prices.tbl_services_id}_test'/> {$child.services_name} {$prices.of_area_item} {$prices.uom}
-								{elseif $prices.type_choice eq 'C'}
-									<input type='checkbox' data='{$prices.tbl_services_id}' class='pricing' name='checkboxserv[]' value='{$prices.id_price}'> {$child.services_name}  {$prices.of_area_item} {$prices.uom}
-								{/if}
-							</td>
-							<td>{$prices.rate} &nbsp; {$prices.type}</td>
-							<td>{$prices.remark}</td>
-						</tr>
-						{/foreach}
-					{/if}
-					
-					{if isset($child.child) }
-						{foreach from=$child.child item=chld}
-							{foreach from=$chld.price item=prices}
-							<tr>
-								<td>&nbsp;</td>
-								<td>
-									{if $prices.type_choice eq 'R'}
-										<input type='radio' data='{$prices.tbl_services_id}' class='pricing' name='{$prices.tbl_services_id}_test'/> {$chld.services_name}
-									{elseif $prices.type_choice eq 'C'}
-										<input type='checkbox' data='{$prices.tbl_services_id}' class='pricing' name='checkboxserv[]' value='{$prices.id_price}'> {$chld.services_name} 
-									{/if}
-								</td>
-								<td>{$prices.rate} &nbsp; {$prices.type}</td>
-								<td>{$prices.remark}</td>
+{if $typeform eq 'formdetailservices'}
+<div id='formdetserv'>
+	<div class="panel-group" id="accordion">
+        {foreach from=$detailservices item=detsrv}
+		<div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse{$detsrv.code}">
+						{$detsrv.code}. {$detsrv.services_name}
+					</a>
+                </h4>
+            </div>
+            <div id="collapse{$detsrv.code}" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <table class="table table-bordered">
+						<thead>
+							<tr style='background:#F9F9F9;'>
+								<td width='5%' style="text-align:center;font-weight:bold;">Code</td>
+								<td width='30%' style="text-align:center;font-weight:bold;">Services</td>
+								<td width='10%' style="text-align:center;font-weight:bold;">Rate (IDR)</td>
+								<td width='10%' style="text-align:center;font-weight:bold;">Remarks</td>
 							</tr>
+						</thead>
+						<tbody>
+						{if isset($detsrv.child) }
+							{foreach from=$detsrv.child item=child}
+								<tr>
+									<td>{$child.code}</td>
+									<td colspan='3'>{$child.services_name}</td>
+								</tr>
+								{if isset($child.price) }
+									{foreach from=$child.price item=prices}
+									<tr>
+										<td>&nbsp;</td>
+										<td>
+											{if $prices.type_choice eq 'R'}
+												<input type='radio' data='{$prices.id_price}' class='pricing' name='{$prices.tbl_services_id}_test'/> {$prices.of_area_item} {$prices.uom}
+											{elseif $prices.type_choice eq 'C'}
+												<input type='checkbox' data='{$prices.id_price}' class='pricing' name='checkboxserv[]' value='{$prices.id_price}'> {$prices.of_area_item} {$prices.uom}
+											{/if}
+										</td>
+										<td>{$prices.rate} &nbsp; {$prices.type}</td>
+										<td>{$prices.remark}</td>
+									</tr>
+									{/foreach}
+								{/if}
+								
+								{if isset($child.child) }
+									{foreach from=$child.child item=chld}
+										{foreach from=$chld.price item=prices}
+										<tr>
+											<td>&nbsp;</td>
+											<td>
+												{if $prices.type_choice eq 'R'}
+													<input type='radio' data='{$prices.id_price}' class='pricing' name='{$prices.tbl_services_id}_test'/> {$chld.services_name}
+												{elseif $prices.type_choice eq 'C'}
+													<input type='checkbox' data='{$prices.id_price}' class='pricing' name='checkboxserv[]' value='{$prices.id_price}'> {$chld.services_name} 
+												{/if}
+											</td>
+											<td>{$prices.rate} &nbsp; {$prices.type}</td>
+											<td>{$prices.remark}</td>
+										</tr>
+										{/foreach}
+									{/foreach}
+								{/if}
 							{/foreach}
-						{/foreach}
-					{/if}
-				{/foreach}
-			{/if}
-		{/foreach}
-	</tbody>
-</table>
+						{/if}
+						</tbody>
+					</table>	
+                </div>
+            </div>
+        </div>
+		{/foreach}	
+	</div>
+	
+	<hr/>
+	<button class="btn btn-danger" id='bcksrv' onClick="kumpulAction('backservices');" >Back</button>
+	<button class="btn btn-primary" id='nxtsrv' onClick="kumpulAction('nextservices', '{$id}');">Next</button>
+</div>
+<div id='summaryservices'></div>
 
-{*
+{elseif $typeform eq 'summary'}
+<form role="form" id='regserv' url='{$host}submit-services' method='post' enctype="multipart/form-data">	
+	<input type='hidden' name='ip' value="{$id}"/>
+	<table class="table table-bordered">
+		<thead>
+			<tr style='background:#F9F9F9;'>
+				<td width='40%' style="text-align:center;font-weight:bold;">Services Name</td>
+				<td width='15%' style="text-align:center;font-weight:bold;">Rate (IDR)</td>
+				<td width='10%' style="text-align:center;font-weight:bold;">Periodic</td>
+				<td width='10%' style="text-align:center;font-weight:bold;">Qty</td>
+				<td width='10%' style="text-align:center;font-weight:bold;">Amount</td>
+				<td width='10%' style="text-align:center;font-weight:bold;">::</td>
+			</tr>
+		</thead>
+		<tbody>
+			{foreach from=$summaryservices item=smr}
+				<tr>
+					<td>
+						<input type='hidden' name='ii[]' value='{$smr.id}'/>
+						<input type='hidden' name='srname[]' value='{$smr.services_name} ({$smr.of_area_item} {$smr.uom})'/>
+						{$smr.services_name} ({$smr.of_area_item} {$smr.uom})
+					</td>
+					<td>
+						<input type='hidden' name='prc[]' value='{$smr.rate}'/>
+						{$smr.rate|number_format:0:",":"."} {$smr.type}
+					</td>
+					<td style='text-align:center;'>
+						{if $smr.tbl_services_id eq '6' || $smr.tbl_services_id eq '7' || $smr.tbl_services_id eq '9'}
+							<select name='period[]' id='srv_{$smr.id}' onChange="kumpulAction('processperiod', '{$smr.id}', '{$smr.tbl_services_id}', '{$smr.rate}');">
+								<option value=''> -- Choose -- </option>
+								<option value='H'> Daily </option>
+								<option value='M'> Weekly </option>
+								<option value='B'> Monthly </option>
+							</select>
+						{else}
+							- 
+						{/if}
+					</td>
+					<td style='text-align:center;'>
+						<input style='width:50px !important;' onkeyup="kumpulAction('processtotal', '{$smr.id}', '{$smr.tbl_services_id}', '{$smr.rate}')" class='validasi' type='text' name='qty[]' id='qty_{$smr.id}'>
+					</td>
+					<td style='text-align:right;'>
+						<input type='hidden' class='amount' name='subtot[]' id='amount_{$smr.id}' value='0'/>
+						<span id='am_{$smr.id}'>0</span>
+					</td>
+					<td style='text-align:center;'>
+						<a href='#'>Remove</a>
+					</td>
+				</tr>
+			{/foreach}
+			<tr>
+				<td style="text-align:center;font-weight:bold;"> Total Charge </td>
+				<td colspan='4' style="text-align:center;font-weight:bold;"> 
+					IDR. <span id='tot'>0</span>
+					<input type='hidden' name='grandtot' id='grandtot' value='0' />
+				</td>
+				<td style="text-align:center;font-weight:bold;"> &nbsp; </td>
+			</tr>
+		</tbody>
+	</table>
+	<hr/>
+	<button class="btn btn-danger" id='bcksmr' >Back</button>
+	<button class="btn btn-primary" id='nxtsmr' type='submit' >Submit</button>	
+</form>
+
 <script>
-$( ".pricing" ).each(function( index ) {
-  if($(this).is(':checked')){
-     console.log( $(this).attr('data')); 
-  }
-});
+	$(".validasi").validatebox({ required:true }); 	
+	$('#nxtsmr').on('click', function(){
+		validasi = $('#regsrv').form('validate');
+		if(validasi){
+			$.blockUI({ message: '<h3>Processing Data...</h3>' });			
+		}
+		
+		submit_form('regserv', function(r){
+			$("#konten").html('').html(r);
+			$.unblockUI();
+		});
+		return false;
+	});
+	
+	$('#bcksmr').on('click', function(){
+		$.blockUI({ message: '<h4>.. Loading Page ..</h4>' });
+		setTimeout(function(){
+			$("#formdetserv").show();
+			$("#summaryservices").html('');
+			$.unblockUI();
+		}, 1000);				
+		return false;
+	});
 </script>
-*}
+{/if}

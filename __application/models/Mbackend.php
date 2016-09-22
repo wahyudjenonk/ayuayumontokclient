@@ -61,6 +61,12 @@ class Mbackend extends CI_Model{
 				$data['submodul'] = '';
 				$data['type_services'] = $p1;
 			break;
+			case "summaryservices":
+				$data['method'] = 'read';
+				$data['modul'] = 'pricing_pilih';
+				$data['submodul'] = '';
+				$data['tbl_services_id'] = $p1;
+			break;
 		}
 		
 		$res = $this->lib->jingga_curl($url,$data,$method,$balikan);
@@ -71,7 +77,7 @@ class Mbackend extends CI_Model{
 		
 	}
 	
-	function simpandata($table,$post,$sts_crud){ //$sts_crud --> STATUS NYEE INSERT, UPDATE, DELETE
+	function simpandata($table,$post,$sts_crud=""){ //$sts_crud --> STATUS NYEE INSERT, UPDATE, DELETE
 		$method = 'post';
 		$balikan = "json";
 		$url = $this->config->item('service_url');
@@ -183,6 +189,45 @@ class Mbackend extends CI_Model{
 				$data['modul'] = 'property';
 				$data['submodul'] = '';
 				$data['id'] = $post['uui'];
+			break;
+			case "submit_services":
+				if(isset($post['prc'])){
+					$countinput = (count($post['prc']) - 1);
+					$arraypricingid = array();
+					$arrayqty = array();
+					$arraytot = array();
+					$arrayflag = array();
+					for($i=0; $i <= $countinput; $i++){
+						if(isset($post['ii'][$i])){
+							$arraypricingid[] = $post['ii'][$i];
+						}
+						
+						if(isset($post['qty'][$i])){
+							$arrayqty[] = $post['qty'][$i];
+						}
+						
+						if(isset($post['subtot'][$i])){
+							$arraytot[] = $post['subtot'][$i];
+						}
+						
+						if(isset($post['period'][$i])){
+							$arrayflag[] = $post['period'][$i];
+						}
+					}
+				}
+			
+				$data['method'] = 'create';
+				$data['modul'] = 'transaction';
+				$data['submodul'] = '';
+				$data['tbl_member_user'] = $this->auth['member_user'];
+				$data['cl_method_payment_id'] = 1;
+				$data['grand_total'] = $post['grandtot'];
+				//$data['tbl_unit_member_id'] = $post['ip'];
+				$data['flag'] = 'P';
+				$data['tbl_pricing_services_id'] = $arraypricingid;
+				$data['qty'] = $arrayqty;
+				$data['total'] = $arraytot;
+				$data['flag_transaction'] = $arrayflag;
 			break;
 		}
 		

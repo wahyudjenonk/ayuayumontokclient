@@ -11,54 +11,43 @@
             </div>
         </div>
 		<div class="row" style='min-height:410px !important;'>
-			<form role="form">
-				<div class="col-lg-6">
-					<div class="form-group">
-						<label>Unit Name</label>
-						<input readonly class="form-control" name='nmap' id='nmap' value="{$unit_name|default:''}" />
-					</div>
+			<input type='hidden' id='mii' value='{$unit_size}' />	
+			<div class="col-lg-6">
+				<div class="form-group">
+					<label>Unit Name</label>
+					<input readonly class="form-control" name='nmap' id='nmap' value="{$unit_name|default:''}" />
 				</div>
-				<div class="col-lg-6">
-					<div class="form-group">
-						<label>Unit Number</label>
-						<input readonly class="form-control" name='nmap' id='nmap' value="{$unit_name|default:''}" />
-					</div>
+			</div>
+			<div class="col-lg-6">
+				<div class="form-group">
+					<label>Unit Size Nett</label>
+					<input readonly class="form-control" name='unsize' id='unsize' value="{$unit_size|default:''}" />
 				</div>
-				<div class="col-lg-12">
-					<hr/>
-					<div id='detailservice'>
-					{foreach from=$services item=srv}
-						<a href='javascript:void(0);' onClick="kumpulAction('detailservice', '{$srv.idserv}')">
-						<div class="col-lg-6 text-center">
-							<div class="panel panel-default">
-								<div class="panel-body">
-									<img class='img-thumbnail' src="{$host}__repository/no-image.jpeg" style='height:200px !important;' />
-									<br/>
-									<br/>
-									{$srv.serv}
-									<hr style='margin-top:10px !important;'/>
+			</div>
+			<div class="col-lg-12">
+				<hr/>
+				<div id='detailservice'>
+					<div id='serv'>
+						{foreach from=$services item=srv}
+							<a href='javascript:void(0);' onClick="kumpulAction('detailservice', '{$srv.idserv}', '{$id}')">
+							<div class="col-lg-6 text-center">
+								<div class="panel panel-default">
+									<div class="panel-body">
+										<img class='img-thumbnail' src="{$host}__repository/no-image.jpeg" style='height:200px !important;' />
+										<br/>
+										<br/>
+										{$srv.serv}
+										<hr style='margin-top:10px !important;'/>
+									</div>
 								</div>
 							</div>
-						</div>
-						</a>
-					{/foreach}
+							</a>
+						{/foreach}
 					</div>
+					<div id='serv2'></div>
 				</div>
-			</form>
+			</div>
+			
 		</div>
 	</div>
 </div>
-
-							{*
-							<label>{$srv.nmparentserv}</label>
-							{if $srv.detail}
-								{foreach from=$srv.detail item=det}
-									<div class="checkbox">
-										<label>
-											<input type="checkbox" name='srvdet[]' value="{$det.idchildserv}" /> {$det.nmchildserv} ({$det.pricechildserv})
-										</label>
-									</div>
-								{/foreach}
-							{/if}
-							<br/>
-							*}

@@ -93,8 +93,8 @@ class Backend extends JINGGA_Controller {
 							$temp = 'backend/modul/'.$p1.'/formservices.html';
 							$id = $this->input->post('uuii');
 							$unit_name = $this->input->post('nmii');
+							$unit_size = $this->input->post('mii');
 							$dataservices = $this->mbackend->getdata('services');
-							
 							
 							$arrayservice = array();
 							$arrayservice[0]['idserv'] = "1";
@@ -103,20 +103,47 @@ class Backend extends JINGGA_Controller {
 							$arrayservice[1]['serv'] = "Package";						
 							
 							$this->nsmarty->assign('unit_name', $unit_name);
+							$this->nsmarty->assign('unit_size', $unit_size);
+							$this->nsmarty->assign('id', $id);
 							$this->nsmarty->assign('services', $arrayservice);
 						break;
 						case "detail_services":
 							$temp = 'backend/modul/'.$p1.'/detailservices.html';
 							$tpsr = $this->input->post('uuii');
+							$id = $this->input->post('uuiid');
 							$datadetailservice = $this->mbackend->getdata('detailservices', $tpsr);
-							
-							/*
-							echo "<pre>";
-							print_r($datadetailservice);
-							*/
-							
-							$this->nsmarty->assign('type_service', $tpsr);
+														
+							$this->nsmarty->assign('typeform', 'formdetailservices');
+							$this->nsmarty->assign('typeservice', $tpsr);
+							$this->nsmarty->assign('id', $id);
 							$this->nsmarty->assign('detailservices', $datadetailservice['data']);
+						break;
+						case "summary_services":
+							$temp = 'backend/modul/'.$p1.'/detailservices.html';
+							$tpsr = $this->input->post('arrsrv');
+							$id = $this->input->post('ipma');
+							$datasummaryservice = $this->mbackend->getdata('summaryservices', $tpsr);
+														
+							$this->nsmarty->assign('typeform', 'summary');
+							$this->nsmarty->assign('id', $id);
+							$this->nsmarty->assign('summaryservices', $datasummaryservice['data']);							
+						break;
+						case "submit_services":
+							$temp = 'backend/modul/'.$p1.'/invoiceservice.html';
+							$post = array();
+							foreach($_POST as $k=>$v){
+								if($this->input->post($k)!=""){
+									$post[$k] = $this->input->post($k);
+								}else{
+									$post[$k] = null;
+								}
+							}
+							$insert = $this->mbackend->simpandata("submit_services", $post);
+							
+							$this->nsmarty->assign('jmlpost', $countinput = (count($post['prc']) - 1));
+							$this->nsmarty->assign('post', $post);
+							$this->nsmarty->display($temp);
+							exit;
 						break;
 					}
 				break;

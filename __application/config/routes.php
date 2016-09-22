@@ -30,6 +30,10 @@ $route['delete-property'] = 'backend/simpandata/property_delete';
 
 $route['request-services-form'] = 'backend/modul/property/request_services';
 $route['request-detail-services'] = 'backend/modul/property/detail_services';
+$route['request-summary-services'] = 'backend/modul/property/summary_services';
+$route['submit-services'] = 'backend/modul/property/submit_services';
+
+//$route['submit-services'] = 'backend/simpandata/submit_services';
 
 
 
