@@ -318,7 +318,39 @@ class Services extends JINGGA_Controller {
 		print_r($res);
 		//echo $res['msg'];
 	}
-	
+	function tes_get_data_invoice_package()
+	{
+		$this->load->library('lib');
+		//$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
+		$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
+		$data=array('method' => 'read',//ISI METHOD NYA CRUD YE CUNG.. CREATE READ UPDATE DELETE
+					'modul'=>'invoice_package',
+					'submodul'=>'',
+		);//DATA UNTUK PUT
+		$method='post';
+		$balikan="json";
+		$res = $this->lib->jingga_curl($url,$data,$method,$balikan);
+		echo "<pre>";
+		print_r($res);
+		//echo $res['msg'];
+	}
+	function tes_get_data_invoice_package_detil()
+	{
+		$this->load->library('lib');
+		//$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
+		$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
+		$data=array('method' => 'read',//ISI METHOD NYA CRUD YE CUNG.. CREATE READ UPDATE DELETE
+					'modul'=>'invoice_package',
+					'submodul'=>'detil',
+					'id'=>1
+		);//DATA UNTUK PUT
+		$method='post';
+		$balikan="json";
+		$res = $this->lib->jingga_curl($url,$data,$method,$balikan);
+		echo "<pre>";
+		print_r($res);
+		//echo $res['msg'];
+	}
 	function tes_get_data_invoice()
 	{
 		$this->load->library('lib');
@@ -352,5 +384,49 @@ class Services extends JINGGA_Controller {
 		print_r($res);
 		//echo $res['msg'];
 	}
-	
+	function tes_transaksi_package()
+	{
+		$this->load->library('lib');
+		//$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
+		$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
+		$listing_list=array(1,3,4,6=>'Tessss');//ISI CEKLIST FORM DARI LOOKUP CL LISTING LIST
+		$listing_affiliation=array('cl_listing_third_party_affiliation_id'=>1,'other'=>'');//ISI CL_AFFILATION
+		$data_listing=array(
+			'listing_platform'=>'Xxxxx',
+			'listing_user'=>'TOSSSS',
+			'listing_pwd'=>'123',
+			'pictures_taking'=>'Personal',//ISI NYE LIAT EXCEL
+			'unit_management'=>'Belooo',//ISI NYE LIAT EXCEL
+			'management_contact_name'=>'Goyz',
+			'management_contact_number'=>'09829129',
+			'management_contact_relation'=>'Kacung',
+			'daily_price_min'=>1000,
+			'daily_price_max'=>10000,
+			'monthly_price_min'=>10000,
+			'monthly_price_max'=>100000,
+			'weekly_price_min'=>200,
+			'weekly_price_max'=>400,
+			'yearly_price_min'=>500,
+			'yearly_price_max'=>500
+		);//POST FORM DATA TBl LISTING MEMBER ADA TEMPLATE NYA DI EXCELLLLL CUNG
+		$data=array('method' => 'create',//ISI METHOD NYA CRUD YE CUNG.. CREATE READ UPDATE DELETE
+					'modul'=>'invoice_package',
+					'submodul'=>'',
+					'tbl_member_user'=>'99B009',
+					'tbl_unit_member_id'=>2,
+					'cl_method_payment_id'=>2,
+					'tbl_services_id'=>5,//KHUSUS UNTUK TYPE SERVICEES NYE 2 CUNG yaitu Yang Package
+					'flag'=>'P',
+					'listing_data'=>$data_listing,
+					'listing_affiliation'=>$listing_affiliation,
+					'listing_list'=>$listing_list
+					
+		);//DATA UNTUK PUT
+		$method='post';
+		$balikan="json";
+		$res = $this->lib->jingga_curl($url,$data,$method,$balikan);
+		echo '<pre>';
+		print_r($res);
+		//echo $res['msg'];
+	}
 }
