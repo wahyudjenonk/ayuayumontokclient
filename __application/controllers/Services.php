@@ -277,10 +277,15 @@ class Services extends JINGGA_Controller {
 		//$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
 		$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
 		
-		$tbl_pricing_services_id=array(11,12,13);//ISI CEKLIST FORM DARI TBL_PRICING_SERVICES DIAMBIL tbl_services_id nyaaaa...
-		$data_qty=array(1,1,1);//DATA QTY ATAU JUMLAH BERAPA KALI
-		$total=array(202000,211000,211000);//TOTAL DARI PENJUMLAHAN ANTARA HARGA SERVICES DIKALI QTY
-		$flag_transaction=array('H','H','H');//FLAG TRANSACTION DIISI NILAI JIKA HARIAN H, MINGGUAN M, BULANAN B
+		$tbl_pricing_services_id=array(15,12,13,69,71);//ISI CEKLIST FORM DARI TBL_PRICING_SERVICES DIAMBIL tbl_services_id nyaaaa...
+		$listing_management=array('start_date'=>'2016-01-01',
+								  'end_date'=>'2016-04-01',
+								  'rental_price'=>250000,
+								  'price_services_id'=>array(69,71)
+		);// DATA KALO ADA SERVICES LISTING MANAGEMENT
+		$data_qty=array(1,1,1,3,8);//DATA QTY ATAU JUMLAH BERAPA KALI
+		$total=array(202000,211000,211000,0,0);//TOTAL DARI PENJUMLAHAN ANTARA HARGA SERVICES DIKALI QTY
+		$flag_transaction=array('H','H','H','-','-');//FLAG TRANSACTION DIISI NILAI JIKA HARIAN H, MINGGUAN M, BULANAN B
 		$data=array('method' => 'create',//ISI METHOD NYA CRUD YE CUNG.. CREATE READ UPDATE DELETE
 					'modul'=>'transaction',
 					'submodul'=>'',
@@ -293,11 +298,13 @@ class Services extends JINGGA_Controller {
 					'total'=>$total,
 					'tbl_unit_member_id'=>2,
 					'tbl_member_user'=>'99B009',
-					'flag_transaction'=>$flag_transaction
+					'flag_transaction'=>$flag_transaction,
+					'listing_management'=>$listing_management
 		);//DATA UNTUK PUT
 		$method='post';
 		$balikan="json";
 		$res = $this->lib->jingga_curl($url,$data,$method,$balikan);
+		echo "<pre>";
 		print_r($res);
 		//echo $res['msg'];
 	}
@@ -390,9 +397,9 @@ class Services extends JINGGA_Controller {
 		$this->load->library('lib');
 		//$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
 		$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
-		$listing_list=array(1,3,4,6=>'Tessss');//ISI CEKLIST FORM DARI LOOKUP CL LISTING LIST
-		$listing_affiliation=array('cl_listing_third_party_affiliation_id'=>1,'other'=>'');//ISI CL_AFFILATION
-		$data_listing=array(
+		//$listing_list=array(1,3,4,6=>'Tessss');//ISI CEKLIST FORM DARI LOOKUP CL LISTING LIST
+		//$listing_affiliation=array('cl_listing_third_party_affiliation_id'=>1,'other'=>'');//ISI CL_AFFILATION
+		/*$data_listing=array(
 			'listing_platform'=>'Xxxxx',
 			'listing_user'=>'TOSSSS',
 			'listing_pwd'=>'123',
@@ -410,23 +417,41 @@ class Services extends JINGGA_Controller {
 			'yearly_price_min'=>500,
 			'yearly_price_max'=>500
 		);//POST FORM DATA TBl LISTING MEMBER ADA TEMPLATE NYA DI EXCELLLLL CUNG
+		*/
 		$data=array('method' => 'create',//ISI METHOD NYA CRUD YE CUNG.. CREATE READ UPDATE DELETE
 					'modul'=>'invoice_package',
 					'submodul'=>'',
 					'tbl_member_user'=>'99B009',
 					'tbl_unit_member_id'=>2,
 					'cl_method_payment_id'=>2,
-					'tbl_services_id'=>5,//KHUSUS UNTUK TYPE SERVICEES NYE 2 CUNG yaitu Yang Package
+					'tbl_package_header_id'=>1,//KHUSUS UNTUK TYPE SERVICEES NYE 2 CUNG yaitu Yang Package
 					'flag'=>'P',
-					'listing_data'=>$data_listing,
-					'listing_affiliation'=>$listing_affiliation,
-					'listing_list'=>$listing_list
+					'total'=>1500000
+					//'listing_data'=>$data_listing,
+					//'listing_affiliation'=>$listing_affiliation,
+					//'listing_list'=>$listing_list
 					
 		);//DATA UNTUK PUT
 		$method='post';
 		$balikan="json";
 		$res = $this->lib->jingga_curl($url,$data,$method,$balikan);
 		echo '<pre>';
+		print_r($res);
+		//echo $res['msg'];
+	}
+	function tes_get_data_paket()
+	{
+		$this->load->library('lib');
+		//$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
+		$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
+		$data=array('method' => 'read',//ISI METHOD NYA CRUD YE CUNG.. CREATE READ UPDATE DELETE
+					'modul'=>'package',
+					'submodul'=>'',
+		);//DATA UNTUK PUT
+		$method='post';
+		$balikan="json";
+		$res = $this->lib->jingga_curl($url,$data,$method,$balikan);
+		echo "<pre>";
 		print_r($res);
 		//echo $res['msg'];
 	}
