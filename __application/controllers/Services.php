@@ -10,7 +10,8 @@ class Services extends JINGGA_Controller {
 	function tes_registrasi()
 	{
 		$this->load->library('lib');
-		$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
+		//$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
+		$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
 		$data=array('method' => 'create',//ISI METHOD NYA CRUD YE CUNG.. CREATE READ UPDATE DELETE
 					'modul'=>'registrasi',
 					'submodul'=>'',
@@ -19,7 +20,7 @@ class Services extends JINGGA_Controller {
 					'owner_name_first'=>'Cuyzz',
 					'title'=>'Mr.',
 					'id_number'=>'20031299091200',
-					'email'=>'goyz834ssa4ssaaa7@gmail.com'
+					'email'=>'goyz837@gmail.com'
 		);//DATA UNTUK PUT
 		$method='post';
 		$balikan="json";
@@ -30,14 +31,14 @@ class Services extends JINGGA_Controller {
 	function tes_aktivasi_user()
 	{
 		$this->load->library('lib');
-		$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
+		//$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
+		$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
 		$data=array('method' => 'update',//ISI METHOD NYA CRUD YE CUNG.. CREATE READ UPDATE DELETE
 					'modul'=>'registrasi',
 					'submodul'=>'',
-					'member_user'=>'AB384X',
-					//'email'=>'goyz837@gmail.com',
 					'email_address'=>'goyz837@gmail.com',
-					'pwd'=>'12345'
+					'kode_registration'=>123456
+					//'pwd'=>'12345'
 		);
 		$method='post';
 		$balikan="json";
