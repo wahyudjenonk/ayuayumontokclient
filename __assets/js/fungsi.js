@@ -6,11 +6,15 @@ $(function() {
 
 
 function loadUrl(urls){
-    $("#konten").empty().addClass("loading");
-	$.get(urls,function (html){
-	    var parsing = $.parseJSON(html);
-		$("#konten").html(parsing.page).removeClass("loading");
-    });
+	$.blockUI({ message: '<h4>.. Loading Page ..</h4>' });
+	setTimeout(function(){
+		$("#konten").empty().addClass("loading");
+		$.get(urls,function (html){
+			var parsing = $.parseJSON(html);
+			$("#konten").html(parsing.page).removeClass("loading");
+		});
+		$.unblockUI();
+	}, 1000);
 }
 
 function getClientHeight(){
@@ -467,12 +471,108 @@ function kumpulAction(type, p1, p2, p3, p4, p5){
 		case "request-services":
 			param['uuii'] = p1;
 			param['nmii'] = p2;
+			param['mii'] = p3;
 			
-			$("#konten").empty().addClass("loading");
-			$.post(host+'request-services-form', param, function(rsp){
-				var parsing = $.parseJSON(rsp);
-				$("#konten").html(parsing.page).removeClass("loading");	
+			$.blockUI({ message: '<h4>.. Loading Page ..</h4>' });
+			setTimeout(function(){
+				$("#konten").empty().addClass("loading");
+				$.post(host+'request-services-form', param, function(rsp){
+					var parsing = $.parseJSON(rsp);
+					$("#konten").html(parsing.page).removeClass("loading");	
+				});
+				$.unblockUI();
+			}, 1000);
+		break;
+		case "detailservice":
+			param['uuii'] = p1;
+			param['uuiid'] = p2;
+			
+			$.blockUI({ message: '<h4>.. Loading Page ..</h4>' });
+			setTimeout(function(){
+				$("#serv").hide();
+				$.post(host+'request-detail-services', param, function(rsp){
+					var parsing = $.parseJSON(rsp);
+					$("#serv2").html(parsing.page).show();	
+				});
+				$.unblockUI();
+			}, 1000);				
+		break;
+		case "backservices":
+			$.blockUI({ message: '<h4>.. Loading Page ..</h4>' });
+			setTimeout(function(){
+				$("#serv").show();
+				$("#serv2").hide();
+				$.unblockUI();
+			}, 1000);				
+		break;
+		case "nextservices":
+			var array_serv = new Array();
+			$( ".pricing" ).each(function( index ) {
+				if($(this).is(':checked')){
+					array_serv.push($(this).attr('data'));
+				}
 			});
+			
+			param['arrsrv'] = array_serv;
+			param['ipma'] = p1;
+			
+			$.blockUI({ message: '<h4>.. Loading Page ..</h4>' });
+			setTimeout(function(){			
+				$("#formdetserv").hide();
+				$.post(host+'request-summary-services', param, function(rsp){
+					var parsing = $.parseJSON(rsp);
+					$("#summaryservices").show();	
+					$("#summaryservices").html(parsing.page);
+				});
+				$.unblockUI();
+			}, 1000);				
+		break;
+		case "backservices2":
+			$.blockUI({ message: '<h4>.. Loading Page ..</h4>' });
+			setTimeout(function(){
+				$("#formdetserv").show();
+				$("#summaryservices").html('');
+				$.unblockUI();
+			}, 1000);				
+		break;
+		
+		case "processperiod":
+			if($('#srv_'+p1).val() == 'H'){
+				$('#qty_'+p1).val('');
+				$('#qty_'+p1).prop('readonly', false);
+			}else if($('#srv_'+p1).val() == 'M'){
+				$('#qty_'+p1).val(2);
+				$('#qty_'+p1).prop('readonly', true);
+			}else if($('#srv_'+p1).val() == 'B'){
+				$('#qty_'+p1).val(8);
+				$('#qty_'+p1).prop('readonly', true);
+			}
+			
+			kumpulAction('processtotal', p1, p2, p3);
+		break;
+		case "processtotal":
+			q = $('#qty_'+p1).val();
+			if(p2 == '6' || p2 == '7' || p2 == '9'){
+				mm = $('#mii').val();
+				rms = (mm * p3 * q);
+ 			}else{
+				rms = (p3 * q);
+			}
+			
+			$('#amount_'+p1).val(rms);
+			$('#am_'+p1).html(NumberFormat(rms));
+			$('#qty_'+p1).removeClass('validatebox-invalid');
+			
+			kumpulAction('processalltotal');
+		break;
+		case "processalltotal":
+			var uhuy = 0;
+			$( ".amount" ).each(function( index ) {
+				uhuy = eval(parseInt($(this).val()) + uhuy);
+			});
+			
+			$('#grandtot').val(uhuy);
+			$('#tot').html(NumberFormat(uhuy));
 		break;
 	}
 }	
