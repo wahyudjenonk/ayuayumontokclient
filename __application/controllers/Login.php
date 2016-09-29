@@ -119,7 +119,6 @@ class Login extends JINGGA_Controller {
 					$post[$k] = null;
 				}
 			}
-			//print_r($post);exit;
 			
 			$method = 'post';
 			$balikan = "json";
@@ -142,6 +141,8 @@ class Login extends JINGGA_Controller {
 				}
 				
 				$this->nsmarty->assign('type', 'registrasi-step1');
+				$this->nsmarty->assign('res', $res);
+				$this->nsmarty->display('backend/main-registersts.html');	
 			}elseif($post['step'] == 'step-2-registration'){
 				$data['method'] = 'create';
 				$data['modul'] = 'registrasi';
@@ -180,17 +181,31 @@ class Login extends JINGGA_Controller {
 				
 				$res = $this->lib->jingga_curl($url,$data,$method,$balikan);
 				if($res['msg'] == 'sukses'){
-					$this->lib->kirimemail('email_register_step2', $res['data']['email_address'], $res, $this->host);
+					$this->load->library('Recaptcha');		
+					$this->nsmarty->assign('html_captcha', $this->recaptcha->render());
+					$this->nsmarty->assign('email', $post['emadd']);
+					$this->nsmarty->display('backend/main-register-3.html');
+				}else{
+					$this->nsmarty->assign('type', 'registrasi-step2');
+					$this->nsmarty->assign('res', $res);
+					$this->nsmarty->display('backend/main-registersts.html');
 				}
 				
-				$this->nsmarty->assign('type', 'registrasi-step2');
-			}
-			
-			//echo "<pre>";
-			//print_r($res);exit;
-			
-			$this->nsmarty->assign('res', $res);
-			$this->nsmarty->display('backend/main-registersts.html');	
+			}elseif($post['step'] == 'step-3-finishing'){
+				$data['method'] = 'update';
+				$data['modul'] = 'registrasi';
+				$data['submodul'] = '';
+				$data['email_address'] = $post['mail'];
+				$data['kode_registration'] = $post['reqcode'];
+				$res = $this->lib->jingga_curl($url,$data,$method,$balikan);
+				if($res['msg'] == 'sukses'){
+					$this->lib->kirimemail('email_register_step2', $post['mail'], $res, $this->host);
+				}
+				
+				$this->nsmarty->assign('type', 'aktivasi');
+				$this->nsmarty->assign('res', $res);
+				$this->nsmarty->display('backend/main-registersts.html');
+			}			
 		}else{
 			$this->nsmarty->assign('type', 'capcai-salah');
 			$this->nsmarty->display('backend/main-registersts.html');	
@@ -233,16 +248,18 @@ class Login extends JINGGA_Controller {
 		echo $this->lib->kirimemail('email_register', $email, $res, $this->host);
 	}
 	
-	function testencode(){
+	function tester(){
  		//$encoding1  = base64_encode('triwahyunugroho11@gmail.com');
  		//$encoding2  = urlencode(base64_encode('30E563'));
 		//$this->load->library('encrypt');
 		//$word = "triwahyunugroho11@gmail.com";
 		//echo $this->encrypt->encode($word);
 		
-		$encoding1 = $this->lib->base64url_encode('triwahyunugroho11@gmail.com');
-		$decoding1 = $this->lib->base64url_decode($encoding1);
-		echo $encoding1." - ".$decoding1;
+		//$encoding1 = $this->lib->base64url_encode('triwahyunugroho11@gmail.com');
+		//$decoding1 = $this->lib->base64url_decode($encoding1);
+		//echo $encoding1." - ".$decoding1;
+		
+		$this->nsmarty->display('tester.html');
 	}
 	
 }

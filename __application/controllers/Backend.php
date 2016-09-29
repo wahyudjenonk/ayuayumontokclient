@@ -99,8 +99,10 @@ class Backend extends JINGGA_Controller {
 							$arrayservice = array();
 							$arrayservice[0]['idserv'] = "1";
 							$arrayservice[0]['serv'] = "Independent";
+							$arrayservice[0]['icon'] = "gbr_indie.png";
 							$arrayservice[1]['idserv'] = "2";
-							$arrayservice[1]['serv'] = "Package";						
+							$arrayservice[1]['serv'] = "Package";		
+							$arrayservice[1]['icon'] = "gbr_paket.png";							
 							
 							$this->nsmarty->assign('unit_name', $unit_name);
 							$this->nsmarty->assign('unit_size', $unit_size);
@@ -111,9 +113,15 @@ class Backend extends JINGGA_Controller {
 							$temp = 'backend/modul/'.$p1.'/detailservices.html';
 							$tpsr = $this->input->post('uuii');
 							$id = $this->input->post('uuiid');
-							$datadetailservice = $this->mbackend->getdata('detailservices', $tpsr);
-														
-							$this->nsmarty->assign('typeform', 'formdetailservices');
+							
+							if($tpsr == 1){
+								$datadetailservice = $this->mbackend->getdata('detailservices', $tpsr);							
+								$this->nsmarty->assign('typeform', 'formdetailservices');
+							}elseif($tpsr == 2){
+								$datadetailservice = $this->mbackend->getdata('detailservicespackage', $tpsr);								
+								$this->nsmarty->assign('typeform', 'formdetailservicespackage');
+							}
+							
 							$this->nsmarty->assign('typeservice', $tpsr);
 							$this->nsmarty->assign('id', $id);
 							$this->nsmarty->assign('detailservices', $datadetailservice['data']);
@@ -138,9 +146,14 @@ class Backend extends JINGGA_Controller {
 									$post[$k] = null;
 								}
 							}
-							$insert = $this->mbackend->simpandata("submit_services", $post);
 							
-							$this->nsmarty->assign('jmlpost', $countinput = (count($post['prc']) - 1));
+							$countinput = (count($post['prc']) - 1);
+							$insert = $this->mbackend->simpandata("submit_services", $post);
+							//if($insert){
+								$this->lib->kirimemail('email_invoice', $this->auth['email_address'], $post, $countinput);
+							//}
+							
+							$this->nsmarty->assign('jmlpost', $countinput);
 							$this->nsmarty->assign('post', $post);
 							$this->nsmarty->display($temp);
 							exit;
@@ -243,47 +256,9 @@ class Backend extends JINGGA_Controller {
 		//echo $upload;
 	}	
 	
-	function test($p1){
-		$data = $this->mbackend->getdata('property_detail', $p1);
-		$roomtype = $this->mbackend->getdata('roomtype');
-		$generalfacility = $this->mbackend->getdata('generalfacility');
-		$compulsary = $this->mbackend->getdata('compulsary');
-		
-		if($data['data']['room_type']){
-			foreach($roomtype['data'] as $k => $v){
-				$roomtype['data'][$k]['flagcheck'] = 'false';
-				foreach($data['data']['room_type'] as $t => $y){
-					if($y['cl_room_type_id'] == $v['id']){
-						$roomtype['data'][$k]['flagcheck'] = 'true';
-					}
-				}
-			}
-		}
-		
-		if($data['data']['compulsary']){
-			foreach($compulsary['data'] as $kk => $vv){
-				$compulsary['data'][$kk]['flagcheck'] = 'false';
-				foreach($data['data']['compulsary'] as $tt => $yy){
-					if($yy['cl_compulsary_periodic_payment_id'] == $vv['id']){
-						$compulsary['data'][$kk]['flagcheck'] = 'true';
-					}
-				}
-			}
-		}
-		
-		if($data['data']['facility']){
-			foreach($generalfacility['data'] as $z => $x){
-				$generalfacility['data'][$z]['qty'] = '';
-				foreach($data['data']['facility'] as $u => $b){
-					if($b['cl_facility_unit_id'] == $x['id']){
-						$generalfacility['data'][$z]['qty'] = $b['qty'];
-					}
-				}
-			}
-		}
-		
+	function test(){
 		echo "<pre>";
-		print_r($generalfacility);exit;
+		print_r($this->auth);exit;
 		
 	}
 }

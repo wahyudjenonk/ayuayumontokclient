@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Login Homtel Services</title>
+	<link rel="stylesheet" href="{$host}__assets/css/style-register.css">
+	<link rel="stylesheet" href="{$host}__assets/plugin/easyui/themes/metro-gray/easyui.css">
+	<script src="{$host}__assets/js/jquery.js"></script>	
+	<script src="{$host}__assets/plugin/easyui/jquery.easyui.min.js"></script>
+	<script src="{$host}__assets/js/blockui.js"></script>	
+	<script src="{$host}__assets/js/fungsi.js"></script>	
+</head>
+<body>
+	<div class="main-content">
+		<form id='frmForgotPassCode' class="form-labels-on-top" action="{$host}submit-requestcode" method="post">
+			<input type='hidden' name='step' value='step-3-finishing' />
+			<div class="form-title-row">
+                <h1>Verify Registration Code</h1>
+            </div>
+			<div class="form-row">
+                <label>
+                    <span>Email Address</span>
+                    <input type="text" name="mail" value='{$email}' readonly class='validasi'>
+                </label>
+            </div>
+			<div class="form-row">
+                <label>
+                    <span>Registration Code</span>
+                    <input type="text" name="reqcode" placeholder="Check Your Phone To Get Registration Code" class='validasi'>
+                </label>
+            </div>
+			<div class="form-row">
+                <label>
+                   <span>Captcha</span>
+				   {$html_captcha}
+                </label>
+            </div>			
+			<div class="form-row form-last-row">
+                <button type='submit' id='sbmtcode'>Submit</button>
+            </div>
+			<br/>
+			<br/>
+						
+			<div style="text-align:center;margin-top:30px">
+				<span style="color:#0000;">Homtel Services &copy; Margahayu Land</span>
+			</div>
+		</form>
+	</div>
+	<script>
+		$(".validasi").validatebox({ required:true }); 		
+		$('#sbmtcode').on('click', function(){
+			validasi = $('#frmForgotPassCode').form('validate');
+			if(validasi){
+				$.blockUI({ message: '<h3>Processing Data...</h3>' });			
+			}
+			submit_form('frmForgotPassCode',function(r){
+				if(r==1){
+					alert('Please Check Your Email.');
+					location.href('{$host}');
+				}else{
+					alert('Email is already registered.');
+				}
+			});
+		});
+		//*/
+	</script>
+	
+</body>
+</html>

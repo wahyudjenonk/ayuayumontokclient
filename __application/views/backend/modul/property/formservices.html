@@ -33,7 +33,7 @@
 							<div class="col-lg-6 text-center">
 								<div class="panel panel-default">
 									<div class="panel-body">
-										<img class='img-thumbnail' src="{$host}__repository/no-image.jpeg" style='height:200px !important;' />
+										<img class='img-thumbnail' src="{$host}__repository/{$srv.icon}" style='height:200px !important;' />
 										<br/>
 										<br/>
 										{$srv.serv}
@@ -43,11 +43,11 @@
 							</div>
 							</a>
 						{/foreach}
+						<button class="btn btn-danger" onClick="loadUrl('{$host}propertymanager');" >Back</button>
 					</div>
 					<div id='serv2'></div>
 				</div>
 			</div>
-			
 		</div>
 	</div>
 </div>

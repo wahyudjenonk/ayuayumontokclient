@@ -13,6 +13,20 @@
 				window.history.back();
 			}, 3000);
 		</script>
+	{elseif $type eq 'aktivasi'}
+		{if $res.msg eq 'sukses'}
+			<script>
+				setTimeout(function () {
+					window.location.href = "{$host}"; 
+				}, 4000);
+			</script>
+		{else}
+			<script>
+				setTimeout(function () {
+					window.history.back();
+				}, 3000);
+			</script>
+		{/if}
 	{else}
 		<script>
 			setTimeout(function () {
@@ -58,11 +72,19 @@
 		</div>
 		{elseif $type eq 'aktivasi'}
 		<div class="form-labels-on-top">
-			<div class="form-title-row">
-				<h1>Activation User Success</h1>
-			</div>
-			
-			Thank For Activation, Now You Can Login to Homtel Service.
+			{if $res.msg eq 'sukses'}
+				<div class="form-title-row">
+					<h1>Activation User Success</h1>
+				</div>
+				
+				Registration Code Was Verify,  Now You Can Login to Homtel Service.
+			{else}
+				<div class="form-title-row">
+					<h1>Activation User Failed</h1>
+				</div>
+				
+				Wrong Registration Code
+			{/if}
 		</div>
 		{elseif $type eq 'capcai-salah'}
 		<div class="form-labels-on-top">

@@ -61,6 +61,11 @@ class Mbackend extends CI_Model{
 				$data['submodul'] = '';
 				$data['type_services'] = $p1;
 			break;
+			case "detailservicespackage":
+				$data['method'] = 'read';
+				$data['modul'] = 'package';
+				$data['submodul'] = '';
+			break;
 			case "summaryservices":
 				$data['method'] = 'read';
 				$data['modul'] = 'pricing_pilih';

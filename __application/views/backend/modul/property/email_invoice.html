@@ -1,16 +1,21 @@
-<div id="page-wrapper">
-    <div class="container-fluid">
-		<div class="row">
-            <div class="col-lg-12">
-                <h1 class="page-header">
-                    Invoice Your Request Service
-                </h1>
-            </div>
-        </div>
-		
-		<div class="row" style='min-height:480px !important;'>
-			<table class="table table-bordered">
-				<thead>
+<html>
+<body style='background:#E8E8E9;'>
+	<table width='80%' style='margin-left:10%;background:#fff;'>
+		<tr>
+			<td style='padding:10px;'>
+				
+			</td>
+		</tr>
+		<tr>
+			<td style='padding:10px;'>
+				<center>
+					<h1>Invoice Your Request Service</h1>
+				</center>
+			</td>
+		</tr>
+		<tr>
+			<td style='padding:10px;'>
+				<table width='100%'>
 					<tr style='background:#F9F9F9;'>
 						<td width='40%' style="text-align:center;font-weight:bold;">Services Name</td>
 						<td width='15%' style="text-align:center;font-weight:bold;">Rate (IDR)</td>
@@ -18,8 +23,6 @@
 						<td width='10%' style="text-align:center;font-weight:bold;">Qty</td>
 						<td width='10%' style="text-align:center;font-weight:bold;">Amount</td>
 					</tr>
-				</thead>
-				<tbody>
 					{for $foo=0 to $jmlpost}
 					<tr>
 						<td>{$post.srname.$foo}</td>
@@ -39,17 +42,30 @@
 						<td style='text-align:right;'>{$post.subtot.$foo|number_format:0:",":"."}</td>
 					</tr>
 					{/for}
-					<tr>
+					<tr style='background:#F9F9F9;'>
 						<td style="text-align:center;font-weight:bold;"> Total Charge </td>
 						<td colspan='4' style="text-align:center;font-weight:bold;"> 
 							IDR. <span id='tot'>{$post.grandtot|number_format:0:",":"."}</span>
 						</td>
 					</tr>
-				</tbody>
-			</table>
-			
-			<hr/>
-			<button class="btn btn-primary" onClick="loadUrl('{$host}propertymanager');" >Back</button>
-		</div>
-	</div>
-</div>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td style='padding:10px;'>
+				<button>Pay Invoice</button>
+			</td>
+		</tr>
+		<tr>
+			<td style='padding:10px;'>
+				<br/>
+				<br/>
+				<br/>
+				<br/>
+				<br/>
+				<br/>
+				<br/>
+				Homtel Service &copy; Margahayu Land
+			</td>
+		</tr>	</table>
+</body>

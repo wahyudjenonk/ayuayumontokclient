@@ -131,11 +131,11 @@ class lib {
 				$emails = $this->base64url_encode($p1['data']['email_address']);
 				$pwd = $this->base64url_encode($p1['data']['pwd']);
 				$member_user = $this->base64url_encode($p1['data']['member_user']);
-				$link = $p2.'activate/'.$emails.'/'.$pwd.'/'.$member_user;
+				//$link = $p2.'activate/'.$emails.'/'.$pwd.'/'.$member_user;
 				
 				$ci->nsmarty->assign('datax', $p1);
 				$ci->nsmarty->assign('type', "email-step2");
-				$ci->nsmarty->assign('link', $link);
+				//$ci->nsmarty->assign('link', $link);
 				$html = $ci->nsmarty->fetch('backend/email-register.html');
 				$subject = "Register Successfull - Homtel Setvices";
 			break;
@@ -144,6 +144,13 @@ class lib {
 				$ci->nsmarty->assign('type', "email-forgot");
 				$html = $ci->nsmarty->fetch('backend/email-register.html');
 				$subject = "Request Forgot Password - Homtel Services";
+			break;
+			
+			case "email_invoice":
+				$ci->nsmarty->assign('post', $p1);
+				$ci->nsmarty->assign('jmlpost', $p2);
+				$html = $ci->nsmarty->fetch('backend/modul/property/email_invoice.html');
+				$subject = "Invoice Request Services - Homtel Services";
 			break;
 		}
 				
@@ -290,15 +297,15 @@ class lib {
 			case "tgl_register":
 				$optTemp = '<option value="">Date</option>';
 				$data = array(
-					'0' => array('id'=>'1','txt'=>'1'),
-					'1' => array('id'=>'2','txt'=>'2'),
-					'2' => array('id'=>'3','txt'=>'3'),
-					'3' => array('id'=>'4','txt'=>'4'),
-					'4' => array('id'=>'5','txt'=>'5'),
-					'5' => array('id'=>'6','txt'=>'6'),
-					'6' => array('id'=>'7','txt'=>'7'),
-					'7' => array('id'=>'8','txt'=>'8'),
-					'8' => array('id'=>'9','txt'=>'9'),
+					'0' => array('id'=>'01','txt'=>'1'),
+					'1' => array('id'=>'02','txt'=>'2'),
+					'2' => array('id'=>'03','txt'=>'3'),
+					'3' => array('id'=>'04','txt'=>'4'),
+					'4' => array('id'=>'05','txt'=>'5'),
+					'5' => array('id'=>'06','txt'=>'6'),
+					'6' => array('id'=>'07','txt'=>'7'),
+					'7' => array('id'=>'08','txt'=>'8'),
+					'8' => array('id'=>'09','txt'=>'9'),
 					'9' => array('id'=>'10','txt'=>'10'),
 					'10' => array('id'=>'11','txt'=>'11'),
 					'11' => array('id'=>'12','txt'=>'12'),
@@ -326,15 +333,15 @@ class lib {
 			case "bln_register":
 				$optTemp = '<option value="">Month</option>';
 				$data = array(
-					'0' => array('id'=>'1','txt'=>'January'),
-					'1' => array('id'=>'2','txt'=>'February'),
-					'2' => array('id'=>'3','txt'=>'Maret'),
-					'3' => array('id'=>'4','txt'=>'April'),
-					'4' => array('id'=>'5','txt'=>'May'),
-					'5' => array('id'=>'6','txt'=>'Jun2'),
-					'6' => array('id'=>'7','txt'=>'July'),
-					'7' => array('id'=>'8','txt'=>'August'),
-					'8' => array('id'=>'9','txt'=>'September'),
+					'0' => array('id'=>'01','txt'=>'January'),
+					'1' => array('id'=>'02','txt'=>'February'),
+					'2' => array('id'=>'03','txt'=>'Maret'),
+					'3' => array('id'=>'04','txt'=>'April'),
+					'4' => array('id'=>'05','txt'=>'May'),
+					'5' => array('id'=>'06','txt'=>'Jun2'),
+					'6' => array('id'=>'07','txt'=>'July'),
+					'7' => array('id'=>'08','txt'=>'August'),
+					'8' => array('id'=>'09','txt'=>'September'),
 					'9' => array('id'=>'10','txt'=>'October'),
 					'10' => array('id'=>'11','txt'=>'November'),
 					'11' => array('id'=>'12','txt'=>'December'),

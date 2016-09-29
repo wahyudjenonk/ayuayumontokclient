@@ -32,7 +32,7 @@
 						<input class="form-control" name='unttyp' id='unttyp' value="{$data.unit_type|default:''}" />
 					</div>
 					<div class="form-group">
-						<label>Number Of Room(s)</label>
+						<label>Number Of Area</label>
 						<input class="form-control" name='numroom' id='numroom' value="{$data.number_of_room|default:''}" />
 					</div>
 					<div class="form-group">
@@ -109,6 +109,28 @@
 							{/foreach}
 						{/if}
 					</div>	
+					{*
+					<div class="form-group">
+						<label>Tag Location (Longitude & Latitude)</label>
+						<div id="mapcanvas" style="width:500px;height:200px"></div>
+						<table class="table table-bordered">
+							 <tbody>
+								<tr>
+									<td>Longitude</td>
+									<td>
+										<input type="text" name='lon' id='lon' readonly value="{$data.longi|default:''}">
+									</td>
+								</tr>
+								<tr>
+									<td>Latitude</td>
+									<td>
+										<input type="text" name='lat' id='lat' readonly value="{$data.lati|default:''}">
+									</td>
+								</tr>
+							</tbody>
+						</table>						
+					</div>		
+					*}
 				</div>
 				
 				<div class="col-lg-12">
@@ -141,8 +163,8 @@
 				</div>
 				<div class="col-lg-12">
 					<hr/>
-					<button class="btn btn-primary" id='sbmfrmpro' type="submit">Submit</button>
-					<button class="btn btn-danger" onClick="loadUrl('{$host}propertymanager');">Back</button>
+					<a class="btn btn-danger" id='bckfrmpro'>Back</a>
+					<a class="btn btn-primary" id='sbmfrmpro' type="submit">Submit</a>
 				</div>
 			</form>
 		</div>
@@ -151,6 +173,24 @@
 
 <script>
 	var number_of_uploads;
+	
+	/*
+	$(document).ready(function() {
+		function initMap() {
+			var uluru = { lat: -25.363, lng: 131.044 };
+			var map = new google.maps.Map(document.getElementById('mapcanvas'), {
+			  zoom: 4,
+			  center: uluru
+			});
+			var marker = new google.maps.Marker({
+			  position: uluru,
+			  map: map
+			});
+		}		
+		initMap();
+	});
+	*/
+	
 	$("#uplfile").change(function() {
 		if(number_of_uploads > 3){
 			alert('To Many File');
@@ -160,6 +200,9 @@
 	});
 	
 	$(".validasi").validatebox({ required:true }); 	
+	$('#bckfrmpro').on('click', function(){
+		loadUrl('{$host}propertymanager');
+	});
 	$('#sbmfrmpro').on('click', function(){
 		validasi = $('#regspro').form('validate');
 		if(validasi){

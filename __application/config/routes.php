@@ -16,6 +16,7 @@ $route['register'] = 'login/registrasiuser';
 $route['register-step2/(:any)'] = 'login/registrasiuser2/$1';
 $route['submit-step1-register'] = 'login/submitregistrasi';
 $route['submit-step2-register'] = 'login/submitregistrasi';
+$route['submit-requestcode'] = 'login/submitregistrasi';
 $route['activate/(:any)/(:any)/(:any)'] = 'login/aktivasiuser/$1/$2/$3';
 $route['forgotpassword'] = 'login/forgotpasssss';
 $route['submit-forgot'] = 'login/submitforgotpass';

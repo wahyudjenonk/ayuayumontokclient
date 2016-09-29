@@ -39,7 +39,7 @@
 												<input type='checkbox' data='{$prices.id_price}' class='pricing' name='checkboxserv[]' value='{$prices.id_price}'> {$prices.of_area_item} {$prices.uom}
 											{/if}
 										</td>
-										<td>{$prices.rate} &nbsp; {$prices.type}</td>
+										<td>{$prices.rate|number_format:0:",":"."} &nbsp; {$prices.type}</td>
 										<td>{$prices.remark}</td>
 									</tr>
 									{/foreach}
@@ -57,7 +57,7 @@
 													<input type='checkbox' data='{$prices.id_price}' class='pricing' name='checkboxserv[]' value='{$prices.id_price}'> {$chld.services_name} 
 												{/if}
 											</td>
-											<td>{$prices.rate} &nbsp; {$prices.type}</td>
+											<td>{$prices.rate|number_format:0:",":"."} &nbsp; {$prices.type}</td>
 											<td>{$prices.remark}</td>
 										</tr>
 										{/foreach}
@@ -169,4 +169,61 @@
 		return false;
 	});
 </script>
+
+{elseif $typeform eq 'formdetailservicespackage'}
+<div id='formdetserv'>
+	<div class="panel-group" id="accordion">
+        {foreach from=$detailservices.paket item=detsrv}
+		<div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse{$detsrv.tbl_services_id}">
+						{$detsrv.package_name}
+					</a>
+                </h4>
+            </div>
+			<div id="collapse{$detsrv.tbl_services_id}" class="panel-collapse collapse">
+                <div class="panel-body">
+					<table class="table table-bordered">
+						<thead>
+							<tr style='background:#F9F9F9;'>
+								<td width='30%' style="text-align:center;font-weight:bold;">Services Package Detail</td>
+								<td width='10%' style="text-align:center;font-weight:bold;">Qty</td>
+								<td width='10%' style="text-align:center;font-weight:bold;">Rate (IDR)</td>
+							</tr>
+						</thead>
+						<tbody>
+							{if isset($detsrv.detil)}
+								{foreach from=$detsrv.detil item=detpck}
+									<tr>
+										<td>{$detpck.services_name}</td>
+										<td style="text-align:right;">{$detpck.qty}</td>
+										<td style="text-align:right;">
+											{if $detpck.rate neq 0}
+												{$detpck.rate|number_format:0:",":"."}
+											{else}
+												-
+											{/if}
+										</td>
+									</tr>
+								{/foreach}
+								<tr>
+									<td colspan='2' style="text-align:center;font-weight:bold;">Total Charge</td>
+									<td style="text-align:center;font-weight:bold;">{$detsrv.total_package|number_format:0:",":"."}</td>
+								</tr>
+							{else}
+								<tr>
+									<td colspan='3' style="text-align:center;">:: No Data Available ::</td>
+								</tr>
+							{/if}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		{/foreach}
+	</div>
+	<button class="btn btn-danger" id='bcksrv' onClick="kumpulAction('backservices');" >Back</button>
+	<button class="btn btn-primary" id='nxtsrv' onClick="kumpulAction('nextservices', '{$id}');">Next</button>	
+</div>
 {/if}
