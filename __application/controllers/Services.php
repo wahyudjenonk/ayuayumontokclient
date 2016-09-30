@@ -442,11 +442,28 @@ class Services extends JINGGA_Controller {
 	function tes_get_data_paket()
 	{
 		$this->load->library('lib');
-		$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
-		//$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
+		//$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
+		$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
 		$data=array('method' => 'read',//ISI METHOD NYA CRUD YE CUNG.. CREATE READ UPDATE DELETE
 					'modul'=>'package',
 					'submodul'=>'',
+		);//DATA UNTUK PUT
+		$method='post';
+		$balikan="json";
+		$res = $this->lib->jingga_curl($url,$data,$method,$balikan);
+		echo "<pre>";
+		print_r($res);
+		//echo $res['msg'];
+	}
+	function tes_get_data_paket_detil()
+	{
+		$this->load->library('lib');
+		//$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
+		$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
+		$data=array('method' => 'read',//ISI METHOD NYA CRUD YE CUNG.. CREATE READ UPDATE DELETE
+					'modul'=>'package',
+					'submodul'=>'detil',
+					'id'=>1,
 		);//DATA UNTUK PUT
 		$method='post';
 		$balikan="json";
