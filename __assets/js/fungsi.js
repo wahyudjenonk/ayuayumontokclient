@@ -507,13 +507,25 @@ function kumpulAction(type, p1, p2, p3, p4, p5){
 		break;
 		case "nextservices":
 			var array_serv = new Array();
+			var array_listing = new Array();
+			var sts_listing = false;
+			
 			$( ".pricing" ).each(function( index ) {
 				if($(this).is(':checked')){
 					array_serv.push($(this).attr('data'));
 				}
 			});
 			
+			$( ".listingmgm" ).each(function( index ) {
+				if($(this).is(':checked')){
+					sts_listing = true;
+					array_listing.push($(this).attr('data'));
+				}
+			});
+			
 			param['arrsrv'] = array_serv;
+			param['stslt'] = sts_listing;
+			param['arrlist'] = array_listing;
 			param['ipma'] = p1;
 			
 			$.blockUI({ message: '<h4>.. Loading Page ..</h4>' });
@@ -526,6 +538,20 @@ function kumpulAction(type, p1, p2, p3, p4, p5){
 				});
 				$.unblockUI();
 			}, 1000);				
+		break;
+		case "nextservicespackage":
+			param['ipma'] = p1;
+			param['ipman'] = $('input[name=pckg]:checked').val();;
+			$.blockUI({ message: '<h4>.. Loading Page ..</h4>' });
+			setTimeout(function(){			
+				$("#formdetserv").hide();
+				$.post(host+'request-summary-package', param, function(rsp){
+					var parsing = $.parseJSON(rsp);
+					$("#summaryservices").show();	
+					$("#summaryservices").html(parsing.page);
+				});
+				$.unblockUI();
+			}, 1000);
 		break;
 		case "backservices2":
 			$.blockUI({ message: '<h4>.. Loading Page ..</h4>' });
@@ -688,8 +714,9 @@ function NumberFormat(value) {
         output = amount[i] + output;
         if ((i+1) % 3 == 0 && (amount.length-1) !== i)output = '.' + output;
     }
-    //if(jml1[1]===undefined) jml1[1] ="00";
-   // if(isNaN(output))  output = "0";
+    
+	//if(jml1[1]===undefined) jml1[1] ="00";
+    // if(isNaN(output))  output = "0";
     return output; // + "." + jml1[1];
 }
 
