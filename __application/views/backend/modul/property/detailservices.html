@@ -6,7 +6,7 @@
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <a data-toggle="collapse" data-parent="#accordion" href="#collapse{$detsrv.code}">
-						{$detsrv.code}. {$detsrv.services_name}
+						{$detsrv.services_name}
 					</a>
                 </h4>
             </div>
@@ -22,48 +22,68 @@
 							</tr>
 						</thead>
 						<tbody>
-						{if isset($detsrv.child) }
+						{if $detsrv.id eq '77'}
 							{foreach from=$detsrv.child item=child}
-								<tr>
-									<td>{$child.code}</td>
-									<td colspan='3'>{$child.services_name}</td>
-								</tr>
 								{if isset($child.price) }
-									{foreach from=$child.price item=prices}
-									<tr>
-										<td>&nbsp;</td>
-										<td>
-											{if $prices.type_choice eq 'R'}
-												<input type='radio' data='{$prices.id_price}' class='pricing' name='{$prices.tbl_services_id}_test'/> {$prices.of_area_item} {$prices.uom}
-											{elseif $prices.type_choice eq 'C'}
-												<input type='checkbox' data='{$prices.id_price}' class='pricing' name='checkboxserv[]' value='{$prices.id_price}'> {$prices.of_area_item} {$prices.uom}
-											{/if}
-										</td>
-										<td>{$prices.rate|number_format:0:",":"."} &nbsp; {$prices.type}</td>
-										<td>{$prices.remark}</td>
-									</tr>
+									{foreach from=$child.price item=prices}	
+										<tr>
+											<td>{$child.code}</td>
+											<td>
+												<input type='checkbox' data='{$prices.id_price}' class='pricing listingmgm' name='checkboxserv[]' value='{$prices.id_price}'> {$child.services_name}
+											</td>
+											<td>
+												{* {$prices.rate|number_format:0:",":"."} &nbsp; {$prices.type} *}
+												-
+											</td>
+											<td>{$prices.remark}</td>
+										</tr>
 									{/foreach}
 								{/if}
-								
-								{if isset($child.child) }
-									{foreach from=$child.child item=chld}
-										{foreach from=$chld.price item=prices}
+							{/foreach}
+						{else}
+							{if isset($detsrv.child) }
+								{foreach from=$detsrv.child item=child}
+									<tr>
+										<td>{$child.code}</td>
+										<td colspan='3'>{$child.services_name}</td>
+									</tr>
+									{if isset($child.price) }
+										{foreach from=$child.price item=prices}
 										<tr>
 											<td>&nbsp;</td>
 											<td>
 												{if $prices.type_choice eq 'R'}
-													<input type='radio' data='{$prices.id_price}' class='pricing' name='{$prices.tbl_services_id}_test'/> {$chld.services_name}
+													<input type='radio' data='{$prices.id_price}' class='pricing' name='{$prices.tbl_services_id}_test'/> {$prices.of_area_item} {$prices.uom}
 												{elseif $prices.type_choice eq 'C'}
-													<input type='checkbox' data='{$prices.id_price}' class='pricing' name='checkboxserv[]' value='{$prices.id_price}'> {$chld.services_name} 
+													<input type='checkbox' data='{$prices.id_price}' class='pricing' name='checkboxserv[]' value='{$prices.id_price}'> {$prices.of_area_item} {$prices.uom}
 												{/if}
 											</td>
 											<td>{$prices.rate|number_format:0:",":"."} &nbsp; {$prices.type}</td>
 											<td>{$prices.remark}</td>
 										</tr>
 										{/foreach}
-									{/foreach}
-								{/if}
-							{/foreach}
+									{/if}
+									
+									{if isset($child.child) }
+										{foreach from=$child.child item=chld}
+											{foreach from=$chld.price item=prices}
+											<tr>
+												<td>&nbsp;</td>
+												<td>
+													{if $prices.type_choice eq 'R'}
+														<input type='radio' data='{$prices.id_price}' class='pricing' name='{$prices.tbl_services_id}_test'/> {$chld.services_name}
+													{elseif $prices.type_choice eq 'C'}
+														<input type='checkbox' data='{$prices.id_price}' class='pricing' name='checkboxserv[]' value='{$prices.id_price}'> {$chld.services_name} 
+													{/if}
+												</td>
+												<td>{$prices.rate|number_format:0:",":"."} &nbsp; {$prices.type}</td>
+												<td>{$prices.remark}</td>
+											</tr>
+											{/foreach}
+										{/foreach}
+									{/if}
+								{/foreach}
+							{/if}
 						{/if}
 						</tbody>
 					</table>	
@@ -82,6 +102,7 @@
 {elseif $typeform eq 'summary'}
 <form role="form" id='regserv' url='{$host}submit-services' method='post' enctype="multipart/form-data">	
 	<input type='hidden' name='ip' value="{$id}"/>
+	<input type='hidden' name='stsl' value="{$stslt}"/>
 	<table class="table table-bordered">
 		<thead>
 			<tr style='background:#F9F9F9;'>
@@ -99,11 +120,19 @@
 					<td>
 						<input type='hidden' name='ii[]' value='{$smr.id}'/>
 						<input type='hidden' name='srname[]' value='{$smr.services_name} ({$smr.of_area_item} {$smr.uom})'/>
-						{$smr.services_name} ({$smr.of_area_item} {$smr.uom})
+						{if $smr.flaglisting neq 'true'}
+							{$smr.services_name} ({$smr.of_area_item} {$smr.uom})
+						{else}
+							<b>Listing Management</b> - {$smr.services_name}
+						{/if}
 					</td>
 					<td>
-						<input type='hidden' name='prc[]' value='{$smr.rate}'/>
-						{$smr.rate|number_format:0:",":"."} {$smr.type}
+						<input type='hidden' name='prc[]' value="{$smr.rate|default:'0'}"/>
+						{if $smr.flaglisting neq 'true'}
+							{$smr.rate|number_format:0:",":"."} {$smr.type}
+						{else}
+							Fee {$smr.remark}
+						{/if}
 					</td>
 					<td style='text-align:center;'>
 						{if $smr.tbl_services_id eq '6' || $smr.tbl_services_id eq '7' || $smr.tbl_services_id eq '9'}
@@ -118,17 +147,62 @@
 						{/if}
 					</td>
 					<td style='text-align:center;'>
-						<input style='width:50px !important;' onkeyup="kumpulAction('processtotal', '{$smr.id}', '{$smr.tbl_services_id}', '{$smr.rate}')" class='validasi' type='text' name='qty[]' id='qty_{$smr.id}'>
+						{if $smr.flaglisting neq 'true'}
+							<input style='width:50px !important;' onkeyup="kumpulAction('processtotal', '{$smr.id}', '{$smr.tbl_services_id}', '{$smr.rate}')" class='validasi' type='text' name='qty[]' id='qty_{$smr.id}'>
+						{else}
+							<input style='width:50px !important;' type='hidden' name='idsrvlist[]' value='{$smr.id}'>
+							-
+						{/if}
 					</td>
 					<td style='text-align:right;'>
 						<input type='hidden' class='amount' name='subtot[]' id='amount_{$smr.id}' value='0'/>
-						<span id='am_{$smr.id}'>0</span>
+						{if $smr.flaglisting neq 'true'}
+							<span id='am_{$smr.id}'>0</span>
+						{else}
+							-
+						{/if}
 					</td>
 					<td style='text-align:center;'>
 						<a href='#'>Remove</a>
 					</td>
 				</tr>
 			{/foreach}
+			
+			{if $stslt eq 'true'}
+				<tr id='frmlistmng'>
+					<td colspan='6' > 
+						<table class="table table-bordered">
+							<tbody>
+								<tr>
+									<td colspan='3' style="text-align:center;font-weight:bold;">
+										Form Listing Management 
+									</td>
+								</tr>
+								<tr>
+									<td width='33%' style="text-align:center;">
+										<b>Period</b> &nbsp;&nbsp;
+										<select name='periodlisting' class='validasi' id='periodlisting' onChange="kumpulAction('periodlisting');">
+											<option value=''> -- Choose -- </option>
+											<option value='2'> 2 Month </option>
+											<option value='3'> 3 Month </option>
+											<option value='6'> 6 Month </option>
+											<option value='12'> 12 Month </option>
+										</select>
+									</td>
+									<td width='33%'>
+										<div id='listcalendar' style='margin-left:15px;width:91%;'></div>
+									</td>
+									<td width='33%' style="text-align:center;">
+										<b>IDR</b> &nbsp;&nbsp; <input type='text' class='validasi' name='pricelisting' style='width:50%;' id='pricelisting' placeholder='Price Per Night/Booking' />
+										<input type='hidden' name='datefirst' id='datefirst' />
+										<input type='hidden' name='datelast' id='datelast' />
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</td>
+				</tr>
+			{/if}
 			<tr>
 				<td style="text-align:center;font-weight:bold;"> Total Charge </td>
 				<td colspan='4' style="text-align:center;font-weight:bold;"> 
@@ -140,8 +214,8 @@
 		</tbody>
 	</table>
 	<hr/>
-	<button class="btn btn-danger" id='bcksmr' >Back</button>
-	<button class="btn btn-primary" id='nxtsmr' type='submit' >Submit</button>	
+	<a class="btn btn-danger" id='bcksmr' >Back</a>
+	<a class="btn btn-primary" id='nxtsmr' type='submit' >Submit</a>	
 </form>
 
 <script>
@@ -168,16 +242,53 @@
 		}, 1000);				
 		return false;
 	});
+	
+	$('#pricelisting').on('keydown', function(){
+		//nilainya = NumberFormat($(this).val());
+		//$(this).val(nilainya);
+	});
+	
+	var monthNames = ["Jan", "Feb", "Mar", "Apr", "Mai", "Jun", "Jul", "Agst", "Sept", "Oct", "Nov", "Dec"];
+    var dayNames = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];	
+	$('#listcalendar').bic_calendar({
+        //list of events in array
+        events: "",
+        //enable select
+        enableSelect: true,
+        //enable multi-select
+        multiSelect: true,
+        //set day names
+        dayNames: dayNames,
+        //set month names
+        monthNames: monthNames,
+        //show dayNames
+        showDays: true,
+        //show month controller
+        displayMonthController: true,
+        //show year controller
+        displayYearController: true,
+    });
+	
+	document.addEventListener('bicCalendarSelect', function(e) {
+		moment.lang('es');
+		var dateFirst = new moment(e.detail.dateFirst);
+		var dateLast = new moment(e.detail.dateLast);
+
+		$('#datefirst').val(dateFirst.format('YYYY-MM-DD'));
+		$('#datelast').val(dateLast.format('YYYY-MM-DD'));
+	});	
 </script>
 
 {elseif $typeform eq 'formdetailservicespackage'}
 <div id='formdetserv'>
 	<div class="panel-group" id="accordion">
-        {foreach from=$detailservices.paket item=detsrv}
+        {foreach from=$detailservices item=detsrv}
 		<div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse{$detsrv.tbl_services_id}">
+                    <input type='radio' value='{$detsrv.id}' class='pricing' name='pckg'/>
+					&nbsp;
+					<a data-toggle="collapse" data-parent="#accordion" href="#collapse{$detsrv.tbl_services_id}">
 						{$detsrv.package_name}
 					</a>
                 </h4>
@@ -193,10 +304,10 @@
 							</tr>
 						</thead>
 						<tbody>
-							{if isset($detsrv.detil)}
-								{foreach from=$detsrv.detil item=detpck}
+							{if isset($detsrv.detail)}
+								{foreach from=$detsrv.detail item=detpck}
 									<tr>
-										<td>{$detpck.services_name}</td>
+										<td>{$detpck.header2} - {$detpck.services_name}</td>
 										<td style="text-align:right;">{$detpck.qty}</td>
 										<td style="text-align:right;">
 											{if $detpck.rate neq 0}
@@ -224,6 +335,85 @@
 		{/foreach}
 	</div>
 	<button class="btn btn-danger" id='bcksrv' onClick="kumpulAction('backservices');" >Back</button>
-	<button class="btn btn-primary" id='nxtsrv' onClick="kumpulAction('nextservices', '{$id}');">Next</button>	
+	<button class="btn btn-primary" id='nxtsrv' onClick="kumpulAction('nextservicespackage', '{$id}');">Next</button>	
 </div>
+<div id='summaryservices'></div>
+{elseif $typeform eq 'summary_package'}
+<form role="form" id='regserv' url='{$host}submit-services-package' method='post' enctype="multipart/form-data">	
+	<input type='hidden' name='ip' value="{$id}"/>
+	<input type='hidden' name='ipman' value="{$paketpilihan}"/>
+	<table class="table table-bordered">
+		<tbody>
+			<tr style='background:#F9F9F9;'>
+				<td width='50%' style="font-weight:bold;">Package Name</td>
+				<td width='50%' style="font-weight:bold;">{$summaryservices.paket.0.package_name}</td>
+			</tr>
+			<tr style='background:#F9F9F9;'>
+				<td style="font-weight:bold;">Total Charge</td>
+				<td style="font-weight:bold;">IDR. {$summaryservices.paket.0.total_package|number_format:0:",":"."}</td>
+			</tr>
+			<tr>
+				<td colspan='2'>
+					<table class="table table-bordered">
+						<thead>
+							<tr style='background:#F9F9F9;'>
+								<td width='30%' style="text-align:center;font-weight:bold;">Services Package Detail</td>
+								<td width='10%' style="text-align:center;font-weight:bold;">Qty</td>
+								<td width='10%' style="text-align:center;font-weight:bold;">Rate (IDR)</td>
+							</tr>
+						</thead>
+						<tbody>
+							{if isset($summaryservices.detil)}
+								{foreach from=$summaryservices.detil item=detpck}
+									<tr>
+										<td>{$detpck.header2} - {$detpck.services_name}</td>
+										<td style="text-align:right;">{$detpck.qty}</td>
+										<td style="text-align:right;">
+											{if $detpck.rate neq 0}
+												{$detpck.rate|number_format:0:",":"."}
+											{else}
+												-
+											{/if}
+										</td>
+									</tr>
+								{/foreach}
+							{else}
+								<tr>
+									<td colspan='3' style="text-align:center;">:: No Data Available ::</td>
+								</tr>
+							{/if}
+						</tbody>
+					</table>
+				</td>
+			</tr>
+		</tbody>
+	<table>
+	<a class="btn btn-danger" id='bcksmr' >Back</a> &nbsp;
+	<a class="btn btn-primary" id='nxtsmr' type='submit' >Submit</a>	
+</form>
+<script>
+$(".validasi").validatebox({ required:true }); 	
+$('#nxtsmr').on('click', function(){
+	validasi = $('#regsrv').form('validate');
+	if(validasi){
+		$.blockUI({ message: '<h3>Processing Data...</h3>' });			
+	}
+	
+	submit_form('regserv', function(r){
+		$("#konten").html('').html(r);
+		$.unblockUI();
+	});
+	return false;
+});
+
+$('#bcksmr').on('click', function(){
+	$.blockUI({ message: '<h4>.. Loading Page ..</h4>' });
+	setTimeout(function(){
+		$("#formdetserv").show();
+		$("#summaryservices").html('');
+		$.unblockUI();
+	}, 1000);				
+	return false;
+});
+</script>
 {/if}

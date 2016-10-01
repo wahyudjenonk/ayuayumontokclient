@@ -15,6 +15,7 @@
 		</tr>
 		<tr>
 			<td style='padding:10px;'>
+			{if $type eq 'services_independent'}
 				<table width='100%'>
 					<tr style='background:#F9F9F9;'>
 						<td width='40%' style="text-align:center;font-weight:bold;">Services Name</td>
@@ -25,8 +26,16 @@
 					</tr>
 					{for $foo=0 to $jmlpost}
 					<tr>
-						<td>{$post.srname.$foo}</td>
-						<td style='text-align:right;'>{$post.prc.$foo|number_format:0:",":"."}</td>
+						<td>
+							{$post.srname.$foo}
+						</td>
+						<td style='text-align:right;'>
+							{if isset($post.prc.$foo)}
+								{$post.prc.$foo|number_format:0:",":"."}
+							{else}
+								-
+							{/if}
+						</td>
 						<td>
 							{if $post.period.$foo|default:'' eq 'H'}
 								Daily
@@ -38,10 +47,44 @@
 								-
 							{/if}
 						</td>
-						<td style='text-align:right;'>{$post.qty.$foo}</td>
-						<td style='text-align:right;'>{$post.subtot.$foo|number_format:0:",":"."}</td>
+						<td style='text-align:right;'>{$post.qty.$foo|default:'-'}</td>
+						<td style='text-align:right;'>
+							{$post.subtot.$foo|default:''|number_format:0:",":"."}
+						</td>
 					</tr>
 					{/for}
+					{if $post.stsl eq 'true'}
+					<tr>
+						<td colspan='5'>
+							<table width='100%'>
+								<tbody>
+									<tr>
+										<td colspan='4' style="text-align:center;font-weight:bold;">
+											Listing Management Detail
+										</td>
+									</tr>
+									<tr>
+										<td width='25%' style="text-align:center;">
+											<b>Period</b> &nbsp;&nbsp;
+											{$post.periodlisting}
+										</td>
+										<td width='25%'>
+											<b>Start Date</b> &nbsp;&nbsp;
+											{$post.datefirst}
+										</td>
+										<td width='25%'>
+											<b>End Date</b> &nbsp;&nbsp;
+											{$post.datelast}
+										</td>
+										<td width='25%' style="text-align:center;">
+											<b>Price</b> &nbsp;&nbsp; {$post.pricelisting|number_format:0:",":"."}
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+					{/if}
 					<tr style='background:#F9F9F9;'>
 						<td style="text-align:center;font-weight:bold;"> Total Charge </td>
 						<td colspan='4' style="text-align:center;font-weight:bold;"> 
@@ -49,6 +92,54 @@
 						</td>
 					</tr>
 				</table>
+			{elseif $type eq 'services_package'}	
+				<table class="table table-bordered">
+					<tbody>
+						<tr style='background:#F9F9F9;'>
+							<td width='50%' style="font-weight:bold;">Package Name</td>
+							<td width='50%' style="font-weight:bold;">{$data.paket.0.package_name}</td>
+						</tr>
+						<tr style='background:#F9F9F9;'>
+							<td style="font-weight:bold;">Total Charge</td>
+							<td style="font-weight:bold;">IDR. {$data.paket.0.total_package|number_format:0:",":"."}</td>
+						</tr>
+						<tr>
+							<td colspan='2'>
+								<table class="table table-bordered">
+									<thead>
+										<tr style='background:#F9F9F9;'>
+											<td width='30%' style="text-align:center;font-weight:bold;">Services Package Detail</td>
+											<td width='10%' style="text-align:center;font-weight:bold;">Qty</td>
+											<td width='10%' style="text-align:center;font-weight:bold;">Rate (IDR)</td>
+										</tr>
+									</thead>
+									<tbody>
+										{if isset($data.detil)}
+											{foreach from=$data.detil item=detpck}
+												<tr>
+													<td>{$detpck.header2} - {$detpck.services_name}</td>
+													<td style="text-align:right;">{$detpck.qty}</td>
+													<td style="text-align:right;">
+														{if $detpck.rate neq 0}
+															{$detpck.rate|number_format:0:",":"."}
+														{else}
+															-
+														{/if}
+													</td>
+												</tr>
+											{/foreach}
+										{else}
+											<tr>
+												<td colspan='3' style="text-align:center;">:: No Data Available ::</td>
+											</tr>
+										{/if}
+									</tbody>
+								</table>
+							</td>
+						</tr>
+					</tbody>		
+				</table>
+			{/if}
 			</td>
 		</tr>
 		<tr>

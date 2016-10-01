@@ -61,10 +61,16 @@ class Mbackend extends CI_Model{
 				$data['submodul'] = '';
 				$data['type_services'] = $p1;
 			break;
-			case "detailservicespackage":
+			case "servicepackageheader":
 				$data['method'] = 'read';
 				$data['modul'] = 'package';
 				$data['submodul'] = '';
+			break;
+			case "servicepackagedetail":
+				$data['method'] = 'read';
+				$data['modul'] = 'package';
+				$data['submodul'] = 'detil';
+				$data['id'] = $p1;
 			break;
 			case "summaryservices":
 				$data['method'] = 'read';
@@ -82,7 +88,7 @@ class Mbackend extends CI_Model{
 		
 	}
 	
-	function simpandata($table,$post,$sts_crud=""){ //$sts_crud --> STATUS NYEE INSERT, UPDATE, DELETE
+	function simpandata($table,$post,$post2="",$sts_crud=""){ //$sts_crud --> STATUS NYEE INSERT, UPDATE, DELETE
 		$method = 'post';
 		$balikan = "json";
 		$url = $this->config->item('service_url');
@@ -196,12 +202,16 @@ class Mbackend extends CI_Model{
 				$data['id'] = $post['uui'];
 			break;
 			case "submit_services":
+				$arraypricingid = array();
+				$arrayqty = array();
+				$arraytot = array();
+				$arrayflag = array();
+				
+				$arraylistingid = array();
+				$arraylistingmanagement = array();
+				
 				if(isset($post['prc'])){
 					$countinput = (count($post['prc']) - 1);
-					$arraypricingid = array();
-					$arrayqty = array();
-					$arraytot = array();
-					$arrayflag = array();
 					for($i=0; $i <= $countinput; $i++){
 						if(isset($post['ii'][$i])){
 							$arraypricingid[] = $post['ii'][$i];
@@ -220,6 +230,20 @@ class Mbackend extends CI_Model{
 						}
 					}
 				}
+					
+				if(isset($post['idsrvlist'])){
+					$countlist = (count($post['idsrvlist']) - 1);
+					for($j=0; $j <= $countlist; $j++){
+						if(isset($post['idsrvlist'][$j])){
+							$arraylistingid[] = $post['idsrvlist'][$j];
+						}
+					}
+					
+					$arraylistingmanagement['start_date'] = $post['datefirst'];
+					$arraylistingmanagement['end_date'] = $post['datelast'];
+					$arraylistingmanagement['rental_price'] = $post['pricelisting'];
+					$arraylistingmanagement['price_services_id'] = $arraylistingid;
+				}
 			
 				$data['method'] = 'create';
 				$data['modul'] = 'transaction';
@@ -227,12 +251,24 @@ class Mbackend extends CI_Model{
 				$data['tbl_member_user'] = $this->auth['member_user'];
 				$data['cl_method_payment_id'] = 1;
 				$data['grand_total'] = $post['grandtot'];
-				//$data['tbl_unit_member_id'] = $post['ip'];
+				$data['tbl_unit_member_id'] = $post['ip'];
 				$data['flag'] = 'P';
 				$data['tbl_pricing_services_id'] = $arraypricingid;
 				$data['qty'] = $arrayqty;
 				$data['total'] = $arraytot;
 				$data['flag_transaction'] = $arrayflag;
+				$data['listing_management'] = $arraylistingmanagement;
+			break;
+			case "submit_services_package":
+				$data['method'] = 'create';
+				$data['modul'] = 'invoice_package';
+				$data['submodul'] = '';
+				$data['tbl_member_user'] = $this->auth['member_user'];
+				$data['tbl_unit_member_id'] = $post['ip'];
+				$data['cl_method_payment_id'] = 1;
+				$data['tbl_package_header_id'] = $post2['detil'][0]['tbl_package_header_id'];
+				$data['flag'] = 'P';
+				$data['total'] = $post2['paket'][0]['total_package'];
 			break;
 		}
 		

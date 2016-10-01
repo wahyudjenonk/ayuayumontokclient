@@ -147,8 +147,15 @@ class lib {
 			break;
 			
 			case "email_invoice":
+				$ci->nsmarty->assign('type', "services_independent");
 				$ci->nsmarty->assign('post', $p1);
 				$ci->nsmarty->assign('jmlpost', $p2);
+				$html = $ci->nsmarty->fetch('backend/modul/property/email_invoice.html');
+				$subject = "Invoice Request Services - Homtel Services";
+			break;
+			case "email_invoice_package":
+				$ci->nsmarty->assign('type', "services_package");
+				$ci->nsmarty->assign('data', $p1);
 				$html = $ci->nsmarty->fetch('backend/modul/property/email_invoice.html');
 				$subject = "Invoice Request Services - Homtel Services";
 			break;
