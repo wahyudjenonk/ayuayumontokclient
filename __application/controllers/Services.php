@@ -395,8 +395,8 @@ class Services extends JINGGA_Controller {
 	function tes_transaksi_package()
 	{
 		$this->load->library('lib');
-		$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
-		//$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
+		//$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
+		$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
 		//$listing_list=array(1,3,4,6=>'Tessss');//ISI CEKLIST FORM DARI LOOKUP CL LISTING LIST
 		//$listing_affiliation=array('cl_listing_third_party_affiliation_id'=>1,'other'=>'');//ISI CL_AFFILATION
 		/*$data_listing=array(
@@ -424,9 +424,9 @@ class Services extends JINGGA_Controller {
 					'tbl_member_user'=>'99B009',
 					'tbl_unit_member_id'=>2,
 					'cl_method_payment_id'=>2,
-					'tbl_package_header_id'=>1,//KHUSUS UNTUK TYPE SERVICEES NYE 2 CUNG yaitu Yang Package
+					'tbl_package_header_id'=>2,//KHUSUS UNTUK TYPE SERVICEES NYE 2 CUNG yaitu Yang Package
 					'flag'=>'P',
-					'total'=>1500000
+					'total'=>15000
 					//'listing_data'=>$data_listing,
 					//'listing_affiliation'=>$listing_affiliation,
 					//'listing_list'=>$listing_list
