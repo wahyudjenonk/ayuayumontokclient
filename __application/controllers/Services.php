@@ -281,6 +281,7 @@ class Services extends JINGGA_Controller {
 		$listing_management=array('start_date'=>'2016-01-01',
 								  'end_date'=>'2016-04-01',
 								  'rental_price'=>250000,
+								  'rental_price_monthly'=>1500,
 								  'price_services_id'=>array(69,71)
 		);// DATA KALO ADA SERVICES LISTING MANAGEMENT
 		$data_qty=array(1,1,1,3,8);//DATA QTY ATAU JUMLAH BERAPA KALI
@@ -464,6 +465,40 @@ class Services extends JINGGA_Controller {
 					'modul'=>'package',
 					'submodul'=>'detil',
 					'id'=>1,
+		);//DATA UNTUK PUT
+		$method='post';
+		$balikan="json";
+		$res = $this->lib->jingga_curl($url,$data,$method,$balikan);
+		echo "<pre>";
+		print_r($res);
+		//echo $res['msg'];
+	}
+	function tes_ubah_password()
+	{
+		$this->load->library('lib');
+		//$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
+		$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
+		$data=array('method' => 'update',//ISI METHOD NYA CRUD YE CUNG.. CREATE READ UPDATE DELETE
+					'modul'=>'update_pwd',
+					'submodul'=>'',
+					'member_user'=>'99B009',
+					'pwd_old'=>'123456',
+					'pwd_new'=>'12345'
+		);
+		$method='post';
+		$balikan="json";
+		$res = $this->lib->jingga_curl($url,$data,$method,$balikan);
+		print_r($res);
+	}
+	function tes_get_data_profil()
+	{
+		$this->load->library('lib');
+		//$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
+		$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
+		$data=array('method' => 'read',//ISI METHOD NYA CRUD YE CUNG.. CREATE READ UPDATE DELETE
+					'modul'=>'profile',
+					'submodul'=>'',
+					'member_user'=>'99B009'
 		);//DATA UNTUK PUT
 		$method='post';
 		$balikan="json";
