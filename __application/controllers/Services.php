@@ -507,4 +507,29 @@ class Services extends JINGGA_Controller {
 		print_r($res);
 		//echo $res['msg'];
 	}
+	function tes_profil_edit()
+	{
+		$this->load->library('lib');
+		//$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
+		$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
+		
+		
+		$data=array('method' => 'update',//ISI METHOD NYA CRUD YE CUNG.. CREATE READ UPDATE DELETE
+					'modul'=>'profil',
+					'submodul'=>'',
+					'id'=>6,//ID get data dari profil
+					'owner_name_last'=>'xxx',
+					'owner_name_first'=>'yyyy',
+					'title'=>'Mr.',
+					'id_number'=>'20031299091200',
+					'place_of_birth'=>'Bangka',
+					'date_of_birth'=>date('Y-m-d'),
+					'address'=>'20031299091200'// DAN LAIN2 ITEM DARI PROFILLLLLL
+		);//DATA UNTUK PUT
+		$method='post';
+		$balikan="json";
+		$res = $this->lib->jingga_curl($url,$data,$method,$balikan);
+		print_r($res);
+		//echo $res['msg'];
+	}
 }
