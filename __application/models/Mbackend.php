@@ -78,6 +78,26 @@ class Mbackend extends CI_Model{
 				$data['submodul'] = '';
 				$data['tbl_services_id'] = $p1;
 			break;
+			case "trxindependent":
+				$data['method'] = 'read';
+				$data['modul'] = 'invoice';
+			break;
+			case "trxindependentdetail":
+				$data['method'] = 'read';
+				$data['modul'] = 'invoice';
+				$data['submodul'] = 'detil';
+				$data['id'] = $p1;
+			break;
+			case "trxpackage":
+				$data['method'] = 'read';
+				$data['modul'] = 'invoice_package';
+			break;
+			case "trxpackagedetail":
+				$data['method'] = 'read';
+				$data['modul'] = 'invoice_package';
+				$data['submodul'] = 'detil';
+				$data['id'] = $p1;
+			break;
 		}
 		
 		$res = $this->lib->jingga_curl($url,$data,$method,$balikan);
@@ -185,6 +205,7 @@ class Mbackend extends CI_Model{
 				$data['apartment_developer'] = $post['apartdevnm'];
 				$data['apartment_address'] = $post['apartaddr'];
 				$data['ipl'] = $post['untipl'];
+				$data['flag'] = 'P';
 				$data['cl_room_type_id'] = $arraycountroomtype;
 				$data['cl_facility_unit_id'] = $arraycountfacilityunit;
 				$data['qty'] = $arraycountfacilityqty;
@@ -192,7 +213,7 @@ class Mbackend extends CI_Model{
 				$data['photo_unit'] = $arrayphotounit;
 				
 				//echo "<pre>";
-				//print_r($arraycountroomtype);
+				//print_r($data);
 				//exit;				
 			break;
 			case "property_delete":

@@ -30,7 +30,9 @@
 								<br/>
 								{$rows.apartment_name}
 								<hr style='margin-top:10px !important;'/>
-								<a href='javascript:void(0);' class="btn btn-success" onClick="kumpulAction('request-services', '{$rows.id}', '{$rows.apartment_name}', '{$rows.unit_size_nett}');" >Services</a> 
+								{if $rows.flag eq 'F'}
+									<a href='javascript:void(0);' class="btn btn-success" onClick="kumpulAction('request-services', '{$rows.id}', '{$rows.apartment_name}', '{$rows.unit_size_nett}');" >Services</a> 
+								{/if}
 								<a href='javascript:void(0);' class="btn btn-primary" onClick="kumpulAction('form-property', 'edit', '{$rows.id}');" >Edit</a> 
 								<a href='javascript:void(0);' class="btn btn-danger" onClick="kumpulAction('property-delete', '{$rows.id}');" >Delete</a>
 							</div>

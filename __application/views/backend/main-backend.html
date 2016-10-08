@@ -66,7 +66,15 @@
                         <a href="javascript:void(0);" onClick="loadUrl('{$host}propertymanager');"><i class="fa fa-fw fa-table"></i> Property Manager</a>
                     </li>
                     <li>
-                        <a href="javascript:void(0);" onClick="loadUrl('{$host}transaction');"><i class="fa fa-fw fa-edit"></i> Transaction</a>
+						<a href="javascript:;" data-toggle="collapse" data-target="#transaction" class="collapsed" aria-expanded="false"><i class="fa fa-fw fa-edit"></i> Transaction <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="transaction" class="collapse" aria-expanded="false" style="height: 0px;">
+                            <li>
+                                <a href="javascript:void(0);" onClick="loadUrl('{$host}transaction-independent');">Transaction Independent</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);" onClick="loadUrl('{$host}transaction-package');">Transaction Packages</a>
+                            </li>
+                        </ul>	
                     </li>
                 </ul>
             </div>

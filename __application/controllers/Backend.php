@@ -201,7 +201,7 @@ class Backend extends JINGGA_Controller {
 							$countinput = (count($post['prc']) - 1);
 							$insert = $this->mbackend->simpandata("submit_services", $post);
 							
-							$this->lib->kirimemail('email_invoice', $this->auth['email_address'], $post, $countinput);
+							//$this->lib->kirimemail('email_invoice', $this->auth['email_address'], $post, $countinput);
 							
 							$this->nsmarty->assign('type', "services_independent");
 							$this->nsmarty->assign('jmlpost', $countinput);
@@ -223,13 +223,38 @@ class Backend extends JINGGA_Controller {
 							$detailpaket = $this->mbackend->getdata('servicepackagedetail', $post['ipman']);
 							$insert = $this->mbackend->simpandata("submit_services_package", $post, $detailpaket['data']);
 							
-							$this->lib->kirimemail('email_invoice_package', $this->auth['email_address'], $detailpaket['data']);
+							//$this->lib->kirimemail('email_invoice_package', $this->auth['email_address'], $detailpaket['data']);
 							
 							$this->nsmarty->assign('type', "services_package");
 							$this->nsmarty->assign('datapaket', $detailpaket['data']);
 							$this->nsmarty->display($temp);
 							exit;
 						break;
+					}
+				break;
+				case "transaction":
+					switch($p2){
+						case "independent":
+							$datatransaction = $this->mbackend->getdata('trxindependent');
+							$this->nsmarty->assign('datatransaction', $datatransaction);
+						break;
+						case "independent_detail":
+							$idtrx = $this->input->post('ipma');
+							$datatrxdetail = $this->mbackend->getdata('trxindependentdetail', $idtrx);
+							
+							$this->nsmarty->assign('datatrxdetail', $datatrxdetail);
+						break;
+						case "package":
+							$datatransaction = $this->mbackend->getdata('trxpackage');
+							$this->nsmarty->assign('datatransaction', $datatransaction);
+						break;
+						case "package_detail":
+							$idtrx = $this->input->post('ipma');
+							$datatrxdetail = $this->mbackend->getdata('trxpackagedetail', $idtrx);
+							
+							$this->nsmarty->assign('datatrxdetail', $datatrxdetail);
+						break;
+
 					}
 				break;
 			}
@@ -298,7 +323,7 @@ class Backend extends JINGGA_Controller {
 			$editstatus = $p2; 
 		}
 		
-		echo $this->mbackend->simpandata($p1, $post, $editstatus);
+		echo $this->mbackend->simpandata($p1, $post, "", $editstatus);
 	}
 	
 	function upload(){
