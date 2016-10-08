@@ -600,6 +600,35 @@ function kumpulAction(type, p1, p2, p3, p4, p5){
 			$('#grandtot').val(uhuy);
 			$('#tot').html(NumberFormat(uhuy));
 		break;
+		
+		case "trxdetail":
+			param['ipma'] = p1;
+			$.blockUI({ message: '<h4>.. Loading Page ..</h4>' });
+			setTimeout(function(){			
+				$("#table-trx").hide();
+				$("#breadcrumb").hide();
+				$.post(host+'transaction-independent-detail', param, function(rsp){
+					var parsing = $.parseJSON(rsp);
+					$("#detail-trx").show();	
+					$("#detail-trx").html(parsing.page);
+				});
+				$.unblockUI();
+			}, 1000);			
+		break;
+		case "trxdetail-package":
+			param['ipma'] = p1;
+			$.blockUI({ message: '<h4>.. Loading Page ..</h4>' });
+			setTimeout(function(){			
+				$("#table-trx-package").hide();
+				$("#breadcrumb").hide();
+				$.post(host+'transaction-package-detail', param, function(rsp){
+					var parsing = $.parseJSON(rsp);
+					$("#detail-trx-package").show();	
+					$("#detail-trx-package").html(parsing.page);
+				});
+				$.unblockUI();
+			}, 1000);			
+		break;
 	}
 }	
 
