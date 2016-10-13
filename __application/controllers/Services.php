@@ -80,6 +80,7 @@ class Services extends JINGGA_Controller {
 	}
 	function tes_forgot(){
 		$this->load->library('lib');
+		$this->load->library('encrypt');
 		$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
 		$data=array('method' => 'read',
 					'modul'=>'forgot_pwd',
@@ -90,6 +91,7 @@ class Services extends JINGGA_Controller {
 		$balikan="json";
 		$res=$this->lib->jingga_curl($url,$data,$method,$balikan);
 		echo "<pre>";print_r($res);
+		//echo $this->encrypt->decode($res['data']['pwd']);
 	}
 	
 	function tes_property_insert()
@@ -476,12 +478,12 @@ class Services extends JINGGA_Controller {
 	function tes_ubah_password()
 	{
 		$this->load->library('lib');
-		//$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
-		$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
+		$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
+		//$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
 		$data=array('method' => 'update',//ISI METHOD NYA CRUD YE CUNG.. CREATE READ UPDATE DELETE
 					'modul'=>'update_pwd',
 					'submodul'=>'',
-					'member_user'=>'99B009',
+					'member_user'=>'005232',
 					'pwd_old'=>'123456',
 					'pwd_new'=>'12345'
 		);
@@ -493,12 +495,12 @@ class Services extends JINGGA_Controller {
 	function tes_get_data_profil()
 	{
 		$this->load->library('lib');
-		//$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
-		$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
+		$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
+		//$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
 		$data=array('method' => 'read',//ISI METHOD NYA CRUD YE CUNG.. CREATE READ UPDATE DELETE
 					'modul'=>'profile',
 					'submodul'=>'',
-					'member_user'=>'99B009'
+					'member_user'=>'005232'
 		);//DATA UNTUK PUT
 		$method='post';
 		$balikan="json";

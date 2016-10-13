@@ -98,6 +98,12 @@ class Mbackend extends CI_Model{
 				$data['submodul'] = 'detil';
 				$data['id'] = $p1;
 			break;
+			case "dataprofile":
+				$data['method'] = 'read';
+				$data['modul'] = 'profile';
+				$data['submodul'] = '';
+				$data['member_user'] = $this->auth['member_user'];
+			break;
 		}
 		
 		$res = $this->lib->jingga_curl($url,$data,$method,$balikan);
@@ -291,13 +297,77 @@ class Mbackend extends CI_Model{
 				$data['flag'] = 'P';
 				$data['total'] = $post2['paket'][0]['total_package'];
 			break;
+			case "submit_change_password":
+				$data['method'] = 'update';
+				$data['modul'] = 'update_pwd';
+				$data['submodul'] = '';
+				$data['member_user'] = $this->auth['member_user'];
+				$data['pwd_old'] = $post['oldpass'];
+				$data['pwd_new'] = $post['newpass'];
+			break;
+			case "submit_update_profile":
+				$datalawas = $this->getdata('dataprofile');
+				$data['method'] = 'update';
+				$data['modul'] = 'profil';
+				$data['submodul'] = '';
+				$data['id'] = $datalawas['data']['id'];
+				$data['cl_owner_type_id'] = $post['typown'];
+				$data['title'] = $post['titown'];
+				$data['owner_name_first'] = $post['fname'];
+				$data['owner_name_last'] = $post['lname'];
+				$data['place_of_birth'] = $post['plofbirth'];
+				$data['date_of_birth'] = $post['thbirth']."-".$post['blbirth']."-".$post['tgbirth'];
+				$data['previous_education'] = $post['edown'];
+				$data['current_occupation'] = $post['jobown'];
+				$data['city'] = $post['citown'];
+				$data['state'] = $post['sttown'];
+				$data['zip_code'] = $post['zpown'];
+				$data['address'] = $post['addrown'];
+				$data['phone_home'] = $post['phhmown'];
+				$data['phone_mobile'] = $post['phmbown'];
+				$data['id_number'] = $post['idcrdown'];
+				
+				$path = "__repository/";
+				$t = microtime(true);
+				$micro = sprintf("%06d",($t - floor($t)) * 1000000);
+				$d = new DateTime( date('Y-m-d H:i:s.'.$micro, $t) );
+				
+				if($_FILES['idcrdfile']['name'] != ''){
+					$scanktp = str_replace(" ","", $post['fname']);
+					$file_scanktp = $d->format("YmdHisu")."_scanidcard_".strtolower($scanktp);
+					$filename_scanktp =  $this->lib->uploadnong($path."scanktp/", 'idcrdfile', $file_scanktp); 
+					if($filename_scanktp){
+						if($datalawas['data']['photo_id_number']){
+							unlink($path."scanktp/".$datalawas['data']['photo_id_number']);
+						}
+					}
+					$data['photo_id_number'] = $filename_scanktp;
+				}
+				
+				if($_FILES['photoprofile']['name'] != ''){
+					$profile = str_replace(" ","", $post['fname']);
+					$file_profile = $d->format("YmdHisu")."_profile_".strtolower($profile);
+					$filename_profile =  $this->lib->uploadnong($path."profile/", 'photoprofile', $file_profile); 
+					if($filename_profile){
+						if($datalawas['data']['photo_profile']){
+							unlink($path."profile/".$datalawas['data']['photo_profile']);
+						}
+					}
+					$data['photo_profile'] = $filename_profile;
+				}
+				
+			break;
 		}
 		
 		$res = $this->lib->jingga_curl($url,$data,$method,$balikan);
 		if($res['msg'] == 'sukses'){
 			return 1;
 		}else{
-			return 0;
+			if($type == 'submit_change_password'){
+				return $res['pesan'];
+			}else{
+				return 0;
+			}
 		}
 	}
 	

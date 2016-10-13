@@ -1,3 +1,4 @@
+{*
 <!DOCTYPE html>
 <html>
 <head>
@@ -114,3 +115,50 @@
 	</div>
 </body>
 </html>
+*}
+
+
+{if $type eq 'registrasi-step1'}
+	<div class="form-labels-on-top">
+	{if $status eq '1'}
+		<div class="form-title-row">
+			<h1>Register Success</h1>
+		</div>
+		
+		Thank For Register, Please Check Your Email Soon.
+	{elseif $status eq '2'}
+		<div class="form-title-row">
+			<h1>Register Failed</h1>
+		</div>
+		
+		Your Email Address was registered in our system database, <br />
+		Please Try Again with another Email Address.
+	{elseif $status eq '0'}
+		<div class="form-title-row">
+			<h1>Incorrect Captcha</h1>
+		</div>
+	{/if}
+	</div>
+{elseif $type eq 'registrasi-step2'}
+	<div class="form-labels-on-top">
+		<div class="form-title-row">
+			<h1>Register Failed</h1>
+		</div>
+	</div>	
+{elseif $type eq 'aktivasi'}
+	<div class="form-labels-on-top">
+	{if $status eq '1'}
+		<div class="form-title-row">
+			<h1>Activation User Success</h1>
+		</div>
+		
+		Registration Code Was Verify,  Now You Can Login to Homtel Service.
+	{elseif $status eq '0'}
+		<div class="form-title-row">
+			<h1>Activation User Failed</h1>
+		</div>
+		
+		Wrong Registration Code
+	{/if}
+	</div>
+{/if}

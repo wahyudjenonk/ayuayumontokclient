@@ -137,7 +137,7 @@ class lib {
 				$ci->nsmarty->assign('type', "email-step2");
 				//$ci->nsmarty->assign('link', $link);
 				$html = $ci->nsmarty->fetch('backend/email-register.html');
-				$subject = "Register Successfull - Homtel Setvices";
+				$subject = "Register Successfull - Homtel Services";
 			break;
 			case "email_forgot":
 				$ci->nsmarty->assign('datax', $p1);
@@ -345,7 +345,7 @@ class lib {
 					'2' => array('id'=>'03','txt'=>'Maret'),
 					'3' => array('id'=>'04','txt'=>'April'),
 					'4' => array('id'=>'05','txt'=>'May'),
-					'5' => array('id'=>'06','txt'=>'Jun2'),
+					'5' => array('id'=>'06','txt'=>'June'),
 					'6' => array('id'=>'07','txt'=>'July'),
 					'7' => array('id'=>'08','txt'=>'August'),
 					'8' => array('id'=>'09','txt'=>'September'),
@@ -513,7 +513,7 @@ class lib {
 	}
 	
 	//End Generate Form Via Field Table
-	
+	/*
 	//Function Encoding Decoding
 	function base62encode($data) {
 		$outstring = '';
@@ -541,6 +541,7 @@ class lib {
 		}
 		return $outstring;
 	}
+	*/
 	
 	function base64url_encode($data) { 
 	  return rtrim(strtr(base64_encode($data), '+/', '-_'), '='); 

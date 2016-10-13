@@ -14,12 +14,16 @@ $route['backoffice-form/(:any)'] = 'backend/get_form/$1';
 // Modul Core
 $route['register'] = 'login/registrasiuser';
 $route['register-step2/(:any)'] = 'login/registrasiuser2/$1';
+$route['register-step3/(:any)'] = 'login/registrasiuser3/$1';
+$route['register-step3'] = 'login/registrasiuser3';
 $route['submit-step1-register'] = 'login/submitregistrasi';
 $route['submit-step2-register'] = 'login/submitregistrasi';
 $route['submit-requestcode'] = 'login/submitregistrasi';
 $route['activate/(:any)/(:any)/(:any)'] = 'login/aktivasiuser/$1/$2/$3';
 $route['forgotpassword'] = 'login/forgotpasssss';
 $route['submit-forgot'] = 'login/submitforgotpass';
+
+$route['message-submit'] = 'login/messagesubmit';
 
 $route['dashboard'] = 'backend/modul/dashboard/main';
 
@@ -40,6 +44,11 @@ $route['transaction-independent'] = 'backend/modul/transaction/independent';
 $route['transaction-independent-detail'] = 'backend/modul/transaction/independent_detail';
 $route['transaction-package'] = 'backend/modul/transaction/package';
 $route['transaction-package-detail'] = 'backend/modul/transaction/package_detail';
+
+$route['user-profile'] = 'backend/modul/user/profile_setting';
+$route['submit-update-profile'] = 'backend/simpandata/submit_update_profile';
+$route['change-password'] = 'backend/modul/user/change_password';
+$route['submit-change-password'] = 'backend/simpandata/submit_change_password';
 
 
 

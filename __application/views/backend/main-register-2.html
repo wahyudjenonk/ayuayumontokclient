@@ -1,22 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Register New User</title>
 	<link rel="stylesheet" href="{$host}__assets/css/style-register.css">
 	<link rel="stylesheet" href="{$host}__assets/plugin/easyui/themes/metro-gray/easyui.css">
+	<link rel="stylesheet" href="{$host}__assets/js/plugins/bootstrapmodal/css/bootstrap.css">
+	
 	<script src="{$host}__assets/js/jquery.js"></script>	
+	<script src="{$host}__assets/js/plugins/bootstrapmodal/js/bootstrap.js"></script>		
 	<script src="{$host}__assets/plugin/easyui/jquery.easyui.min.js"></script>
 	<script src="{$host}__assets/js/blockui.js"></script>	
+	<script src="{$host}__assets/js/jquery.numeric.js"></script>
 	<script src="{$host}__assets/js/fungsi.js"></script>	
 </head>
 <body>
 	<div class="main-content">
 		<form id='regsbro2' class="form-labels-on-top" method="post" url="{$host}submit-step2-register" enctype="multipart/form-data">
 			<input type='hidden' name='step' value='step-2-registration' />
+			<input type='hidden' name="brtdate"  value='{$datebirth}' />
+			<input type='hidden' name="regdate" value='{$registrationdate}' />
 			<div class="form-title-row">
                 <h1>Register New User</h1>
             </div>
@@ -30,7 +35,7 @@
             <div class="form-row">
                 <label>
                     <span>Registration Date</span>
-                    <input type="text" name="regdate" readonly value='{$registrationdate}'>
+                    <input type="text" readonly value='{$registration_date2}' />
                 </label>
             </div>
 			<hr style='margin-top:25px;'/>
@@ -51,13 +56,13 @@
 			<div class="form-row">
                 <label>
                     <span>Date Of Birth</span>
-                    <input type="text" name="brtdate" readonly value='{$datebirth}'>
+                    <input type="text" readonly value='{$datebirth2}'>
                 </label>
             </div>			
 			<div class="form-row">
                 <label>
                     <span>Email Address</span>
-                    <input type="text" name="emadd" readonly value='{$emailaddr}'>
+                    <input type="text" id='emadd' name="emadd" readonly value='{$emailaddr}'>
                 </label>
             </div>			
 			<div class="form-row">
@@ -85,13 +90,13 @@
             <div class="form-row">
                 <label>
                     <span>ID Number (KTP / Passport)</span>
-                    <input type="text" name="idnmb" class='validasi'>
+                    <input type="text" name="idnmb" class='validasi numberbro'>
                 </label>
             </div>
             <div class="form-row">
                 <label>
                     <span>Upload Your ID Number</span>
-                    <input type="file" name="fileidnumb" >
+                    <input type="file" name="fileidnumb" />
                 </label>
             </div>
             <div class="form-row">
@@ -121,13 +126,13 @@
 			<div class="form-row">
                 <label>
                     <span>Zip Code</span>
-                    <input type="text" name="zpco" class='validasi'>
+                    <input type="text" name="zpco" class='validasi numberbro'>
                 </label>
             </div>
 			<div class="form-row">
                 <label>
                     <span>Phone (Home)</span>
-                    <input type="text" name="phhom" class='validasi'>
+                    <input type="text" name="phhom" class='validasi numberbro'>
                 </label>
             </div>
 			<div class="form-row">
@@ -169,33 +174,49 @@
 				<div class="form-row">
 					<label>
 						<span>Company Phone</span>
-						<input type="text" name="comphone" >
+						<input type="text" name="comphone" class='numberbro'>
 					</label>
 				</div>
 			</div>
-			<div class="form-row">
-                <label>
-                   <span>Captcha</span>
-				   {$html_captcha}
-                </label>
-            </div>
 			<div class="form-row">
                 <button id='sbmfrm2'>Register</button>
             </div>
 			<br/>
 			<br/>
 			<br/>
+			<br/>
 			<a class="form-forgotten-password" href="{$host}forgotpassword">Forgotten Password</a>
 			<a class="form-create-an-account" href="{$host}">Login Account</a>
 		
+			<br/>
+			<br/>
 			<div style="text-align:center;margin-top:30px">
-				<span style="color:#0000;">Homtel Services &copy; Margahayu Land</span>
+				<span >Homtel Services &copy; Margahayu Land</span>
 			</div>
 		</form>
 	</div>
 	
+	<!-- Modal -->
+	<div style='z-index:9999999 !important;' class="modal fade" id="pesanModal" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<b>Message</b>
+					<button id='button_close' type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				</div>
+				<div class="modal-body">
+					<div id='modalencuk' class="modal-product">
+					</div><!-- .modal-product -->
+				</div><!-- .modal-body -->
+			</div><!-- .modal-content -->
+		</div><!-- .modal-dialog -->
+	</div>
+	<!-- END Modal -->
+	
 	<script>
 		$(".validasi").validatebox({ required:true }); 		
+		$(".numberbro").numeric(); 	
+		var emadd = '{$encoding_email}';
 		
 		$('#owntype').on('change', function(){
 			if($(this).val() == '2'){
@@ -211,13 +232,20 @@
 				$.blockUI({ message: '<h3>Processing Data...</h3>' });			
 			}
 			submit_form('regsbro2',function(r){
-				if(r==1){
-					alert('Thank For Register, Please Check Your Email.');
-					location.href('{$host}');
+				if(r == 0){
+					$('#modalencuk').html('');
+					$.post('{$host}message-submit', { 'stsn':r, 'tp':'registrasi-step2' }, function(pg){
+						$('#modalencuk').html(pg);
+					});
+					$('#pesanModal').modal('show');
 				}else{
-					alert('Email is already registered.');
+					window.location.href = "{$host}register-step3/"+emadd;
 				}
+				
+				$.unblockUI();
 			});
+			
+			return false;
 		});
 		//*/
 	</script>

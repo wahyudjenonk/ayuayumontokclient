@@ -8,9 +8,12 @@
 	<title>Register New User</title>
 	<link rel="stylesheet" href="{$host}__assets/css/style-register.css">
 	<link rel="stylesheet" href="{$host}__assets/plugin/easyui/themes/metro-gray/easyui.css">
+	<link rel="stylesheet" href="{$host}__assets/js/plugins/bootstrapmodal/css/bootstrap.css">
 	<script src="{$host}__assets/js/jquery.js"></script>	
+	<script src="{$host}__assets/js/plugins/bootstrapmodal/js/bootstrap.js"></script>	
 	<script src="{$host}__assets/plugin/easyui/jquery.easyui.min.js"></script>
 	<script src="{$host}__assets/js/blockui.js"></script>	
+	<script src="{$host}__assets/js/jquery.numeric.js"></script>	
 	<script src="{$host}__assets/js/fungsi.js"></script>	
 </head>
 <body>
@@ -23,7 +26,7 @@
             <div class="form-row">
                 <label>
                     <span>Owner Name (First Name)</span>
-                    <input type="text" name="frstnm" class='validasi'>
+                    <input type="text" autocomplete="on" name="frstnm" id='frstnm' class='validasi'>
                 </label>
             </div>
             <div class="form-row">
@@ -49,13 +52,13 @@
 			<div class="form-row">
                 <label>
                     <span>Email Address</span>
-                    <input type="text" name="emadd" class='validasi'>
+                    <input type="text" name="emadd" class='validasi emailbro'>
                 </label>
             </div>
 			<div class="form-row">
                 <label>
                     <span>Phone (Mobile)</span>
-                    <input type="text" name="phmob" class='validasi'>
+                    <input type="text" name="phmob" class='validasi numberbro'>
                 </label>
             </div>			
 			<div class="form-row">
@@ -73,26 +76,57 @@
 			<a class="form-create-an-account" href="{$host}">Login Account</a>
 		
 			<div style="text-align:center;margin-top:30px">
-				<span style="color:#0000;">Homtel Services &copy; Margahayu Land</span>
+				<span>Homtel Services &copy; Margahayu Land</span>
 			</div>
 		</form>
 	</div>
+
+	<!-- Modal -->
+	<div style='z-index:9999999 !important;' class="modal fade" id="pesanModal" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<b>Message</b>
+					<button id='button_close' type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				</div>
+				<div class="modal-body">
+					<div id='modalencuk' class="modal-product">
+					</div><!-- .modal-product -->
+				</div><!-- .modal-body -->
+			</div><!-- .modal-content -->
+		</div><!-- .modal-dialog -->
+	</div>
+	<!-- END Modal -->
+
 	
-	<script>
+	<script>		
 		$(".validasi").validatebox({ required:true }); 		
+		$(".emailbro").validatebox({ validType:'email' }); 		
+		$(".numberbro").numeric(); 		
+		
 		$('#sbmfrm').on('click', function(){
 			validasi = $('#regsbro').form('validate');
 			if(validasi){
 				$.blockUI({ message: '<h3>Processing Data...</h3>' });			
 			}
+			
 			submit_form('regsbro',function(r){
-				if(r==1){
-					alert('Thank For Register, Please Check Your Email.');
-					location.href('{$host}');
-				}else{
-					alert('Email is already registered.');
+				$('#modalencuk').html('');
+				$.post('{$host}message-submit', { 'stsn':r, 'tp':'registrasi-step1' }, function(pg){
+					$('#modalencuk').html(pg);
+				});
+				
+				$('#pesanModal').modal('show');
+				$.unblockUI();
+				
+				if(r == 1){
+					setTimeout(function () {
+						window.location.href = "{$host}"; 
+					}, 4000);
 				}
 			});
+			
+			return false;
 		});
 		//*/
 	</script>
