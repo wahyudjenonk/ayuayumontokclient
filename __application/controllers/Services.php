@@ -429,7 +429,11 @@ class Services extends JINGGA_Controller {
 					'cl_method_payment_id'=>2,
 					'tbl_package_header_id'=>2,//KHUSUS UNTUK TYPE SERVICEES NYE 2 CUNG yaitu Yang Package
 					'flag'=>'P',
-					'total'=>15000
+					'total'=>15000,
+					'rental_price'=>25000,
+					'rental_price_monthly'=>115000,
+					'start_date'=>'2016-10-31',
+					'end_date'=>'2016-11-30'
 					//'listing_data'=>$data_listing,
 					//'listing_affiliation'=>$listing_affiliation,
 					//'listing_list'=>$listing_list
@@ -531,6 +535,40 @@ class Services extends JINGGA_Controller {
 		$method='post';
 		$balikan="json";
 		$res = $this->lib->jingga_curl($url,$data,$method,$balikan);
+		print_r($res);
+		//echo $res['msg'];
+	}
+	function tes_get_data_listing_property()
+	{
+		$this->load->library('lib');
+		//$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
+		$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
+		$data=array('method' => 'read',//ISI METHOD NYA CRUD YE CUNG.. CREATE READ UPDATE DELETE
+					'modul'=>'listing_property',
+					'submodul'=>'',
+					'member_user'=>'99B009'
+		);//DATA UNTUK PUT
+		$method='post';
+		$balikan="json";
+		$res = $this->lib->jingga_curl($url,$data,$method,$balikan);
+		echo "<pre>";
+		print_r($res);
+		//echo $res['msg'];
+	}
+	function tes_get_data_listing_reservation()
+	{
+		$this->load->library('lib');
+		//$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
+		$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
+		$data=array('method' => 'read',//ISI METHOD NYA CRUD YE CUNG.. CREATE READ UPDATE DELETE
+					'modul'=>'listing_reservation',
+					'submodul'=>'',
+					'id_transaction'=>2 //DIDAPET DARI GET DATA  tes_get_data_listing_property BRAYYYY
+		);//DATA UNTUK PUT
+		$method='post';
+		$balikan="json";
+		$res = $this->lib->jingga_curl($url,$data,$method,$balikan);
+		echo "<pre>";
 		print_r($res);
 		//echo $res['msg'];
 	}
