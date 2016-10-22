@@ -50,6 +50,10 @@ $route['submit-update-profile'] = 'backend/simpandata/submit_update_profile';
 $route['change-password'] = 'backend/modul/user/change_password';
 $route['submit-change-password'] = 'backend/simpandata/submit_change_password';
 
+$route['listingmanagement'] = 'backend/modul/listingmanagement/main';
+$route['reservation-detail'] = 'backend/modul/listingmanagement/reservationdetail';
+$route['getdetailkalendar'] = 'backend/modul/listingmanagement/kalendardetail';
+$route['getschedule'] = 'backend/modul/listingmanagement/dataschedule';
 
 
 /*

@@ -1,0 +1,12 @@
+<div id='kalendar_{$acak}'></div>
+<script>
+	var trid = "{$id_trx|default:''}";
+	var idtr = "{$idx_array|default:''}";
+	
+	$(document).ready(function(){
+		$.post(host+'getschedule',{ 'ix':idtr, 'triad':trid },function(r){
+			var js = JSON.parse(r);
+			gen_kalender('kalendar_{$acak}', 450, js);
+		});
+	});
+</script>

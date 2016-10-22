@@ -25,12 +25,14 @@ class Mbackend extends CI_Model{
 				$data['method'] = 'read';
 				$data['modul'] = 'property';
 				$data['submodul'] = '';
+				$data['tbl_member_user'] = $this->auth['member_user'];
 			break;
 			case "property_detail":
 				$data['method'] = 'read';
 				$data['modul'] = 'property';
 				$data['submodul'] = 'detil';
 				$data['id'] = $p1;
+				$data['tbl_member_user'] = $this->auth['member_user'];
 			break;
 			case "roomtype":
 				$data['method'] = 'read';
@@ -103,6 +105,19 @@ class Mbackend extends CI_Model{
 				$data['modul'] = 'profile';
 				$data['submodul'] = '';
 				$data['member_user'] = $this->auth['member_user'];
+			break;
+			
+			case "dataproperty_listingmanagement":
+				$data['method'] = 'read';
+				$data['modul'] = 'listing_property';
+				$data['submodul'] = '';
+				$data['member_user'] = $this->auth['member_user'];
+			break;
+			case "datareservation":
+				$data['method'] = 'read';
+				$data['modul'] = 'listing_reservation';
+				$data['submodul'] = '';
+				$data['id_transaction'] = $p1;
 			break;
 		}
 		
@@ -210,7 +225,7 @@ class Mbackend extends CI_Model{
 				$data['apartment_name'] = $post['apartnm'];
 				$data['apartment_developer'] = $post['apartdevnm'];
 				$data['apartment_address'] = $post['apartaddr'];
-				$data['ipl'] = $post['untipl'];
+				$data['ipl'] = str_replace('.','',$post['untipl']);
 				$data['flag'] = 'P';
 				$data['cl_room_type_id'] = $arraycountroomtype;
 				$data['cl_facility_unit_id'] = $arraycountfacilityunit;
@@ -287,6 +302,10 @@ class Mbackend extends CI_Model{
 				$data['listing_management'] = $arraylistingmanagement;
 			break;
 			case "submit_services_package":
+				$date = explode(' - ', $post['daterange']);
+				$start_date = date_format(date_create_from_format(' m/d/Y', $date[0]), 'Y-m-d');
+				$end_date = date_format(date_create_from_format(' m/d/Y', $date[1]), 'Y-m-d');
+				
 				$data['method'] = 'create';
 				$data['modul'] = 'invoice_package';
 				$data['submodul'] = '';
@@ -296,6 +315,10 @@ class Mbackend extends CI_Model{
 				$data['tbl_package_header_id'] = $post2['detil'][0]['tbl_package_header_id'];
 				$data['flag'] = 'P';
 				$data['total'] = $post2['paket'][0]['total_package'];
+				$data['rental_price'] = str_replace('.', '', $post['dailyprice']);
+				$data['rental_price_monthly'] = str_replace('.', '', $post['monthlyprice']);
+				$data['start_date'] = $start_date;
+				$data['end_date'] = $end_date;
 			break;
 			case "submit_change_password":
 				$data['method'] = 'update';
@@ -363,7 +386,7 @@ class Mbackend extends CI_Model{
 		if($res['msg'] == 'sukses'){
 			return 1;
 		}else{
-			if($type == 'submit_change_password'){
+			if($table == 'submit_change_password'){
 				return $res['pesan'];
 			}else{
 				return 0;

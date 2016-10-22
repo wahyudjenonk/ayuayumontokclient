@@ -21,11 +21,11 @@
 					</div>
 					<div class="form-group">
 						<label>Unit Size Nett (sqm/m<sup>2</sup>)</label>
-						<input style='width:300px !important;' class="form-control" name='untsizenett' id='untsizenett' value="{$data.unit_size_nett|default:''}" />
+						<input style='width:300px !important;' class="form-control numberbro" name='untsizenett' id='untsizenett' value="{$data.unit_size_nett|default:''}" />
 					</div>
 					<div class="form-group">
 						<label>Unit Size Gross (sqm/m<sup>2</sup>)</label>
-						<input style='width:300px !important;' class="form-control" name='untsizegros' id='untsizegros' value="{$data.unit_size_gross|default:''}" />
+						<input style='width:300px !important;' class="form-control numberbro" name='untsizegros' id='untsizegros' value="{$data.unit_size_gross|default:''}" />
 					</div>
 					<div class="form-group">
 						<label>Unit Type</label>
@@ -33,7 +33,7 @@
 					</div>
 					<div class="form-group">
 						<label>Number Of Area</label>
-						<input class="form-control" name='numroom' id='numroom' value="{$data.number_of_room|default:''}" />
+						<input class="form-control numberbro" name='numroom' id='numroom' value="{$data.number_of_room|default:''}" />
 					</div>
 					<div class="form-group">
 						<label>Floor Number</label>
@@ -45,7 +45,7 @@
 					</div>
 					<div class="form-group">
 						<label>IPL Cost (IDR)</label>
-						<input class="form-control" name='untipl' id='untipl' value="{$data.ipl|default:''}" />
+						<input class="form-control moneybro" name='untipl' id='untipl' value="{$data.ipl|default:''}" />
 					</div>
 					<div class="form-group">
 						<label>Apartment Name</label>
@@ -85,8 +85,13 @@
 										<tr>
 											<td>{$gf.facility_name}</td>
 											<td>
+												{if $gf.facility_name eq 'Kitchenette' || $gf.facility_name eq 'Other Facilities'}
+													{assign var=classes value='aa'}
+												{else}
+													{assign var=classes value='numberbro'}
+												{/if}
 												<input type="hidden" name='idxfacun[]' value='{$gf.id}'/>
-												<input type="text" name='facility_unit_qty[]' value="{$gf.qty|default:''}"> {$gf.unit}
+												<input type="text" class='{$classes}' name='facility_unit_qty[]' value="{$gf.qty|default:''}"> {$gf.unit}
 											</td>
 										</tr>
 									{/foreach}
@@ -173,7 +178,6 @@
 
 <script>
 	var number_of_uploads;
-	
 	/*
 	$(document).ready(function() {
 		function initMap() {
@@ -199,7 +203,22 @@
 		}
 	});
 	
+	
+	$('#untsizegros').on('change', function(){
+		var unitsize = parseInt($('#untsizenett').val());
+		var unitgross = parseInt($(this).val());
+		if(unitsize > unitgross){
+			$(this).val('');
+		}
+	});
+	
 	$(".validasi").validatebox({ required:true }); 	
+	$(".numberbro").numeric(); 	
+	$(".moneybro").maskMoney({
+		precision:0,
+		thousands:'.'
+	}); 	
+	
 	$('#bckfrmpro').on('click', function(){
 		loadUrl('{$host}propertymanager');
 	});

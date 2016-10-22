@@ -2,6 +2,7 @@
 <div id='formdetserv'>
 	<div class="panel-group" id="accordion">
         {foreach from=$detailservices item=detsrv}
+		{if $detsrv.id neq '77'}
 		<div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
@@ -22,25 +23,6 @@
 							</tr>
 						</thead>
 						<tbody>
-						{if $detsrv.id eq '77'}
-							{foreach from=$detsrv.child item=child}
-								{if isset($child.price) }
-									{foreach from=$child.price item=prices}	
-										<tr>
-											<td>{$child.code}</td>
-											<td>
-												<input type='checkbox' data='{$prices.id_price}' class='pricing listingmgm' name='checkboxserv[]' value='{$prices.id_price}'> {$child.services_name}
-											</td>
-											<td>
-												{* {$prices.rate|number_format:0:",":"."} &nbsp; {$prices.type} *}
-												-
-											</td>
-											<td>{$prices.remark}</td>
-										</tr>
-									{/foreach}
-								{/if}
-							{/foreach}
-						{else}
 							{if isset($detsrv.child) }
 								{foreach from=$detsrv.child item=child}
 									<tr>
@@ -84,12 +66,12 @@
 									{/if}
 								{/foreach}
 							{/if}
-						{/if}
 						</tbody>
 					</table>	
                 </div>
             </div>
         </div>
+		{/if}
 		{/foreach}	
 	</div>
 	
@@ -171,16 +153,16 @@
 			{if $stslt eq 'true'}
 				<tr id='frmlistmng'>
 					<td colspan='6' > 
-						<table class="table table-bordered">
+						<table class="table table-bordered" style='margin-bottom:0px !important;'>
 							<tbody>
 								<tr>
-									<td colspan='3' style="text-align:center;font-weight:bold;">
+									<td colspan='2' style="text-align:center;font-weight:bold;">
 										Form Listing Management 
 									</td>
 								</tr>
 								<tr>
-									<td width='33%' style="text-align:center;">
-										<b>Period</b> &nbsp;&nbsp;
+									<td width='30%'>Period Contract</td>
+									<td width='70%'>
 										<select name='periodlisting' class='validasi' id='periodlisting' onChange="kumpulAction('periodlisting');">
 											<option value=''> -- Choose -- </option>
 											<option value='2'> 2 Month </option>
@@ -189,13 +171,23 @@
 											<option value='12'> 12 Month </option>
 										</select>
 									</td>
-									<td width='33%'>
-										<div id='listcalendar' style='margin-left:15px;width:91%;'></div>
+								</tr>
+								<tr>
+									<td>Date Range</td>
+									<td>
+										<input type="text" name="daterange" id="daterange" style='width:40%;' value="" />
 									</td>
-									<td width='33%' style="text-align:center;">
-										<b>IDR</b> &nbsp;&nbsp; <input type='text' class='validasi' name='pricelisting' style='width:50%;' id='pricelisting' placeholder='Price Per Night/Booking' />
-										<input type='hidden' name='datefirst' id='datefirst' />
-										<input type='hidden' name='datelast' id='datelast' />
+								</tr>
+								<tr>
+									<td>Price Daily</td>
+									<td>
+										<input type='text' class='validasi moneybro' name='dailyprice' style='width:40%;' id='dailyprice' placeholder='IDR' />
+									</td>
+								</tr>
+								<tr>
+									<td>Price Monthly</td>
+									<td>
+										<input type='text' class='validasi moneybro' name='monthlyprice' style='width:40%;' id='monthlyprice' placeholder='IDR' />
 									</td>
 								</tr>
 							</tbody>
@@ -241,41 +233,6 @@
 			$.unblockUI();
 		}, 1000);				
 		return false;
-	});
-	
-	$('#pricelisting').on('keydown', function(){
-		//nilainya = NumberFormat($(this).val());
-		//$(this).val(nilainya);
-	});
-	
-	var monthNames = ["Jan", "Feb", "Mar", "Apr", "Mai", "Jun", "Jul", "Agst", "Sept", "Oct", "Nov", "Dec"];
-    var dayNames = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];	
-	$('#listcalendar').bic_calendar({
-        //list of events in array
-        events: "",
-        //enable select
-        enableSelect: true,
-        //enable multi-select
-        multiSelect: true,
-        //set day names
-        dayNames: dayNames,
-        //set month names
-        monthNames: monthNames,
-        //show dayNames
-        showDays: true,
-        //show month controller
-        displayMonthController: true,
-        //show year controller
-        displayYearController: true,
-    });
-	
-	document.addEventListener('bicCalendarSelect', function(e) {
-		moment.lang('es');
-		var dateFirst = new moment(e.detail.dateFirst);
-		var dateLast = new moment(e.detail.dateLast);
-
-		$('#datefirst').val(dateFirst.format('YYYY-MM-DD'));
-		$('#datelast').val(dateLast.format('YYYY-MM-DD'));
 	});	
 </script>
 
@@ -377,6 +334,50 @@
 										</td>
 									</tr>
 								{/foreach}
+								<tr id='frmlistmng'>
+									<td colspan='6' > 
+										<table class="table table-bordered" style='margin-bottom:0px !important;'>
+											<tbody>
+												<tr>
+													<td colspan='2' style="text-align:center;font-weight:bold;">
+														Form Listing Management 
+													</td>
+												</tr>
+												<tr>
+													<td width='30%'>Period Contract</td>
+													<td width='70%'>
+														<select name='periodlisting' class='validasi' id='periodlisting' onChange="kumpulAction('periodlisting');">
+															<option value=''> -- Choose -- </option>
+															<option value='2'> 2 Month </option>
+															<option value='3'> 3 Month </option>
+															<option value='6'> 6 Month </option>
+															<option value='12'> 12 Month </option>
+														</select>
+													</td>
+												</tr>
+												<tr>
+													<td>Date Range</td>
+													<td>
+														<input type="text" name="daterange" id="daterange" style='width:40%;' value="" />
+													</td>
+												</tr>
+												<tr>
+													<td>Price Daily</td>
+													<td>
+														<input type='text' class='validasi moneybro' name='dailyprice' style='width:40%;' id='dailyprice' placeholder='IDR' />
+													</td>
+												</tr>
+												<tr>
+													<td>Price Monthly</td>
+													<td>
+														<input type='text' class='validasi moneybro' name='monthlyprice' style='width:40%;' id='monthlyprice' placeholder='IDR' />
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</td>
+								</tr>
+
 							{else}
 								<tr>
 									<td colspan='3' style="text-align:center;">:: No Data Available ::</td>
@@ -415,5 +416,15 @@ $('#bcksmr').on('click', function(){
 	}, 1000);				
 	return false;
 });
+
+$(".moneybro").maskMoney({
+	precision:0,
+	thousands:'.'
+});
+
+$('#daterange').daterangepicker({
+	drops:'up'
+});
+
 </script>
 {/if}

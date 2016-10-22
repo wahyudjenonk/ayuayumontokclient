@@ -1,0 +1,29 @@
+<div id='detail_tabs'>
+	<ul class="nav nav-tabs" role="tablist">
+		{assign var=hitung value=0}
+		{foreach from=$datareservation key=k item=resv}
+			{if $hitung eq 0}
+				{assign var=clas value='active'}
+			{else}
+				{assign var=clas value=''}
+			{/if}
+			
+			<li role="presentation" class="{$clas}">
+				<a id="pr_{$k}" onclick="kumpulAction('reservationkalendar', '{$acak}', '{$id_trx}', '{$k}');" href="#{$resv.idx}_xxx" aria-controls="{$resv.idx}_xxx" role="tab" data-toggle="tab">{$resv.name}</a>
+			</li>
+			
+			{assign var=hitung value=$hitung+1 }
+		{/foreach}
+	</ul>
+	<div class="tab-content">
+		<div  class="tab-pane in active">
+			<div id="isi_tab_{$acak}" style="padding:10px;"></div>
+		</div>
+	</div>
+</div>
+
+<script>
+	$(document).ready(function(){
+		kumpulAction('reservationkalendar', '{$acak}', '{$id_trx}', '0');
+	});
+</script>

@@ -30,6 +30,7 @@ class Backend extends JINGGA_Controller {
 				case "dashboard":
 					
 				break;
+				
 				case "property":
 					switch($p2){
 						case "main":
@@ -232,6 +233,7 @@ class Backend extends JINGGA_Controller {
 						break;
 					}
 				break;
+				
 				case "transaction":
 					switch($p2){
 						case "independent":
@@ -257,30 +259,70 @@ class Backend extends JINGGA_Controller {
 					}
 				break;
 				
+				case "listingmanagement":
+					switch($p2){
+						case "main":
+							$dataproperty = $this->mbackend->getdata('dataproperty_listingmanagement');
+							$this->nsmarty->assign('dataproperty', $dataproperty['data']);
+						break;
+						case "reservationdetail":
+							$id_trx = $this->input->post('ipres');
+							$datareservation = $this->mbackend->getdata('datareservation', $id_trx);
+							
+							$this->nsmarty->assign('id_trx', $id_trx);
+							$this->nsmarty->assign('datareservation', $datareservation['data']['listing']);
+						break;
+						case "kalendardetail":
+							$id_trx = $this->input->post('ipmax');
+							$idx_array = $this->input->post('idrsv');
+							
+							$this->nsmarty->assign('id_trx', $id_trx);
+							$this->nsmarty->assign('idx_array', $idx_array);
+						break;						
+						case "dataschedule":
+							$id_trx = $this->input->post('triad');
+							$index_array = $this->input->post('ix');
+							$datareservation = $this->mbackend->getdata('datareservation', $id_trx);
+							$databalikan = array();
+							if(isset($datareservation['data']['listing'][$index_array]['data_reservasi'])){
+								foreach($datareservation['data']['listing'][$index_array]['data_reservasi'] as $k => $v){
+									$databalikan[$k]['title'] = $v['costumer_name'];
+									$databalikan[$k]['start'] = $v['check_in_date'];
+									$databalikan[$k]['end'] = $v['check_out_date'];
+								}
+							}
+							echo json_encode($databalikan);
+							exit;
+						break;
+					}
+				break;
+				
 				case "user":
-					case "profile_setting":
-						$dataprofile = $this->mbackend->getdata('dataprofile');
-						if($dataprofile['data']['date_of_birth']){
-							$tgl_lahir = explode('-', $dataprofile['data']['date_of_birth']);
-							$tgl = $tgl_lahir[2];
-							$bln = $tgl_lahir[1];
-							$thn = $tgl_lahir[0];
-						}else{
-							$tgl = null;
-							$bln = null;
-							$thn = null;
-						}
-						
-						$this->nsmarty->assign('tgl_lahir', $this->lib->fillcombo('tgl_register', 'return', $tgl) );
-						$this->nsmarty->assign('bln_lahir', $this->lib->fillcombo('bln_register', 'return', $bln) );
-						$this->nsmarty->assign('thn_lahir', $this->lib->fillcombo('thn_register', 'return', $thn) );
-						
-						$this->nsmarty->assign("ownsts", $this->lib->fillcombo('owner_status', 'return', (isset($dataprofile['data']['cl_owner_type_id']) ? $dataprofile['data']['cl_owner_type_id'] : null) ) );
-						$this->nsmarty->assign("title", $this->lib->fillcombo('owner_title', 'return', (isset($dataprofile['data']['title']) ? $dataprofile['data']['title'] : null) ) );
-						$this->nsmarty->assign("preved", $this->lib->fillcombo('prev_education', 'return', (isset($dataprofile['data']['previous_education']) ? $dataprofile['data']['previous_education'] : null) ) );
-						
-						$this->nsmarty->assign('dataprofile', $dataprofile['data']);
-					break;
+					switch($p2){
+						case "profile_setting":
+							$dataprofile = $this->mbackend->getdata('dataprofile');
+							if($dataprofile['data']['date_of_birth']){
+								$tgl_lahir = explode('-', $dataprofile['data']['date_of_birth']);
+								$tgl = $tgl_lahir[2];
+								$bln = $tgl_lahir[1];
+								$thn = $tgl_lahir[0];
+							}else{
+								$tgl = null;
+								$bln = null;
+								$thn = null;
+							}
+							
+							$this->nsmarty->assign('tgl_lahir', $this->lib->fillcombo('tgl_register', 'return', $tgl) );
+							$this->nsmarty->assign('bln_lahir', $this->lib->fillcombo('bln_register', 'return', $bln) );
+							$this->nsmarty->assign('thn_lahir', $this->lib->fillcombo('thn_register', 'return', $thn) );
+							
+							$this->nsmarty->assign("ownsts", $this->lib->fillcombo('owner_status', 'return', (isset($dataprofile['data']['cl_owner_type_id']) ? $dataprofile['data']['cl_owner_type_id'] : null) ) );
+							$this->nsmarty->assign("title", $this->lib->fillcombo('owner_title', 'return', (isset($dataprofile['data']['title']) ? $dataprofile['data']['title'] : null) ) );
+							$this->nsmarty->assign("preved", $this->lib->fillcombo('prev_education', 'return', (isset($dataprofile['data']['previous_education']) ? $dataprofile['data']['previous_education'] : null) ) );
+							
+							$this->nsmarty->assign('dataprofile', $dataprofile['data']);
+						break;
+					}
 				break;
 			}
 			
@@ -379,8 +421,11 @@ class Backend extends JINGGA_Controller {
 	}	
 	
 	function test(){
-		echo "<pre>";
-		print_r($this->auth);exit;
+		//echo "<pre>";
+		//print_r($this->auth);exit;
 		
+		$str = "10/22/2016";
+		$srchDate = date_format(date_create_from_format(' m/d/Y', $str), 'Y-m-d');
+		echo $srchDate;
 	}
 }

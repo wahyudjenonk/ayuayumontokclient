@@ -1,0 +1,34 @@
+<div id="page-wrapper">
+    <div class="container-fluid">
+		<div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                    Listing Management
+                </h1>
+            </div>
+        </div>
+		<div class="row" style='min-height:480px !important;'>
+			<div class="panel-group" id="accordion">
+				{if isset($dataproperty)}
+					{foreach from=$dataproperty item=property}
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#accordion" onClick="kumpulAction('reservationdetail', '{$property.id_transaction}')" href="#collapse{$property.id_transaction}">
+									{$property.apartment_name}
+								</a>
+							</h4>
+						</div>
+						<div id="collapse{$property.id_transaction}" class="panel-collapse collapse">
+							<div class="panel-body">
+								<div id='body_{$property.id_transaction}'></div>
+							</div>
+						</div>
+					</div>
+					{/foreach}
+				{/if}
+			</div>
+		</div>
+    </div>
+</div>
+
