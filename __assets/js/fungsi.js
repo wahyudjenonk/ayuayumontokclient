@@ -1,3 +1,11 @@
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1; //January is 0!
+var yyyy = today.getFullYear();
+if(dd<10){dd='0'+dd} 
+if(mm<10){mm='0'+mm}
+today = yyyy+'-'+mm+'-'+dd;
+
 $(function() {
 	if(typeof host != "undefined"){
 		loadUrl(host+'dashboard');
@@ -446,11 +454,15 @@ function kumpulAction(type, p1, p2, p3, p4, p5){
 				break;
 			}
 			
-			$("#konten").empty().addClass("loading");
-			$.post(host+'propertymanager-form', param, function(rsp){
-				var parsing = $.parseJSON(rsp);
-				$("#konten").html(parsing.page).removeClass("loading");	
-			});
+			$.blockUI({ message: '<h4>.. Loading Page ..</h4>' });
+			setTimeout(function(){
+				$("#konten").empty().addClass("loading");
+				$.post(host+'propertymanager-form', param, function(rsp){
+					var parsing = $.parseJSON(rsp);
+					$("#konten").html(parsing.page).removeClass("loading");	
+				});
+				$.unblockUI();
+			}, 1000);
 		break;
 		case "property-delete":
 			var r = confirm("Are You Sure to Delete This Data?");
@@ -629,6 +641,26 @@ function kumpulAction(type, p1, p2, p3, p4, p5){
 				$.unblockUI();
 			}, 1000);			
 		break;
+		
+		case "reservationdetail":
+			console.log(p1);
+			if($('#body_'+p1).html() == ''){
+				param['ipres'] = p1;
+				$.post(host+'reservation-detail', param, function(rsp){
+					var parsing = $.parseJSON(rsp);
+					$("#body_"+p1).empty().html(parsing.page);
+				});
+			}
+		break;
+		case "reservationkalendar":
+			param['ipmax'] = p2;
+			param['idrsv'] = p3;
+			$('#isi_tab_'+p1).html('');
+			$.post(host+'getdetailkalendar', param ,function(rsp){
+				var parsing = $.parseJSON(rsp);
+				$('#isi_tab_'+p1).html(parsing.page);
+			});
+		break;
 	}
 }	
 
@@ -788,5 +820,27 @@ function gen_editor(id){
 		tinyMCE.execCommand('mceRemoveControl', true, id);
 		tinyMCE.execCommand('mceAddControl', true, id);
 	
+}
+
+
+function gen_kalender(id_div,height,data_kalender){
+	$('#'+id_div).fullCalendar({
+		height: height,
+        header: {
+			left: 'prev,next today',
+			center: 'title',
+			right: 'month'
+		},
+		defaultDate: today,
+		navLinks: true, // can click day/week names to navigate views
+		selectable: true,
+		selectHelper: true,
+		editable: true,
+		eventLimit: true, // allow "more" link when too many events
+		events: data_kalender,
+		eventClick: function(calEvent, jsEvent, view) {
+			
+		}
+    });
 }
 
