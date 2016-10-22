@@ -542,8 +542,8 @@ class Services extends JINGGA_Controller {
 	function tes_get_data_listing_property()
 	{
 		$this->load->library('lib');
-		$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
-		//$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
+		//$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
+		$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
 		$data=array('method' => 'read',//ISI METHOD NYA CRUD YE CUNG.. CREATE READ UPDATE DELETE
 					'modul'=>'listing_property',
 					'submodul'=>'',
@@ -559,12 +559,52 @@ class Services extends JINGGA_Controller {
 	function tes_get_data_listing_reservation()
 	{
 		$this->load->library('lib');
-		$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
-		//$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
+		//$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
+		$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
 		$data=array('method' => 'read',//ISI METHOD NYA CRUD YE CUNG.. CREATE READ UPDATE DELETE
 					'modul'=>'listing_reservation',
 					'submodul'=>'',
 					'id_transaction'=>1 //DIDAPET DARI GET DATA  tes_get_data_listing_property BRAYYYY
+		);//DATA UNTUK PUT
+		$method='post';
+		$balikan="json";
+		$res = $this->lib->jingga_curl($url,$data,$method,$balikan);
+		echo "<pre>";
+		print_r($res);
+		//echo $res['msg'];
+	}
+	
+	function tes_konfirmasi_insert()
+	{
+		$this->load->library('lib');
+		//$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
+		$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
+		$data=array('method' => 'create',//ISI METHOD NYA CRUD YE CUNG.. CREATE READ UPDATE DELETE
+					'modul'=>'konfirmasi',
+					'submodul'=>'',
+					'no_invoice'=>'INV-99B009-00002',
+					'total_pay'=>100000,
+					'bank_name'=>'Mandiri',
+					'sending_name'=>'Xxxxxxxxx',
+					'date_transfer'=>'2016-10-10',
+					'bank_name_receipt'=>'BCA',
+					
+		);//DATA UNTUK PUT
+		$method='post';
+		$balikan="json";
+		$res = $this->lib->jingga_curl($url,$data,$method,$balikan);
+		print_r($res);
+		//echo $res['msg'];
+	}
+	function tes_get_data_reservation_detil()
+	{
+		$this->load->library('lib');
+		//$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
+		$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
+		$data=array('method' => 'read',//ISI METHOD NYA CRUD YE CUNG.. CREATE READ UPDATE DELETE
+					'modul'=>'reservation',
+					'submodul'=>'',
+					'id_reservasi'=>1,
 		);//DATA UNTUK PUT
 		$method='post';
 		$balikan="json";
