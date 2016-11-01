@@ -450,11 +450,12 @@ class Services extends JINGGA_Controller {
 	function tes_get_data_paket()
 	{
 		$this->load->library('lib');
-		$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
-		//$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
+		//$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
+		$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
 		$data=array('method' => 'read',//ISI METHOD NYA CRUD YE CUNG.. CREATE READ UPDATE DELETE
 					'modul'=>'package',
 					'submodul'=>'',
+					'services_id'=>4
 		);//DATA UNTUK PUT
 		$method='post';
 		$balikan="json";
@@ -547,7 +548,7 @@ class Services extends JINGGA_Controller {
 		$data=array('method' => 'read',//ISI METHOD NYA CRUD YE CUNG.. CREATE READ UPDATE DELETE
 					'modul'=>'listing_property',
 					'submodul'=>'',
-					'member_user'=>'005232'
+					'member_user'=>'99B009'
 		);//DATA UNTUK PUT
 		$method='post';
 		$balikan="json";
@@ -613,4 +614,45 @@ class Services extends JINGGA_Controller {
 		print_r($res);
 		//echo $res['msg'];
 	}
+	function tes_get_data_services_paket()
+	{
+		$this->load->library('lib');
+		//$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
+		$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
+		$data=array('method' => 'read',//ISI METHOD NYA CRUD YE CUNG.. CREATE READ UPDATE DELETE
+					'modul'=>'services',
+					'submodul'=>'',
+					'type_services'=>2,
+		);//DATA UNTUK PUT
+		$method='post';
+		$balikan="json";
+		$res = $this->lib->jingga_curl($url,$data,$method,$balikan);
+		echo "<pre>";
+		print_r($res);
+		//echo $res['msg'];
+	}
+	function tes_seting_reservasi_insert()
+	{
+		$this->load->library('lib');
+		//$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
+		$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
+		
+		$data=array('method' => 'create',//ISI METHOD NYA CRUD YE CUNG.. CREATE READ UPDATE DELETE
+					'modul'=>'seting_reservasi',
+					'submodul'=>'',
+					'tbl_transaction_package_id'=>1,
+					'tbl_package_header_id'=>1,
+					'tbl_package_detil_id'=>9,
+					'start_date'=>'2016-11-11',//KHUSUS UNTUK TYPE SERVICEES NYE 2 CUNG yaitu Yang Package
+					'end_date'=>'2016-11-12',
+					'create_by'=>'Goyz',
+		);//DATA UNTUK PUT
+		$method='post';
+		$balikan="json";
+		$res = $this->lib->jingga_curl($url,$data,$method,$balikan);
+		echo '<pre>';
+		print_r($res);
+		//echo $res['msg'];
+	}
+	
 }
