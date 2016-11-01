@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>HOMTEL</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="apple-touch-icon" sizes="144x144" href="library/ico/apple-touch-icon.png">
+    <link rel="shortcut icon" href="{$host}__assets/frontend/ico/favicon.gif">
+    <link rel="stylesheet" href="{$host}__assets/frontend/css/bootstrap.css">
+    <link href="//fonts.googleapis.com" rel="dns-prefetch">
+    <link href="//www.google-analytics.com" rel="dns-prefetch">
+    <link href="//ajax.googleapis.com" rel="dns-prefetch">
+
+    <link href="{$host}__assets/frontend/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="{$host}__assets/plugin/easyui/themes/metro-gray/validatebox.css">
+	<link rel="stylesheet" href="{$host}__assets/plugin/easyui/themes/metro-gray/tooltip.css">
+    <link href="{$host}__assets/frontend/css/style.css" rel="stylesheet" type="text/css">
+
+  </head>
+  <body>
+    
+    <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+            <h3>REGISTRASI FORM</h3>
+                <ul>
+                    <li>
+                        <label for="inputName1">First Name</label>
+                        <input type="text" class="form-control" id="inputName1" />
+                    </li>
+                    <li>
+                        <label for="inputName2">Last Name</label>
+                        <input type="text" class="form-control" id="inputName2" />
+                    </li>
+                    <li>
+                        <label for="inputDateBirth">Date of Birth</label>
+                        <input type="date" class="form-control" id="inputDateBirth" />
+                    </li>
+                    <li>
+                        <label for="inputEmail">Email address</label>
+                        <input type="email" class="form-control" id="inputEmail" />
+                    </li>
+                    <li>
+                        <label for="inputPhone">Phone/Mobile Number</label>
+                        <input type="text" class="form-control" id="inputPhone" />
+                    </li>
+                    <li class="bt">
+						<button class="btn btn-primary">REGISTER ACCOUNT</button>
+					</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+	
+	<!-- Modal -->
+	<div style='z-index:9999999 !important;' class="modal fade" id="pesanModal" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<b>Message</b>
+					<button id='button_close' type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				</div>
+				<div class="modal-body">
+					<div id='modalencuk' class="modal-product">
+					</div><!-- .modal-product -->
+				</div><!-- .modal-body -->
+			</div><!-- .modal-content -->
+		</div><!-- .modal-dialog -->
+	</div>
+	<!-- END Modal -->	
+	
+    <!-- Header -->
+    <div class="burger-opened">
+      
+    </div>
+
+    <header class="nav-top">
+        <div class="hidden-xs hidden-sm triangle-up-right">
+            
+        </div>
+        <div class="container" style="margin-right: 0; margin-left: 0; min-width:100%;">
+        <div class="row">
+            <div class="visible-xs visible-sm">
+                <div class="menu-burger">
+                    <img src="{$host}__assets/frontend/img/img-burger.png" style="width: 14%">
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-12 hidden-xs hidden-sm">
+                <ul class="menu-nav">
+                    <li><a href="http://homtel.id/">HOME</a></li>
+                    <li><a href="#">SERVICE</a></li>
+                    <li><a href="#">WORK</a></li>
+                    <li><a href="#">BLOG</a></li>
+                    <li><a href="#">CONTACT US</a></li>
+                    <li><a href="#">LOGIN</a></li>
+                </ul>
+                <div class="motto-homtel"><h2>REGISTER NEW MEMBER</h2></div>
+            </div>
+            <div class="col-xs-12 col-md-6 circle-text">
+                <div class="circle-content">
+                    <img src="{$host}__assets/frontend/img/logo-homtel.png">
+                    <p> <b>ALREADY HAVE AN ACCOUNT ?</b> <a href="#" class="link-login"><span>LOGIN HERE</span></a></p>
+                    <p class="visible-sm visible-md visible-lg ">For more performance up your appartment</p>
+                    <div class="col-xs-12 col-md-6 visible-sm reg-pop" style="text-align: center;">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">REGISTRASI ACCOUNT</button>
+                    </div>
+                </div>
+            </div> 
+            <div class="col-xs-12 col-md-6 visible-xs popup">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">REGISTRASI ACCOUNT</button>
+            </div>
+            <div class="col-xs-12 col-md-6 visible-md visible-lg registrasi-wrap"> 
+                <div class="menu-reg" style='opacity:0.8;background:#F0F0F0 !important; margin-left:-40px;'>
+                    <div class="visible-md visible-lg box-registrasi-homtel">
+                        <form id='regsbro' method="post" url="{$host}submit-step1-register" enctype="multipart/form-data">
+							<input type='hidden' name='step' value='step-1-registration' />
+							<ul>
+								<li>
+									<label for="inputName1">First Name</label>
+									<input type="text" class="form-control validasi" name="frstnm" id='frstnm'>
+								</li>
+								<li>
+									<label for="inputName2">Last Name</label>
+									<input type="text" class="form-control validasi" name="lstnm">
+									</li>
+								<li>
+									<label for="inputDateBirth">Date of Birth</label>
+									<br/>
+									<select name="tgl" style='width:85px !important;float:left;margin-right:5px;' class='form-control validasi'>
+										{$tgl_lahir}
+									</select> &nbsp;&nbsp;
+									<select name="bln" style='width:95px !important;float:left;margin-right:5px;' class='form-control validasi'>
+										{$bln_lahir}
+									</select> &nbsp;&nbsp;
+									<select name="thn" style='width:100px !important;float:left;margin-right:5px;' class='form-control validasi'>
+										{$thn_lahir}
+									</select>
+								</li>
+								<li>
+									<label for="inputEmail">Email address</label>
+									<input type="text" name="emadd" class="form-control validasi emailbro">
+								</li>
+								<li>
+									<label for="inputPhone">Phone/Mobile Number</label>
+									<input type="text" class="form-control validasi numberbro" name="phmob">
+								</li>
+								<li>
+									<label for="inputPhone">Captcha</label>
+									{$html_captcha}
+								</li>
+							</ul>
+						</form>
+						<button class="btn btn-primary" onClick="kumpulAction('register-1');">REGISTER ACCOUNT</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </header>
+
+    <section class="col-xs-12 col-md-12 body-wrap" style="padding: 0;">
+        <nav class="col-xs-12 col-md-12 about-homtel">
+            <h1>WELCOME</h1>
+            <h4>We provide an opportunity to help your investments started</h4>
+            <div class="col-xs-12 col-md-12 text-about-homtel"> 
+                <p style='text-align:justify !important;'>
+					Homtel is the answer for investment apartments there. If you have a vacant apartment unit or even do not have time to manage these units, Homtel will help you. Homtel not only find people to stay in your unit, but also filter it first.
+				</p>
+                <p style='text-align:justify !important;'>
+					You do not have to worry about all the bills like electricity, water and service fees, which are sweeping or mopping the floor of the unit, to clean the bathroom. We can clean your unit even if it has been vacant for a period of time, provide linen service laundy even rent it, welcoming guests to come, and even set the entire list of standards in OTA. So, what should I do ?
+                </p> 
+            </div>
+            <div class="col-xs-12 col-md-12 bg-about">
+                <div class="white-wrapper container">
+                    <div class="itm about1">
+                        <img src="{$host}__assets/frontend/ico/ico1.png" width='150px' height='110px'>
+                        <p>Make Us Partner</p>
+                    </div>
+                    <div class="itm about2">
+                        <img src="{$host}__assets/frontend/ico/ico2.png" width='130px' height='110px'>
+                        <p>Make Contract</p>
+                    </div>
+                    <div class="itm about3">
+                        <img src="{$host}__assets/frontend/ico/ico3.png" width='130px' height='110px'>
+                        <p>Investment</p>
+                    </div>
+                    <div class="itm about4">
+                        <img src="{$host}__assets/frontend/ico/ico4.png" width='130px' height='110px'>
+                        <p>Get Profit</p>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div class=" col-xs-12 col-md-12 servis-wrap">
+            <h1>WHAT WE DO</h1>
+            <h4>You will be greatly benefit with our facilities provide</h4>
+            <div class="container servis">
+                <div class="itm servis1">
+                    <img src="{$host}__assets/frontend/ico/ico9.png" width='180px' height='180px'>
+                    <p>HOUSEKEEPING SERVICE</p>
+                </div>
+                <div class="itm servis1">
+                    <img src="{$host}__assets/frontend/ico/ico8.png" width='180px' height='180px'>
+                    <p>LAUNDRY LINEN SERVICE</p>
+                </div>
+                <div class="itm servis1">
+                    <img src="{$host}__assets/frontend/ico/ico7.png" width='180px' height='180px'>
+                    <p>FREE HOSTING SERVICE</p>
+                </div>
+                <div class="itm servis1">
+                    <img src="{$host}__assets/frontend/ico/ico6.png" width='180px' height='180px'>
+                    <p>CHECK-IN/OUT SERVICE</p>
+                </div>
+                <div class="itm servis1">
+                    <img src="{$host}__assets/frontend/ico/ico5.png" width='180px' height='180px'>
+                    <p>SERVICE CHARGE - ENERGY - SINKING FUND</p>
+                </div>
+            </div>
+        </div>
+
+       <!--  <div class=" col-xs-12 col-md-12 testi-wrap">
+            <img src="{$host}__assets/frontend/img/header-testi-homtel.jpg" class="img-responsive">
+        </div> -->
+
+        <div class="col-xs-12 col-md-12 blog-wrap">
+            <h1>BLOG</h1>
+            <div class=" blog">
+                <div class="col-xs-12 col-md-3 blog-homtel">
+                    <div class="thumbnails">
+                        <div class="image-thumbnail" style="background-image: url('{$host}__assets/frontend/img/blog-homtel.jpg');">
+                        </div>
+                        <div class="title-homtel-blog">
+                            <a href="#">Inpirasi Design <span>Apartemen</span> yang Minimalis</a>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="col-xs-12 col-md-3 blog-homtel">
+                    <div class="thumbnails">
+                        <div class="image-thumbnail" style="background-image: url({$host}__assets/frontend/img/header2-homtel.jpg);"></div>
+                        <div class="title-homtel-blog">
+                        <a href="#">Apa yang harus saya lakukan untuk <span>Apartemen</span> saya?</a>
+                    </div>
+                    </div>
+                </div> 
+                 <div class="col-xs-12 col-md-3 blog-homtel">
+                    <div class="thumbnails">
+                        <div class="image-thumbnail" style="background-image: url({$host}__assets/frontend/img/header1-homtel.jpg);"></div>
+                        <div class="title-homtel-blog">
+                            <a href="#">Investasi dari <span>Apartemen</span>? Why not.</a>
+                        </div>
+                    </div>
+                </div> 
+                 <div class="col-xs-12 col-md-3 blog-homtel">
+                    <div class="thumbnails">
+                        <div class="image-thumbnail" style="background-image: url({$host}__assets/frontend/img/bg-works-homtel.png);"></div>
+                        <div class="title-homtel-blog">
+                            <a href="#">Homtel promo selama bulan Demeber 2016</a>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </section>
+
+    <footer class=" col-xs-12 col-md-12 footer" style="padding: 0; ">
+        <!-- <img src="{$host}__assets/frontend/img/bg-footer-homtel.png" class="img-responsive"> -->
+        <div class="col-xs-12 col-md-12 footer-homtel">
+            <div class="info-homtel">
+                <img src="{$host}__assets/frontend/img/logo2-homtel.png">
+                <p class="info">info@homtel.id</p>
+                <p>+6221.57948837</p>
+                <p class="copyright">C. 2016 All Right Reserved. PT. Homtel Idonesia Terpadu </p>
+            </div>
+            <div class="alamat-homtel">
+                <div class="col-xs-12 col-md-6 left-homtel">
+                    <h4>JAKARTA OFFICE :</h4>
+
+                    <p>Jl. dr. Ide Anak Agung Gde Agung
+                    Kawasan Mega Kuningan, Menara Anugrah
+                    Kantor Taman E3.3 / A3
+                    Lot 8.6 - 8.7 Setiabudi
+                    Jakarta Selatan, 12950</p>
+                </div>
+                <div class="col-xs-12 col-md-6 right-homtel">
+                    <h4>BANDUNG OFFICE :</h4>
+
+                    <p>MRD Building Business Park
+                    Kawasan The Suites @ Metro
+                    Jl. Soekarno Hatta no. 693
+                    Bandung 40292</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-12 menu-social">
+                <ul class="col-xs-12 col-md-8 menu">
+                    <li><a href="#">CAREER</a></li>
+                    <li><a href="#">PRIVACY POLICY</a></li>
+                    <li><a href="#">TERM OF SERVICE</a></li>
+                    <li><a href="#">PARTNERS</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+                <ul class="col-xs-12 col-md-4 social">
+                    <li><a href="#"><img src="{$host}__assets/frontend/img/ico-facebook-homtel.png"></a></li>
+                    <li><a href="#"><img src="{$host}__assets/frontend/img/ico-twitter-homtel.png"></a></li>
+                    <li><a href="#"><img src="{$host}__assets/frontend/img/ico-google-homtel.png"></a></li>
+                    <li><a href="#"><img src="{$host}__assets/frontend/img/ico-linkedin-homtel.png"></a></li>
+                </ul>
+        </div>
+    </footer>
+	
+	<script>
+		var host = '{$host}';
+		var paa = 'ngiclik';
+	</script>
+    <script src="{$host}__assets/frontend/js/jquery.js"></script>
+    <script src="{$host}__assets/frontend/js/bootstrap.min.js"></script>
+	<script src="{$host}__assets/plugin/easyui/jquery.easyui.min.js"></script>
+	
+	<script src="{$host}__assets/js/blockui.js"></script>	
+	<script src="{$host}__assets/js/jquery.numeric.js"></script>	
+	<script src="{$host}__assets/js/fungsi.js"></script>	
+	
+	<script>
+		$(".validasi").validatebox({ required:true });
+ 		$(".emailbro").validatebox({ validType:'email' }); 		
+		$(".numberbro").numeric(); 		
+	</script>
+	
+	<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+	{literal}
+    <script>
+        (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+        function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+        e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+        e.src='//www.google-analytics.com/analytics.js';
+        r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+        ga('create','UA-XXXXX-X');ga('send','pageview');
+    </script>
+	{/literal}
+  </body>
+</html>

@@ -577,12 +577,12 @@ class Services extends JINGGA_Controller {
 	function tes_konfirmasi_insert()
 	{
 		$this->load->library('lib');
-		//$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
-		$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
+		$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
+		//$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
 		$data=array('method' => 'create',//ISI METHOD NYA CRUD YE CUNG.. CREATE READ UPDATE DELETE
 					'modul'=>'konfirmasi',
 					'submodul'=>'',
-					'no_invoice'=>'INV-99B009-00002',
+					'no_invoice'=>'INV-005232-00003',
 					'total_pay'=>100000,
 					'bank_name'=>'Mandiri',
 					'sending_name'=>'Xxxxxxxxx',
@@ -599,8 +599,8 @@ class Services extends JINGGA_Controller {
 	function tes_get_data_reservation_detil()
 	{
 		$this->load->library('lib');
-		//$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
-		$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
+		$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
+		//$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
 		$data=array('method' => 'read',//ISI METHOD NYA CRUD YE CUNG.. CREATE READ UPDATE DELETE
 					'modul'=>'reservation',
 					'submodul'=>'',

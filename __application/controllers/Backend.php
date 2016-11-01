@@ -289,10 +289,16 @@ class Backend extends JINGGA_Controller {
 									$databalikan[$k]['title'] = $v['costumer_name'];
 									$databalikan[$k]['start'] = $v['check_in_date'];
 									$databalikan[$k]['end'] = $v['check_out_date'];
+									$databalikan[$k]['idsw'] = $v['id'];
 								}
 							}
 							echo json_encode($databalikan);
 							exit;
+						break;
+						case "scheduledetail":
+							$id_rsv = $this->input->post('idws');
+							$detailrsv = $this->mbackend->getdata('detailreservation', $id_rsv);
+							$this->nsmarty->assign('data', $detailrsv['data']);
 						break;
 					}
 				break;

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>HOMTEL - REGISTRATION STEP 3</title>
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+
+	<link rel="apple-touch-icon" sizes="144x144" href="library/ico/apple-touch-icon.png">
+	<link rel="shortcut icon" href="{$host}__assets/frontend/ico/favicon.gif">
+	<link rel="stylesheet" href="{$host}__assets/frontend/css/bootstrap.css">
+	<link href="//fonts.googleapis.com" rel="dns-prefetch">
+
+	<link href="{$host}__assets/frontend/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="{$host}__assets/plugin/easyui/themes/metro-gray/validatebox.css">
+	<link rel="stylesheet" href="{$host}__assets/plugin/easyui/themes/metro-gray/tooltip.css">
+	<link href="{$host}__assets/frontend/css/style.css" rel="stylesheet" type="text/css">
+	
+	<script>
+		var host = '{$host}';
+		var paa = 'lerpe';
+	</script>
+
+	<script src="{$host}__assets/frontend/js/jquery.js"></script>
+	<script src="{$host}__assets/frontend/js/bootstrap.min.js"></script>
+	<script src="{$host}__assets/plugin/easyui/jquery.easyui.min.js"></script>
+	
+	<script src="{$host}__assets/js/blockui.js"></script>	
+	<script src="{$host}__assets/js/jquery.numeric.js"></script>	
+	<script src="{$host}__assets/js/fungsi.js"></script>		
+</head>
+<body id="body-login-homtel">	
+	<!-- Modal -->
+	<div style='z-index:9999999 !important;' class="modal fade" id="pesanModal" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<b>Message</b>
+					<button id='button_close' type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				</div>
+				<div class="modal-body">
+					<div id='modalencuk' class="modal-product">
+					</div><!-- .modal-product -->
+				</div><!-- .modal-body -->
+			</div><!-- .modal-content -->
+		</div><!-- .modal-dialog -->
+	</div>
+	<!-- END Modal -->
+	
+	<div class="container-fluid">
+		<div class="row" >
+			<div class="col-md-6" style='opacity:0.9;background:#F0F0F0 !important; margin:15px !important;padding-top:30px;padding-bottom:35px;'>
+				<center><h1>Verification Code</h1></center>
+				<center><img src="{$host}__assets/frontend/img/logo-homtel.png" style='margin-left:0px;'></center>
+				<br/>
+				<br/>
+
+				<form id='frmForgotPassCode' action="{$host}submit-requestcode" method="post">
+					<input type='hidden' name='step' value='step-3-finishing' />
+					<ul style='list-style:none;padding-left:-500px !important;'>
+						<li>
+							<label for="inputName1">Email Address</label>
+							{if isset($email)}
+								{assign var=disable value='readonly'}
+							{else}
+								{assign var=disable value=''}
+							{/if}
+							
+							<input type="text" name="mail" value="{$email|default:''}" {$disable} class='form-control validasi emailbro'>
+							<br>
+						</li>
+						<li>
+							<label for="inputName1">Registration Code</label>
+							<input type="text" name="reqcode" placeholder="Check Your Phone To Get Registration Code" class='form-control validasi'>
+							<br>
+						</li>
+					</ul>
+				</form>
+				<button class="btn btn-primary" onClick="kumpulAction('register-3');">VERIFY</button>
+			</div>
+		</div>
+	</div>
+	
+	<script>
+		$(".validasi").validatebox({ required:true }); 	
+		$(".emailbro").validatebox({ validType:'email' }); 
+	</script>
+</body>
+</html>

@@ -19,6 +19,7 @@
     <!-- Custom Fonts -->
     <link href="{$host}__assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" href="{$host}__assets/plugin/bootstrapdaterange/daterangepicker.css">
+	<link rel="stylesheet" href="{$host}__assets/plugin/bootstrapdatepicker/css/datepicker.css">
 	<link rel="stylesheet" href="{$host}__assets/plugin/fullcalendar/fullcalendar.min.css" />
 	<link rel="stylesheet" href="{$host}__assets/plugin/fullcalendar/fullcalendar.print.css" media='print' />
 	
@@ -97,6 +98,23 @@
 		
 	</div>
 	
+	<!-- Modal -->
+	<div style='z-index:9999999 !important;' class="modal fade" id="pesanModal" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<b>Message</b>
+					<button id='button_close' type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				</div>
+				<div class="modal-body">
+					<div id='modalencuk' class="modal-product">
+					</div><!-- .modal-product -->
+				</div><!-- .modal-body -->
+			</div><!-- .modal-content -->
+		</div><!-- .modal-dialog -->
+	</div>
+	<!-- END Modal -->
+	
     <!-- jQuery -->
     <script src="{$host}__assets/js/jquery.js"></script>
 
@@ -107,6 +125,7 @@
 	<script src="{$host}__assets/js/jquery.numeric.js"></script>
 	<script src="{$host}__assets/plugin/bootstrapdaterange/moment.js"></script>	
 	<script src="{$host}__assets/plugin/bootstrapdaterange/daterangepicker.js"></script>	
+	<script src="{$host}__assets/plugin/bootstrapdatepicker/js/bootstrap-datepicker.js"></script>	
 	<script src="{$host}__assets/plugin/fullcalendar/fullcalendar.min.js"></script>	
     <script src="{$host}__assets/js/jquery.maskMoney.min.js"></script>
     <script src="{$host}__assets/js/fungsi.js"></script>

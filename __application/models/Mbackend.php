@@ -119,6 +119,12 @@ class Mbackend extends CI_Model{
 				$data['submodul'] = '';
 				$data['id_transaction'] = $p1;
 			break;
+			case "detailreservation":
+				$data['method'] = 'read';
+				$data['modul'] = 'reservation';
+				$data['submodul'] = '';
+				$data['id_reservasi'] = $p1;
+			break;
 		}
 		
 		$res = $this->lib->jingga_curl($url,$data,$method,$balikan);
@@ -379,6 +385,24 @@ class Mbackend extends CI_Model{
 					$data['photo_profile'] = $filename_profile;
 				}
 				
+			break;
+			
+			case "submit_confirmation":
+				$data['method'] = 'create';
+				$data['modul'] = 'konfirmasi';
+				$data['submodul'] = '';
+				$data['no_invoice'] = $post['nkonf'];
+				$data['total_pay'] = (int)str_replace('.','',$post['total_trf']);
+				$data['bank_name'] = $post['bank_name'];
+				$data['sending_name'] = $post['bank_account'];
+				$data['date_transfer'] = date_format(date_create_from_format('d/m/Y', $post['date_trf']), 'Y-m-d');
+				$data['bank_name_receipt'] = 'BCA';
+				
+				/*
+				echo "<pre>";
+				print_r($data);
+				exit;
+				//*/
 			break;
 		}
 		

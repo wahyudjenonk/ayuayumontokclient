@@ -33,11 +33,96 @@
 				</table>
 			</td>
 		</tr>
+		<tr>
+			<td colspan='2'>
+				<form role="form" id='regconf' url='{$host}submit-confirmation' method='post' enctype="multipart/form-data">	
+					<input type='hidden' name='nkonf' value='{$datatrxdetail.data.header.no_invoice}'>
+					<table class="table table-bordered" style='margin-bottom:0px !important;'>
+						<tbody>
+							<tr>
+								<td colspan='2' style="text-align:center;font-weight:bold;">
+									Payment Confirmation
+								</td>
+							</tr>
+							<tr>
+								<td>Payment Method</td>
+								<td>
+									<select name='pay_method'>
+										<option value='TRF'>Transfer Bank</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td>Bank Name</td>
+								<td>
+									<select name='bank_name'>
+										<option value='Mandiri'>Mandiri</option>
+										<option value='BCA'>BCA</option>
+										<option value='BNI'>BNI</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td>Bank Account Name</td>
+								<td>
+									<input name='bank_account' class='validasi' type="text" style='width:100%;' />
+								</td>
+							</tr>						
+							<tr>
+								<td>Total Transfer</td>
+								<td>
+									<input name='total_trf' class='validasi moneybro' type="text" style='width:100%;' />
+								</td>
+							</tr>						
+							<tr>
+								<td>Date Transfer</td>
+								<td>
+									<input name='date_trf' class='validasi' id='date_trf' type="text" style='width:40%;' />
+								</td>
+							</tr>						
+							
+						</tbody>
+					</table>
+				</form>
+			</td>
+		</tr>
 		<tr style='background:#F9F9F9;'>
 			<td style="font-weight:bold;">Grand Total</td>
 			<td style="font-weight:bold;">IDR. {$datatrxdetail.data.header.grand_total|number_format:0:",":"."}</td>
 		</tr>
 	</tbody>
 </table>
-<a class="btn btn-primary" onClick="loadUrl('{$host}transaction-independent');" >Back</a>
+
+	<a class="btn btn-danger" onClick="loadUrl('{$host}transaction-independent');" >Back</a>
+	<a class="btn btn-primary" id='sbmconf' >Submit</a>	
+	
 </div>
+
+<script>
+$(".validasi").validatebox({ required:true }); 	
+$(".moneybro").maskMoney({
+	precision:0,
+	thousands:'.'
+});
+$('#date_trf').datepicker({
+	format:'dd/mm/yyyy'
+});
+
+$('#sbmconf').on('click', function(){
+	validasi = $('#regconf').form('validate');
+	if(validasi){
+		$.blockUI({ message: '<h3>Processing Data...</h3>' });			
+	}
+	
+	submit_form('regconf', function(r){
+		if(r == 1){
+			alert('Success');
+			loadUrl(host+'transaction-independent');
+		}else{
+			alert(r);
+		}
+		$.unblockUI();
+	});
+	return false;
+});
+</script>

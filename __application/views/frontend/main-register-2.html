@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>HOMTEL - REGISTRATION STEP 2</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="apple-touch-icon" sizes="144x144" href="library/ico/apple-touch-icon.png">
+    <link rel="shortcut icon" href="{$host}__assets/frontend/ico/favicon.gif">
+    <link rel="stylesheet" href="{$host}__assets/frontend/css/bootstrap.css">
+
+    <link href="{$host}__assets/frontend/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="{$host}__assets/plugin/easyui/themes/metro-gray/validatebox.css">
+	<link rel="stylesheet" href="{$host}__assets/plugin/easyui/themes/metro-gray/tooltip.css">
+    <link href="{$host}__assets/frontend/css/style.css" rel="stylesheet" type="text/css">
+	
+	<script>
+		var host = '{$host}';
+		var paa = 'cokslem';
+	</script>
+
+    <script src="{$host}__assets/frontend/js/jquery.js"></script>
+    <script src="{$host}__assets/frontend/js/bootstrap.min.js"></script>
+	<script src="{$host}__assets/plugin/easyui/jquery.easyui.min.js"></script>
+	
+	<script src="{$host}__assets/js/blockui.js"></script>	
+	<script src="{$host}__assets/js/jquery.numeric.js"></script>	
+	<script src="{$host}__assets/js/fungsi.js"></script>		
+  </head>
+  <body id="body-login-homtel">
+	<!-- Modal -->
+	<div style='z-index:9999999 !important;' class="modal fade" id="pesanModal" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<b>Message</b>
+					<button id='button_close' type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				</div>
+				<div class="modal-body">
+					<div id='modalencuk' class="modal-product">
+					</div><!-- .modal-product -->
+				</div><!-- .modal-body -->
+			</div><!-- .modal-content -->
+		</div><!-- .modal-dialog -->
+	</div>
+	<!-- END Modal -->
+
+	<div class="container-fluid">
+	<div class="row" style='opacity:0.95;background:#F0F0F0 !important; margin:15px !important;padding-top:30px;padding-bottom:35px;'>
+		<center><h1>Registration Step 2</h1></center>
+		<br/>
+		<br/>
+		<div class="col-md-6">
+            <center><img src="{$host}__assets/frontend/img/logo-homtel.png" style='margin-left:0px;'></center>
+			<br/>
+			<ul style='list-style:none;padding-bottom:10px;'>
+				<li>
+					<label for="inputName1">Form Number</label>
+					<input type="text" class='form-control' readonly value='{$formnumber}'>
+					<br>
+				</li>
+				<li>
+					<label for="inputName1">Registration Date</label>
+                    <input type="text" class='form-control' readonly value='{$registration_date2}' />
+					<br>
+				</li>
+				<li>
+					<label for="inputName1">Owner Name (First Name)</label>
+                    <input type="text" class='form-control' readonly value='{$firstname}' />
+					<br>
+				</li>
+				<li>
+					<label for="inputName1">Owner Name (Last Name)</label>
+                    <input type="text" class='form-control' readonly value='{$lastname}' />
+					<br>
+				</li>
+				<li>
+					<label for="inputName1">Date Of Birth</label>
+                    <input type="text" class='form-control' readonly value='{$datebirth2}' />
+					<br>
+				</li>
+				<li>
+					<label for="inputName1">Email Address</label>
+                    <input type="text" class='form-control' readonly value='{$emailaddr}' />
+					<br>
+				</li>
+				<li>
+					<label for="inputName1">Phone (Mobile)</label>
+                    <input type="text" class='form-control' readonly value='{$phone}' />
+					<br>
+				</li>
+			</ul>
+		</div>
+		<div class="col-md-6">
+			<form id='regsbro2' method="post" url="{$host}submit-step2-register" enctype="multipart/form-data">
+				<input type='hidden' name='step' value='step-2-registration' />
+				<input type='hidden' name="formnu" value='{$formnumber}' />
+				<input type='hidden' name="brtdate" value='{$datebirth}' />
+				<input type='hidden' name="regdate" value='{$registrationdate}' />
+				<input type='hidden' name="frstnm" readonly value='{$firstname}' />
+				<input type='hidden' name="lstnm" readonly value='{$lastname}'/>
+				<input type='hidden' name="emadd" readonly value='{$emailaddr}'/>
+				<input type='hidden' name="phmob" value='{$phone}'/>
+				
+				<ul style='list-style:none;padding-bottom:10px;'>
+					<li>
+						<label for="inputName1">Owner is a</label>
+						<select name="owntype" id='owntype' class='form-control validasi'>
+							{$ownsts}
+						</select>
+						<br>
+					</li>
+					<li>
+						<label for="inputName1">Title</label>
+						<select name="ttl" class='form-control validasi'>
+							{$title}
+						</select>
+						<br>
+					</li>
+					<li>
+						<label for="inputName1">ID Number (KTP / Passport)</label>
+						<input type="text" name="idnmb" class='form-control validasi numberbro'>
+						<br>
+					</li>
+					<li>
+						<label for="inputName1">Upload Your ID Number</label>
+						<input type="file" name="fileidnumb" class='' />
+						<br>
+					</li>
+					<li>
+						<label for="inputName1">Place Of Birth</label>
+						<input type="text" name="plcbirth" class='form-control validasi'>
+						<br>
+					</li>
+					<li>
+						<label for="inputName1">Address</label>
+						<textarea name="addr" rows='3' cols='35' class='form-control validasi'></textarea>
+						<br>
+					</li>
+					<li>
+						<label for="inputName1">City</label>
+						<input type="text" name="cty" class='form-control validasi'>
+						<br>
+					</li>
+					<li>
+						<label for="inputName1">State</label>
+						<input type="text" name="stt" class='form-control validasi'>
+						<br>
+					</li>
+					<li>
+						<label for="inputName1">Zip Code</label>
+						<input type="text" name="zpco" class='form-control validasi numberbro'>
+						<br>
+					</li>
+					<li>
+						<label for="inputName1">Phone (Home)</label>
+						<input type="text" name="phhom" class='form-control validasi numberbro'>
+						<br>
+					</li>
+					<li>
+						<label for="inputName1">Current Occupation</label>
+						<input type="text" name="curroccu" class='form-control'>
+						<br>
+					</li>
+					<li>
+						<label for="inputName1">Previous Education</label>
+						<select name="preved" class='form-control'>
+							{$preved}
+						</select>
+						<br>
+					</li>
+				</ul>
+				<ul id='compeny' style='display:none;list-style:none;padding-bottom:10px;'>
+					<li>
+						<label for="inputName1">Name CEO/Managing Partner</label>
+						<input type="text" name="ceopart" class='form-control'>
+						<br>
+					</li>
+					<li>
+						<label for="inputName1">Company Name</label>
+						<input type="text" name="compname" class='form-control'>
+						<br>
+					</li>
+					<li>
+						<label for="inputName1">Company Address</label>
+						<textarea name="compaddr" rows='3' cols='35' class='form-control'></textarea>
+						<br>
+					</li>
+					<li>
+						<label for="inputName1">Company Phone</label>
+						<input type="text" name="comphone" class='form-control numberbro'>
+						<br>
+					</li>
+				</ul>
+			</form>
+			<button class="btn btn-primary" onClick="kumpulAction('register-2','{$encoding_email}');">NEXT STEP</button>
+		</div>
+	</div>
+	</div>
+	
+	<script>
+		$(".validasi").validatebox({ required:true }); 		
+		$(".numberbro").numeric();
+		
+		$('#owntype').on('change', function(){
+			if($(this).val() == '2'){
+				$('#compeny').show();
+			}else{
+				$('#compeny').hide();
+			}
+		});
+	</script>
+  </body>
+</html>

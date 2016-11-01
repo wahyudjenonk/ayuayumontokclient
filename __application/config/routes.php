@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-$route['default_controller'] = 'backend';
+$route['default_controller'] = 'frontend';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
@@ -13,9 +13,9 @@ $route['backoffice-form/(:any)'] = 'backend/get_form/$1';
 
 // Modul Core
 $route['register'] = 'login/registrasiuser';
-$route['register-step2/(:any)'] = 'login/registrasiuser2/$1';
-$route['register-step3/(:any)'] = 'login/registrasiuser3/$1';
-$route['register-step3'] = 'login/registrasiuser3';
+$route['register-step2/(:any)'] = 'frontend/registrasiuser2/$1';
+$route['register-step3/(:any)'] = 'frontend/registrasiuser3/$1';
+$route['register-step3'] = 'frontend/registrasiuser3';
 $route['submit-step1-register'] = 'login/submitregistrasi';
 $route['submit-step2-register'] = 'login/submitregistrasi';
 $route['submit-requestcode'] = 'login/submitregistrasi';
@@ -44,6 +44,7 @@ $route['transaction-independent'] = 'backend/modul/transaction/independent';
 $route['transaction-independent-detail'] = 'backend/modul/transaction/independent_detail';
 $route['transaction-package'] = 'backend/modul/transaction/package';
 $route['transaction-package-detail'] = 'backend/modul/transaction/package_detail';
+$route['submit-confirmation'] = 'backend/simpandata/submit_confirmation';
 
 $route['user-profile'] = 'backend/modul/user/profile_setting';
 $route['submit-update-profile'] = 'backend/simpandata/submit_update_profile';
@@ -54,6 +55,7 @@ $route['listingmanagement'] = 'backend/modul/listingmanagement/main';
 $route['reservation-detail'] = 'backend/modul/listingmanagement/reservationdetail';
 $route['getdetailkalendar'] = 'backend/modul/listingmanagement/kalendardetail';
 $route['getschedule'] = 'backend/modul/listingmanagement/dataschedule';
+$route['schedule-detail'] = 'backend/modul/listingmanagement/scheduledetail';
 
 
 /*
