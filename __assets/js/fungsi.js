@@ -7,7 +7,7 @@ if(mm<10){mm='0'+mm}
 today = yyyy+'-'+mm+'-'+dd;
 
 $(function() {
-	if(typeof host != "undefined"){
+	if(typeof paa == "undefined"){
 		loadUrl(host+'dashboard');
 	}
 });
@@ -443,6 +443,75 @@ function genTab(div, mod, sub_mod, tab_array, div_panel, judul_panel, mod_num, h
 function kumpulAction(type, p1, p2, p3, p4, p5){
 	var param = {};
 	switch(type){
+		// FrontEnd Act 
+		case "register-1":
+			validasi = $('#regsbro').form('validate');
+			if(validasi){
+				$.blockUI({ message: '<h3>Processing Data...</h3>' });			
+			}
+			
+			submit_form('regsbro',function(r){
+				$('#modalencuk').html('');
+				$.post(host+'message-submit', { 'stsn':r, 'tp':'registrasi-step1' }, function(pg){
+					$('#modalencuk').html(pg);
+				});
+				
+				$('#pesanModal').modal('show');
+				$.unblockUI();
+				
+				if(r == 1){
+					setTimeout(function () {
+						window.location.href = host; 
+					}, 4000);
+					$('#regsbro')[0].reset();
+				}
+			});
+			return false;
+		break;
+		case "register-2":
+			validasi = $('#regsbro2').form('validate');
+			if(validasi){
+				$.blockUI({ message: '<h3>Processing Data...</h3>' });			
+			}
+			submit_form('regsbro2',function(r){
+				if(r == 0){
+					$('#modalencuk').html('');
+					$.post(host+'message-submit', { 'stsn':r, 'tp':'registrasi-step2' }, function(pg){
+						$('#modalencuk').html(pg);
+					});
+					$('#pesanModal').modal('show');
+				}else{
+					window.location.href = host+"register-step3/"+p1;
+				}
+				$.unblockUI();
+			});
+			
+			return false;
+		break;
+		case "register-3":
+			validasi = $('#frmForgotPassCode').form('validate');
+			if(validasi){
+				$.blockUI({ message: '<h3>Processing Data...</h3>' });			
+			}
+			submit_form('frmForgotPassCode',function(r){
+				$('#modalencuk').html('');
+				$.post(host+'message-submit', { 'stsn':r, 'tp':'aktivasi' }, function(pg){
+					$('#modalencuk').html(pg);
+				});
+				
+				$('#pesanModal').modal('show');
+				$.unblockUI();
+				
+				if(r == 1){
+					setTimeout(function () {
+						window.location.href = host;
+					}, 4000);
+				}
+			});
+			return false;
+		break;
+		// End FrontEnd Act 
+		
 		case "form-property":
 			switch(p1){
 				case "add":
@@ -661,6 +730,15 @@ function kumpulAction(type, p1, p2, p3, p4, p5){
 				$('#isi_tab_'+p1).html(parsing.page);
 			});
 		break;
+		case "scheduledetail":
+			param['idws'] = p1;
+			$('#modalencuk').html('');
+			$.post(host+'schedule-detail', param ,function(rsp){
+				var parsing = $.parseJSON(rsp);
+				$('#modalencuk').html(parsing.page);
+				$('#pesanModal').modal('show');
+			});
+		break;
 	}
 }	
 
@@ -839,7 +917,7 @@ function gen_kalender(id_div,height,data_kalender){
 		eventLimit: true, // allow "more" link when too many events
 		events: data_kalender,
 		eventClick: function(calEvent, jsEvent, view) {
-			
+			kumpulAction('scheduledetail', calEvent.idsw);
 		}
     });
 }
