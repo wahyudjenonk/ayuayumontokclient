@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>HOMTEL - LOGIN DASHBOARD</title>
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+
+	<link rel="apple-touch-icon" sizes="144x144" href="library/ico/apple-touch-icon.png">
+	<link rel="shortcut icon" href="{$host}__assets/frontend/ico/favicon.gif">
+	<link rel="stylesheet" href="{$host}__assets/frontend/css/bootstrap.css">
+	<link href="//fonts.googleapis.com" rel="dns-prefetch">
+
+	<link href="{$host}__assets/frontend/css/bootstrap.min.css" rel="stylesheet">
+	<link href="{$host}__assets/frontend/css/style.css" rel="stylesheet" type="text/css">
+	
+	<script>
+		var host = '{$host}';
+	</script>
+
+	<script src="{$host}__assets/frontend/js/jquery.js"></script>
+	<script src="{$host}__assets/frontend/js/bootstrap.min.js"></script>
+</head>
+<body id="body-login-homtel">
+	<header class="hero-homtel">
+        <center><img src="{$host}__assets/frontend/img/polygon-1-homtel.png"></center>
+    </header>
+    <section class="login-homtel-wrap">
+        <img src="{$host}__assets/frontend/img/logo-homtel-login.png" id="logo-homtel">
+		<form name='frmLogin' action="{$host}property-in" method="post">
+		<ul>
+            <li>
+                <input type="text" name="user" class="form-controls" placeholder="Email Address">
+            </li>
+            <li>
+                <input type="password" name="pwd" class="form-controls" placeholder="Password">
+            </li>
+            <li class="tar">
+                <label><input type="checkbox" name="remeber_me"> Remember Me</label>
+            </li>
+            <li>
+                <button type='submit' class="btn btn-primary">LOGIN</button>
+            </li>
+			{if isset($error)}
+			<li>	
+				<div style="text-align:center;margin-top:30px">
+					<span style="color:red;"><b><i>{$error}</i></b></span>
+				</div>
+			</li>
+			{/if}
+        </ul>
+		</form>
+        <div class="mn-bot">
+            <a href="#" class="col-xs-6 lf">Forgot Passord?</a>
+            <a href="{$host}" class="col-xs-6 rg">Register Account</a>
+        </div>
+    </section>
+</body>
+</html>

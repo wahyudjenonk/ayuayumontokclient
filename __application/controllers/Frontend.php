@@ -16,6 +16,10 @@ class Frontend extends JINGGA_Controller {
 		$this->nsmarty->display( 'frontend/main-index.html');		
 	}
 	
+	function logtemp(){
+		$this->nsmarty->display( 'frontend/main-login.html');		
+	}
+	
 	function registrasiuser2($p1=""){
 		$form_number = "FRMREG-".strtoupper($this->lib->randomString(8));
 		$registration_date = date('Y-m-d');

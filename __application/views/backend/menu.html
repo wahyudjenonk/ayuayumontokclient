@@ -1,41 +1,74 @@
-<div  class="sidebar fixed" id="sidebar">
-	<ul class="nav nav-list">
-		<li>
-			<a href="javascript:void(0);" onclick="loadUrl('{$host}beranda');$('#judul_kecil').html('Dashboard App')">
-				<i class="icon-home"></i>
-				<span class="menu-text">Dashboard 1</span>
-			</a>
-		</li>
-		<li>
-			<a href="javascript:void(0);" onclick="">
-				<i class="icon-laptop"></i>
-				<span class="menu-text">Dashboard 2</span>
-			</a>
-		</li>
-		<li>
-			<a href="javascript:void(0);" onclick="">
-				<i class="icon-laptop"></i>
-				<span class="menu-text">Report</span>
-			</a>
-		</li>
-		<li>
-			<a href="javascript:void(0);"  class="dropdown-toggle" >
-				<i class="icon-cogs"></i>
-				<span class="menu-text"> Konfigurasi </span>
-				<b class="arrow icon-angle-down"></b>
-			</a>
-			<ul class="submenu">
-				<li>
-					<a href="javascript:void(0);" onclick="">
-						<i class="icon-double-angle-right"></i>
-						<span class="menu-text">Konfigurasi Umum</span>
-					</a>
-				</li>
-			</ul>
-		</li>
-	</ul><!--/.nav-list-->
-
-	<div class="sidebar-collapse" id="sidebar-collapse">
-		<i class="icon-double-angle-left"></i>
-	</div>
-</div>
+	            <ul class="nav">
+	                <li class="active">
+	                    <a href="../template/dashboard/dashboard.html">
+	                        <i><img src="{$host}__assets/app/ico/dashboard.png" style="max-width: 26px;"></i>
+	                        <p style="margin-top: 5px;">Dashboards</p>
+	                    </a>
+	                </li>
+					<li>
+						<a href="../listing.html">
+	                        <i><img src="{$host}__assets/app/ico/browser.png" style="max-width: 24px;"></i>
+	                        <p style="margin-top: 5px;">Listing</p>
+	                    </a>
+					</li>
+					<li>
+						<a href="../services.html">
+	                        <i><img src="{$host}__assets/app/ico/telemarketer.png" style="max-width: 24px;"></i>
+	                        <p style="margin-top: 5px;">Services</p>
+	                    </a>
+	                </li>
+	                <li>
+	                    <a href="../calendar.html">
+	                        <i><img src="{$host}__assets/app/ico/calendar1.png" style="max-width: 24px;"></i>
+	                        <p style="margin-top: 5px;">Calendar</p>
+	                    </a>
+	                </li>
+	                <li>
+						<a data-toggle="collapse" href="#tablesReservation">
+	                        <i><img src="{$host}__assets/app/ico/tray.png" style="max-width: 24px;"></i>
+	                        <p style="margin-top: 5px;">
+								Reservation
+	                           <b class="caret"></b>
+	                        </p>
+	                    </a>
+	                    <div class="collapse" id="tablesReservation">
+	                        <ul class="nav">
+								<li><a href="../tables/rooms.html">Rooms</a></li>
+								<li><a href="../tables/housekeeping.html">HouseKeeping</a></li>
+								<li><a href="../tables/laundrylinen.html">Laundry Linen</a></li>
+	                        </ul>
+	                    </div>
+	                </li>
+					<li>
+						<a data-toggle="collapse" href="#tablesOrder">
+	                        <i><img src="{$host}__assets/app/ico/shopping-store.png" style="max-width: 24px;"></i>
+	                        <p style="margin-top: 5px;">
+								Ordering
+	                           <b class="caret"></b>
+	                        </p>
+	                    </a>
+	                    <div class="collapse" id="tablesOrder">
+	                        <ul class="nav">
+								<li><a href="../tables/housekeeping-order.html">HouseKeeping</a></li>
+								<li><a href="../tables/linen-order.html">Linen</a></li>
+								<li><a href="../tables/facilities.html">Facilities</a></li>
+	                        </ul>
+	                    </div>
+	                </li>
+					<li>
+						<a data-toggle="collapse" href="#tablesBill">
+	                        <i><img src="{$host}__assets/app/ico/dollar.png" style="max-width: 24px;"></i>
+	                        <p style="margin-top: 5px;">
+								Billing
+	                           <b class="caret"></b>
+	                        </p>
+	                    </a>
+	                    <div class="collapse" id="tablesBill">
+	                        <ul class="nav">
+								<li><a href="tables/payment.html">Paymnet Status</a></li>
+								<li><a href="tables/invoice.html">Upcoming Invoice</a></li>
+								<li><a href="tables/history.html">Billing History</a></li>
+	                        </ul>
+	                    </div>
+	                </li>
+	            </ul>
