@@ -8,18 +8,20 @@ today = yyyy+'-'+mm+'-'+dd;
 
 $(function() {
 	if(typeof paa == "undefined"){
-		loadUrl(host+'dashboard');
+		loadUrl(host+'dashboard', 'dashboard');
 	}
 });
 
 
-function loadUrl(urls){
+function loadUrl(urls, classnav){
 	$.blockUI({ message: '<h4>.. Loading Page ..</h4>' });
 	setTimeout(function(){
+		$("#navigation li").parent().find('li').removeClass("active");
 		$("#konten").empty().addClass("loading");
 		$.get(urls,function (html){
 			var parsing = $.parseJSON(html);
 			$("#konten").html(parsing.page).removeClass("loading");
+			$("#"+classnav).addClass("active");
 		});
 		$.unblockUI();
 	}, 1000);
