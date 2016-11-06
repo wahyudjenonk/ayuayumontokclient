@@ -15,7 +15,7 @@
     <link href="{$host}__assets/frontend/css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="{$host}__assets/plugin/easyui/themes/metro-gray/validatebox.css">
 	<link rel="stylesheet" href="{$host}__assets/plugin/easyui/themes/metro-gray/tooltip.css">
-    <link href="{$host}__assets/frontend/css/style.css" rel="stylesheet" type="text/css">
+    <link href="{$host}__assets/frontend/css/style-register2.css" rel="stylesheet" type="text/css">
 	
 	<script>
 		var host = '{$host}';
@@ -47,171 +47,210 @@
 		</div><!-- .modal-dialog -->
 	</div>
 	<!-- END Modal -->
+	
+    <div class="form-wrap">
+        <form id="regsbro2" method="post" url="{$host}submit-step2-register" enctype="multipart/form-data" >
+			<input type='hidden' name='step' value='step-2-registration' />
+			<input type='hidden' name="formnu" value='{$formnumber}' />
+			<input type='hidden' name="brtdate" value='{$datebirth}' />
+			<input type='hidden' name="regdate" value='{$registrationdate}' />
+			<input type='hidden' name="frstnm" readonly value='{$firstname}' />
+			<input type='hidden' name="lstnm" readonly value='{$lastname}'/>
+			<input type='hidden' name="emadd" readonly value='{$emailaddr}'/>
+			<input type='hidden' name="phmob" value='{$phone}'/>
 
-	<div class="container-fluid">
-	<div class="row" style='opacity:0.95;background:#F0F0F0 !important; margin:15px !important;padding-top:30px;padding-bottom:35px;'>
-		<center><h1>Registration Step 2</h1></center>
-		<br/>
-		<br/>
-		<div class="col-md-6">
-            <center><img src="{$host}__assets/frontend/img/logo-homtel.png" style='margin-left:0px;'></center>
-			<br/>
-			<ul style='list-style:none;padding-bottom:10px;'>
-				<li>
-					<label for="inputName1">Form Number</label>
-					<input type="text" class='form-control' readonly value='{$formnumber}'>
-					<br>
-				</li>
-				<li>
-					<label for="inputName1">Registration Date</label>
-                    <input type="text" class='form-control' readonly value='{$registration_date2}' />
-					<br>
-				</li>
-				<li>
-					<label for="inputName1">Owner Name (First Name)</label>
-                    <input type="text" class='form-control' readonly value='{$firstname}' />
-					<br>
-				</li>
-				<li>
-					<label for="inputName1">Owner Name (Last Name)</label>
-                    <input type="text" class='form-control' readonly value='{$lastname}' />
-					<br>
-				</li>
-				<li>
-					<label for="inputName1">Date Of Birth</label>
-                    <input type="text" class='form-control' readonly value='{$datebirth2}' />
-					<br>
-				</li>
-				<li>
-					<label for="inputName1">Email Address</label>
-                    <input type="text" class='form-control' readonly value='{$emailaddr}' />
-					<br>
-				</li>
-				<li>
-					<label for="inputName1">Phone (Mobile)</label>
-                    <input type="text" class='form-control' readonly value='{$phone}' />
-					<br>
-				</li>
-			</ul>
-		</div>
-		<div class="col-md-6">
-			<form id='regsbro2' method="post" url="{$host}submit-step2-register" enctype="multipart/form-data">
-				<input type='hidden' name='step' value='step-2-registration' />
-				<input type='hidden' name="formnu" value='{$formnumber}' />
-				<input type='hidden' name="brtdate" value='{$datebirth}' />
-				<input type='hidden' name="regdate" value='{$registrationdate}' />
-				<input type='hidden' name="frstnm" readonly value='{$firstname}' />
-				<input type='hidden' name="lstnm" readonly value='{$lastname}'/>
-				<input type='hidden' name="emadd" readonly value='{$emailaddr}'/>
-				<input type='hidden' name="phmob" value='{$phone}'/>
-				
-				<ul style='list-style:none;padding-bottom:10px;'>
-					<li>
-						<label for="inputName1">Owner is a</label>
-						<select name="owntype" id='owntype' class='form-control validasi'>
-							{$ownsts}
-						</select>
-						<br>
-					</li>
-					<li>
-						<label for="inputName1">Title</label>
-						<select name="ttl" class='form-control validasi'>
-							{$title}
-						</select>
-						<br>
-					</li>
-					<li>
-						<label for="inputName1">ID Number (KTP / Passport)</label>
-						<input type="text" name="idnmb" class='form-control validasi numberbro'>
-						<br>
-					</li>
-					<li>
-						<label for="inputName1">Upload Your ID Number</label>
-						<input type="file" name="fileidnumb" class='' />
-						<br>
-					</li>
-					<li>
-						<label for="inputName1">Place Of Birth</label>
-						<input type="text" name="plcbirth" class='form-control validasi'>
-						<br>
-					</li>
-					<li>
-						<label for="inputName1">Address</label>
-						<textarea name="addr" rows='3' cols='35' class='form-control validasi'></textarea>
-						<br>
-					</li>
-					<li>
-						<label for="inputName1">City</label>
-						<input type="text" name="cty" class='form-control validasi'>
-						<br>
-					</li>
-					<li>
-						<label for="inputName1">State</label>
-						<input type="text" name="stt" class='form-control validasi'>
-						<br>
-					</li>
-					<li>
-						<label for="inputName1">Zip Code</label>
-						<input type="text" name="zpco" class='form-control validasi numberbro'>
-						<br>
-					</li>
-					<li>
-						<label for="inputName1">Phone (Home)</label>
-						<input type="text" name="phhom" class='form-control validasi numberbro'>
-						<br>
-					</li>
-					<li>
-						<label for="inputName1">Current Occupation</label>
-						<input type="text" name="curroccu" class='form-control'>
-						<br>
-					</li>
-					<li>
-						<label for="inputName1">Previous Education</label>
-						<select name="preved" class='form-control'>
-							{$preved}
-						</select>
-						<br>
-					</li>
-				</ul>
-				<ul id='compeny' style='display:none;list-style:none;padding-bottom:10px;'>
-					<li>
-						<label for="inputName1">Name CEO/Managing Partner</label>
-						<input type="text" name="ceopart" class='form-control'>
-						<br>
-					</li>
-					<li>
-						<label for="inputName1">Company Name</label>
-						<input type="text" name="compname" class='form-control'>
-						<br>
-					</li>
-					<li>
-						<label for="inputName1">Company Address</label>
-						<textarea name="compaddr" rows='3' cols='35' class='form-control'></textarea>
-						<br>
-					</li>
-					<li>
-						<label for="inputName1">Company Phone</label>
-						<input type="text" name="comphone" class='form-control numberbro'>
-						<br>
-					</li>
-				</ul>
-			</form>
-			<button class="btn btn-primary" onClick="kumpulAction('register-2','{$encoding_email}');">NEXT STEP</button>
-		</div>
-	</div>
-	</div>
+            <div class="row">
+                <div class="col-xs-12 col-md-3 img-resp" >
+                    <img src="{$host}__assets/frontend/img/logo-homtel.png">
+                </div>
+
+                <div class="col-xs-12 col-md-9 info1">
+                    <ul>
+                        <li>
+                            <label>Form Number</label>
+                            <span><input type="text" name="formnu" readonly="" value="{$formnumber}"></span>
+                        </li>
+                        <li>
+                            <label>Registration Date</label>
+                            <span ><input style="width: 35%;" type="text" name="regdate" readonly="" value="{$registration_date2}" ></span>
+                        </li>
+                    </ul>
+
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12 info2">
+                            <hr style="">
+                                <p style="font-size: 16px; font-weight: 700; margin-bottom: 0;">OWNER INFORMATION</p>
+                            <hr style="margin-bottom: 20px;">
+                            <div class="col-xs-12 col-sm-6 col-md-6 ">
+                                <div class="form-row">
+                                    <label>
+                                        <span>Owner Name (First Name)</span>
+                                        <input type="text" name="frstnm" readonly="" value="{$firstname}">
+                                    </label>
+                                </div>
+                                <div class="form-row">
+                                    <label>
+                                        <span>Owner Name (Last Name)</span>
+                                        <input type="text" name="lstnm" readonly="" value="{$lastname}">
+                                    </label>
+                                </div>          
+                                <div class="form-row">
+                                    <label>
+                                        <span>Date Of Birth</span>
+                                        <input type="text" name="brtdate" readonly="" value="{$datebirth2}">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-6 ">
+                                <div class="form-row">
+                                    <label>
+                                        <span>Email Address</span>
+                                        <input type="text" name="emadd" readonly="" value="{$emailaddr}">
+                                    </label>
+                                </div>          
+                                <div class="form-row">
+                                    <label>
+                                        <span>Phone (Mobile)</span>
+                                        <input type="text" name="phmob" value="{$phone}" readonly="">
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>        
+                </div>
+            </div>
+
+            <div class="row info"> 				
+				<div class="col-xs-12 col-sm-6 col-md-4 info3">
+					<div class="form-row">
+                        <label style="width: 90%">
+                            <select name="owntype" id="owntype" class="validasi" title="" style="width: 90%; height: 34px;">
+                                <option value=""> -- Owner is a -- </option>
+                                <option value="1">Individual</option>
+                                <option value="2">Corporate / Partnership</option>
+                            </select>
+                        </label>
+                    </div> 
+                    <div class="form-row">
+                        <label style="width: 90%">
+                            <select name="ttl" class="validasi " title="" style="width: 90%; height: 34px;">
+                                <option value=""> -- Title -- </option>
+                                <option value="Mr.">Mr.</option>
+                                <option value="Mrs.">Mrs.</option>
+                                <option value="Ms.">Ms.</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="form-row">
+                        <label style="width: 90%">
+                            <input style="width: 90%; height: 34px;" type="text" name="idnmb" class="validasi numberbro" title="" placeholder="ID Number (KTP / Passport)">
+                        </label>
+                    </div>
+                    <div class="form-row">
+                        <label style="width: 90%">
+                            <span>Upload Your ID Number</span>
+                            <input style="width: 90%; height: 34px;" type="file" name="fileidnumb">
+                        </label>
+                    </div>
+                    <div class="form-row">
+                        <label style="width: 90%">
+                            <input style="width: 90%; height: 34px;" type="text" name="plcbirth" class="validasi " title="" placeholder="Place Of Birth">
+                        </label>
+                    </div>
+                    <div class="form-row">
+                        <label style="width: 90%">
+                            <textarea style="width: 90%; height: 74px;" name="addr" rows="3" cols="23" class="validasi " title="" placeholder="Address" width="100%"></textarea>
+                        </label>
+                    </div>  
+                </div>
+
+                <div class="col-xs-12 col-sm-6 col-md-4 info5">
+                    <div class="form-row">
+                        <label style="width: 90%">
+                            <input style="width: 90%; height: 34px;" type="text" name="cty" class="validasi " title="" placeholder="City">
+                        </label>
+                    </div>
+                    <div class="form-row">
+                        <label style="width: 90%">
+                            <input style="width: 90%; height: 34px;" type="text" name="stt" class="validasi " title="" placeholder="State">
+                        </label>
+                    </div>
+                    <div class="form-row">
+                        <label style="width: 90%">
+                            <input style="width: 90%; height: 34px;" type="text" name="zpco" class="validasi numberbro" title="" placeholder="Zip Code">
+                        </label>
+                    </div>
+                    <div class="form-row">
+                        <label style="width: 90%">
+                            <input style="width: 90%; height: 34px;" type="text" name="phhom" class="validasi numberbro" title="" placeholder="Phone (Home)">
+                        </label>
+                    </div>
+                    <div class="form-row">
+                        <label style="width: 90%">
+                            <textarea style="width: 90%; height: 84px;" type="text" name="curroccu" placeholder="Current Occupation"></textarea>
+                        </label>
+                    </div>
+                    <div class="form-row">
+                        <label style="width: 90%">
+                            <select style="width: 90%; height: 34px;" name="preved">
+                                <option value=""> -- Previous Education -- </option><option value="highschool">Highschool</option><option value="s1">S1</option><option value="s2">S2</option><option value="s3">S3</option><option value="d3">D1/D3</option><option value="other">Other</option>
+                            </select>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-4 info4">
+                    <div id="compeny" style="display: block;">
+                        <hr style="">
+                            <p style="font-size: 16px; font-weight: 700; margin-bottom: 0;">Fill If Under Corporation/Partnership</p>
+                        <hr style="">
+                        <div class="form-row">
+                            <label style="width: 90%">
+                                <span style="width:210px !important;">Name CEO/Managing Partner</span>
+                                <input style="width: 90%; height: 34px;" type="text" name="ceopart">
+                            </label>
+                        </div>
+                        <div class="form-row">
+                            <label style="width: 90%">
+                                <span>Company Name</span>
+                                <input style="width: 90%; height: 34px;" type="text" name="compname">
+                            </label>
+                        </div>
+                        <div class="form-row">
+                            <label style="width: 90%">
+                                <span>Company Address</span><br>
+                                <textarea style="width: 90%; height: 34px;" name="compaddr" rows="3" cols="25"></textarea>
+                            </label>
+                        </div>  
+                        <div class="form-row">
+                            <label style="width: 90%">
+                                <span>Company Phone</span>
+                                <input style="width: 90%; height: 34px;" type="text" name="comphone">
+                            </label>
+                        </div>
+                    </div> 
+                </div>
+			</div>
+        </form>
+        <div style="text-align: right; padding-bottom: 20px; margin-right: 30px;">
+            <button class="btn" onClick="kumpulAction('register-2','{$encoding_email}');" style="background-color: #000; color: #6aabde; font-weight: 700; padding: 10px 40px;">Save</button>
+        </div>
+    </div>
+
 	
 	<script>
 		$(".validasi").validatebox({ required:true }); 		
 		$(".numberbro").numeric();
 		
+		/*
 		$('#owntype').on('change', function(){
 			if($(this).val() == '2'){
-				$('#compeny').show();
+				
 			}else{
-				$('#compeny').hide();
+				
 			}
 		});
+		*/
 	</script>
   </body>
 </html>

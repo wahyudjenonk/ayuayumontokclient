@@ -1,54 +1,80 @@
-<div id="page-wrapper">
-    <div class="container-fluid">
-		<div class="row">
-            <div class="col-lg-12">
-                <h1 class="page-header">
-                    Property Manager
-                </h1>
-                <div class="breadcrumb" style='height:50px;'>
-					<div style='float:left;width:50%'>
-						<input placeholder="Search Property" style='width:200px !important;' class="form-control">
-					</div>
-                    <div style='float:right;width:50%'>
-						<button style='float:right;' class="btn btn-sm btn-primary" onClick="kumpulAction('form-property', 'add');" type="button">Add Property</button>
-					</div>
-                </div>
-            </div>
-        </div>
-		<div class="row" style='min-height:410px !important;'>
-            {if $dataproperty.data}
-				{foreach from=$dataproperty.data item=rows}
-					<div class="col-lg-4 text-center">
-						<div class="panel panel-default">
-							<div class="panel-body">
-								{if $rows.photo_unit}
-									<img class='img-thumbnail' src="{$host}__repository/property/{$rows.photo_unit}" style='height:200px !important;' />
-								{else}
-									<img class='img-thumbnail' src="{$host}__repository/no-image.jpeg" style='height:200px !important;' />
-								{/if}
-								<br/>
-								<br/>
-								{$rows.apartment_name}
-								<hr style='margin-top:10px !important;'/>
-								{if $rows.flag eq 'F'}
-									<a href='javascript:void(0);' class="btn btn-success" onClick="kumpulAction('request-services', '{$rows.id}', '{$rows.apartment_name}', '{$rows.unit_size_nett}');" >Services</a> 
-								{/if}
-								<a href='javascript:void(0);' class="btn btn-primary" onClick="kumpulAction('form-property', 'edit', '{$rows.id}');" >Edit</a> 
-								<a href='javascript:void(0);' class="btn btn-danger" onClick="kumpulAction('property-delete', '{$rows.id}');" >Delete</a>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="col-sm-6 col-md-6 form-row">
+				<label>
+					<select style="width: 100%; height: 34px;" name="preved">
+                        <option value=""> -- Type Listing -- </option>
+                        <option value="1">Active Listing</option>
+                        <option value="2">Preparation Listing</option>
+                        <option value="3">Registered Listing</option>
+                        <option value="4">Unlisted Listing</option>
+                    </select>
+				</label>
+			</div>
+			<div class="col-sm-6 col-md-6 button-PSC">
+				<ul style='list-style:none;float:right;'>
+					<li class="">
+						<button class="btn" onclick="">Print</button> 
+						<button class="btn">Email</button>
+						<button class="btn" onClick="kumpulAction('form-property', 'add');">Create New Listing</button>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<br/>
+    <div class="row">
+    	<div class="col-xs-12">
+          	<div class="box">
+				
+            	<div class="box-header">
+              		<h3 class="box-title col-sm-6 col-md-6" style="">Listing Unit</h3>
+              		<div class="box-tools col-sm-6 col-md-6" style="margin-top: 10px;">
+              		<!-- <div class="clearfix"></div> -->
+						{*
+						<label>
+							<div class="input-group" style="margin-bottom: 0;">
+								<input name="table_search" class="form-control input-sm pull-right" placeholder="Search listing data" style="width: 250px;" "="" type="text">
+								<div class="input-group-btn">
+									<button class="btn btn-sm" style="border: 1px solid #e8e7e3; background-color: #fff;"><i><img src="{$host}__assets/app/ico/search.png" style="max-width: 20px"></i></button>
+								</div>
 							</div>
-						</div>
-					</div>
-				{/foreach}
-			{else}
-			<div class="col-lg-12 text-center">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        ..:: No Data Available ::..
-                    </div>
-                </div>
-            </div>
-			{/if}
-        </div>
-    </div>
+                		</label>
+						*}
+              		</div>
+            	</div>
+				
+            	<div class="box-body table-responsive no-padding">
+              		<table id='listingtables' class="table table-hover">
+	                    <thead>
+							<tr>
+								<th>ID</th>
+								<th>Unit Name</th>
+								<th>Address</th>
+								<th>Tag</th>
+								<th>Picture</th>
+								<th>Status</th>
+							</tr>
+	                    </thead>
+						<tbody>
+							
+							
+						</tbody>
+					</table>
+            	</div>
+		</div><!-- /.box -->
+	</div>
 </div>
 
+
+<script>
+	$(document).ready(function() {
+		$('#listingtables').DataTable({
+			"fnHeaderCallback": function(){
+                $('#listingtables_length').hide();
+            }
+		});
+	} );
+</script>
+	            

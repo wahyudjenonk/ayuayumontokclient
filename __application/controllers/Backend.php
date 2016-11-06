@@ -396,6 +396,8 @@ class Backend extends JINGGA_Controller {
 			$editstatus = $p2; 
 		}
 		
+		//print_r($post);exit;
+		
 		echo $this->mbackend->simpandata($p1, $post, "", $editstatus);
 	}
 	

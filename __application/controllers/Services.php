@@ -6,7 +6,10 @@ class Services extends JINGGA_Controller {
 		parent::__construct();
 		
 	}
-	
+	/*
+	Terima kasih [nama], Anda telah registrasi di Homtel, berikut kode SMS verifikasi [kode] .
+	Infomasi hub tlp/wa +6281285558861 www.homtel.id
+	*/
 	function tes_registrasi()
 	{
 		$this->load->library('lib');
