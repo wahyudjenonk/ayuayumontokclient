@@ -83,8 +83,8 @@
 	                        <p style="margin-top: 5px;">Listing</p>
 	                    </a>
 					</li>
-					<li>
-						<a href="javascript:void(0);">
+					<li id='service'>
+						<a href="javascript:void(0);" onClick="loadUrl('{$host}servicemanager', 'service');">
 	                        <i><img src="{$host}__assets/app/ico/telemarketer.png" style="max-width: 24px;"></i>
 	                        <p style="margin-top: 5px;">Services</p>
 	                    </a>
@@ -235,6 +235,7 @@
 	<script src="{$host}__assets/plugin/easyui/jquery.easyui.min.js"></script>	
 	<script src="{$host}__assets/js/blockui.js"></script>	
 	<script src="{$host}__assets/js/jquery.numeric.js"></script>
+    <script src="{$host}__assets/js/bootbox.min.js"></script>	
     <script src="{$host}__assets/js/jquery.maskMoney.min.js"></script>	
 	
 	<script src="{$host}__assets/plugin/datatable/datatable.js"></script>

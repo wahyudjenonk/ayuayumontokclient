@@ -2,6 +2,13 @@
 	<div class="row">
 		<div class="col-xs-12">
 			<div class="col-sm-6 col-md-6 form-row">
+				<ul style='list-style:none;margin-left:-45px;'>
+					<li class="">
+						<button class="btn" onClick="kumpulAction('form-property', 'add');">Create New Service</button>
+					</li>
+				</ul>
+
+				{*
 				<label>
 					<select style="width: 100%; height: 34px;" name="preved">
                         <option value=""> -- Type Listing -- </option>
@@ -11,15 +18,9 @@
                         <option value="4">Unlisted Listing</option>
                     </select>
 				</label>
+				*}
 			</div>
 			<div class="col-sm-6 col-md-6 button-PSC">
-				<ul style='list-style:none;float:right;'>
-					<li class="">
-						<button class="btn" onclick="">Print</button> 
-						<button class="btn">Email</button>
-						<button class="btn" onClick="kumpulAction('form-property', 'add');">Create New Listing</button>
-					</li>
-				</ul>
 			</div>
 		</div>
 	</div>
@@ -29,19 +30,8 @@
           	<div class="box">
 				
             	<div class="box-header">
-              		<h3 class="box-title col-sm-6 col-md-6" style="">Listing Unit</h3>
+              		<h3 class="box-title col-sm-6 col-md-6" style="">Data Service</h3>
               		<div class="box-tools col-sm-6 col-md-6" style="margin-top: 10px;">
-              		<!-- <div class="clearfix"></div> -->
-						{*
-						<label>
-							<div class="input-group" style="margin-bottom: 0;">
-								<input name="table_search" class="form-control input-sm pull-right" placeholder="Search listing data" style="width: 250px;" "="" type="text">
-								<div class="input-group-btn">
-									<button class="btn btn-sm" style="border: 1px solid #e8e7e3; background-color: #fff;"><i><img src="{$host}__assets/app/ico/search.png" style="max-width: 20px"></i></button>
-								</div>
-							</div>
-                		</label>
-						*}
               		</div>
             	</div>
 				
@@ -51,9 +41,9 @@
 							<tr>
 								<th>ID</th>
 								<th>Unit Name</th>
-								<th>Address</th>
-								<th>Picture</th>
-								<th>Status</th>
+								<th>Service Name</th>
+								<th>Start Date</th>
+								<th>Finish Date</th>
 							</tr>
 	                    </thead>
 						<tbody>
@@ -64,16 +54,10 @@
 										<a href="javascript:void(0);" onClick="kumpulAction('form-property', 'edit', '{$rows.id}');">HTL-{$rows.id}</a>
 									</td>
 									<td>{$rows.apartment_name}</td>
-									<td>{$rows.apartment_address}</td>
+									<td></td>
 									<td>
-										<a href="#"><img src="{$host}__assets/app/ico/search.png" style="max-width: 15px"></a>
 									</td>
 									<td>
-										{if $rows.flag eq 'F'}
-											<span class="label label-success">Ready</span>
-										{elseif $rows.flag eq 'P'}
-											<span class="label label-danger">Process Confirm</span>
-										{/if}
 									</td>
 								</tr>
 								{/foreach}

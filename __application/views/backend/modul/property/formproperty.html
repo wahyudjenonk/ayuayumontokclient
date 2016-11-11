@@ -62,12 +62,15 @@
 						<label>Room Type Configuration</label>
 						{if $roomtype}
 							{foreach from=$roomtype.data item=rom}
-								<div class="checkbox">
+								{assign var="chkrom" value={$rom.flagcheck|default:''}}
+								<div class="checkbox {$chkrom}">
                                     <label>
-										{assign var="chkrom" value={$rom.flagcheck|default:''}}
                                         <span class="icons">
 											<span class="first-icon fa fa-square"></span>
 										</span>
+										{if $chkrom eq 'checked'}
+											<span class="icons"><span class="first-icon fa fa-square"></span><span class="second-icon fa fa-check-square "></span></span>
+										{/if}
 										<input type="checkbox" name='rmtype[]' value="{$rom.id}" {$chkrom} /> {$rom.room_type}
                                     </label>
                                 </div>
@@ -105,12 +108,15 @@
 						<label>Compulsary Periodic Payment</label>
 						{if $compulsary}
 							{foreach from=$compulsary.data item=rom}
-								<div class="checkbox">
+                                {assign var="chkcom" value={$rom.flagcheck|default:''}}
+								<div class="checkbox {$chkcom}">
                                     <label>
-                                        {assign var="chkcom" value={$rom.flagcheck|default:''}}
 										<span class="icons">
 											<span class="first-icon fa fa-square"></span>
 										</span>
+										{if $chkcom eq 'checked'}
+											<span class="icons"><span class="first-icon fa fa-square"></span><span class="second-icon fa fa-check-square "></span></span>
+										{/if}
 										<input type="checkbox" name='compultype[]' value="{$rom.id}" {$chkcom} /> {$rom.compulsary_periodic_payment}
                                     </label>
                                 </div>
@@ -171,8 +177,12 @@
 				</div>
 				<div class="col-lg-12">
 					<hr/>
-					<a class="btn btn-danger" id='bckfrmpro'>Back</a>
+					<a class="btn btn-warning" id='bckfrmpro'>Back</a>
 					<a class="btn btn-primary" id='sbmfrmpro' type="submit">Submit</a>
+					{if $editstatus eq 'edit'}
+						<a style='float:right;' id='delfrmpro' class="btn btn-danger">Delete</a>
+						<a style='float:right;margin-right:5px;' id='reqserv' class="btn btn-success">Request Service</a> 
+					{/if}
 					<br/>
 					<br/>
 				</div>
@@ -224,8 +234,29 @@
 		thousands:'.'
 	}); 	
 	
+	$('#delfrmpro').on('click', function(){
+		bootbox.confirm({
+			message: "Are You Sure to Delete This Data?",
+			buttons: {
+				confirm: {
+					label: 'Yes',
+					className: 'btn-success'
+				},
+				cancel: {
+					label: 'No',
+					className: 'btn-danger'
+				}
+			},
+			callback: function (result) {
+				if(result == true){
+					kumpulAction('property-delete', "{$data.id|default:''}");
+					//dialog.modal('hide');
+				}
+			}
+		});
+	});
 	$('#bckfrmpro').on('click', function(){
-		loadUrl('{$host}propertymanager');
+		loadUrl('{$host}propertymanager', 'listing');
 	});
 	$('#sbmfrmpro').on('click', function(){
 		validasi = $('#regspro').form('validate');
@@ -235,8 +266,9 @@
 		
 		submit_form('regspro',function(r){
 			if(r==1){
-				alert('Successfully Register Your Unit Property');
-				loadUrl('{$host}propertymanager');
+				//alert('Successfully Register Your Unit Property');
+				bootbox.alert("Data Was Saved.");
+				loadUrl('{$host}propertymanager', 'listing');
 			}else{
 				alert(r);
 			}
