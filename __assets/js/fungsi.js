@@ -22,6 +22,7 @@ function loadUrl(urls, classnav){
 			var parsing = $.parseJSON(html);
 			$("#konten").html(parsing.page).removeClass("loading");
 			$("#"+classnav).addClass("active");
+			$(".main-panel").perfectScrollbar('update');
 		});
 		$.unblockUI();
 	}, 1000);
@@ -536,20 +537,20 @@ function kumpulAction(type, p1, p2, p3, p4, p5){
 			}, 1000);
 		break;
 		case "property-delete":
-			var r = confirm("Are You Sure to Delete This Data?");
-			if (r == true) {
+			//var r = confirm("Are You Sure to Delete This Data?");
+			//if (r == true) {
 				param['editstatus'] = 'delete';
 				param['uui'] = p1;
 				
 				$.post(host+'delete-property', param, function(rsp){
 					if(rsp == 1){
-						alert('Success Delete Your Data');
-						loadUrl(host+'propertymanager');
+						bootbox.alert("Data Was Deleted");
+						loadUrl(host+'propertymanager', 'listing');
 					}else{
 						alert(rsp);
 					}
 				});
-			}
+			//}
 		break;
 		case "request-services":
 			param['uuii'] = p1;
@@ -741,6 +742,21 @@ function kumpulAction(type, p1, p2, p3, p4, p5){
 				$('#pesanModal').modal('show');
 			});
 		break;
+		
+		case "detaillayanan":
+			param['ipma'] = p1;
+			param['lstma'] = p2;
+			
+			$.blockUI({ message: '<h4>.. Loading Page ..</h4>' });
+			setTimeout(function(){
+				$("#konten").empty().addClass("loading");
+				$.post(host+'detaillayananaktif', param, function(rsp){
+					var parsing = $.parseJSON(rsp);
+					$("#konten").html(parsing.page).removeClass("loading");	
+				});
+				$.unblockUI();
+			}, 1000);
+		break
 	}
 }	
 

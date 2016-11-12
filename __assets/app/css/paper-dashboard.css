@@ -9473,7 +9473,7 @@ input.ct-danger + span + label + span.switch-right {
 
 /*             Navigation Tabs                 */
 .nav-tabs-navigation {
-  text-align: center;
+  /*text-align: center;*/
   border-bottom: 1px solid #F1EAE0;
   margin-bottom: 30px;
 }
