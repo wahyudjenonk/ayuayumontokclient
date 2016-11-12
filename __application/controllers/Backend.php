@@ -237,8 +237,14 @@ class Backend extends JINGGA_Controller {
 				case "service":
 					switch($p2){
 						case "main":
-							$dataproperty = $this->mbackend->getdata('property');
+							$dataproperty = $this->mbackend->getdata('propertyonservice');
 							$this->nsmarty->assign('dataproperty', $dataproperty);
+						break;
+						case "detail":
+							$idsrv = $this->input->post('ipma');
+							$nmproperty = $this->input->post('lstma');
+							
+							$this->nsmarty->assign('nmproperty', $nmproperty);
 						break;
 					}
 				break;

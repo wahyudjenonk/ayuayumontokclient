@@ -42,6 +42,7 @@ $route['submit-services'] = 'backend/modul/property/submit_services';
 $route['submit-services-package'] = 'backend/modul/property/submit_services_package';
 
 $route['servicemanager'] = 'backend/modul/service/main';
+$route['detaillayananaktif'] = 'backend/modul/service/detail';
 
 $route['transaction-independent'] = 'backend/modul/transaction/independent';
 $route['transaction-independent-detail'] = 'backend/modul/transaction/independent_detail';

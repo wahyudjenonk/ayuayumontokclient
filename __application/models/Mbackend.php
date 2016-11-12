@@ -125,6 +125,13 @@ class Mbackend extends CI_Model{
 				$data['submodul'] = '';
 				$data['id_reservasi'] = $p1;
 			break;
+			
+			case "propertyonservice":
+				$data['method'] = 'read';
+				$data['modul'] = 'property_all';
+				$data['submodul'] = '';
+				$data['member_user'] = $this->auth['member_user'];
+			break;
 		}
 		
 		$res = $this->lib->jingga_curl($url,$data,$method,$balikan);

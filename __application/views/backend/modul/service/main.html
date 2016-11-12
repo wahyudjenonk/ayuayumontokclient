@@ -1,26 +1,14 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-xs-12">
-			<div class="col-sm-6 col-md-6 form-row">
+			<div class="col-sm-6 col-md-6 button-PSC">
 				<ul style='list-style:none;margin-left:-45px;'>
 					<li class="">
 						<button class="btn" onClick="kumpulAction('form-property', 'add');">Create New Service</button>
 					</li>
 				</ul>
-
-				{*
-				<label>
-					<select style="width: 100%; height: 34px;" name="preved">
-                        <option value=""> -- Type Listing -- </option>
-                        <option value="1">Active Listing</option>
-                        <option value="2">Preparation Listing</option>
-                        <option value="3">Registered Listing</option>
-                        <option value="4">Unlisted Listing</option>
-                    </select>
-				</label>
-				*}
 			</div>
-			<div class="col-sm-6 col-md-6 button-PSC">
+			<div class="col-sm-6 col-md-6 form-row">
 			</div>
 		</div>
 	</div>
@@ -51,14 +39,12 @@
 								{foreach from=$dataproperty.data item=rows}
 								<tr>
 									<td>
-										<a href="javascript:void(0);" onClick="kumpulAction('form-property', 'edit', '{$rows.id}');">HTL-{$rows.id}</a>
+										<a href="javascript:void(0);" onClick="kumpulAction('detaillayanan', '{$rows.id}', '{$rows.apartment_name}');">SRV-{$rows.id}</a>
 									</td>
-									<td>{$rows.apartment_name}</td>
-									<td></td>
-									<td>
-									</td>
-									<td>
-									</td>
+									<td>{$rows.apartment_name|default:'-'}</td>
+									<td>{$rows.services_name|default:'-'}</td>
+									<td>{$rows.start_date|default:'-'}</td>
+									<td>{$rows.end_date|default:'-'}</td>
 								</tr>
 								{/foreach}
 							{/if}
