@@ -4619,7 +4619,7 @@ strong {
 }
 .sidebar .sidebar-wrapper {
   position: relative;
-  height: calc(100vh - 75px);
+  /*height: calc(100vh - 75px);*/
   overflow: auto;
   z-index: 4;
   box-shadow: inset -1px 0px 0px 0px #cfcfca;
@@ -5913,9 +5913,9 @@ a.dropdown-toggle[aria-expanded="true"] .caret {
 }
 
 .form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
-  background-color: #E3E3E3;
+  /*background-color: #E3E3E3;
+  color: #9A9A9A;*/
   cursor: not-allowed;
-  color: #9A9A9A;
   opacity: 1;
   filter: alpha(opacity=100);
 }
