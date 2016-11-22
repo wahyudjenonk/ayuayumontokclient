@@ -28,7 +28,11 @@ class Backend extends JINGGA_Controller {
 			
 			switch($p1){
 				case "dashboard":
+					$service_data_atas = $this->mbackend->getdata('dashboard_atas');
+					$service_data_bawah = $this->mbackend->getdata('dashboard_bawah');
 					
+					$this->nsmarty->assign('dashboard_atas', $service_data_atas['data']);
+					$this->nsmarty->assign('dashboard_bawah', $service_data_bawah['data']);
 				break;
 				
 				case "property":
@@ -237,6 +241,7 @@ class Backend extends JINGGA_Controller {
 						case "request_services":
 							$temp = 'backend/modul/'.$p1.'/formrequestservice.html';
 							$dataservicepaket = $this->mbackend->getdata('servicepaket');
+							$dataproperty = $this->mbackend->getdata('propertyready');
 							
 							$arrayservice = array();
 							$arrayservice[0]['idserv'] = "1";
@@ -252,6 +257,7 @@ class Backend extends JINGGA_Controller {
 							}
 														
 							$this->nsmarty->assign('services', $arrayservice);
+							$this->nsmarty->assign('dataproperty', $dataproperty);
 						break;
 						case "detail_request_services":
 							$temp = 'backend/modul/'.$p1.'/detailrequestservice.html';

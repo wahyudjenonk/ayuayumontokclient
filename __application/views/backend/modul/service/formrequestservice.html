@@ -10,8 +10,9 @@
 						<label>Choose Unit</label>
 						<select id='iplistunit' class="form-control">
 							<option value=''> -- Choose -- </option>
-							<option value='2'> Apartment Margonda </option>
-							<option value='3'> Apartment Bogor Indah </option>
+							{foreach from=$dataproperty.data item=rows}
+								<option value='{$rows.id}'>{$rows.text}</option>
+							{/foreach}
 						</select>
 					</div>
 			</div>

@@ -21,6 +21,19 @@ class Mbackend extends CI_Model{
 				$data['email_address'] = $p1;
 				$data['pwd'] = $p2;
 			break;
+			
+			case "dashboard_atas":
+				$data['method'] = 'read';
+				$data['modul'] = 'dashboard_atas';
+				$data['submodul'] = '';
+				$data['member_user'] = $this->auth['member_user'];
+			break;
+			case "dashboard_bawah":
+				$data['method'] = 'read';
+				$data['modul'] = 'dashboard_bawah';
+				$data['submodul'] = '';
+				$data['member_user'] = $this->auth['member_user'];
+			break;
 			case "property":
 				$data['method'] = 'read';
 				$data['modul'] = 'property_all';
@@ -52,6 +65,7 @@ class Mbackend extends CI_Model{
 				$data['submodul'] = 'cl_compulsary_periodic_payment';
 				$data['id'] = 2;
 			break;
+			
 			case "services":
 				$data['method'] = 'read';
 				$data['modul'] = 'services';
@@ -87,6 +101,7 @@ class Mbackend extends CI_Model{
 				$data['submodul'] = '';
 				$data['tbl_services_id'] = $p1;
 			break;
+			
 			case "trxindependent":
 				$data['method'] = 'read';
 				$data['modul'] = 'invoice';
@@ -136,6 +151,12 @@ class Mbackend extends CI_Model{
 			case "propertyonservice":
 				$data['method'] = 'read';
 				$data['modul'] = 'property_service';
+				$data['submodul'] = '';
+				$data['member_user'] = $this->auth['member_user'];
+			break;
+			case "propertyready":
+				$data['method'] = 'read';
+				$data['modul'] = 'property_ready';
 				$data['submodul'] = '';
 				$data['member_user'] = $this->auth['member_user'];
 			break;
