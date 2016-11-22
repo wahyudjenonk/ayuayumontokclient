@@ -17,6 +17,8 @@
 	<link rel="stylesheet" href="{$host}__assets/plugin/easyui/themes/metro-gray/validatebox.css">
 	<link rel="stylesheet" href="{$host}__assets/plugin/datatable/datatable.css">
 	<link rel="stylesheet" href="{$host}__assets/plugin/datatable/bootstrap-datatable.css">
+	<link rel="stylesheet" href="{$host}__assets/plugin/bootstrapdaterange/daterangepicker.css">
+	
     <!--  Paper Dashboard core CSS    -->
     <link href="{$host}__assets/app/css/paper-dashboard.css" rel="stylesheet"/>
 
@@ -88,44 +90,6 @@
 	                        <i><img src="{$host}__assets/app/ico/telemarketer.png" style="max-width: 24px;"></i>
 	                        <p style="margin-top: 5px;">Services</p>
 	                    </a>
-	                </li>
-	                <li>
-	                    <a href="javascript:void(0);l">
-	                        <i><img src="{$host}__assets/app/ico/calendar1.png" style="max-width: 24px;"></i>
-	                        <p style="margin-top: 5px;">Calendar</p>
-	                    </a>
-	                </li>
-	                <li>
-						<a data-toggle="collapse" href="#tablesReservation">
-	                        <i><img src="{$host}__assets/app/ico/tray.png" style="max-width: 24px;"></i>
-	                        <p style="margin-top: 5px;">
-								Reservation
-	                           <b class="caret"></b>
-	                        </p>
-	                    </a>
-	                    <div class="collapse" id="tablesReservation">
-	                        <ul class="nav">
-								<li><a href="javascript:void(0);">Rooms</a></li>
-								<li><a href="javascript:void(0);">HouseKeeping</a></li>
-								<li><a href="javascript:void(0);">Laundry Linen</a></li>
-	                        </ul>
-	                    </div>
-	                </li>
-					<li>
-						<a data-toggle="collapse" href="#tablesOrder">
-	                        <i><img src="{$host}__assets/app/ico/shopping-store.png" style="max-width: 24px;"></i>
-	                        <p style="margin-top: 5px;">
-								Ordering
-	                           <b class="caret"></b>
-	                        </p>
-	                    </a>
-	                    <div class="collapse" id="tablesOrder">
-	                        <ul class="nav">
-								<li><a href="javascript:void(0);">HouseKeeping</a></li>
-								<li><a href="javascript:void(0);">Linen</a></li>
-								<li><a href="javascript:void(0);">Facilities</a></li>
-	                        </ul>
-	                    </div>
 	                </li>
 					<li>
 						<a data-toggle="collapse" href="#tablesBill">
@@ -226,6 +190,24 @@
             </footer>
 	    </div>
 	</div>
+	
+	<!-- Modal -->
+	<div style='z-index:9999999 !important;' class="modal fade" id="pesanModal" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<b>Message</b>
+					<button id='button_close' type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				</div>
+				<div class="modal-body">
+					<div id='modalencuk' class="modal-product">
+					</div><!-- .modal-product -->
+				</div><!-- .modal-body -->
+			</div><!-- .modal-content -->
+		</div><!-- .modal-dialog -->
+	</div>
+	<!-- END Modal -->
+	
 </body>
 
     <!--   Core JS Files. Extra: PerfectScrollbar + TouchPunch libraries inside jquery-ui.min.js   -->
@@ -243,6 +225,7 @@
 
 	<!--  Plugin for Date Time Picker and Full Calendar Plugin-->
 	<script src="{$host}__assets/app/js/moment.min.js"></script>
+	<script src="{$host}__assets/plugin/bootstrapdaterange/daterangepicker.js"></script>	
 
     <!--  Date Time Picker Plugin is included in this js file -->
     <script src="{$host}__assets/app/js/bootstrap-datetimepicker.js"></script>

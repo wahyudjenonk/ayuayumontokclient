@@ -512,6 +512,15 @@ class lib {
 		
 	}
 	
+	function searchForId($id, $array) {
+	   foreach ($array as $key => $val) {
+		   if ($val['id'] === $id) {
+			   return $key;
+		   }
+	   }
+	   return null;
+	}
+	
 	//End Generate Form Via Field Table
 	/*
 	//Function Encoding Decoding

@@ -453,8 +453,8 @@ class Services extends JINGGA_Controller {
 	function tes_get_data_paket()
 	{
 		$this->load->library('lib');
-		//$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
-		$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
+		$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
+		//$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
 		$data=array('method' => 'read',//ISI METHOD NYA CRUD YE CUNG.. CREATE READ UPDATE DELETE
 					'modul'=>'package',
 					'submodul'=>'',
@@ -660,12 +660,12 @@ class Services extends JINGGA_Controller {
 	function tes_get_data_property_all()
 	{
 		$this->load->library('lib');
-		//$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
-		$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
+		$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
+		//$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
 		$data=array('method' => 'read',//ISI METHOD NYA CRUD YE CUNG.. CREATE READ UPDATE DELETE
 					'modul'=>'property_all',
 					'submodul'=>'',
-					'member_user'=>'99B009'
+					'member_user'=>'996E13'
 		);//DATA UNTUK PUT
 		$method='post';
 		$balikan="json";
@@ -695,12 +695,12 @@ class Services extends JINGGA_Controller {
 	function tes_get_data_property_service()
 	{
 		$this->load->library('lib');
-		//$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
-		$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
+		$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
+		//$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
 		$data=array('method' => 'read',//ISI METHOD NYA CRUD YE CUNG.. CREATE READ UPDATE DELETE
 					'modul'=>'property_service',
 					'submodul'=>'',
-					'member_user'=>'99B009'
+					'member_user'=>'996E13'
 		);//DATA UNTUK PUT
 		$method='post';
 		$balikan="json";
@@ -746,12 +746,12 @@ class Services extends JINGGA_Controller {
 	function tes_get_data_property_ready()
 	{
 		$this->load->library('lib');
-		//$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
-		$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
+		$url='http://localhost:81/public_codeigniter/margahayu_backend/index.php/jingga_api/jingga';//METHOD POST
+		//$url='http://localhost/homtel_server/index.php/jingga_api/jingga';//METHOD POST
 		$data=array('method' => 'read',//ISI METHOD NYA CRUD YE CUNG.. CREATE READ UPDATE DELETE
 					'modul'=>'property_ready',
 					'submodul'=>'',
-					'member_user'=>'99B009'
+					'member_user'=>'996E13'
 		);//DATA UNTUK PUT
 		$method='post';
 		$balikan="json";

@@ -23,9 +23,9 @@ class Mbackend extends CI_Model{
 			break;
 			case "property":
 				$data['method'] = 'read';
-				$data['modul'] = 'property';
+				$data['modul'] = 'property_all';
 				$data['submodul'] = '';
-				$data['tbl_member_user'] = $this->auth['member_user'];
+				$data['member_user'] = $this->auth['member_user'];
 			break;
 			case "property_detail":
 				$data['method'] = 'read';
@@ -63,10 +63,17 @@ class Mbackend extends CI_Model{
 				$data['submodul'] = '';
 				$data['type_services'] = $p1;
 			break;
+			case "servicepaket":
+				$data['method'] = 'read';
+				$data['modul'] = 'services';
+				$data['submodul'] = '';
+				$data['type_services'] = 2;
+			break;
 			case "servicepackageheader":
 				$data['method'] = 'read';
 				$data['modul'] = 'package';
 				$data['submodul'] = '';
+				$data['services_id'] = $p1;
 			break;
 			case "servicepackagedetail":
 				$data['method'] = 'read';
@@ -128,7 +135,7 @@ class Mbackend extends CI_Model{
 			
 			case "propertyonservice":
 				$data['method'] = 'read';
-				$data['modul'] = 'property_all';
+				$data['modul'] = 'property_service';
 				$data['submodul'] = '';
 				$data['member_user'] = $this->auth['member_user'];
 			break;
@@ -224,6 +231,13 @@ class Mbackend extends CI_Model{
 				}
 				
 				//echo "<pre>";print_r($arrayphotounit);exit;
+				$string = $post['apartnm'];
+				$expstr = explode(" ", $string);
+				$tag = "";
+				foreach($expstr as $k){
+					$stringnya = $k;
+					$tag .= $stringnya[0];
+				}
 				
 				$data['modul'] = 'property';
 				$data['submodul'] = '';
@@ -238,6 +252,7 @@ class Mbackend extends CI_Model{
 				$data['apartment_name'] = $post['apartnm'];
 				$data['apartment_developer'] = $post['apartdevnm'];
 				$data['apartment_address'] = $post['apartaddr'];
+				$data['tag'] = $tag;
 				$data['ipl'] = str_replace('.','',$post['untipl']);
 				$data['flag'] = 'P';
 				$data['cl_room_type_id'] = $arraycountroomtype;

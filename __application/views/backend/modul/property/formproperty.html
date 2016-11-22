@@ -13,8 +13,8 @@
 				<input type='hidden' name='ifdx' value="{$data.id|default:''}">
 				<div class="col-lg-6">
 					<div class="form-group">
-						<label>Unit Number</label>
-						<input style='width:300px !important;' class="form-control validasi" name='untmem' id='untmem' value="{$data.unit_number|default:''}" />
+						<label class="control-label">Unit Number<star>*</star></label>
+						<input style='width:300px !important;' class="form-control validasi" name='untmem' id='untmem' data-toggle="tooltip" title="Hooray!" value="{$data.unit_number|default:''}" />
 					</div>
 					<div class="form-group">
 						<label>Unit Size Nett (sqm/m<sup>2</sup>)</label>
@@ -181,7 +181,6 @@
 					<a class="btn btn-primary" id='sbmfrmpro' type="submit">Submit</a>
 					{if $editstatus eq 'edit'}
 						<a style='float:right;' id='delfrmpro' class="btn btn-danger">Delete</a>
-						<a style='float:right;margin-right:5px;' id='reqserv' class="btn btn-success">Request Service</a> 
 					{/if}
 					<br/>
 					<br/>
@@ -193,22 +192,7 @@
 
 <script>
 	var number_of_uploads;
-	/*
-	$(document).ready(function() {
-		function initMap() {
-			var uluru = { lat: -25.363, lng: 131.044 };
-			var map = new google.maps.Map(document.getElementById('mapcanvas'), {
-			  zoom: 4,
-			  center: uluru
-			});
-			var marker = new google.maps.Marker({
-			  position: uluru,
-			  map: map
-			});
-		}		
-		initMap();
-	});
-	*/
+	 $('[data-toggle="tooltip"]').tooltip();
 	
 	$("#uplfile").change(function() {
 		if(number_of_uploads > 3){
@@ -233,6 +217,17 @@
 		precision:0,
 		thousands:'.'
 	}); 	
+	
+	$('.validasi').tooltip({
+        position: 'right',
+        content: '<span style="color:#fff">This is the tooltip message.</span>',
+        onShow: function(){
+            $(this).tooltip('tip').css({
+                backgroundColor: '#666',
+                borderColor: '#666'
+            });
+        }
+    });
 	
 	$('#delfrmpro').on('click', function(){
 		bootbox.confirm({

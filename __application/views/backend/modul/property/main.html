@@ -16,7 +16,6 @@
 				<ul style='list-style:none;float:right;'>
 					<li class="">
 						<button class="btn" onclick="">Print</button> 
-						<button class="btn">Email</button>
 						<button class="btn" onClick="kumpulAction('form-property', 'add');">Create New Listing</button>
 					</li>
 				</ul>
@@ -41,6 +40,8 @@
 								</div>
 							</div>
                 		</label>
+						
+						<a href="#"><img src="{$host}__assets/app/ico/search.png" style="max-width: 15px"></a>
 						*}
               		</div>
             	</div>
@@ -52,7 +53,7 @@
 								<th>ID</th>
 								<th>Unit Name</th>
 								<th>Address</th>
-								<th>Picture</th>
+								<th>Services</th>
 								<th>Status</th>
 							</tr>
 	                    </thead>
@@ -61,16 +62,22 @@
 								{foreach from=$dataproperty.data item=rows}
 								<tr>
 									<td>
-										<a href="javascript:void(0);" onClick="kumpulAction('form-property', 'edit', '{$rows.id}');">HTL-{$rows.id}</a>
+										<a href="javascript:void(0);" onClick="kumpulAction('form-property', 'edit', '{$rows.id}');">{$rows.tag}-{$rows.unit_number}</a>
 									</td>
 									<td>{$rows.apartment_name}</td>
 									<td>{$rows.apartment_address}</td>
 									<td>
-										<a href="#"><img src="{$host}__assets/app/ico/search.png" style="max-width: 15px"></a>
+										{if $rows.status eq 'No Service'}
+											<span class="label label-success">{$rows.status}</span>
+										{else}
+											<span class="label label-info">{$rows.status}</span>
+										{/if}
 									</td>
 									<td>
 										{if $rows.flag eq 'F'}
 											<span class="label label-success">Ready</span>
+										{elseif $rows.flag eq 'V'}
+											<span class="label label-info">Verification Admin</span>
 										{elseif $rows.flag eq 'P'}
 											<span class="label label-danger">Process Confirm</span>
 										{/if}

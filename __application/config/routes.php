@@ -34,15 +34,16 @@ $route['property-edit/(:any)'] = 'backend/test/$1';
 $route['submit-property'] = 'backend/simpandata/property';
 $route['delete-property'] = 'backend/simpandata/property_delete';
 
-$route['request-services-form'] = 'backend/modul/property/request_services';
-$route['request-detail-services'] = 'backend/modul/property/detail_services';
-$route['request-summary-services'] = 'backend/modul/property/summary_services';
-$route['request-summary-package'] = 'backend/modul/property/summary_services_package';
-$route['submit-services'] = 'backend/modul/property/submit_services';
 $route['submit-services-package'] = 'backend/modul/property/submit_services_package';
 
 $route['servicemanager'] = 'backend/modul/service/main';
 $route['detaillayananaktif'] = 'backend/modul/service/detail';
+$route['request-services-form'] = 'backend/modul/service/request_services';
+$route['request-detail-services'] = 'backend/modul/service/detail_request_services';
+$route['request-summary-services'] = 'backend/modul/service/summary_services';
+$route['request-summary-package'] = 'backend/modul/service/summary_services_package';
+$route['submit-services'] = 'backend/modul/service/submit_services';
+$route['getunitsize'] = 'backend/modul/service/unitsizebro';
 
 $route['transaction-independent'] = 'backend/modul/transaction/independent';
 $route['transaction-independent-detail'] = 'backend/modul/transaction/independent_detail';

@@ -4,7 +4,7 @@
 			<div class="col-sm-6 col-md-6 button-PSC">
 				<ul style='list-style:none;margin-left:-45px;'>
 					<li class="">
-						<button class="btn" onClick="kumpulAction('form-property', 'add');">Create New Service</button>
+						<button class="btn" onClick="kumpulAction('servicerequest');">Create New Service</button>
 					</li>
 				</ul>
 			</div>
@@ -39,9 +39,9 @@
 								{foreach from=$dataproperty.data item=rows}
 								<tr>
 									<td>
-										<a href="javascript:void(0);" onClick="kumpulAction('detaillayanan', '{$rows.id}', '{$rows.apartment_name}');">SRV-{$rows.id}</a>
+										<a href="javascript:void(0);" onClick="kumpulAction('detaillayanan', '{$rows.id_transaction}', '{$rows.unit_name}');">SRV-{$rows.id_transaction}</a>
 									</td>
-									<td>{$rows.apartment_name|default:'-'}</td>
+									<td>{$rows.unit_name|default:'-'}</td>
 									<td>{$rows.services_name|default:'-'}</td>
 									<td>{$rows.start_date|default:'-'}</td>
 									<td>{$rows.end_date|default:'-'}</td>

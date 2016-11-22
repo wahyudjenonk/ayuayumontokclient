@@ -176,18 +176,6 @@ class Backend extends JINGGA_Controller {
 							$this->nsmarty->assign('stslt', $stslt);
 							$this->nsmarty->assign('summaryservices', $datasummaryservice['data']);							
 						break;
-						case "summary_services_package":
-							$temp = 'backend/modul/'.$p1.'/detailservices.html';
-							$id = $this->input->post('ipma');
-							$paketpilihan = $this->input->post('ipman');
-							
-							$detailpaket = $this->mbackend->getdata('servicepackagedetail', $paketpilihan);
-							
-							$this->nsmarty->assign('typeform', 'summary_package');
-							$this->nsmarty->assign('id', $id);
-							$this->nsmarty->assign('paketpilihan', $paketpilihan);
-							$this->nsmarty->assign('summaryservices', $detailpaket['data']);
-						break;
 						case "submit_services":
 							$temp = 'backend/modul/'.$p1.'/invoiceservice.html';
 							$post = array();
@@ -246,6 +234,137 @@ class Backend extends JINGGA_Controller {
 							
 							$this->nsmarty->assign('nmproperty', $nmproperty);
 						break;
+						case "request_services":
+							$temp = 'backend/modul/'.$p1.'/formrequestservice.html';
+							$dataservicepaket = $this->mbackend->getdata('servicepaket');
+							
+							$arrayservice = array();
+							$arrayservice[0]['idserv'] = "1";
+							$arrayservice[0]['serv'] = "Pre Hosting";
+							$arrayservice[0]['icon'] = "gbr_indie.png";
+							$arrayservice[0]['txt'] = "prepaid";
+							
+							foreach($dataservicepaket['data'] as $k => $v){
+								$arrayservice[$k]['idserv'] = $v['id'];
+								$arrayservice[$k]['serv'] = $v['services_name'];
+								$arrayservice[$k]['icon'] = "gbr_paket.png";
+								$arrayservice[$k]['txt'] = "package";
+							}
+														
+							$this->nsmarty->assign('services', $arrayservice);
+						break;
+						case "detail_request_services":
+							$temp = 'backend/modul/'.$p1.'/detailrequestservice.html';
+							$tpsr = $this->input->post('uuii');
+							
+							if($tpsr == 1){
+								$datadetailservice = $this->mbackend->getdata('detailservices', $tpsr);							
+								$this->nsmarty->assign('typeform', 'formdetailservices');
+								$this->nsmarty->assign('detailservices', $datadetailservice['data']);
+							}else{
+								$datapackageheader = $this->mbackend->getdata('servicepackageheader', $tpsr);	
+								$dataservice = array();
+								foreach($datapackageheader['data']['paket'] as $k => $v){
+									$dataservice[$k]['id'] = $v['id'];
+									$dataservice[$k]['tbl_services_id'] = $v['tbl_services_id'];
+									$dataservice[$k]['package_name'] = $v['package_name'];
+									$dataservice[$k]['package_desc'] = $v['package_desc'];
+									$dataservice[$k]['total_package'] = 0;//$v['total_package'];
+									$dataservice[$k]['detail'] = array();
+									$datapackagedetail = $this->mbackend->getdata('servicepackagedetail', $v['id']);
+									foreach($datapackagedetail['data']['detil'] as $j => $y){
+										$dataservice[$k]['detail'][$j]['id'] = $y['id'];
+										$dataservice[$k]['detail'][$j]['header'] = $y['header'];
+										$dataservice[$k]['detail'][$j]['header2'] = $y['header2'];
+										$dataservice[$k]['detail'][$j]['services_name'] = $y['services_name'];
+										$dataservice[$k]['detail'][$j]['tbl_package_header_id'] = $y['tbl_package_header_id'];
+										$dataservice[$k]['detail'][$j]['tbl_services_id'] = $y['tbl_services_id'];
+										$dataservice[$k]['detail'][$j]['qty'] = $y['qty'];
+										$dataservice[$k]['detail'][$j]['rate'] = $y['rate'];
+										$dataservice[$k]['detail'][$j]['of_unit'] = $y['of_unit'];
+										$dataservice[$k]['detail'][$j]['of_area_item'] = $y['of_area_item'];
+										$dataservice[$k]['detail'][$j]['percen'] = $y['percen'];
+									}
+								}
+								
+								$this->nsmarty->assign('typeform', 'formdetailservicespackage');
+								$this->nsmarty->assign('detailservices', $dataservice);
+							}
+							
+							$this->nsmarty->assign('typeservice', $tpsr);
+						break;
+						case "summary_services":
+							$temp = 'backend/modul/'.$p1.'/detailrequestservice.html';
+							$tpsr = $this->input->post('arrsrv');
+							$id = $this->input->post('ip');
+							$id = $this->input->post('ip');
+							$stslt = $this->input->post('stslt');
+							$arraylist = $this->input->post('arrlist');
+							$datasummaryservice = $this->mbackend->getdata('summaryservices', $tpsr);
+							
+							foreach($datasummaryservice['data'] as $k => $v){
+								$datasummaryservice['data'][$k]['flaglisting'] = '';
+								if($stslt == 'true'){
+									foreach($arraylist as $t){
+										if($v['id'] == $t){
+											$datasummaryservice['data'][$k]['flaglisting'] = 'true';
+										}
+									}
+								}
+							}
+							
+							$this->nsmarty->assign('typeform', 'summary');
+							$this->nsmarty->assign('id', $id);
+							$this->nsmarty->assign('stslt', $stslt);
+							$this->nsmarty->assign('summaryservices', $datasummaryservice['data']);							
+						break;
+						case "summary_services_package":
+							$temp = 'backend/modul/'.$p1.'/detailrequestservice.html';
+							$id = $this->input->post('ipma');
+							$paketpilihan = $this->input->post('ipman');
+							
+							$detailpaket = $this->mbackend->getdata('servicepackagedetail', $paketpilihan);
+							
+							$this->nsmarty->assign('typeform', 'summary_package');
+							$this->nsmarty->assign('id', $id);
+							$this->nsmarty->assign('paketpilihan', $paketpilihan);
+							$this->nsmarty->assign('summaryservices', $detailpaket['data']);
+						break;						
+						case "submit_services":
+							$temp = 'backend/modul/'.$p1.'/invoiceservice.html';
+							$post = array();
+							foreach($_POST as $k=>$v){
+								if($this->input->post($k)!=""){
+									$post[$k] = $this->input->post($k);
+								}else{
+									$post[$k] = null;
+								}
+							}
+							
+							//$this->lib->kirimemail('email_invoice', $this->auth['email_address'], $post, $countinput);
+							
+							if($post['tpservice'] == 'paidhost'){
+								$countinput = (count($post['prc']) - 1);
+								$insert = $this->mbackend->simpandata("submit_services", $post);
+								$this->nsmarty->assign('type', "services_independent");
+								$this->nsmarty->assign('jmlpost', $countinput);
+								$this->nsmarty->assign('post', $post);
+							}elseif($post['tpservice'] == 'package'){
+								$detailpaket = $this->mbackend->getdata('servicepackagedetail', $post['ipman']);
+								$insert = $this->mbackend->simpandata("submit_services_package", $post, $detailpaket['data']);
+								$this->nsmarty->assign('type', "services_package");
+								$this->nsmarty->assign('datapaket', $detailpaket['data']);
+							}
+							$this->nsmarty->display($temp);
+							exit;
+						break;
+						case "unitsizebro":
+							$id_property = $this->input->post('ipxca');
+							$dataproperty = $this->mbackend->getdata('property');
+							$searchproperty = $this->lib->searchForId($id_property, $dataproperty['data']);
+							echo $dataproperty['data'][$searchproperty]['unit_size_nett']; 
+							exit;
+						break;						
 					}
 				break;
 				
@@ -447,8 +566,19 @@ class Backend extends JINGGA_Controller {
 		//echo "<pre>";
 		//print_r($this->auth);exit;
 		
-		$str = "10/22/2016";
-		$srchDate = date_format(date_create_from_format(' m/d/Y', $str), 'Y-m-d');
-		echo $srchDate;
+		//$str = "10/22/2016";
+		//$srchDate = date_format(date_create_from_format(' m/d/Y', $str), 'Y-m-d');
+		//echo $srchDate;
+		
+		$string = "Apartment Kalibata City";
+		$expstr = explode(" ", $string);
+		
+		$word = "";
+		foreach($expstr as $k){
+			$stringnya = $k;
+			$word .= $stringnya[0];
+		}
+		
+		echo $word;
 	}
 }
