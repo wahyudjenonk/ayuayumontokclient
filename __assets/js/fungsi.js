@@ -9,7 +9,7 @@ var waitingmsg = "<br /><img src='"+host+"__assets/frontend/img/logo-homtel.png'
 
 $(function() {
 	if(typeof paa == "undefined"){
-		loadUrl(host+'dashboard', 'dashboard');
+		loadUrl(host+'dashboardapp', 'dashboard');
 	}
 });
 
@@ -472,6 +472,30 @@ function kumpulAction(type, p1, p2, p3, p4, p5){
 			});
 			return false;
 		break;
+		case "register-mobile":
+			validasi = $('#regsmobile').form('validate');
+			if(validasi){
+				$.blockUI({ message: '<h3>Processing Data...</h3>' });			
+			}
+			
+			submit_form('regsmobile',function(r){
+				$('#modalencuk').html('');
+				$.post(host+'message-submit', { 'stsn':r, 'tp':'registrasi-step1' }, function(pg){
+					$('#modalencuk').html(pg);
+				});
+				
+				$('#pesanModal').modal('show');
+				$.unblockUI();
+				
+				if(r == 1){
+					setTimeout(function () {
+						window.location.href = host; 
+					}, 4000);
+					$('#regsmobile')[0].reset();
+				}
+			});
+			return false;
+		break;		
 		case "register-2":
 			validasi = $('#regsbro2').form('validate');
 			if(validasi){
@@ -564,20 +588,6 @@ function kumpulAction(type, p1, p2, p3, p4, p5){
 			$('#tot').html(NumberFormat(uhuy));
 		break;
 		
-		case "trxdetail":
-			param['ipma'] = p1;
-			$.blockUI({ message: waitingmsg });
-			setTimeout(function(){			
-				$("#table-trx").hide();
-				$("#breadcrumb").hide();
-				$.post(host+'transaction-independent-detail', param, function(rsp){
-					var parsing = $.parseJSON(rsp);
-					$("#detail-trx").show();	
-					$("#detail-trx").html(parsing.page);
-				});
-				$.unblockUI();
-			}, 1000);			
-		break;
 		case "trxdetail-package":
 			param['ipma'] = p1;
 			$.blockUI({ message: waitingmsg });
@@ -711,7 +721,21 @@ function kumpulAction(type, p1, p2, p3, p4, p5){
 				$.unblockUI();
 			}, 1000);				
 		break;
-		
+		case "trxdetail":
+			param['ipma'] = p1;
+			$.blockUI({ message: waitingmsg });
+			setTimeout(function(){			
+				$("#table-trx").hide();
+				$("#breadcrumb").hide();
+				$.post(host+'transaction-independent-detail', param, function(rsp){
+					var parsing = $.parseJSON(rsp);
+					$("#detail-trx").show();	
+					$("#detail-trx").html(parsing.page);
+				});
+				$.unblockUI();
+			}, 1000);			
+		break;
+
 		*/
 		
 		// ModServ
@@ -753,6 +777,7 @@ function kumpulAction(type, p1, p2, p3, p4, p5){
 		case "detaillayanan":
 			param['ipma'] = p1;
 			param['lstma'] = p2;
+			param['flg'] = p3;
 			
 			$.blockUI({ message: waitingmsg });
 			setTimeout(function(){
@@ -903,6 +928,22 @@ function kumpulAction(type, p1, p2, p3, p4, p5){
 			kumpulAction('processalltotal');
 		break;
 		// End ModServ
+		
+		//Mod Billing 
+		case "trxdetail":
+			param['ipma'] = p1;
+			$.blockUI({ message: waitingmsg });
+			setTimeout(function(){			
+				$("#table-trx").html('');
+				$.post(host+'billing-detail', param, function(rsp){
+					var parsing = $.parseJSON(rsp);
+					$("#table-trx").html(parsing.page);
+				});
+				$.unblockUI();
+				$(".main-panel").perfectScrollbar('update');
+			}, 1000);			
+		break;
+		//EndMod Billing 
 	}
 }	
 
