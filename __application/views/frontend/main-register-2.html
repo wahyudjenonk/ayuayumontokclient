@@ -52,7 +52,7 @@
         <form id="regsbro2" method="post" url="{$host}submit-step2-register" enctype="multipart/form-data" >
 			<input type='hidden' name='step' value='step-2-registration' />
 			<input type='hidden' name="formnu" value='{$formnumber}' />
-			<input type='hidden' name="brtdate" value='{$datebirth}' />
+			{* <input type='hidden' name="brtdate" value='{$datebirth}' /> *}
 			<input type='hidden' name="regdate" value='{$registrationdate}' />
 			<input type='hidden' name="frstnm" readonly value='{$firstname}' />
 			<input type='hidden' name="lstnm" readonly value='{$lastname}'/>
@@ -94,18 +94,20 @@
                                         <input type="text" name="lstnm" readonly="" value="{$lastname}">
                                     </label>
                                 </div>          
+                                {*
                                 <div class="form-row">
                                     <label>
                                         <span>Date Of Birth</span>
                                         <input type="text" name="brtdate" readonly="" value="{$datebirth2}">
                                     </label>
                                 </div>
+                                *}
                             </div>
                             <div class="col-xs-12 col-sm-6 col-md-6 ">
                                 <div class="form-row">
                                     <label>
                                         <span>Email Address</span>
-                                        <input type="text" name="emadd" readonly="" value="{$emailaddr}">
+                                        <input style="width:200px;" type="text" name="emadd" readonly="" value="{$emailaddr}">
                                     </label>
                                 </div>          
                                 <div class="form-row">
@@ -155,6 +157,20 @@
                     <div class="form-row">
                         <label style="width: 90%">
                             <input style="width: 90%; height: 34px;" type="text" name="plcbirth" class="validasi " title="" placeholder="Place Of Birth">
+                        </label>
+                    </div>
+                    <div class="form-row">
+                        <label style="width: 90%">
+                            <span>Date Of Birth</span><br/>
+                            <select name="tgl" style='width:60px !important;float:left;margin-right:3px;height: 34px;' class='validasi'>
+                                {$tgl_lahir}
+                            </select> &nbsp;&nbsp;
+                            <select name="bln" style='width:80px !important;float:left;margin-right:3px;height: 34px;' class='validasi'>
+                                {$bln_lahir}
+                            </select> &nbsp;&nbsp;
+                            <select name="thn" style='width:80px !important;float:left;height: 34px;' class='validasi'>
+                                {$thn_lahir}
+                            </select>
                         </label>
                     </div>
                     <div class="form-row">

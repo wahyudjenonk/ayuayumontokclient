@@ -2,7 +2,7 @@
 <html class="no-js" lang="en">
   <head>
     <meta charset="utf-8">
-    <title>HOMTEL</title>
+    <title>HOMTEL : Home Is Everywhere</title>
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="">
@@ -26,32 +26,28 @@
     <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-            <h3>REGISTRASI FORM</h3>
+            <h3>SIGN UP HERE</h3>
+            <form id='regsmobile' method="post" url="{$host}submit-step1-register" enctype="multipart/form-data">
+                <input type='hidden' name='step' value='step-1-registration' />            
                 <ul>
-                    <li>
-                        <label for="inputName1">First Name</label>
-                        <input type="text" class="form-control" id="inputName1" />
+                    <li>                                    
+                        <input  style='width:300px !important;' type="text" class="form-control validasi" name="frstnm" id='frstnm' placeholder="First Name">
+                    </li>
+                    <li>            
+                        <input  style='width:300px !important;' type="text" class="form-control validasi" name="lstnm" id='latnm' placeholder="Last Name">
                     </li>
                     <li>
-                        <label for="inputName2">Last Name</label>
-                        <input type="text" class="form-control" id="inputName2" />
+                        <input style='width:300px !important;' type="text" name="emadd" class="form-control validasi emailbro" placeholder="Email">
                     </li>
                     <li>
-                        <label for="inputDateBirth">Date of Birth</label>
-                        <input type="date" class="form-control" id="inputDateBirth" />
+                        <input style='width:300px !important;' type="text" class="form-control validasi numberbro" name="phmob" placeholder="Handphone">
                     </li>
                     <li>
-                        <label for="inputEmail">Email address</label>
-                        <input type="email" class="form-control" id="inputEmail" />
+                        {* $html_captcha *}</p>
                     </li>
-                    <li>
-                        <label for="inputPhone">Phone/Mobile Number</label>
-                        <input type="text" class="form-control" id="inputPhone" />
-                    </li>
-                    <li class="bt">
-						<button class="btn btn-primary">REGISTER ACCOUNT</button>
-					</li>
                 </ul>
+            </form>
+            <button style='width:300px !important;' class="btn btn-primary" onClick="kumpulAction('register-mobile');">Daftar Disini !</button>
             </div>
         </div>
     </div>
@@ -91,70 +87,68 @@
             </div>
             <div class="col-xs-12 col-md-12 hidden-xs hidden-sm">
                 <ul class="menu-nav">
-                    <li><a href="http://homtel.id/">HOME</a></li>
-                    <li><a href="#">SERVICE</a></li>
-                    <li><a href="#">WORK</a></li>
-                    <li><a href="#">BLOG</a></li>
-                    <li><a href="#">CONTACT US</a></li>
+                    <li><a href="http://www.homtel.id/">Beranda</a></li>
+                    <li><a href="#">Layanan</a></li>
+                    <li><a href="#">Cara Kerja</a></li>
+                    <li><a href="#">Kontak</a></li>
                     <li><a href="{$host}login">LOGIN</a></li>
                 </ul>
-                <div class="motto-homtel"><h2>REGISTER NEW MEMBER</h2></div>
+                <!--div class="motto-homtel"><h2>Daftar disini!</h2></div-->
             </div>
             <div class="col-xs-12 col-md-6 circle-text">
                 <div class="circle-content">
                     <img src="{$host}__assets/frontend/img/logo-homtel.png">
-                    <p> <b>ALREADY HAVE AN ACCOUNT ?</b> <a href="#" class="link-login"><span>LOGIN HERE</span></a></p>
-                    <p class="visible-sm visible-md visible-lg ">For more performance up your appartment</p>
+                    <p> <b>SUDAH PUNYA AKUN ?</b> <a href="#" class="link-login"><span>LOGIN HERE</span></a></p>
+                    <p class="visible-sm visible-md visible-lg ">Mari monitor nilai investasi Anda</p>
                     <div class="col-xs-12 col-md-6 visible-sm reg-pop" style="text-align: center;">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">REGISTRASI ACCOUNT</button>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Daftar disini!</button>
                     </div>
                 </div>
             </div> 
             <div class="col-xs-12 col-md-6 visible-xs popup">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">REGISTRASI ACCOUNT</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Daftar disini!</button>
             </div>
             <div class="col-xs-12 col-md-6 visible-md visible-lg registrasi-wrap"> 
-                <div class="menu-reg" style='opacity:0.8;background:#F0F0F0 !important; margin-left:-40px;'>
+                <div class="menu-reg" style='opacity:0.8;background:#FFF !important; margin-left:-10px; width:340px !important; '>
                     <div class="visible-md visible-lg box-registrasi-homtel">
                         <form id='regsbro' method="post" url="{$host}submit-step1-register" enctype="multipart/form-data">
 							<input type='hidden' name='step' value='step-1-registration' />
 							<ul>
 								<li>
-									<label for="inputName1">First Name</label>
-									<input type="text" class="form-control validasi" name="frstnm" id='frstnm'>
+									
+									<input  style='width:300px !important;' type="text" class="form-control validasi" name="frstnm" id='frstnm' placeholder="First Name">
+
 								</li>
 								<li>
-									<label for="inputName2">Last Name</label>
-									<input type="text" class="form-control validasi" name="lstnm">
-									</li>
-								<li>
+									<input  style='width:300px !important;' type="text" class="form-control validasi" name="lstnm" id='latnm' placeholder="Last Name">
+								</li>
+								{*
+                                <li>
 									<label for="inputDateBirth">Date of Birth</label>
-									<br/>
-									<select name="tgl" style='width:85px !important;float:left;margin-right:5px;' class='form-control validasi'>
+									<br>
+									<select name="tgl" style='width:80px !important;float:left;margin-right:5px;' class='form-control validasi'>
 										{$tgl_lahir}
 									</select> &nbsp;&nbsp;
 									<select name="bln" style='width:95px !important;float:left;margin-right:5px;' class='form-control validasi'>
 										{$bln_lahir}
 									</select> &nbsp;&nbsp;
-									<select name="thn" style='width:100px !important;float:left;margin-right:5px;' class='form-control validasi'>
+									<select name="thn" style='width:80px !important;float:left;margin-right:5px;' class='form-control validasi'>
 										{$thn_lahir}
 									</select>
 								</li>
+                                *}
 								<li>
-									<label for="inputEmail">Email address</label>
-									<input type="text" name="emadd" class="form-control validasi emailbro">
+									<input style='width:300px !important;' type="text" name="emadd" class="form-control validasi emailbro" placeholder="Email">
 								</li>
 								<li>
-									<label for="inputPhone">Phone/Mobile Number</label>
-									<input type="text" class="form-control validasi numberbro" name="phmob">
+									<input style='width:300px !important;' type="text" class="form-control validasi numberbro" name="phmob" placeholder="Handphone">
 								</li>
 								<li>
-									<label for="inputPhone">Captcha</label>
 									{$html_captcha}
 								</li>
 							</ul>
 						</form>
-						<button class="btn btn-primary" onClick="kumpulAction('register-1');">REGISTER ACCOUNT</button>
+						<button style='width:300px !important;' class="btn btn-primary" onClick="kumpulAction('register-1');">Daftar Disini !</button>
                     </div>
                 </div>
             </div>
@@ -164,72 +158,119 @@
 
     <section class="col-xs-12 col-md-12 body-wrap" style="padding: 0;">
         <nav class="col-xs-12 col-md-12 about-homtel">
-            <h1>WELCOME</h1>
-            <h4>We provide an opportunity to help your investments started</h4>
+            <h1>Maksimalkan nilai investasi unit apartment Anda!</h1>
+           
             <div class="col-xs-12 col-md-12 text-about-homtel"> 
                 <p style='text-align:justify !important;'>
-					Homtel is the answer for investment apartments there. If you have a vacant apartment unit or even do not have time to manage these units, Homtel will help you. Homtel not only find people to stay in your unit, but also filter it first.
-				</p>
+	        Kami memastikan nilai investasi Anda terjaga dan terus naik</p>
                 <p style='text-align:justify !important;'>
-					You do not have to worry about all the bills like electricity, water and service fees, which are sweeping or mopping the floor of the unit, to clean the bathroom. We can clean your unit even if it has been vacant for a period of time, provide linen service laundy even rent it, welcoming guests to come, and even set the entire list of standards in OTA. So, what should I do ?
-                </p> 
+	        Homtel menawarkan system pelayanan terpadu kepada para pemilik unit di seluruh Indonesia untuk mengamankan dan memastikan kenaikan nilai investasi apartemen.</p>
+                <p style='text-align:justify !important;'>
+	        Homtel akan menjadi kepanjangan tangan pemilik unit apartemen agar dapat mengelola unit apartemen dengan transparan dan profesional; dan juga mencarikan pendapatan tambahan dari potensi penyewaan agar dapat membantu meringankan biaya bulanan. Bagaimana caranya? 
+                </p>
+               <p style='text-align:justify !important;'>
+	        Bagaimana caranya? 
+                </p>
             </div>
+
+<h1>3 Langkah bergabung di Homtel</h1>
+
             <div class="col-xs-12 col-md-12 bg-about">
+           
                 <div class="white-wrapper container">
+
                     <div class="itm about1">
                         <img src="{$host}__assets/frontend/ico/ico1.png" width='150px' height='110px'>
-                        <p>Make Us Partner</p>
-                    </div>
-                    <div class="itm about2">
-                        <img src="{$host}__assets/frontend/ico/ico2.png" width='130px' height='110px'>
-                        <p>Make Contract</p>
-                    </div>
-                    <div class="itm about3">
-                        <img src="{$host}__assets/frontend/ico/ico3.png" width='130px' height='110px'>
-                        <p>Investment</p>
+                        <p>1. Daftarkan Unit Anda ke Homtel</p>
                     </div>
                     <div class="itm about4">
                         <img src="{$host}__assets/frontend/ico/ico4.png" width='130px' height='110px'>
-                        <p>Get Profit</p>
+                        <p>2. Dapatkan Benefit Bulanan dari Homtel</p>
                     </div>
+                    <div class="itm about3">
+                        <img src="{$host}__assets/frontend/ico/ico3.png" width='130px' height='110px'>
+                        <p>3. Sebarkan Hasil Keuntungan Homtel kpd Relasi Anda</p>
+                    </div>
+                    <!--div class="itm about2">
+                        <img src="{$host}__assets/frontend/ico/ico2.png" width='130px' height='110px'>
+                        <p>Kontrak</p>
+                    </div-->
+                    
                 </div>
             </div>
         </nav>
 
         <div class=" col-xs-12 col-md-12 servis-wrap">
-            <h1>WHAT WE DO</h1>
-            <h4>You will be greatly benefit with our facilities provide</h4>
+            <h1>Layanan Kami</h1>
+            <h4>Benefit yang Anda dapatkan</h4>
             <div class="container servis">
-                <div class="itm servis1">
+                <div class="itm servis">
                     <img src="{$host}__assets/frontend/ico/ico9.png" width='180px' height='180px'>
-                    <p>HOUSEKEEPING SERVICE</p>
+                    <p>Housekeeping</p>
                 </div>
                 <div class="itm servis1">
                     <img src="{$host}__assets/frontend/ico/ico8.png" width='180px' height='180px'>
-                    <p>LAUNDRY LINEN SERVICE</p>
+                    <p>Linen</p>
                 </div>
-                <div class="itm servis1">
+                 <div class="itm servis1">
                     <img src="{$host}__assets/frontend/ico/ico7.png" width='180px' height='180px'>
-                    <p>FREE HOSTING SERVICE</p>
+                    <p>Check In &amp; Out</p>
                 </div>
                 <div class="itm servis1">
                     <img src="{$host}__assets/frontend/ico/ico6.png" width='180px' height='180px'>
-                    <p>CHECK-IN/OUT SERVICE</p>
+                    <p>Hosting</p>
                 </div>
                 <div class="itm servis1">
                     <img src="{$host}__assets/frontend/ico/ico5.png" width='180px' height='180px'>
-                    <p>SERVICE CHARGE - ENERGY - SINKING FUND</p>
+                    <p>IPL &amp; Energy</p>
                 </div>
             </div>
         </div>
 
-       <!--  <div class=" col-xs-12 col-md-12 testi-wrap">
+       <!--  <div class=" col-xs-12 col-md-12 servis-wrap">
             <img src="{$host}__assets/frontend/img/header-testi-homtel.jpg" class="img-responsive">
         </div> -->
 
-        <div class="col-xs-12 col-md-12 blog-wrap">
-            <h1>BLOG</h1>
-            <div class=" blog">
+        <div class="col-xs-12 col-md-12 blog-wrap" id="mitra">
+            <h1>Mitra Kerja</h1>
+
+
+
+<div class="container servis">
+<ul style="text-align:center;">                
+<li style="display:inline-block;">
+                    <img src="{$host}__assets/frontend/logo/mrd.jpg" width='180px' height='180px'>
+                </li>
+                <li  style="display:inline-block;">
+                    <img src="{$host}__assets/frontend/logo/adhi.jpg" width='180px' height='180px'>
+                </li>
+</ul>
+<ul style="text-align:center;">                
+                 <li  style="display:inline-block;">
+                    <img src="{$host}__assets/frontend/logo/suite.jpg" width='180px' height='180px'>
+                </li>
+                 <li  style="display:inline-block;">
+                    <img src="{$host}__assets/frontend/logo/19avenue.jpg" width='180px' height='180px'>
+                </li>
+                <li  style="display:inline-block;">
+                    <img src="{$host}__assets/frontend/logo/newton.jpg" width='180px' height='180px'>
+                </li>
+                <li  style="display:inline-block;">
+                    <img src="{$host}__assets/frontend/logo/metro.jpg" width='180px' height='180px'>
+                </li>
+                <li  style="display:inline-block;">
+                    <img src="{$host}__assets/frontend/logo/gdc.jpg" width='180px' height='180px'>
+                </li>
+</ul>
+
+
+            </div>
+
+
+
+
+            <!--div class=" blog">
+
                 <div class="col-xs-12 col-md-3 blog-homtel">
                     <div class="thumbnails">
                         <div class="image-thumbnail" style="background-image: url('{$host}__assets/frontend/img/blog-homtel.jpg');">
@@ -264,7 +305,7 @@
                         </div>
                     </div>
                 </div> 
-            </div>
+            </div-->
         </div>
     </section>
 
@@ -275,35 +316,39 @@
                 <img src="{$host}__assets/frontend/img/logo2-homtel.png">
                 <p class="info">info@homtel.id</p>
                 <p>+6221.57948837</p>
-                <p class="copyright">C. 2016 All Right Reserved. PT. Homtel Idonesia Terpadu </p>
+
+                <p> Jl. dr. Ide Anak Agung Gde Agung<br>
+                    Kawasan Mega Kuningan, Menara Anugrah<br>
+                    Kantor Taman E3.3 / A3<br>
+                    Lot 8.6 - 8.7 Setiabudi<br>
+                    Jakarta Selatan</p>
+                <!--p class="copyright">C. 2016 All Right Reserved. PT. Homtel Idonesia Terpadu </p-->
             </div>
             <div class="alamat-homtel">
                 <div class="col-xs-12 col-md-6 left-homtel">
-                    <h4>JAKARTA OFFICE :</h4>
+                    <h4>Tangerang Front Office :</h4>
+                   <p>Kantor Pemasaran
+                    19Avenue Apartment
+                    Jl. Daan Mogot Km.19 
+                    Tangerang</p>
+                 </div>
 
-                    <p>Jl. dr. Ide Anak Agung Gde Agung
-                    Kawasan Mega Kuningan, Menara Anugrah
-                    Kantor Taman E3.3 / A3
-                    Lot 8.6 - 8.7 Setiabudi
-                    Jakarta Selatan, 12950</p>
-                </div>
                 <div class="col-xs-12 col-md-6 right-homtel">
-                    <h4>BANDUNG OFFICE :</h4>
-
-                    <p>MRD Building Business Park
-                    Kawasan The Suites @ Metro
+                    <h4>Bandung Front Office :</h4>
+                    <p>Tower A Lantai GF Blok C
+                    The Suites @ Metro Apartment
                     Jl. Soekarno Hatta no. 693
-                    Bandung 40292</p>
+                    Bandung</p>
                 </div>
             </div>
         </div>
         <div class="col-xs-12 col-md-12 menu-social">
                 <ul class="col-xs-12 col-md-8 menu">
-                    <li><a href="#">CAREER</a></li>
-                    <li><a href="#">PRIVACY POLICY</a></li>
-                    <li><a href="#">TERM OF SERVICE</a></li>
-                    <li><a href="#">PARTNERS</a></li>
-                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Karir</a></li>
+                    <li><a href="#">Mitra Kerja</a></li>
+                    <li><a href="#">Kebijakan Perusahaan</a></li>
+                    <li><a href="#">Syarat &amp; Ketentuan</a></li>
+                    <li><a href="#">F&amp;Q</a></li>
                 </ul>
                 <ul class="col-xs-12 col-md-4 social">
                     <li><a href="#"><img src="{$host}__assets/frontend/img/ico-facebook-homtel.png"></a></li>
@@ -340,7 +385,7 @@
         e=o.createElement(i);r=o.getElementsByTagName(i)[0];
         e.src='//www.google-analytics.com/analytics.js';
         r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-        ga('create','UA-XXXXX-X');ga('send','pageview');
+        ga('create','UA-82202846-2');ga('send','pageview');
     </script>
 	{/literal}
   </body>

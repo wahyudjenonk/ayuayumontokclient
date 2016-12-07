@@ -6,7 +6,7 @@
 		<div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" onClick="$('.main-panel').perfectScrollbar('update');" href="#collapse{$detsrv.code}">
+                    <a data-toggle="collapse" data-parent="#accordion" class="akordionbro" href="#collapse{$detsrv.code}">
 						{$detsrv.services_name}
 					</a>
                 </h4>
@@ -83,7 +83,14 @@
 	
 </div>
 <div id='summaryservices'></div>
-
+<script>
+	$('.akordionbro').on('click', function(){
+		 setTimeout(function() {
+			$('.main-panel').perfectScrollbar('update');
+			//alert('test');
+		}, 1000);
+	});
+</script>
 {elseif $typeform eq 'summary'}
 	<input type='hidden' name='tpservice' value="paidhost"/>
 	<input type='hidden' name='stsl' value="{$stslt}"/>

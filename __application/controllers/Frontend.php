@@ -10,6 +10,7 @@ class Frontend extends JINGGA_Controller {
 	function index(){				
 		$this->load->library('Recaptcha');		
 		$this->nsmarty->assign('html_captcha', $this->recaptcha->render());
+		//$this->nsmarty->assign('html_captcha2', $this->recaptcha->render());
 		$this->nsmarty->assign('tgl_lahir', $this->lib->fillcombo('tgl_register', 'return') );
 		$this->nsmarty->assign('bln_lahir', $this->lib->fillcombo('bln_register', 'return') );
 		$this->nsmarty->assign('thn_lahir', $this->lib->fillcombo('thn_register', 'return') );
@@ -31,11 +32,13 @@ class Frontend extends JINGGA_Controller {
 		$lastname 	= $decoding[1];
 		$emailaddr 	= $decoding[3];
 		$phone 		= $decoding[4];
+		/*
 		$datebirth 	= $decoding[2];
-		
-		$encoding_email = $this->lib->base64url_encode($emailaddr);
 		$date = explode('-', $datebirth);
 		$datebirth2 = $date[2].'-'.$date[1].'-'.$date[0];
+		*/
+
+		$encoding_email = $this->lib->base64url_encode($emailaddr);
 		
 		$this->nsmarty->assign("ownsts", $this->lib->fillcombo('owner_status', 'return') );
 		$this->nsmarty->assign("title", $this->lib->fillcombo('owner_title', 'return') );
@@ -45,8 +48,8 @@ class Frontend extends JINGGA_Controller {
 		$this->nsmarty->assign("registration_date2", $registration_date2);
 		$this->nsmarty->assign("firstname", $firstname);
 		$this->nsmarty->assign("lastname", $lastname);
-		$this->nsmarty->assign("datebirth", $datebirth);
-		$this->nsmarty->assign("datebirth2", $datebirth2);
+		//$this->nsmarty->assign("datebirth", $datebirth);
+		//$this->nsmarty->assign("datebirth2", $datebirth2);
 		$this->nsmarty->assign("emailaddr", $emailaddr);
 		$this->nsmarty->assign("encoding_email", $encoding_email);
 		$this->nsmarty->assign("phone", $phone);

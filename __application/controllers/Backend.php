@@ -235,8 +235,16 @@ class Backend extends JINGGA_Controller {
 						case "detail":
 							$idsrv = $this->input->post('ipma');
 							$nmproperty = $this->input->post('lstma');
+							$flagservice = $this->input->post('flg');
 							
 							$this->nsmarty->assign('nmproperty', $nmproperty);
+							if($flagservice == "INDEPENDENT"){
+								$temp = 'backend/modul/'.$p1.'/detail-independent.html';
+								$dataplanning = $this->mbackend->getdata('planningindependent', $idsrv);
+								$this->nsmarty->assign('dataplanning', $dataplanning['data']);
+							}elseif($flagservice == "PAKET"){
+								$temp = 'backend/modul/'.$p1.'/detail-paket.html';
+							}
 						break;
 						case "request_services":
 							$temp = 'backend/modul/'.$p1.'/formrequestservice.html';
@@ -371,6 +379,20 @@ class Backend extends JINGGA_Controller {
 							echo $dataproperty['data'][$searchproperty]['unit_size_nett']; 
 							exit;
 						break;						
+					}
+				break;
+				
+				case "billing":
+					switch($p2){
+						case "independent":
+							$datatransaction = $this->mbackend->getdata('trxindependent');
+							$this->nsmarty->assign('datatransaction', $datatransaction);
+						break;
+						case "independent_detail":
+							$idtrx = $this->input->post('ipma');
+							$datatrxdetail = $this->mbackend->getdata('trxindependentdetail', $idtrx);
+							$this->nsmarty->assign('datatrxdetail', $datatrxdetail);
+						break;
 					}
 				break;
 				
@@ -569,13 +591,13 @@ class Backend extends JINGGA_Controller {
 	}	
 	
 	function test(){
-		//echo "<pre>";
-		//print_r($this->auth);exit;
+		echo "<pre>";
+		print_r($this->auth);exit;
 		
 		//$str = "10/22/2016";
 		//$srchDate = date_format(date_create_from_format(' m/d/Y', $str), 'Y-m-d');
 		//echo $srchDate;
-		
+		/*
 		$string = "Apartment Kalibata City";
 		$expstr = explode(" ", $string);
 		
@@ -586,5 +608,6 @@ class Backend extends JINGGA_Controller {
 		}
 		
 		echo $word;
+		*/
 	}
 }

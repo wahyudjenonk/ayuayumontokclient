@@ -115,10 +115,10 @@ class lib {
 			case "email_register_step1":				
 				$firstname = trim($p1['frstnm']);
 				$lastname = trim($p1['lstnm']);
-				$datebirth = $p1['thn']."-".$p1['bln']."-".$p1['tgl'];
+				//$datebirth = $p1['thn']."-".$p1['bln']."-".$p1['tgl'];
 				$emails = trim($p1['emadd']);
 				$phone = trim($p1['phmob']);
-				$encoding_word = $firstname."|".$lastname."|".$datebirth."|".$emails."|".$phone;
+				$encoding_word = $firstname."|".$lastname."|".$emails."|".$phone;
 				$encoding = $this->base64url_encode($encoding_word);
 				$link = $p2."register-step2/".$encoding;
 				

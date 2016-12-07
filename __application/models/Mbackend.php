@@ -160,6 +160,14 @@ class Mbackend extends CI_Model{
 				$data['submodul'] = '';
 				$data['member_user'] = $this->auth['member_user'];
 			break;
+			
+			case "planningindependent":
+				$data['method'] = 'read';
+				$data['modul'] = 'planning_independent';
+				$data['submodul'] = '';
+				$data['id_transaction'] = $p1;
+			break;
+			
 		}
 		
 		$res = $this->lib->jingga_curl($url,$data,$method,$balikan);

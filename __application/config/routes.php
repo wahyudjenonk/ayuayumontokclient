@@ -5,9 +5,9 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 // Routing Core
-$route['property'] = 'backend';
-$route['property-in'] = 'login';
-$route['property-out'] = 'login/logout';
+$route['dashboard'] = 'backend';
+$route['dashboard-in'] = 'login';
+$route['dashboard-out'] = 'login/logout';
 $route['backoffice-grid/(:any)'] = 'backend/get_grid/$1';
 $route['backoffice-form/(:any)'] = 'backend/get_form/$1';
 
@@ -26,15 +26,13 @@ $route['submit-forgot'] = 'login/submitforgotpass';
 
 $route['message-submit'] = 'login/messagesubmit';
 
-$route['dashboard'] = 'backend/modul/dashboard/main';
+$route['dashboardapp'] = 'backend/modul/dashboard/main';
 
 $route['propertymanager'] = 'backend/modul/property/main';
 $route['propertymanager-form'] = 'backend/modul/property/form';
 $route['property-edit/(:any)'] = 'backend/test/$1';
 $route['submit-property'] = 'backend/simpandata/property';
 $route['delete-property'] = 'backend/simpandata/property_delete';
-
-$route['submit-services-package'] = 'backend/modul/property/submit_services_package';
 
 $route['servicemanager'] = 'backend/modul/service/main';
 $route['detaillayananaktif'] = 'backend/modul/service/detail';
@@ -45,16 +43,19 @@ $route['request-summary-package'] = 'backend/modul/service/summary_services_pack
 $route['submit-services'] = 'backend/modul/service/submit_services';
 $route['getunitsize'] = 'backend/modul/service/unitsizebro';
 
-$route['transaction-independent'] = 'backend/modul/transaction/independent';
-$route['transaction-independent-detail'] = 'backend/modul/transaction/independent_detail';
-$route['transaction-package'] = 'backend/modul/transaction/package';
-$route['transaction-package-detail'] = 'backend/modul/transaction/package_detail';
+$route['billing'] = 'backend/modul/billing/independent';
+$route['billing-detail'] = 'backend/modul/billing/independent_detail';
 $route['submit-confirmation'] = 'backend/simpandata/submit_confirmation';
 
 $route['user-profile'] = 'backend/modul/user/profile_setting';
 $route['submit-update-profile'] = 'backend/simpandata/submit_update_profile';
 $route['change-password'] = 'backend/modul/user/change_password';
 $route['submit-change-password'] = 'backend/simpandata/submit_change_password';
+
+$route['submit-services-package'] = 'backend/modul/property/submit_services_package';
+
+$route['transaction-package'] = 'backend/modul/transaction/package';
+$route['transaction-package-detail'] = 'backend/modul/transaction/package_detail';
 
 $route['listingmanagement'] = 'backend/modul/listingmanagement/main';
 $route['reservation-detail'] = 'backend/modul/listingmanagement/reservationdetail';

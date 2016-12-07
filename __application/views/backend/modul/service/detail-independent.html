@@ -1,0 +1,83 @@
+<h4 class="title">{$nmproperty}</h4>
+<div class="card">
+	<div class="content">
+	    <div class="row">
+	        <div class="col-sm-12">
+				
+				<div class="nav-tabs-navigation">
+				    <div class="nav-tabs-wrapper">
+				        <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+				            <li class="active"><a href="#overview" data-toggle="tab" aria-expanded="true">Data Overview Pre Hosting Service</a></li>
+				        </ul>
+				    </div>
+				</div>
+				<div id="my-tab-content" class="tab-content">
+				    <div class="tab-pane active" id="overview">
+				        <div class="panel-group" id="accordion">
+							{foreach from=$dataplanning item=rows}
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<h4 class="panel-title">
+											<a data-toggle="collapse" class='akordionbro' data-parent="#accordion" href="#collapse{$rows.id}">
+												{$rows.nama_service}
+											</a>
+										</h4>
+									</div>
+									<div id="collapse{$rows.id}" class="panel-collapse collapse">
+										<div class="panel-body">
+											<table class="table table-bordered">
+												<tbody>
+													<tr>
+														<td>Total Qty</td>
+														<td>{$rows.qty}</td>
+													</tr>
+													<tr>
+														<td>Residual</td>
+														<td>{$rows.sisa}</td>
+													</tr>
+												</tbody>
+											</table>
+											{if !empty($rows.detail_log) }
+												<h4>Log Execution</h4>
+												<table class="table table-bordered">
+													<thead>
+														<tr style='background:#F9F9F9;'>
+															<td width='5%' style="text-align:center;font-weight:bold;">No</td>
+															<td width='30%' style="text-align:center;font-weight:bold;">Planned Date</td>
+															<td width='10%' style="text-align:center;font-weight:bold;">Finish Date</td>
+															<td width='10%' style="text-align:center;font-weight:bold;">Status</td>
+														</tr>
+													</thead>
+													<tbody>
+														{assign var=no_nyya value=0}
+														{foreach from=$rows.detail_log item=riws}
+															<tr>
+																<td>{assign var=no_nyya value=$no_nyya+1}{$no_nyya}.</td>
+																<td>{$riws.planned_date|date_format:"%d %b %Y"}</td>
+																<td>{$riws.finish_date|date_format:"%d %b %Y"|default:'-'}</td>
+																<td>{$riws.flag|default:'-'}</td>
+															</tr>
+														{/foreach}
+													</tbody>
+												</table>
+											{/if}
+										</div>
+									</div>
+								</div>
+							{/foreach}
+						</div>
+				    </div>
+				</div>													
+				
+			</div>
+	    </div>
+    </div>
+</div>
+
+<script>
+	$('.akordionbro').on('click', function(){
+		 setTimeout(function() {
+			$('.main-panel').perfectScrollbar('update');
+		}, 1000);
+	});
+</script>

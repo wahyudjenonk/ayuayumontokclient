@@ -24,7 +24,7 @@
             	</div>
 				
             	<div class="box-body table-responsive no-padding">
-              		<table id='listingtables' class="table table-hover">
+              		<table id='servicetable' class="table table-hover">
 	                    <thead>
 							<tr>
 								<th>ID</th>
@@ -39,7 +39,7 @@
 								{foreach from=$dataproperty.data item=rows}
 								<tr>
 									<td>
-										<a href="javascript:void(0);" onClick="kumpulAction('detaillayanan', '{$rows.id_transaction}', '{$rows.unit_name}');">SRV-{$rows.id_transaction}</a>
+										<a href="javascript:void(0);" onClick="kumpulAction('detaillayanan', '{$rows.id_transaction}', '{$rows.unit_name}', '{$rows.flag_trans}');">{$rows.no_invoice}</a>
 									</td>
 									<td>{$rows.unit_name|default:'-'}</td>
 									<td>{$rows.services_name|default:'-'}</td>
@@ -57,12 +57,12 @@
 
 
 <script>
-	$(document).ready(function() {
-		$('#listingtables').DataTable({
+	//$(document).ready(function() {
+		$('#servicetable').DataTable({
 			"fnHeaderCallback": function(){
-                $('#listingtables_length').hide();
+                $('#servicetable_length').hide();
             }
 		});
-	} );
+	// /} );
 </script>
 	            
