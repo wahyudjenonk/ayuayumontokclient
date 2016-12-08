@@ -1106,7 +1106,7 @@ function gen_editor(id){
 }
 
 
-function gen_kalender(id_div,height,data_kalender){
+function gen_kalender(id_div,height,modulbro,data_kalender){
 	$('#'+id_div).fullCalendar({
 		height: height,
         header: {
@@ -1123,6 +1123,11 @@ function gen_kalender(id_div,height,data_kalender){
 		events: data_kalender,
 		eventClick: function(calEvent, jsEvent, view) {
 			kumpulAction('scheduledetail', calEvent.idsw);
+		},
+		dayRender: function (date, cell) {
+			if(modulbro == 'kalender_setting'){
+				cell.append('<font color="#D2CFCF" style="font-size:12px !important;">Rp. 50.000</font>');
+			}
 		}
     });
 }
