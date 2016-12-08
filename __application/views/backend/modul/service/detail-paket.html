@@ -8,28 +8,50 @@
 				    <div class="nav-tabs-wrapper">
 				        <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
 				            <li class="active"><a href="#overview" data-toggle="tab" aria-expanded="true">Data Overview</a></li>
-				            <li class=""><a href="#reservation" data-toggle="tab" aria-expanded="false">Reservation</a></li>
+				            <li class=""><a href="#reservation" id='tabreservation' data-toggle="tab" aria-expanded="false">Reservation</a></li>
 				            <li class=""><a href="#setting" data-toggle="tab" aria-expanded="false">Setting</a></li>
 				            <li class=""><a href="#extraorder" data-toggle="tab" aria-expanded="false">Extra Order</a></li>
 				        </ul>
 				    </div>
 				</div>
-				<div id="my-tab-content" class="tab-content text-center">
+				<div id="my-tab-content" class="tab-content">
 				    <div class="tab-pane active" id="overview">
-				        <p>Larger, yet dramatically thinner. More powerful, but remarkably power efficient. With a smooth metal surface that seamlessly meets the new Retina HD display.</p>
+				        <center>Under Construction</center>
 				    </div>
 				    <div class="tab-pane" id="reservation">
-				        <p>Here is your profile.</p>
+				        <div id='kalendar_reservation_{$acak}'></div>
 				    </div>
 				    <div class="tab-pane" id="setting">
-				        <p>Here are your messages.</p>
+				       <div id='kalendar_setting_{$acak}'></div>
 				    </div>
 				    <div class="tab-pane" id="extraorder">
-				        <p>Here are your messages.</p>
+				        <center><a class="btn btn-success" onClick="" >Order Additional PreHosting Service</a>	</center>
 				    </div>
 				</div>													
 				
 			</div>
+			
+			<div class="col-sm-12">
+				<hr/>
+				<a class="btn btn-danger" onClick="loadUrl('{$host}servicemanager');" >Back</a>	
+			</div>
 	    </div>
     </div>
 </div>
+
+<script>
+	var trid = "{$idtrx|default:''}";
+	$(document).ready(function(){
+		$.post(host+'getschedule',{ 'ix':0, 'triad':trid },function(r){
+			var js = JSON.parse(r);
+			gen_kalender('kalendar_reservation_{$acak}', 450, 'kalender_reservation', js);
+		});
+		gen_kalender('kalendar_setting_{$acak}', 450, 'kalender_setting');
+		$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+			$('#kalendar_reservation_{$acak}').fullCalendar('render');
+			$('#kalendar_setting_{$acak}').fullCalendar('render');
+			
+			$(".main-panel").perfectScrollbar('update');
+		});
+	});
+</script>

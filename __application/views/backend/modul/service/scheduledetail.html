@@ -1,0 +1,52 @@
+<table class="table table-bordered" style='margin-bottom:0px !important;'>
+	<tbody>
+		<tr>
+			<td>Customer Name</td>
+			<td>
+				<input disabled type="text" style='width:100%;' value="{$data.costumer_name}" />
+			</td>
+		</tr>
+		<tr>
+			<td>Address</td>
+			<td>
+				<input disabled type="text" style='width:100%;' value="{$data.address}" />
+			</td>
+		</tr>
+		<tr>
+			<td>Phone</td>
+			<td>
+				<input disabled type="text" style='width:100%;' value="{$data.no_telp}" />
+			</td>
+		</tr>
+		<tr>
+			<td>Phone Mobile</td>
+			<td>
+				<input disabled type="text" style='width:100%;' value="{$data.no_mobile}" />
+			</td>
+		</tr>
+		<tr>
+			<td>Email Address</td>
+			<td>
+				<input disabled type="text" style='width:100%;' value="{$data.email_costumer}" />
+			</td>
+		</tr>
+		<tr>
+			<td>Check In</td>
+			<td>
+				<input disabled type="text" style='width:100%;' value='{$data.check_in_date|date_format:"%d %b %Y"}' />
+			</td>
+		</tr>
+		<tr>
+			<td>Check Out</td>
+			<td>
+				<input disabled type="text" style='width:100%;' value='{$data.check_out_date|date_format:"%d %b %Y"}' />
+			</td>
+		</tr>
+		<tr>
+			<td>Total Rate</td>
+			<td>
+				<input disabled type="text" style='width:100%;' value='{$data.rate|number_format:0:",":"."}' />
+			</td>
+		</tr>
+	</tbody>
+</table>

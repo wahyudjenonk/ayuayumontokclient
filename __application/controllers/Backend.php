@@ -237,6 +237,7 @@ class Backend extends JINGGA_Controller {
 							$nmproperty = $this->input->post('lstma');
 							$flagservice = $this->input->post('flg');
 							
+							$this->nsmarty->assign('idtrx', $idsrv);
 							$this->nsmarty->assign('nmproperty', $nmproperty);
 							if($flagservice == "INDEPENDENT"){
 								$temp = 'backend/modul/'.$p1.'/detail-independent.html';
@@ -244,6 +245,7 @@ class Backend extends JINGGA_Controller {
 								$this->nsmarty->assign('dataplanning', $dataplanning['data']);
 							}elseif($flagservice == "PAKET"){
 								$temp = 'backend/modul/'.$p1.'/detail-paket.html';
+								
 							}
 						break;
 						case "request_services":
@@ -355,6 +357,8 @@ class Backend extends JINGGA_Controller {
 								}
 							}
 							
+							//echo "<pre>";
+							//print_r($post);exit;
 							//$this->lib->kirimemail('email_invoice', $this->auth['email_address'], $post, $countinput);
 							
 							if($post['tpservice'] == 'paidhost'){
@@ -378,7 +382,33 @@ class Backend extends JINGGA_Controller {
 							$searchproperty = $this->lib->searchForId($id_property, $dataproperty['data']);
 							echo $dataproperty['data'][$searchproperty]['unit_size_nett']; 
 							exit;
-						break;						
+						break;			
+
+						case "dataschedule":
+							$id_trx = $this->input->post('triad');
+							$index_array = $this->input->post('ix');
+							$datareservation = $this->mbackend->getdata('datareservation', $id_trx);
+							$databalikan = array();
+							if(isset($datareservation['data']['listing'][$index_array]['data_reservasi'])){
+								$no = 1;
+								foreach($datareservation['data']['listing'][$index_array]['data_reservasi'] as $k => $v){
+									$databalikan[$k]['id'] = $no;
+									$databalikan[$k]['title'] = $v['costumer_name'];
+									$databalikan[$k]['start'] = $v['reservation_start_date'];
+									$databalikan[$k]['end'] = $v['reservation_end_date'];
+									$databalikan[$k]['allDay'] = true;
+									$databalikan[$k]['idsw'] = $v['id'];
+									$no++;
+								}
+							}
+							echo json_encode($databalikan);
+							exit;
+						break;			
+						case "scheduledetail":
+							$id_rsv = $this->input->post('idws');
+							$detailrsv = $this->mbackend->getdata('detailreservation', $id_rsv);
+							$this->nsmarty->assign('data', $detailrsv['data']);
+						break;
 					}
 				break;
 				

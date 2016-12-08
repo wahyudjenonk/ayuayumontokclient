@@ -42,6 +42,8 @@ $route['request-summary-services'] = 'backend/modul/service/summary_services';
 $route['request-summary-package'] = 'backend/modul/service/summary_services_package';
 $route['submit-services'] = 'backend/modul/service/submit_services';
 $route['getunitsize'] = 'backend/modul/service/unitsizebro';
+$route['getschedule'] = 'backend/modul/service/dataschedule';
+$route['schedule-detail'] = 'backend/modul/service/scheduledetail';
 
 $route['billing'] = 'backend/modul/billing/independent';
 $route['billing-detail'] = 'backend/modul/billing/independent_detail';
@@ -52,16 +54,17 @@ $route['submit-update-profile'] = 'backend/simpandata/submit_update_profile';
 $route['change-password'] = 'backend/modul/user/change_password';
 $route['submit-change-password'] = 'backend/simpandata/submit_change_password';
 
+/*
 $route['submit-services-package'] = 'backend/modul/property/submit_services_package';
 
+/*
 $route['transaction-package'] = 'backend/modul/transaction/package';
 $route['transaction-package-detail'] = 'backend/modul/transaction/package_detail';
 
+/*
 $route['listingmanagement'] = 'backend/modul/listingmanagement/main';
 $route['reservation-detail'] = 'backend/modul/listingmanagement/reservationdetail';
 $route['getdetailkalendar'] = 'backend/modul/listingmanagement/kalendardetail';
-$route['getschedule'] = 'backend/modul/listingmanagement/dataschedule';
-$route['schedule-detail'] = 'backend/modul/listingmanagement/scheduledetail';
 
 
 /*

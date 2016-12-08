@@ -465,6 +465,7 @@ class Mbackend extends CI_Model{
 				return $res['pesan'];
 			}else{
 				return 0;
+				//return $res;
 			}
 		}
 	}
