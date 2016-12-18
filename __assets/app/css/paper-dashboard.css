@@ -476,6 +476,62 @@ Copyright (c) 2015 Daniel Eden
   margin: 20px auto;
 }
 
+#myWorkContent{
+    width: auto;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    padding: 5px 0;
+}
+#chartRateMonth {
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    background-color: #ff8f5e;
+    color: #fff;
+    padding: 30px 10px;
+    width: 150px;
+    font-size: 26px;
+}
+#chartRateMonth p{
+  margin-bottom: 0;
+  font-size: 12px;
+}
+
+.content .media-list{
+  background-color: #fff;
+  padding: 10px;
+}
+.content .media-list .media-body{
+  padding-bottom: 0;
+  padding-top: 10px;
+  padding-left: 10px;
+}
+.content .media-list .media .tags{
+  font-size: 10px; 
+  padding-left: 0;
+}
+.content .media-list .media .tags li{
+  display: inline-block;
+  background-color: #66615B; 
+  color: #fff; 
+  padding: 2px;
+}
+
+.navbar-pil .tab-content .reserv2{
+  padding: 10px 20px;
+}
+
+.content .navbar-pil{
+  background-color: rgba(255, 255, 255, 0.8);
+}
+.content .navbar-pil ul{
+  padding: 5px 10px;
+}
+.content .navbar-pil .tab-content{
+  padding: 5px 10px;
+}
+
 @-webkit-keyframes showSweetAlert {
   0% {
     -webkit-transform: scale(0.7);
@@ -7930,6 +7986,10 @@ input.textarea {
 @media screen and (max-width: 550px) {
   .msg img {
     width: 200px;
+  }
+  
+  .navbar-pil .tab-content .reserv2{
+    text-align: center;
   }
 }
 /*      Checkbox and radio         */
