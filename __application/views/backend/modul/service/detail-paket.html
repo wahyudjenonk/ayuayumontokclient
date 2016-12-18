@@ -1,9 +1,29 @@
-<h4 class="title">{$nmproperty}</h4>
 <div class="card">
 	<div class="content">
 	    <div class="row">
+			<div class="col-xs-12 ">
+	            <ul class="media-list">
+					 <li class="media">
+					    <div class="media-body">
+					    	<h4 class="media-heading">
+							<span style="font-weight: 500; background-color: #68B3C8; border-radius: 5px; padding: 2px; color: #fff; font-size: 12px;">TSM-A0816</span> {$nmproperty}</h4>
+					  		<p>
+					  			<i><img src="{$host}__assets/app/ico/pin.png" style="max-width: 16px;"> Buahbatu, Bandung City, Jawa Barat - Indonesia 40286</i>
+					  			<ul class="tags">
+							    	<li>TSM</li>
+							    	<li>A0816</li>
+							    </ul>
+					  		</p>
+					    </div>
+					    <div class="media-left">
+						    <a href="#">
+						    	<img class="media-object" src="../assets/img/unit1.jpg" alt="unit Homtel" style="max-width: 160px;">
+						    </a>
+					    </div>
+					 </li>
+				</ul>
+			</div><!-- row 12 -->		
 	        <div class="col-sm-12">
-				
 				<div class="nav-tabs-navigation">
 				    <div class="nav-tabs-wrapper">
 				        <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
@@ -16,7 +36,69 @@
 				</div>
 				<div id="my-tab-content" class="tab-content">
 				    <div class="tab-pane active" id="overview">
-				        <center>Under Construction</center>
+				        <div class="col-xs-12">
+							<h4>Occupancy Rate</h4>
+							<ul class="ratemonth" id="myWorkContent">
+								<li id="chartRateMonth" class="">40%<p>OCTOBER</p></li>
+								<li id="chartRateMonth" class="">0% <p>NOVEMBER</p></li>
+								<li id="chartRateMonth" class="">0% <p>DECEMBER</p></li>
+								<li id="chartRateMonth" class="">0% <p>JANUARY</p></li>
+								<li id="chartRateMonth" class="">0% <p>FEBRUARY</p></li>
+								<li id="chartRateMonth" class="">0% <p>MARCH</p></li>
+								<li id="chartRateMonth" class="">0% <p>APRIL</p></li>
+								<li id="chartRateMonth" class="">0% <p>MAY</p></li>
+								<li id="chartRateMonth" class="">0% <p>JUNE</p></li>
+								<li id="chartRateMonth" class="">0% <p>JULY</p></li>
+								<li id="chartRateMonth" class="">0% <p>AUGUST</p></li>
+								<li id="chartRateMonth" class="">0% <p>SEPTEMBER</p></li>
+							</ul>
+						</div>
+						<div class="col-xs-12">
+							<h4>Reservation</h4>
+							<ul class="nav nav-pills nav-justified">
+								<li class="media reserv2">
+									<a href="#">
+										<div class="media-left media-middle">
+										    <img class="media-object" src="{$host}__assets/app/ico/bed.png" style="max-width: 86px;">
+										</div>
+										<div class="media-body" style="padding-top: 22px; font-weight: 700;">
+										    <h4 class="media-heading">Reservation Confirmed</h4>
+										    17 items <span style="font-size: 12px; font-weight: 500;">(For the last 30days)</span>
+										</div>
+									</a>
+								</li>
+								<li class="media reserv2">
+									<a href="#">
+										<div class="media-left media-middle">
+										    <img class="media-object" src="{$host}__assets/app/ico/upcoming.png" style="max-width: 86px;">
+										</div>
+										<div class="media-body" style="padding-top: 22px; font-weight: 700;">
+										    <h4 class="media-heading">Upcoming Reservation</h4>
+										    5 items <span style="font-size: 12px; font-weight: 500;">(For this month)</span>
+										</div>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="col-xs-12" style="margin-top:15px !important;">
+						  	<div class="box">
+						      <div class="box-header">
+						      	<h3 class="box-title col-sm-6 col-md-6">5 Latest Room Reservation</h3>
+						      </div><!-- /.box-header -->
+								<div class="box-body table-responsive no-padding">
+						      		<table class="table table-hover">
+						                <tr>
+						                  <th>STATUS</th>
+						                  <th>GUEST NAME</th>
+						                  <th>CHECK-IN</th>
+						                  <th>CHECK-OUT</th>
+						                  <th>PHONE</th>
+						                </tr>
+									</table>
+								</div>
+							</div>
+						</div>
+						
 				    </div>
 				    <div class="tab-pane" id="reservation">
 				        <div id='kalendar_reservation_{$acak}'></div>
@@ -47,6 +129,7 @@
 			gen_kalender('kalendar_reservation_{$acak}', 450, 'kalender_reservation', js);
 		});
 		gen_kalender('kalendar_setting_{$acak}', 450, 'kalender_setting');
+		
 		$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
 			$('#kalendar_reservation_{$acak}').fullCalendar('render');
 			$('#kalendar_setting_{$acak}').fullCalendar('render');

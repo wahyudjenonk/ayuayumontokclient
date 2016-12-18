@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
-    <link rel="apple-touch-icon" sizes="144x144" href="library/ico/apple-touch-icon.png">
+    <link rel="frontendle-touch-icon" sizes="144x144" href="library/ico/frontendle-touch-icon.png">
     <link rel="shortcut icon" href="{$host}__assets/frontend/ico/favicon.gif">
     <link rel="stylesheet" href="{$host}__assets/frontend/css/bootstrap.css">
     <link href="//fonts.googleapis.com" rel="dns-prefetch">
@@ -22,6 +22,23 @@
 
   </head>
   <body>
+  
+  	<!-- Modal -->
+	<div style='z-index:9999999 !important;' class="modal fade" id="pesanModal" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<b>Message</b>
+					<button id='button_close' type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				</div>
+				<div class="modal-body">
+					<div id='modalencuk' class="modal-product">
+					</div><!-- .modal-product -->
+				</div><!-- .modal-body -->
+			</div><!-- .modal-content -->
+		</div><!-- .modal-dialog -->
+	</div>
+	<!-- END Modal -->	
     
     <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
         <div class="modal-dialog modal-lg" role="document">
@@ -52,29 +69,9 @@
         </div>
     </div>
 	
-	<!-- Modal -->
-	<div style='z-index:9999999 !important;' class="modal fade" id="pesanModal" tabindex="-1" role="dialog">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<b>Message</b>
-					<button id='button_close' type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				</div>
-				<div class="modal-body">
-					<div id='modalencuk' class="modal-product">
-					</div><!-- .modal-product -->
-				</div><!-- .modal-body -->
-			</div><!-- .modal-content -->
-		</div><!-- .modal-dialog -->
-	</div>
-	<!-- END Modal -->	
-	
     <!-- Header -->
-    <div class="burger-opened">
-      
-    </div>
-
-    <header class="nav-top">
+    
+	<header class="nav-top">
         <div class="hidden-xs hidden-sm triangle-up-right">
             
         </div>
@@ -122,21 +119,6 @@
 								<li>
 									<input  style='width:300px !important;' type="text" class="form-control validasi" name="lstnm" id='latnm' placeholder="Last Name">
 								</li>
-								{*
-                                <li>
-									<label for="inputDateBirth">Date of Birth</label>
-									<br>
-									<select name="tgl" style='width:80px !important;float:left;margin-right:5px;' class='form-control validasi'>
-										{$tgl_lahir}
-									</select> &nbsp;&nbsp;
-									<select name="bln" style='width:95px !important;float:left;margin-right:5px;' class='form-control validasi'>
-										{$bln_lahir}
-									</select> &nbsp;&nbsp;
-									<select name="thn" style='width:80px !important;float:left;margin-right:5px;' class='form-control validasi'>
-										{$thn_lahir}
-									</select>
-								</li>
-                                *}
 								<li>
 									<input style='width:300px !important;' type="text" name="emadd" class="form-control validasi emailbro" placeholder="Email">
 								</li>
@@ -157,52 +139,42 @@
     </header>
 
     <section class="col-xs-12 col-md-12 body-wrap" style="padding: 0;">
-        <nav class="col-xs-12 col-md-12 about-homtel">
-            <h1>Maksimalkan nilai investasi unit apartment Anda!</h1>
-           
+        <nav class="col-xs-12 col-md-12 about-homtel" id="abt-homtel" >
+            <h1>WELCOME</h1>
+            <h4>Maksimalkan nilai investasi unit apartment Anda!</h4>
             <div class="col-xs-12 col-md-12 text-about-homtel"> 
-                <p style='text-align:justify !important;'>
-	        Kami memastikan nilai investasi Anda terjaga dan terus naik</p>
-                <p style='text-align:justify !important;'>
-	        Homtel menawarkan system pelayanan terpadu kepada para pemilik unit di seluruh Indonesia untuk mengamankan dan memastikan kenaikan nilai investasi apartemen.</p>
-                <p style='text-align:justify !important;'>
-	        Homtel akan menjadi kepanjangan tangan pemilik unit apartemen agar dapat mengelola unit apartemen dengan transparan dan profesional; dan juga mencarikan pendapatan tambahan dari potensi penyewaan agar dapat membantu meringankan biaya bulanan. Bagaimana caranya? 
-                </p>
-               <p style='text-align:justify !important;'>
-	        Bagaimana caranya? 
-                </p>
+                <p>Homtel adalah perusahaan pengelolaan unit apartement yang menawarkan system pelayanan terpadu kepada para pemilik unit di seluruh Indonesia untuk mengamankan dan memastikan kenaikan nilai investasi apartemen tersebut. </p>
+                
+                <p>Homtel akan menjadi kepanjangan tangan pemilik unit apartemen agar dapat mengelola unit apartemen dengan transparan dan profesional, dan juga mencarikan pendapatan tambahan dari potensi penyewaan agar dapat membantu meringankan biaya bulanan. Lalu apa yang harus anda lakukan?
+                </p> 
             </div>
-
-<h1>3 Langkah bergabung di Homtel</h1>
-
+            <div class="clearfix"></div>
+            <h2 class="" style="text-align: center; font-size: 28px; font-weight: bold; color: #795e46; margin-bottom: 15px;">3 Langkah mudah bergabung di Homtel</h2>
             <div class="col-xs-12 col-md-12 bg-about">
-           
-                <div class="white-wrapper container">
-
+                
+                <div class="white-wrfrontender container">
                     <div class="itm about1">
-                        <img src="{$host}__assets/frontend/ico/ico1.png" width='150px' height='110px'>
-                        <p>1. Daftarkan Unit Anda ke Homtel</p>
+                        <!-- <img src="{$host}__assets/frontend/ico/ico1.png" --> 
+                        <img src="{$host}__assets/frontend/ico/langkah-1.png"  height='110px'>
+                        <p>1. Daftarkan Unit Anda <br>ke Homtel</p>
                     </div>
                     <div class="itm about4">
-                        <img src="{$host}__assets/frontend/ico/ico4.png" width='130px' height='110px'>
-                        <p>2. Dapatkan Benefit Bulanan dari Homtel</p>
+                        <!-- <img src="{$host}__assets/frontend/ico/ico4.png" --> 
+                        <img src="{$host}__assets/frontend/ico/langkah-2.png"  height='110px'>
+                        <p>2. Dapatkan Benefit Bulanan <br>dari Homtel</p>
                     </div>
                     <div class="itm about3">
-                        <img src="{$host}__assets/frontend/ico/ico3.png" width='130px' height='110px'>
-                        <p>3. Sebarkan Hasil Keuntungan Homtel kpd Relasi Anda</p>
+                        <!-- <img src="{$host}__assets/frontend/ico/ico3.png" --> 
+                        <img src="{$host}__assets/frontend/ico/langkah-3.png"height='110px'>
+                        <p>3. Sebarkan Hasil Keuntungan<br>kepada Relasi Anda</p>
                     </div>
-                    <!--div class="itm about2">
-                        <img src="{$host}__assets/frontend/ico/ico2.png" width='130px' height='110px'>
-                        <p>Kontrak</p>
-                    </div-->
-                    
                 </div>
             </div>
         </nav>
 
-        <div class=" col-xs-12 col-md-12 servis-wrap">
+        <div class=" col-xs-12 col-md-12 servis-wrap" id="service-homtel">
             <h1>Layanan Kami</h1>
-            <h4>Benefit yang Anda dapatkan</h4>
+            <h4>Berbagai Benefit yang akan Anda dapatkan</h4>
             <div class="container servis">
                 <div class="itm servis">
                     <img src="{$host}__assets/frontend/ico/ico9.png" width='180px' height='180px'>
@@ -225,132 +197,99 @@
                     <p>IPL &amp; Energy</p>
                 </div>
             </div>
-        </div>
-
-       <!--  <div class=" col-xs-12 col-md-12 servis-wrap">
-            <img src="{$host}__assets/frontend/img/header-testi-homtel.jpg" class="img-responsive">
-        </div> -->
+        </div> 
 
         <div class="col-xs-12 col-md-12 blog-wrap" id="mitra">
-            <h1>Mitra Kerja</h1>
-
-
-
-<div class="container servis">
-<ul style="text-align:center;">                
-<li style="display:inline-block;">
-                    <img src="{$host}__assets/frontend/logo/mrd.jpg" width='180px' height='180px'>
-                </li>
-                <li  style="display:inline-block;">
-                    <img src="{$host}__assets/frontend/logo/adhi.jpg" width='180px' height='180px'>
-                </li>
-</ul>
-<ul style="text-align:center;">                
-                 <li  style="display:inline-block;">
-                    <img src="{$host}__assets/frontend/logo/suite.jpg" width='180px' height='180px'>
-                </li>
-                 <li  style="display:inline-block;">
-                    <img src="{$host}__assets/frontend/logo/19avenue.jpg" width='180px' height='180px'>
-                </li>
-                <li  style="display:inline-block;">
-                    <img src="{$host}__assets/frontend/logo/newton.jpg" width='180px' height='180px'>
-                </li>
-                <li  style="display:inline-block;">
-                    <img src="{$host}__assets/frontend/logo/metro.jpg" width='180px' height='180px'>
-                </li>
-                <li  style="display:inline-block;">
-                    <img src="{$host}__assets/frontend/logo/gdc.jpg" width='180px' height='180px'>
-                </li>
-</ul>
-
-
+            <h1 style="text-align: center;">Mitra Kerja</h1>
+            <div class="container servis">
+                <ul style="text-align:center;">                
+                    <li style="display:inline-block;">
+                        <img src="{$host}__assets/frontend/logo/mrd.jpg" width='180px' height='180px'>
+                    </li>
+                    <li  style="display:inline-block;">
+                        <img src="{$host}__assets/frontend/logo/adhi.jpg" width='180px' height='180px'>
+                    </li>
+                </ul>
+                <ul style="text-align:center;">                
+                     <li  style="display:inline-block;">
+                        <img src="{$host}__assets/frontend/logo/suite.jpg" width='180px' height='180px'>
+                    </li>
+                     <li  style="display:inline-block;">
+                        <img src="{$host}__assets/frontend/logo/19avenue.jpg" width='180px' height='180px'>
+                    </li>
+                    <li  style="display:inline-block;">
+                        <img src="{$host}__assets/frontend/logo/newton.jpg" width='180px' height='180px'>
+                    </li>
+                    <li  style="display:inline-block;">
+                        <img src="{$host}__assets/frontend/logo/metro.jpg" width='180px' height='180px'>
+                    </li>
+                    <li  style="display:inline-block;">
+                        <img src="{$host}__assets/frontend/logo/gdc.jpg" width='180px' height='180px'>
+                    </li>
+                </ul>
             </div>
-
-
-
-
-            <!--div class=" blog">
-
-                <div class="col-xs-12 col-md-3 blog-homtel">
-                    <div class="thumbnails">
-                        <div class="image-thumbnail" style="background-image: url('{$host}__assets/frontend/img/blog-homtel.jpg');">
-                        </div>
-                        <div class="title-homtel-blog">
-                            <a href="#">Inpirasi Design <span>Apartemen</span> yang Minimalis</a>
-                        </div>
-                    </div>
-                    
-                </div>
-                <div class="col-xs-12 col-md-3 blog-homtel">
-                    <div class="thumbnails">
-                        <div class="image-thumbnail" style="background-image: url({$host}__assets/frontend/img/header2-homtel.jpg);"></div>
-                        <div class="title-homtel-blog">
-                        <a href="#">Apa yang harus saya lakukan untuk <span>Apartemen</span> saya?</a>
-                    </div>
-                    </div>
-                </div> 
-                 <div class="col-xs-12 col-md-3 blog-homtel">
-                    <div class="thumbnails">
-                        <div class="image-thumbnail" style="background-image: url({$host}__assets/frontend/img/header1-homtel.jpg);"></div>
-                        <div class="title-homtel-blog">
-                            <a href="#">Investasi dari <span>Apartemen</span>? Why not.</a>
-                        </div>
-                    </div>
-                </div> 
-                 <div class="col-xs-12 col-md-3 blog-homtel">
-                    <div class="thumbnails">
-                        <div class="image-thumbnail" style="background-image: url({$host}__assets/frontend/img/bg-works-homtel.png);"></div>
-                        <div class="title-homtel-blog">
-                            <a href="#">Homtel promo selama bulan Demeber 2016</a>
-                        </div>
-                    </div>
-                </div> 
-            </div-->
         </div>
     </section>
 
-    <footer class=" col-xs-12 col-md-12 footer" style="padding: 0; ">
-        <!-- <img src="{$host}__assets/frontend/img/bg-footer-homtel.png" class="img-responsive"> -->
+    <footer class=" col-xs-12 col-md-12 footer" id="kontak-homtel" style="padding: 0; ">
         <div class="col-xs-12 col-md-12 footer-homtel">
             <div class="info-homtel">
                 <img src="{$host}__assets/frontend/img/logo2-homtel.png">
                 <p class="info">info@homtel.id</p>
-                <p>+6221.57948837</p>
+                <p>+62812 85558861</p>
+                <br>
 
                 <p> Jl. dr. Ide Anak Agung Gde Agung<br>
                     Kawasan Mega Kuningan, Menara Anugrah<br>
                     Kantor Taman E3.3 / A3<br>
                     Lot 8.6 - 8.7 Setiabudi<br>
                     Jakarta Selatan</p>
-                <!--p class="copyright">C. 2016 All Right Reserved. PT. Homtel Idonesia Terpadu </p-->
+                <p class="hidden-xs hidden-sm copyright">C. 2016 All Right Reserved. PT. Homtel Idonesia Terpadu </p>
             </div>
             <div class="alamat-homtel">
                 <div class="col-xs-12 col-md-6 left-homtel">
                     <h4>Tangerang Front Office :</h4>
-                   <p>Kantor Pemasaran
-                    19Avenue Apartment
-                    Jl. Daan Mogot Km.19 
+                   <p>Kantor Pemasaran<br>
+                    19Avenue Apartment<br>
+                    Jl. Daan Mogot Km.19 <br>
                     Tangerang</p>
                  </div>
 
                 <div class="col-xs-12 col-md-6 right-homtel">
                     <h4>Bandung Front Office :</h4>
-                    <p>Tower A Lantai GF Blok C
-                    The Suites @ Metro Apartment
-                    Jl. Soekarno Hatta no. 693
+                    <p>Tower A Lantai GF Blok C<br>
+                    The Suites @ Metro Apartment<br>
+                    Jl. Soekarno Hatta no. 693<br>
                     Bandung</p>
                 </div>
             </div>
         </div>
-        <div class="col-xs-12 col-md-12 menu-social">
+        <div class="col-xs-12 col-md-12 hidden-xs hidden-sm menu-social">
                 <ul class="col-xs-12 col-md-8 menu">
+                    <li><a href="#">Sitemap</a></li>
                     <li><a href="#">Karir</a></li>
-                    <li><a href="#">Mitra Kerja</a></li>
                     <li><a href="#">Kebijakan Perusahaan</a></li>
                     <li><a href="#">Syarat &amp; Ketentuan</a></li>
                     <li><a href="#">F&amp;Q</a></li>
+                    <li><a href="#">Homtel for Guest</a></li>
                 </ul>
                 <ul class="col-xs-12 col-md-4 social">
+                    <li><a href="#"><img src="{$host}__assets/frontend/img/ico-facebook-homtel.png"></a></li>
+                    <li><a href="#"><img src="{$host}__assets/frontend/img/ico-twitter-homtel.png"></a></li>
+                    <li><a href="#"><img src="{$host}__assets/frontend/img/ico-google-homtel.png"></a></li>
+                    <li><a href="#"><img src="{$host}__assets/frontend/img/ico-linkedin-homtel.png"></a></li>
+                </ul>
+        </div>
+        <div class="col-xs-12 col-md-12 hidden-md hidden-lg menu-social2">
+                <ul class="col-xs-12 col-md-8 menu2">
+                    <li><a href="#">Sitemap</a></li>
+                    <li><a href="#">Karir</a></li>
+                    <li><a href="#">Kebijakan Perusahaan</a></li>
+                    <li><a href="#">Syarat &amp; Ketentuan</a></li>
+                    <li><a href="#">F&amp;Q</a></li>
+                    <li><a href="#">Homtel for Guest</a></li>
+                </ul>
+                <ul class="col-xs-12 col-md-4 social2">
                     <li><a href="#"><img src="{$host}__assets/frontend/img/ico-facebook-homtel.png"></a></li>
                     <li><a href="#"><img src="{$host}__assets/frontend/img/ico-twitter-homtel.png"></a></li>
                     <li><a href="#"><img src="{$host}__assets/frontend/img/ico-google-homtel.png"></a></li>
