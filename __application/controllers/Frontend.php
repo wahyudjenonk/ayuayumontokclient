@@ -70,6 +70,9 @@ class Frontend extends JINGGA_Controller {
 			case "main_page":								
 				$this->nsmarty->display( 'frontend/main-index.html');
 			break;
+			default:
+				$this->nsmarty->display( 'frontend/'.$type.'.html');
+			break;
 		}
 	}
 		

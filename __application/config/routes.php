@@ -54,6 +54,14 @@ $route['submit-update-profile'] = 'backend/simpandata/submit_update_profile';
 $route['change-password'] = 'backend/modul/user/change_password';
 $route['submit-change-password'] = 'backend/simpandata/submit_change_password';
 
+
+$route['sitemap'] = 'frontend/getdisplay/sitemap';
+$route['karir'] = 'frontend/getdisplay/karir';
+$route['kebijakan-perusahaan'] = 'frontend/getdisplay/kebijakan_perusahaan';
+$route['syarat-ketentuan'] = 'frontend/getdisplay/syarat_ketentuan';
+$route['faq'] = 'frontend/getdisplay/faq';
+
+
 /*
 $route['submit-services-package'] = 'backend/modul/property/submit_services_package';
 

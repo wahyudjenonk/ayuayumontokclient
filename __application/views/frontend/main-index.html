@@ -8,22 +8,54 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
-    <link rel="frontendle-touch-icon" sizes="144x144" href="library/ico/frontendle-touch-icon.png">
-    <link rel="shortcut icon" href="{$host}__assets/frontend/ico/favicon.gif">
-    <link rel="stylesheet" href="{$host}__assets/frontend/css/bootstrap.css">
+    <link rel="apple-touch-icon" sizes="144x144" href="library/ico/apple-touch-icon.png">
+    <link rel="shortcut icon" href="ico/favicon.gif">
+    <link rel="stylesheet" href=".../css/bootstrap.css">
     <link href="//fonts.googleapis.com" rel="dns-prefetch">
     <link href="//www.google-analytics.com" rel="dns-prefetch">
     <link href="//ajax.googleapis.com" rel="dns-prefetch">
 
     <link href="{$host}__assets/frontend/css/bootstrap.min.css" rel="stylesheet">
-	<link rel="stylesheet" href="{$host}__assets/plugin/easyui/themes/metro-gray/validatebox.css">
-	<link rel="stylesheet" href="{$host}__assets/plugin/easyui/themes/metro-gray/tooltip.css">
+	<link rel="stylesheet" href="css/tooltip.css">
     <link href="{$host}__assets/frontend/css/style.css" rel="stylesheet" type="text/css">
 
   </head>
   <body>
-  
-  	<!-- Modal -->
+    
+    <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+            <h3>SIGN UP HERE</h3>
+                <ul>
+                    <li>
+                        <label for="inputName1">First Name</label>
+                        <input type="text" class="form-control" id="inputName1" placeholder="First Name"/>
+                    </li>
+                    <li>
+                        <label for="inputName2">Last Name</label>
+                        <input type="text" class="form-control" id="inputName2" placeholder="Last Name"/>
+                    </li>
+                    <li>
+                        <label for="inputDateBirth">Date of Birth</label>
+                        <input type="date" class="form-control" id="inputDateBirth" />
+                    </li>
+                    <li>
+                        <label for="inputEmail">Email Address</label>
+                        <input type="email" class="form-control" id="inputEmail" placeholder="Email Address"/>
+                    </li>
+                    <li>
+                        <label for="inputPhone">Mobile Number</label>
+                        <input type="text" class="form-control" id="inputPhone" placeholder="Mobile Number"/>
+                    </li>
+                    <li class="bt">
+						<button class="btn btn-primary">SEND</button>
+					</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+	
+	<!-- Modal -->
 	<div style='z-index:9999999 !important;' class="modal fade" id="pesanModal" tabindex="-1" role="dialog">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
@@ -33,112 +65,125 @@
 				</div>
 				<div class="modal-body">
 					<div id='modalencuk' class="modal-product">
-					</div><!-- .modal-product -->
-				</div><!-- .modal-body -->
-			</div><!-- .modal-content -->
-		</div><!-- .modal-dialog -->
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 	<!-- END Modal -->	
-    
-    <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-            <h3>SIGN UP HERE</h3>
-            <form id='regsmobile' method="post" url="{$host}submit-step1-register" enctype="multipart/form-data">
-                <input type='hidden' name='step' value='step-1-registration' />            
-                <ul>
-                    <li>                                    
-                        <input  style='width:300px !important;' type="text" class="form-control validasi" name="frstnm" id='frstnm' placeholder="First Name">
-                    </li>
-                    <li>            
-                        <input  style='width:300px !important;' type="text" class="form-control validasi" name="lstnm" id='latnm' placeholder="Last Name">
-                    </li>
-                    <li>
-                        <input style='width:300px !important;' type="text" name="emadd" class="form-control validasi emailbro" placeholder="Email">
-                    </li>
-                    <li>
-                        <input style='width:300px !important;' type="text" class="form-control validasi numberbro" name="phmob" placeholder="Handphone">
-                    </li>
-                    <li>
-                        {* $html_captcha *}</p>
-                    </li>
-                </ul>
-            </form>
-            <button style='width:300px !important;' class="btn btn-primary" onClick="kumpulAction('register-mobile');">Daftar Disini !</button>
-            </div>
-        </div>
+
+	<div class="burger-opened">
+      
     </div>
-	
-    <!-- Header -->
-    
-	<header class="nav-top">
-        <div class="hidden-xs hidden-sm triangle-up-right">
+
+
+    <!-- HeaderHeaderHeaderHeaderHeaderHeaderHeaderHeaderHeaderHeaderHeaderHeaderHeader -->
+    <header class="nav-top" id="hometop">
+        <div id="dv" class="triangle-up-right visible-md visible-lg">
             
         </div>
-        <div class="container" style="margin-right: 0; margin-left: 0; min-width:100%;">
-        <div class="row">
-            <div class="visible-xs visible-sm">
-                <div class="menu-burger">
-                    <img src="{$host}__assets/frontend/img/img-burger.png" style="width: 14%">
+        <div class="container" id="cont-nav--top">
+            <div class="row">
+                <!-- <div class="visible-xs visible-sm">
+                    <div class="menu-burger">
+                        <img src="img/img-burger.png" style="width: 14%">
+                    </div>
+                    <div class="col-md-12 hidden-lg burger">
+                        <div class="nav-burger-close"></div>
+                        <nav class="nav-burger">
+                            <ul>    
+                                <li><a href="#">Home</a></li>
+                                <li><a href="#">Profil</a></li>
+                                <li><a href="#">Program</a></li>
+                                <li><a href="#">Fasilitas</a></li>
+                                <li><a href="#">Kontak</a></li>
+                                <li><a href="#">Blog</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div> -->
+                <div class="col-md-12 hidden-xs hidden-sm sec-navbar-fixed" style="background-color: rgba(60,146,202,0.9); border-bottom: 2px solid #fff;">
+                    <ul class="menu-slay">
+                        <li><a href="#hometop">REGISTER</a></li>
+                        <li><a href="#abt-homtel">CARA KERJA</a></li>
+                        <li><a href="#service-homtel">LAYANAN</a></li>
+                        <li><a href="#mitra">MITRA</a></li>
+                        <li><a href="#kontak-homtel">KONTAK</a></li>
+                        <li><a href="{$host}login">LOGIN</a></li>
+                    </ul>
                 </div>
-            </div>
-            <div class="col-xs-12 col-md-12 hidden-xs hidden-sm">
-                <ul class="menu-nav">
-                    <li><a href="http://www.homtel.id/">Beranda</a></li>
-                    <li><a href="#">Layanan</a></li>
-                    <li><a href="#">Cara Kerja</a></li>
-                    <li><a href="#">Kontak</a></li>
-                    <li><a href="{$host}login">LOGIN</a></li>
-                </ul>
-                <!--div class="motto-homtel"><h2>Daftar disini!</h2></div-->
-            </div>
-            <div class="col-xs-12 col-md-6 circle-text">
-                <div class="circle-content">
-                    <img src="{$host}__assets/frontend/img/logo-homtel.png">
-                    <p> <b>SUDAH PUNYA AKUN ?</b> <a href="#" class="link-login"><span>LOGIN HERE</span></a></p>
-                    <p class="visible-sm visible-md visible-lg ">Mari monitor nilai investasi Anda</p>
-                    <div class="col-xs-12 col-md-6 visible-sm reg-pop" style="text-align: center;">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Daftar disini!</button>
+                <div class="col-xs-12 col-md-12 hidden-xs hidden-sm">
+                    <ul class="menu-nav">
+                        <li><a href="#hometop">HOME</a></li>
+                        <li><a href="#abt-homtel">CARA KERJA</a></li>
+                        <li><a href="#service-homtel">LAYANAN</a></li>
+                        <li><a href="#mitra">MITRA</a></li>
+                        <li><a href="#kontak-homtel">KONTAK</a></li>
+                        <li><a href="{$host}login">LOGIN</a></li>
+                    </ul>  
+                </div>
+                <div class="col-xs-12 col-md-12 visible-md visible-lg registrasi-wrap">
+                <h3 style="text-align: right; font-weight: 700;">REGISTRASIKAN DIRI ANDA UNTUK INVESTASI LEBIH</h3>
+                    <form id='regsbro' method="post" url="{$host}submit-step1-register" enctype="multipart/form-data">
+                            <input type='hidden' name='step' value='step-1-registration' />
+                            <ul>
+                                <li>        
+                                    <input type="text" class="form-control validasi" name="frstnm" id='frstnm' placeholder="First Name">
+                                </li>
+                                <li>
+                                    <input type="text" class="form-control validasi" name="lstnm" id='latnm' placeholder="Last Name">
+                                </li>
+                                <li class="clearfix"></li>
+                                <li>
+                                    <input type="text" name="emadd" class="form-control validasi emailbro" placeholder="Email">
+                                </li>
+                                <li>
+                                    <input type="text" class="form-control validasi numberbro" name="phmob" placeholder="Handphone">
+                                </li>
+                                <li>
+                                    {$html_captcha}
+                                </li>
+                                <li>
+                                    <button style='width:300px !important;' class="btn btn-primary" onClick="kumpulAction('register-1');">Daftar Disini !</button>
+                                </li>
+                            </ul>
+                    </form>
+                </div>
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="container" style="position: absolute;top: 25%;left: 5%;">
+                        <div class="circle-text visible-md visible-lg">
+                            <div class="circle-content">
+                                <img src="{$host}__assets/frontend/img/logo-homtel.png" style="max-width: 50%">
+                                <p style="margin-bottom: 0;"> <b>SUDAH PUNYA AKUN ?</b> <a href="#" class="link-login"><span>LOGIN DISINI</span></a></p>
+                                <p class="visible-sm visible-md visible-lg ">Mari monitor nilai investasi Anda</p>
+                                <div class="col-xs-12 col-md-6 visible-sm reg-pop" style="text-align: center;">
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Daftar disini!</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div> 
-            <div class="col-xs-12 col-md-6 visible-xs popup">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Daftar disini!</button>
-            </div>
-            <div class="col-xs-12 col-md-6 visible-md visible-lg registrasi-wrap"> 
-                <div class="menu-reg" style='opacity:0.8;background:#FFF !important; margin-left:-10px; width:340px !important; '>
-                    <div class="visible-md visible-lg box-registrasi-homtel">
-                        <form id='regsbro' method="post" url="{$host}submit-step1-register" enctype="multipart/form-data">
-							<input type='hidden' name='step' value='step-1-registration' />
-							<ul>
-								<li>
-									
-									<input  style='width:300px !important;' type="text" class="form-control validasi" name="frstnm" id='frstnm' placeholder="First Name">
 
-								</li>
-								<li>
-									<input  style='width:300px !important;' type="text" class="form-control validasi" name="lstnm" id='latnm' placeholder="Last Name">
-								</li>
-								<li>
-									<input style='width:300px !important;' type="text" name="emadd" class="form-control validasi emailbro" placeholder="Email">
-								</li>
-								<li>
-									<input style='width:300px !important;' type="text" class="form-control validasi numberbro" name="phmob" placeholder="Handphone">
-								</li>
-								<li>
-									{$html_captcha}
-								</li>
-							</ul>
-						</form>
-						<button style='width:300px !important;' class="btn btn-primary" onClick="kumpulAction('register-1');">Daftar Disini !</button>
+                <div class="row" style="justify-content: center;display: flex;">
+                    <div class="col-xs-12 col-md-6 visible-xs visible-sm circle-mb">
+                        <div class="row circle-content">
+                            <img src="{$host}__assets/frontend/img/logo-homtel.png" style="max-width: 100px;">
+                            <p><b>SUDAH PUNYA AKUN ?<a href="#" class="link-login"><br><span>LOGIN DISINI</span></a></b> </p>
+                        </div>
                     </div>
                 </div>
+
+                <div class="col-xs-12 col-md-6 visible-xs visible-sm popup">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Daftar disini!</button>
+                </div>
+                
             </div>
-        </div>
         </div>
     </header>
 
     <section class="col-xs-12 col-md-12 body-wrap" style="padding: 0;">
+
         <nav class="col-xs-12 col-md-12 about-homtel" id="abt-homtel" >
             <h1>WELCOME</h1>
             <h4>Maksimalkan nilai investasi unit apartment Anda!</h4>
@@ -152,7 +197,7 @@
             <h2 class="" style="text-align: center; font-size: 28px; font-weight: bold; color: #795e46; margin-bottom: 15px;">3 Langkah mudah bergabung di Homtel</h2>
             <div class="col-xs-12 col-md-12 bg-about">
                 
-                <div class="white-wrfrontender container">
+                <div class="white-wrapper container">
                     <div class="itm about1">
                         <!-- <img src="{$host}__assets/frontend/ico/ico1.png" --> 
                         <img src="{$host}__assets/frontend/ico/langkah-1.png"  height='110px'>
@@ -176,7 +221,7 @@
             <h1>Layanan Kami</h1>
             <h4>Berbagai Benefit yang akan Anda dapatkan</h4>
             <div class="container servis">
-                <div class="itm servis">
+                <div class="itm servis1">
                     <img src="{$host}__assets/frontend/ico/ico9.png" width='180px' height='180px'>
                     <p>Housekeeping</p>
                 </div>
@@ -199,36 +244,135 @@
             </div>
         </div> 
 
+        <!-- <div id="carousel-example-generic" class="col-xs-12 col-md-12 servis-wrap carousel slide" data-ride="carousel">
+          
+          <ol class="carousel-indicators">
+            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+          </ol>
+
+          <div class="carousel-inner" role="listbox">
+            <div class="item active">
+              <img src="img/testi-1.jpg" alt="...">
+              <div class="carousel-caption">
+                ...
+              </div>
+            </div>
+            <div class="item">
+              <img src="img/testi-2.jpg" alt="...">
+              <div class="carousel-caption">
+                ...
+              </div>
+            </div>
+            ...
+          </div>
+
+          <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div> -->
+
         <div class="col-xs-12 col-md-12 blog-wrap" id="mitra">
             <h1 style="text-align: center;">Mitra Kerja</h1>
             <div class="container servis">
-                <ul style="text-align:center;">                
+                <!-- <ul style="text-align:center;">                
                     <li style="display:inline-block;">
-                        <img src="{$host}__assets/frontend/logo/mrd.jpg" width='180px' height='180px'>
+                        <img src="logo/mrd.jpg" width='180px' height='180px'>
                     </li>
                     <li  style="display:inline-block;">
-                        <img src="{$host}__assets/frontend/logo/adhi.jpg" width='180px' height='180px'>
+                        <img src="logo/adhi.jpg" width='180px' height='180px'>
                     </li>
                 </ul>
                 <ul style="text-align:center;">                
                      <li  style="display:inline-block;">
-                        <img src="{$host}__assets/frontend/logo/suite.jpg" width='180px' height='180px'>
+                        <img src="logo/suite.jpg" width='180px' height='180px'>
                     </li>
                      <li  style="display:inline-block;">
-                        <img src="{$host}__assets/frontend/logo/19avenue.jpg" width='180px' height='180px'>
+                        <img src="logo/19avenue.jpg" width='180px' height='180px'>
                     </li>
                     <li  style="display:inline-block;">
-                        <img src="{$host}__assets/frontend/logo/newton.jpg" width='180px' height='180px'>
+                        <img src="logo/newton.jpg" width='180px' height='180px'>
                     </li>
                     <li  style="display:inline-block;">
-                        <img src="{$host}__assets/frontend/logo/metro.jpg" width='180px' height='180px'>
+                        <img src="logo/metro.jpg" width='180px' height='180px'>
                     </li>
                     <li  style="display:inline-block;">
-                        <img src="{$host}__assets/frontend/logo/gdc.jpg" width='180px' height='180px'>
+                        <img src="logo/gdc.jpg" width='180px' height='180px'>
                     </li>
-                </ul>
-            </div>
+                </ul> -->
+                <div class="col-xs-6  col-md-2 logomitra">
+                    <img src="{$host}__assets/frontend/logo/mrd.png" >
+                </div>
+                <div class="col-xs-6  col-md-2 logomitra">
+                    <img src="{$host}__assets/frontend/logo/adhi.png" >
+                </div>
+                <div class="col-xs-6  col-md-2 logomitra">
+                    <img src="{$host}__assets/frontend/logo/suite_metro.png" >
+                </div>
+                <div class="col-xs-6  col-md-2 logomitra">
+                    <img src="{$host}__assets/frontend/logo/19_avenue.png" >
+                </div>
+                <div class="col-xs-6  col-md-2 logomitra">
+                    <img src="{$host}__assets/frontend/logo/metro_penthouse.png" >
+                </div>
+                <div class="col-xs-6 col-md-2 logomitra">
+                    <img src="{$host}__assets/frontend/logo/grand_dhikacity.png" >
+                </div>
+                <div class="col-xs-6 col-md-2 logomitra">
+                    <img src="{$host}__assets/frontend/logo/mrd.png" >
+                </div>
+                <div class="col-xs-6  col-md-2 logomitra">
+                    <img src="{$host}__assets/frontend/logo/mrd.png" >
+                </div>
         </div>
+
+
+
+
+            <!--div class="stopp blog">
+
+                <div class="col-xs-12 col-md-3 blog-homtel">
+                    <div class="thumbnails">
+                        <div class="image-thumbnail" style="background-image: url('{$host}__assets/frontend/img/blog-homtel.jpg');">
+                        </div>
+                        <div class="title-homtel-blog">
+                            <a href="#">Inpirasi Design <span>Apartemen</span> yang Minimalis</a>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="col-xs-12 col-md-3 blog-homtel">
+                    <div class="thumbnails">
+                        <div class="image-thumbnail" style="background-image: url({$host}__assets/frontend/img/header2-homtel.jpg);"></div>
+                        <div class="title-homtel-blog">
+                        <a href="#">Apa yang harus saya lakukan untuk <span>Apartemen</span> saya?</a>
+                    </div>
+                    </div>
+                </div> 
+                 <div class="col-xs-12 col-md-3 blog-homtel">
+                    <div class="thumbnails">
+                        <div class="image-thumbnail" style="background-image: url({$host}__assets/frontend/img/header1-homtel.jpg);"></div>
+                        <div class="title-homtel-blog">
+                            <a href="#">Investasi dari <span>Apartemen</span>? Why not.</a>
+                        </div>
+                    </div>
+                </div> 
+                 <div class="col-xs-12 col-md-3 blog-homtel">
+                    <div class="thumbnails">
+                        <div class="image-thumbnail" style="background-image: url({$host}__assets/frontend/img/bg-works-homtel.png);"></div>
+                        <div class="title-homtel-blog">
+                            <a href="#">Homtel promo selama bulan Demeber 2016</a>
+                        </div>
+                    </div>
+                </div> 
+            </div
+        </div>-->
     </section>
 
     <footer class=" col-xs-12 col-md-12 footer" id="kontak-homtel" style="padding: 0; ">
@@ -244,7 +388,7 @@
                     Kantor Taman E3.3 / A3<br>
                     Lot 8.6 - 8.7 Setiabudi<br>
                     Jakarta Selatan</p>
-                <p class="hidden-xs hidden-sm copyright">C. 2016 All Right Reserved. PT. Homtel Idonesia Terpadu </p>
+                <p class="hidden-xs hidden-sm copyright">&copy;. 2016 All Right Reserved. PT. Homtel Idonesia Terpadu </p>
             </div>
             <div class="alamat-homtel">
                 <div class="col-xs-12 col-md-6 left-homtel">
@@ -265,46 +409,47 @@
             </div>
         </div>
         <div class="col-xs-12 col-md-12 hidden-xs hidden-sm menu-social">
-                <ul class="col-xs-12 col-md-8 menu">
-                    <li><a href="#">Sitemap</a></li>
-                    <li><a href="#">Karir</a></li>
-                    <li><a href="#">Kebijakan Perusahaan</a></li>
-                    <li><a href="#">Syarat &amp; Ketentuan</a></li>
-                    <li><a href="#">F&amp;Q</a></li>
-                    <li><a href="#">Homtel for Guest</a></li>
-                </ul>
-                <ul class="col-xs-12 col-md-4 social">
-                    <li><a href="#"><img src="{$host}__assets/frontend/img/ico-facebook-homtel.png"></a></li>
-                    <li><a href="#"><img src="{$host}__assets/frontend/img/ico-twitter-homtel.png"></a></li>
-                    <li><a href="#"><img src="{$host}__assets/frontend/img/ico-google-homtel.png"></a></li>
-                    <li><a href="#"><img src="{$host}__assets/frontend/img/ico-linkedin-homtel.png"></a></li>
-                </ul>
+			<ul class="col-xs-12 col-md-8 menu">
+                <li><a href="{$host}sitemap">Sitemap</a></li>
+                <li><a href="{$host}karir">Karir</a></li>
+                <li><a href="{$host}kebijakan-perusahaan">Kebijakan Perusahaan</a></li>
+                <li><a href="{$host}syarat-ketentuan">Syarat &amp; Ketentuan</a></li>
+                <li><a href="{$host}faq">F&amp;Q</a></li>
+				<li><a href="#">Homtel for Guest</a></li>
+			</ul>
+			<ul class="col-xs-12 col-md-4 social">
+				<li><a href="#"><img src="{$host}__assets/frontend/img/ico-facebook-homtel.png"></a></li>
+				<li><a href="#"><img src="{$host}__assets/frontend/img/ico-twitter-homtel.png"></a></li>
+				<li><a href="#"><img src="{$host}__assets/frontend/img/ico-google-homtel.png"></a></li>
+				<li><a href="#"><img src="{$host}__assets/frontend/img/ico-linkedin-homtel.png"></a></li>
+			</ul>
         </div>
         <div class="col-xs-12 col-md-12 hidden-md hidden-lg menu-social2">
-                <ul class="col-xs-12 col-md-8 menu2">
-                    <li><a href="#">Sitemap</a></li>
-                    <li><a href="#">Karir</a></li>
-                    <li><a href="#">Kebijakan Perusahaan</a></li>
-                    <li><a href="#">Syarat &amp; Ketentuan</a></li>
-                    <li><a href="#">F&amp;Q</a></li>
-                    <li><a href="#">Homtel for Guest</a></li>
-                </ul>
-                <ul class="col-xs-12 col-md-4 social2">
-                    <li><a href="#"><img src="{$host}__assets/frontend/img/ico-facebook-homtel.png"></a></li>
-                    <li><a href="#"><img src="{$host}__assets/frontend/img/ico-twitter-homtel.png"></a></li>
-                    <li><a href="#"><img src="{$host}__assets/frontend/img/ico-google-homtel.png"></a></li>
-                    <li><a href="#"><img src="{$host}__assets/frontend/img/ico-linkedin-homtel.png"></a></li>
-                </ul>
+            <ul class="col-xs-12 col-md-8 menu2">
+                <li><a href="{$host}sitemap">Sitemap</a></li>
+                <li><a href="{$host}karir">Karir</a></li>
+                <li><a href="{$host}kebijakan-perusahaan">Kebijakan Perusahaan</a></li>
+                <li><a href="{$host}syarat-ketentuan">Syarat &amp; Ketentuan</a></li>
+                <li><a href="{$host}faq">F&amp;Q</a></li>
+                <li><a href="#">Homtel for Guest</a></li>
+            </ul>
+            <ul class="col-xs-12 col-md-4 social2">
+                <li><a href="#"><img src="{$host}__assets/frontend/img/ico-facebook-homtel.png"></a></li>
+                <li><a href="#"><img src="{$host}__assets/frontend/img/ico-twitter-homtel.png"></a></li>
+                <li><a href="#"><img src="{$host}__assets/frontend/img/ico-google-homtel.png"></a></li>
+                <li><a href="#"><img src="{$host}__assets/frontend/img/ico-linkedin-homtel.png"></a></li>
+            </ul>
         </div>
     </footer>
+    
 	
 	<script>
 		var host = '{$host}';
 		var paa = 'ngiclik';
 	</script>
-    <script src="{$host}__assets/frontend/js/jquery.js"></script>
-    <script src="{$host}__assets/frontend/js/bootstrap.min.js"></script>
-	<script src="{$host}__assets/plugin/easyui/jquery.easyui.min.js"></script>
+    <script src="{$host}__assets/js/jquery.js"></script>
+    <script src="{$host}__assets/js/bootstrap.min.js"></script>
+	<script src="{$host}__assets/plugin/easyui/jquery.easyui.min.js"></script>	
 	
 	<script src="{$host}__assets/js/blockui.js"></script>	
 	<script src="{$host}__assets/js/jquery.numeric.js"></script>	
@@ -313,11 +458,25 @@
 	<script>
 		$(".validasi").validatebox({ required:true });
  		$(".emailbro").validatebox({ validType:'email' }); 		
-		$(".numberbro").numeric(); 		
+		$(".numberbro").numeric(); 
+
+        $('.carousel').carousel({
+          interval: 2000
+        });
 	</script>
+    <script type="text/javascript">
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 100) { // this refers to window
+                $(".sec-navbar-fixed").addClass("active");
+            }
+            else {
+              $(".sec-navbar-fixed").removeClass("active");
+            }
+        });
+    </script>
 	
 	<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-	{literal}
+	<!-- {literal} -->
     <script>
         (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
         function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
@@ -326,6 +485,6 @@
         r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
         ga('create','UA-82202846-2');ga('send','pageview');
     </script>
-	{/literal}
+	<!-- {/literal} -->
   </body>
 </html>
