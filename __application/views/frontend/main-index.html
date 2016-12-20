@@ -10,13 +10,14 @@
 
     <link rel="apple-touch-icon" sizes="144x144" href="library/ico/apple-touch-icon.png">
     <link rel="shortcut icon" href="ico/favicon.gif">
-    <link rel="stylesheet" href=".../css/bootstrap.css">
+    <link rel="stylesheet" href="{$host}__assets/frontend/css/bootstrap.css">
     <link href="//fonts.googleapis.com" rel="dns-prefetch">
     <link href="//www.google-analytics.com" rel="dns-prefetch">
     <link href="//ajax.googleapis.com" rel="dns-prefetch">
 
     <link href="{$host}__assets/frontend/css/bootstrap.min.css" rel="stylesheet">
-	<link rel="stylesheet" href="css/tooltip.css">
+	<link rel="stylesheet" href="{$host}__assets/plugin/easyui/themes/metro-gray/validatebox.css">
+	<link rel="stylesheet" href="{$host}__assets/plugin/easyui/themes/metro-gray/tooltip.css">
     <link href="{$host}__assets/frontend/css/style.css" rel="stylesheet" type="text/css">
 
   </head>
@@ -144,7 +145,7 @@
                                     {$html_captcha}
                                 </li>
                                 <li>
-                                    <button style='width:300px !important;' class="btn btn-primary" onClick="kumpulAction('register-1');">Daftar Disini !</button>
+                                    <a style='width:300px !important;' class="btn btn-primary" onClick="kumpulAction('register-1');">Daftar Disini !</a>
                                 </li>
                             </ul>
                     </form>
