@@ -1124,6 +1124,9 @@ function gen_kalender(id_div,height,modulbro,data_kalender){
 		eventClick: function(calEvent, jsEvent, view) {
 			kumpulAction('scheduledetail', calEvent.idsw);
 		},
+		dayClick: function(date, jsEvent, view) {
+			//if()
+		},
 		dayRender: function (date, cell) {
 			if(modulbro == 'kalender_setting'){
 				cell.append('<font color="#D2CFCF" style="font-size:12px !important;">Rp. 50.000</font>');
