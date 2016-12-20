@@ -40,6 +40,9 @@ class Frontend extends JINGGA_Controller {
 
 		$encoding_email = $this->lib->base64url_encode($emailaddr);
 		
+		$this->nsmarty->assign('tgl_lahir', $this->lib->fillcombo('tgl_register', 'return') );
+		$this->nsmarty->assign('bln_lahir', $this->lib->fillcombo('bln_register', 'return') );
+		$this->nsmarty->assign('thn_lahir', $this->lib->fillcombo('thn_register', 'return') );		
 		$this->nsmarty->assign("ownsts", $this->lib->fillcombo('owner_status', 'return') );
 		$this->nsmarty->assign("title", $this->lib->fillcombo('owner_title', 'return') );
 		$this->nsmarty->assign("preved", $this->lib->fillcombo('prev_education', 'return') );
