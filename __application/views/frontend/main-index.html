@@ -11,9 +11,9 @@
     <link rel="apple-touch-icon" sizes="144x144" href="library/ico/apple-touch-icon.png">
     <link rel="shortcut icon" href="ico/favicon.gif">
     <link rel="stylesheet" href="{$host}__assets/frontend/css/bootstrap.css">
-    <link href="//fonts.googleapis.com" rel="dns-prefetch">
-    <link href="//www.google-analytics.com" rel="dns-prefetch">
-    <link href="//ajax.googleapis.com" rel="dns-prefetch">
+    <link href="fonts.googleapis.com" rel="dns-prefetch">
+    <link href="www.google-analytics.com" rel="dns-prefetch">
+    <link href="ajax.googleapis.com" rel="dns-prefetch">
 
     <link href="{$host}__assets/frontend/css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="{$host}__assets/plugin/easyui/themes/metro-gray/validatebox.css">
@@ -125,34 +125,34 @@
                 </div>
                 <div class="col-xs-12 col-md-12 visible-md visible-lg registrasi-wrap">
                 <h3 style="text-align: right; font-weight: 700;">REGISTRASIKAN DIRI ANDA UNTUK INVESTASI LEBIH</h3>
-                    <form id='regsbro' method="post" url="{$host}submit-step1-register" enctype="multipart/form-data">
-                            <input type='hidden' name='step' value='step-1-registration' />
-                            <ul>
-                                <li>        
-                                    <input type="text" class="form-control validasi" name="frstnm" id='frstnm' placeholder="First Name">
-                                </li>
-                                <li>
-                                    <input type="text" class="form-control validasi" name="lstnm" id='latnm' placeholder="Last Name">
-                                </li>
-                                <li class="clearfix"></li>
-                                <li>
-                                    <input type="text" name="emadd" class="form-control validasi emailbro" placeholder="Email">
-                                </li>
-                                <li>
-                                    <input type="text" class="form-control validasi numberbro" name="phmob" placeholder="Handphone">
-                                </li>
-                                <li>
-                                    {$html_captcha}
-                                </li>
-                                <li>
-                                    <a style='width:300px !important;' class="btn btn-primary" onClick="kumpulAction('register-1');">Daftar Disini !</a>
-                                </li>
-                            </ul>
+					<form id='regsbro' method="post" url="{$host}submit-step1-register" enctype="multipart/form-data">
+                        <input type='hidden' name='step' value='step-1-registration' />
+                        <ul>
+                            <li>        
+                                <input type="text" class="form-control validasi" name="frstnm" id='frstnm' placeholder="First Name">
+                            </li>
+                            <li>
+                                <input type="text" class="form-control validasi" name="lstnm" id='latnm' placeholder="Last Name">
+                            </li>
+                            <li class="clearfix"></li>
+                            <li>
+                                <input type="text" name="emadd" class="form-control validasi emailbro" placeholder="Email">
+                            </li>
+                            <li>
+                                <input type="text" class="form-control validasi numberbro" name="phmob" placeholder="Handphone">
+                            </li>
+                            <li>
+                                {$html_captcha}</p>
+                            </li>
+                            <li>
+                                <a style='width:300px !important;' class="btn btn-primary" onClick="kumpulAction('register-1');">Daftar Disini !</a>
+                            </li>
+                        </ul>
                     </form>
                 </div>
                 <div class="clearfix"></div>
                 <div class="row">
-                    <div class="container" style="position: absolute;top: 25%;left: 5%;">
+                    <div class="container" style="position: absolute;width:50%;top: 25%;left: 5%;">
                         <div class="circle-text visible-md visible-lg">
                             <div class="circle-content">
                                 <img src="{$host}__assets/frontend/img/logo-homtel.png" style="max-width: 50%">
@@ -479,12 +479,14 @@
 	<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
 	<!-- {literal} -->
     <script>
-        (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+        /*
+		(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
         function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
         e=o.createElement(i);r=o.getElementsByTagName(i)[0];
         e.src='//www.google-analytics.com/analytics.js';
         r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
         ga('create','UA-82202846-2');ga('send','pageview');
+		*/
     </script>
 	<!-- {/literal} -->
   </body>

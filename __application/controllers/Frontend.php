@@ -30,8 +30,8 @@ class Frontend extends JINGGA_Controller {
 				
 		$firstname 	= $decoding[0];
 		$lastname 	= $decoding[1];
-		$emailaddr 	= $decoding[3];
-		$phone 		= $decoding[4];
+		$emailaddr 	= $decoding[2];
+		$phone 		= $decoding[3];
 		/*
 		$datebirth 	= $decoding[2];
 		$date = explode('-', $datebirth);
