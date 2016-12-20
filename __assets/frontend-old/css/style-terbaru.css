@@ -1,0 +1,522 @@
+body {
+  color: #00243c;
+  font-family: "helvetica"; }
+
+.tar {
+  text-align: right !important; }
+
+.tac {
+  text-align: center; }
+
+.tal {
+  text-align: left; }
+
+#body-login-homtel {
+  background: url("bg-login-homtel.jpg") no-repeat center center fixed;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  font-family: "helvetica";
+  color: #252525; }
+#dv{
+  /*float:right;*/
+  position: absolute;
+  right: 0;
+  top: 5%;
+  }
+#regsbro{
+  float: right;
+  margin-top: 25px;
+}
+.menu-slay {
+    height: 100%;
+    margin: 0;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 25px 20px;
+    justify-content: space-around;}
+  .menu-slay li{
+    list-style: none;
+    display: inline-flex;}
+    .menu-slay li a{
+      color: #fff;
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+  .sec-navbar-fixed{
+    position: fixed;
+    width: 100%;
+    top:-100px;
+    z-index: 3;
+    -webkit-transition: all 0.5s; /* Safari */
+    transition: all 0.5s;}
+    .sec-navbar-fixed.active{
+      top: 20px;
+      -webkit-transition: all 0.5s; /* Safari */
+      transition: all 0.5s;}
+      .sec-navbar-fixed{
+      left: 0%;
+       -webkit-transition: all 0.5s; /* Safari */
+      transition: all 0.5s;}
+
+  .tmp-section{
+    padding: 0;}
+    .tmp-section .sec-top{
+      background: url(header3-homtel-top.jpg) no-repeat;
+      padding: 0;
+      margin-bottom: 0px;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;}
+      .tmp-section .sec-top .sect-log{
+        background-color: rgba(245, 247, 249, 0.8);
+        height: 100%;
+        margin: 0;
+        width: 100%;
+        display: flex;
+        padding: 30px 20px 20px 20px;
+        justify-content: space-around;}
+    .tmp-section .sec-content{
+    padding: 5% 15%;
+    margin-top: 10px;}
+    
+
+@media (max-width: 991px) {
+  body{
+    font-size: 16px;
+  }
+  .nav-top {
+  background: url(header3-homtel.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  min-height: 100vh; 
+  position: relative;
+  }
+  .nav-top .triangle-up-right {
+    width: 0;
+    height: 0;
+    padding-left:60%;
+    padding-top: 60%;
+    overflow: hidden;
+  }
+  .nav-top .triangle-up-right:after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    margin-left:-1200px;
+    margin-top:-1200px;
+    
+    border-left: 1500px solid transparent;
+    border-top: 1500px solid rgba(255,255,255,.8);
+  }
+  .nav-top #cont-nav--top{
+    margin-right: 0;
+    margin-left: 0;
+    min-width:100%;
+  }
+  .nav-top .menu-nav{
+    text-align: right;
+    padding-top: 6%;}
+    .nav-top .menu-nav li{
+      list-style: none;
+      display: inline-block;
+      padding: 0 2%; }
+      .nav-top .menu-nav li a{
+        color: #3c92ca;
+        font-size: 16px;
+        font-weight: 700;
+        text-decoration: none; }
+  .nav-top .circle-mb {
+    text-align: center;
+    margin-top: 30%;
+    position: relative; 
+    max-width: 350px }
+     .nav-top .circle-mb:after{
+      content: "";
+      display: block;
+      max-width: 100%;
+      height: 0;
+      padding-bottom: 100%;
+      background: rgba(255, 255, 255, 0.7);
+      -moz-border-radius: 50%;
+      -webkit-border-radius: 50%;
+      border-radius: 50%; }
+     .nav-top .circle-mb .circle-content{
+      position: absolute;
+      width: 100%;
+      top: 20%;
+      /*text-align: center;*/}
+  .nav-top .popup{
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 80px
+  }
+  .nav-top .registrasi-wrap{
+    margin-top: 30px;}
+    .nav-top .registrasi-wrap ul{
+      padding-left: 0;}
+        .nav-top .registrasi-wrap ul li{
+          list-style: none;
+          margin-bottom: 10px;
+        }
+  .body-wrap .about-homtel{
+    padding: 0;}
+    .body-wrap .about-homtel h1 {
+      text-align: center;
+      padding: 10px; }
+       .body-wrap .about-homtel h4 {
+        margin-bottom: 20px;
+        text-align: center;
+        padding: 10px; }
+        .body-wrap .about-homtel .text-about-homtel {
+        text-align: justify;
+        padding: 0 25px; }
+  .body-wrap .about-homtel .bg-about {
+    background: url(bg-works-homtel.png) no-repeat;
+    padding: 0;
+    margin-bottom: 0px;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover; }
+    .body-wrap .about-homtel .bg-about .white-wrapper {
+      background-color: rgba(245, 247, 249, 0.8);
+      height: 100%;
+      margin: 0;
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      padding: 50px 20px 30px 20px;
+      justify-content: space-around; }
+      .body-wrap .about-homtel .bg-about .white-wrapper .itm {
+        flex-grow: 1;
+        flex-shrink: 1;
+        text-align: center;
+        color: #795e46;
+        font-weight: 700;
+        padding: 10px; }
+        .body-wrap .about-homtel .bg-about .white-wrapper .itm p {
+          padding-top: 10px;
+          text-align: center; }
+  .body-wrap .servis-wrap {
+    background-image: url(bg-ico-homtel.png);
+    padding-bottom: 0px; }
+    .body-wrap .servis-wrap h1 {
+      text-align: center;
+      margin-top: 40px; }
+    .body-wrap .servis-wrap h4 {
+      text-align: center;
+      margin-top: 20px;}
+    .body-wrap .servis-wrap .servis {
+      display: flex;
+      margin: 0;
+      width: 100%;
+      flex-wrap: wrap;
+      padding: 30px 8%;
+      justify-content: space-around; }
+      .body-wrap .servis-wrap .servis .itm {
+        flex: 1;
+        flex-grow: 1;
+        flex-shrink: 1;
+        text-align: center;
+        padding: 10px; }
+        .body-wrap .servis-wrap .servis .itm p {
+          font-weight: 700;
+          font-size: 18px;
+          padding-top: 20px; }
+      .body-wrap .servis-wrap .servis .itm:hover {
+        background-color: rgba(60, 146, 202, 0.51);
+        color: #fff; }
+    #mitra{
+      padding: 20px 10px;}
+      #mitra ul{
+        padding-left: 0;}
+  .footer {
+  background-color: #f5f7f9;
+  background: url(bg-footer-homtel.png) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100vh; }
+  .footer .footer-homtel {
+    padding: 30px 0 0 0;
+    text-align: center; }
+    .footer .footer-homtel .info-homtel img {
+      max-width: 20%; }
+    .footer .footer-homtel .info-homtel .info {
+      font-weight: bold !important;
+      font-size: 20px; }
+    .footer .footer-homtel .info-homtel p {
+      margin-bottom: 0;
+      font-size: 16px; }
+    .footer .footer-homtel .info-homtel .copyright {
+      font-size: 12px !important; }
+    .footer .footer-homtel .alamat-homtel {
+      font-size: 16px; }
+      .footer .footer-homtel .alamat-homtel .left-homtel {
+        padding: 0 15%; }
+      .footer .footer-homtel .alamat-homtel .right-homtel {
+        padding: 0 15%; }
+
+  .footer .menu-social2 {
+    text-align: left !important;
+    bottom: 0;
+    padding: 0; }
+    .footer .menu-social2 .menu2 {
+      text-align: center;
+      padding: 0;
+      margin-top: 10px;}
+      .footer .menu-social2 .menu2 li {
+        list-style: none;
+        border-bottom: 1px solid #cee8fa; }
+        .footer .menu-social2 .menu2 li a {
+          text-decoration: none;
+          display: block;
+          padding: 1em;
+          color: #223e5a; }
+        .footer .menu-social2 .menu2 li:hover {
+          color: #3c92ca; }
+    .footer .menu-social2 .social2 {
+      display: flex;
+      justify-content: center; }
+      .footer .menu-social2 .social2 li {
+        list-style: none; }
+        .footer .menu-social2 .social2 li a {
+          text-decoration: none;
+          display: block;
+          padding: 1em;
+          color: #223e5a; }
+      
+}
+
+/*---------------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------------------------*/
+
+@media (min-width: 992px) { 
+.nav-top {
+  background: url(header3-homtel.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  min-height: 100vh; 
+  position: relative;
+  }
+  .nav-top .triangle-up-right {
+    width: 0;
+    height: 0;
+    padding-left:60%;
+    padding-top: 60%;
+    overflow: hidden;
+  }
+  .nav-top .triangle-up-right:after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    margin-left:-1200px;
+    margin-top:-1200px;
+    
+    border-left: 1500px solid transparent;
+    border-top: 1500px solid rgba(255,255,255,.8);
+  }
+  .nav-top #cont-nav--top{
+    margin-right: 0;
+    margin-left: 0;
+    min-width:100%;
+  }
+  .nav-top .menu-nav{
+    text-align: right;
+    padding-top: 6%;}
+    .nav-top .menu-nav li{
+      list-style: none;
+      display: inline-block;
+      padding: 0 2%; }
+      .nav-top .menu-nav li a{
+        color: #3c92ca;
+        font-size: 16px;
+        font-weight: 700;
+        text-decoration: none; }
+    .nav-top .circle-text {
+    text-align: center;
+    position: relative; 
+    max-width: 450px;
+    padding:0; }
+     .nav-top .circle-text:after{
+      content: "";
+      display: block;
+      max-width: 100%;
+      height: 0;
+      padding-bottom: 100%;
+      background: rgba(255, 255, 255, 0.7);
+      -moz-border-radius: 50%;
+      -webkit-border-radius: 50%;
+      border-radius: 50%; }
+     .nav-top .circle-text .circle-content{
+      position: absolute;
+      width: 100%;
+      top: 20%;
+      /*text-align: center;*/}
+  .nav-top .popup{
+    text-align: center;
+    margin-top: 30px;
+  }
+  .nav-top .registrasi-wrap{
+    }
+    .nav-top .registrasi-wrap ul{
+      padding-left: 0;}
+        .nav-top .registrasi-wrap ul li{
+          list-style: none;
+          margin-bottom: 10px;
+        }
+  .body-wrap .about-homtel {
+  margin-top: 10px;
+  padding: 0; }
+  .body-wrap .about-homtel h1 {
+    font-size: 4em;
+    text-align: center;
+    padding: 10px; }
+  .body-wrap .about-homtel h4 {
+    margin-bottom: 50px;
+    font-size: 25px;
+    text-align: center;
+    padding: 10px; }
+  .body-wrap .about-homtel .text-about-homtel {
+    text-align: center;
+    padding: 0 5%; }
+    .body-wrap .about-homtel .text-about-homtel p {
+      text-align: left !important;
+      font-size: 20px; 
+      text-align: justify !important;}
+  .body-wrap .about-homtel .bg-about {
+    background: url(bg-works-homtel.png) no-repeat;
+    padding: 0;
+    margin-bottom: 0px;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover; }
+    .body-wrap .about-homtel .bg-about .white-wrapper {
+      background-color: rgba(245, 247, 249, 0.8);
+      height: 100%;
+      margin: 0;
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      padding: 100px 20px 80px 20px;
+      justify-content: space-around; }
+      .body-wrap .about-homtel .bg-about .white-wrapper .itm {
+        flex-grow: 1;
+        flex-shrink: 1;
+        text-align: center;
+        color: #795e46;
+        font-weight: 700;
+        font-size: 20px;
+        padding: 10px; }
+        .body-wrap .about-homtel .bg-about .white-wrapper .itm p {
+          padding-top: 10px;
+          text-align: center; }
+  .body-wrap .servis-wrap {
+    background-image: url(bg-ico-homtel.png);
+    padding-bottom: 0px; }
+    .body-wrap .servis-wrap h1 {
+      text-align: center;
+      font-size: 4em;
+      margin-top: 40px; }
+    .body-wrap .servis-wrap h4 {
+      text-align: center;
+      margin-bottom: 50px;
+      font-size: 25px; }
+    .body-wrap .servis-wrap .servis {
+      display: flex;
+      margin: 0;
+      width: 100%;
+      flex-wrap: wrap;
+      padding: 50px 8%;
+      justify-content: space-around; }
+      .body-wrap .servis-wrap .servis .itm {
+        flex: 1;
+        flex-grow: 1;
+        flex-shrink: 1;
+        text-align: center;
+        padding: 10px; }
+        .body-wrap .servis-wrap .servis .itm p {
+          font-weight: 700;
+          font-size: 18px;
+          padding-top: 20px; }
+      .body-wrap .servis-wrap .servis .itm:hover {
+        background-color: rgba(60, 146, 202, 0.51);
+        color: #fff; }
+  #mitra{
+    padding: 50px 10px;}
+    #mitra ul{
+        padding-left: 0;}
+  .footer {
+  background-color: #f5f7f9;
+  background: url(bg-footer-homtel.png) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100vh; }
+  .footer .footer-homtel {
+    padding: 120px 0 80px 0;
+    text-align: center; }
+    .footer .footer-homtel .info-homtel img {
+      width: 5%; }
+    .footer .footer-homtel .info-homtel .info {
+      font-weight: bold !important;
+      font-size: 20px; }
+    .footer .footer-homtel .info-homtel p {
+      margin-bottom: 0;
+      font-size: 16px; }
+    .footer .footer-homtel .info-homtel .copyright {
+      font-size: 12px !important; }
+    .footer .footer-homtel .alamat-homtel {
+      padding-top: 80px;
+      font-size: 1.2em; }
+      .footer .footer-homtel .alamat-homtel .left-homtel {
+        padding: 0 15%;
+        margin-bottom: 20px; }
+      .footer .footer-homtel .alamat-homtel .right-homtel {
+        padding: 0 15%; }
+  .footer .menu-social {
+    text-align: left !important;
+    bottom: 0;
+    position: absolute; }
+    .footer .menu-social .menu {
+      display: -webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-flex-flow: row wrap; }
+      .footer .menu-social .menu li {
+        list-style: none; }
+        .footer .menu-social .menu li a {
+          text-decoration: none;
+          display: block;
+          padding: 1em;
+          color: #223e5a; }
+        .footer .menu-social .menu li :hover {
+          color: #3c92ca; }
+    .footer .menu-social .social {
+      display: flex;
+      justify-content: flex-end; }
+      .footer .menu-social .social li {
+        list-style: none; }
+        .footer .menu-social .social li a {
+          text-decoration: none;
+          display: block;
+          padding: 1em;
+          color: #223e5a; }
+
+}
