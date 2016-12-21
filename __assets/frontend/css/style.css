@@ -1,3 +1,48 @@
+
+@font-face {
+    font-family: 'helvetica';
+    src: url('helvetica-webfont.woff2') format('woff2'),
+         url('helvetica-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'helvetica_bold';
+    src: url('helvetica-bold-webfont.woff2') format('woff2'),
+         url('helvetica-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'helvetica_light';
+    src: url('helvetica-light-webfont.woff2') format('woff2'),
+         url('helvetica-light-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'helvetica_oblique';
+    src: url('helvetica-oblique-webfont.woff2') format('woff2'),
+         url('helvetica-oblique-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'helvetica_medium';
+    src: url('helvetica-reg-webfont.woff2') format('woff2'),
+         url('helvetica-reg-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
 body {
   color: #00243c;
   font-family: "helvetica"; }
@@ -83,12 +128,6 @@ body {
     .tmp-section .sec-content{
     padding: 5% 15%;
     margin-top: 10px;}
-  .logomitra {
-    height: 180px;
-    width: 180px;
-    align-self: center;}
-    .logomitra img{
-      width: 100%;}
     
 
 @media (max-width: 991px) {
@@ -176,7 +215,8 @@ body {
     padding: 0;}
     .body-wrap .about-homtel h1 {
       text-align: center;
-      padding: 10px; }
+      padding: 10px; 
+      font-family: helvetica_bold;}
        .body-wrap .about-homtel h4 {
         margin-bottom: 20px;
         text-align: center;
@@ -216,7 +256,8 @@ body {
     padding-bottom: 0px; }
     .body-wrap .servis-wrap h1 {
       text-align: center;
-      margin-top: 40px; }
+      margin-top: 40px; 
+      font-family: helvetica_bold;}
     .body-wrap .servis-wrap h4 {
       text-align: center;
       margin-top: 20px;}
@@ -237,20 +278,34 @@ body {
           font-weight: 700;
           font-size: 18px;
           padding-top: 20px; }
-      .body-wrap .servis-wrap .servis .itm:hover {
+      .body-wrap .servis-wrap .servis .itm:hover{
+        color:#3c92ca;}
+      .body-wrap .servis-wrap .servis .itm img:hover {
         background-color: rgba(60, 146, 202, 0.51);
-        color: #fff; }
+        padding: 10%;
+        border-radius: 50%;}
     #mitra{
       padding: 20px 10px;}
-      #mitra ul{
-        padding-left: 0;}
+      #mitra h1{
+        font-family: helvetica_bold;}
+      #mitra h4{
+        text-align: center;
+        margin-bottom: 40px;
+        padding: 0 10px;}
+        #mitra .logomitra{
+          text-align: center;
+          padding:10px;
+        }
+        #mitra .logomitra img{
+          width: 80%;
+          }
   .footer {
     background: url(bg-footer-homtel.png) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    height: 100vh; 
+    /*height: 100vh; */
     padding: 0; 
     text-align: center;}
     .footer .footer-homtel {
@@ -258,6 +313,13 @@ body {
       .footer .footer-homtel .info-homtel img {
          max-width: 80px;
          padding-bottom: 5px; }
+      .footer .footer-homtel .info-homtel .info {
+        font-size: 20px; 
+        margin-bottom: 0;
+        font-family: helvetica_medium;}
+      .footer .footer-homtel .info-homtel .phone {
+        font-size: 20px; 
+        font-family: helvetica_medium;}
     .footer .menu-social2 {
       text-align: left !important;
       bottom: 0;
@@ -292,7 +354,7 @@ body {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    height: 100vh; 
+    /*height: 100vh; */
     padding: 0; }
     .footer2 .menu-social2 {
       text-align: left !important;
@@ -370,8 +432,8 @@ body {
       padding: 0 2%; }
       .nav-top .menu-nav li a{
         color: #3c92ca;
-        font-size: 16px;
-        font-weight: 700;
+        font-size: 18px;
+        font-family: helvetica_bold;
         text-decoration: none; }
     .nav-top .circle-text {
     text-align: center;
@@ -393,6 +455,14 @@ body {
       width: 100%;
       top: 20%;
       /*text-align: center;*/}
+      .nav-top .circle-text .circle-content img{
+        padding-bottom: 10px;}
+      .nav-top .circle-text .circle-content p{
+        font-family: helvetica_light;
+        font-size: 18px;}
+        .nav-top .circle-text .circle-content .link-login{
+          font-family: helvetica_bold;
+        }
   .nav-top .popup{
     text-align: center;
     margin-top: 30px;
@@ -411,7 +481,8 @@ body {
   .body-wrap .about-homtel h1 {
     font-size: 4em;
     text-align: center;
-    padding: 10px; }
+    padding: 10px; 
+    font-family: helvetica_bold;}
   .body-wrap .about-homtel h4 {
     margin-bottom: 50px;
     font-size: 25px;
@@ -419,7 +490,7 @@ body {
     padding: 10px; }
   .body-wrap .about-homtel .text-about-homtel {
     text-align: center;
-    padding: 0 5%; }
+    padding: 0 15%; }
     .body-wrap .about-homtel .text-about-homtel p {
       text-align: left !important;
       font-size: 20px; 
@@ -458,11 +529,12 @@ body {
     .body-wrap .servis-wrap h1 {
       text-align: center;
       font-size: 4em;
-      margin-top: 40px; }
+      margin-top: 40px;
+      font-family: helvetica_bold; }
     .body-wrap .servis-wrap h4 {
       text-align: center;
       margin-bottom: 50px;
-      font-size: 25px; }
+      font-size: 22px; }
     .body-wrap .servis-wrap .servis {
       display: flex;
       margin: 0;
@@ -480,13 +552,34 @@ body {
           font-weight: 700;
           font-size: 18px;
           padding-top: 20px; }
-      .body-wrap .servis-wrap .servis .itm:hover {
+      .body-wrap .servis-wrap .servis .itm:hover{
+        color:#3c92ca;}
+      .body-wrap .servis-wrap .servis .itm img:hover {
         background-color: rgba(60, 146, 202, 0.51);
-        color: #fff; }
+        /*color: #fff; */
+        padding: 10%;
+        border-radius: 50%;}
   #mitra{
     padding: 50px 10px;}
-    #mitra ul{
-        padding-left: 0;}
+    #mitra h1{
+      font-size: 4em;
+    font-family: helvetica_bold;}
+      #mitra h4{
+      text-align: center;
+      font-size: 22px;
+      margin-bottom: 60px;}
+    #mitra .servis{
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: flex-end;}
+    #mitra .logomitra{
+      width: 180px;
+      height: 180px;
+      margin: 10px;}
+      .logomitra img{
+        width: 100%;}
   .footer {
   background: url(bg-footer-homtel.png) no-repeat center center fixed;
   -webkit-background-size: cover;
@@ -501,7 +594,11 @@ body {
       width: 5%; }
     .footer .footer-homtel .info-homtel .info {
       font-weight: bold !important;
-      font-size: 20px; }
+      font-size: 20px; 
+      font-family: helvetica_medium;}
+    .footer .footer-homtel .info-homtel .phone {
+      font-size: 20px; 
+      font-family: helvetica_medium;}
     .footer .footer-homtel .info-homtel p {
       margin-bottom: 0;
       font-size: 16px; }

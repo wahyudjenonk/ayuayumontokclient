@@ -778,6 +778,7 @@ function kumpulAction(type, p1, p2, p3, p4, p5){
 			param['ipma'] = p1;
 			param['lstma'] = p2;
 			param['flg'] = p3;
+			param['idun'] = p4;
 			
 			$.blockUI({ message: waitingmsg });
 			setTimeout(function(){
@@ -847,6 +848,7 @@ function kumpulAction(type, p1, p2, p3, p4, p5){
 				
 				$('#service1').show();
 				$('#service2').hide();
+				$('#service2-pckg').hide();
 				$('#service3').hide();
 				$.unblockUI();
 				
@@ -926,6 +928,57 @@ function kumpulAction(type, p1, p2, p3, p4, p5){
 			$('#qty_'+p1).removeClass('validatebox-invalid');
 			
 			kumpulAction('processalltotal');
+		break;
+		
+		case "setting_kalendar_unit":
+			param['date'] = p1;
+			param['idtrx'] = p2;
+			
+			$.post(host+'setting-kalendar', param ,function(rsp){
+				if(rsp == 1){
+					$('#modalencuk').html('');
+					$('#modalencuk').html('Day Setting OFF.');				
+					$('#pesanModal').modal('show');
+					$('#kalendar_setting_'+acak_paketnya).fullCalendar('destroy');
+					$.post(host+'getsetting',{ 'idun':unid },function(resp){
+						var setting = JSON.parse(resp);
+						gen_kalender('kalendar_setting_'+acak_paketnya, 450, 'kalender_setting', setting, harganyakamar);
+					});
+				}
+			});
+		break;
+		case "remove_setting_kalendar_unit":
+			param['idxw'] = p1;
+			$.post(host+'remove-setting-kalendar', param ,function(rsp){
+				if(rsp == 1){
+					$('#modalencuk').html('');
+					$('#modalencuk').html('Day Setting ON.');				
+					$('#pesanModal').modal('show');
+					
+					$('#kalendar_setting_'+acak_paketnya).fullCalendar('destroy');
+					$.post(host+'getsetting',{ 'idun':unid },function(resp){
+						var setting = JSON.parse(resp);
+						gen_kalender('kalendar_setting_'+acak_paketnya, 450, 'kalender_setting', setting, harganyakamar);
+					});
+				}
+			});
+		break;
+		
+		case "extra_order":
+			param['order'] = "extra_order";
+			param['ip'] = p1;
+			param['txtun'] = p2;
+			param['itrx'] = p3;
+			$.blockUI({ message: waitingmsg });
+			setTimeout(function(){
+				$("#konten").empty().addClass("loading");
+				$.post(host+'request-services-form', param, function(rsp){
+					var parsing = $.parseJSON(rsp);
+					$("#konten").html(parsing.page).removeClass("loading");	
+				});
+				$.unblockUI();
+				$(".main-panel").perfectScrollbar('update');
+			}, 1000);
 		break;
 		// End ModServ
 		
@@ -1106,7 +1159,7 @@ function gen_editor(id){
 }
 
 
-function gen_kalender(id_div,height,modulbro,data_kalender){
+function gen_kalender(id_div,height,modulbro,data_kalender,harga){
 	$('#'+id_div).fullCalendar({
 		height: height,
         header: {
@@ -1119,17 +1172,27 @@ function gen_kalender(id_div,height,modulbro,data_kalender){
 		selectable: true,
 		selectHelper: true,
 		editable: true,
+		displayEventTime: false,
 		eventLimit: true, // allow "more" link when too many events
 		events: data_kalender,
 		eventClick: function(calEvent, jsEvent, view) {
-			kumpulAction('scheduledetail', calEvent.idsw);
+			if(modulbro == 'kalender_reservation'){
+				kumpulAction('scheduledetail', calEvent.idsw);
+			}else if(modulbro == 'kalender_setting'){
+				kumpulAction('remove_setting_kalendar_unit', calEvent.idsw);
+			}
 		},
 		dayClick: function(date, jsEvent, view) {
-			//if()
+			if(modulbro == 'kalender_setting'){
+				var datenya = moment(date, 'DD.MM.YYYY').format('YYYY-MM-DD')
+				kumpulAction('setting_kalendar_unit', datenya, trid);
+			}
 		},
 		dayRender: function (date, cell) {
 			if(modulbro == 'kalender_setting'){
-				cell.append('<font color="#D2CFCF" style="font-size:12px !important;">Rp. 50.000</font>');
+				htmlnya = '<font color="#D2CFCF" style="font-size:12px !important;">Rp. '+harga+' </font>';
+				cell.append(htmlnya);
+				//cell.css("background-color", "red");
 			}
 		}
     });
