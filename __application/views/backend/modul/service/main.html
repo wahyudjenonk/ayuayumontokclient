@@ -39,7 +39,7 @@
 								{foreach from=$dataproperty.data item=rows}
 								<tr>
 									<td>
-										<a href="javascript:void(0);" onClick="kumpulAction('detaillayanan', '{$rows.id_transaction}', '{$rows.unit_name}', '{$rows.flag_trans}');">{$rows.no_invoice}</a>
+										<a href="javascript:void(0);" onClick="kumpulAction('detaillayanan', '{$rows.id_transaction}', '{$rows.unit_name}', '{$rows.flag_trans}', '{$rows.id_unit}');">{$rows.no_invoice}</a>
 									</td>
 									<td>{$rows.unit_name|default:'-'}</td>
 									<td>{$rows.services_name|default:'-'}</td>

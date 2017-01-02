@@ -14,10 +14,38 @@
 		</tr>		
 		<tr>
 			<td style='padding:10px;'>
+				{*
 				Please click this link below to complete step your registration.
 				<br />
 				<br />
 				<a href='{$link}'>{$link}</a>
+				*}
+				
+				This is your account for login homtel.id
+				<br/>
+				<table width='100%' style='margin-top:10px;margin-bottom:10px;'>
+					<tr>
+						<td width='25%'>Full Name</td>
+						<td width='5%'>:</td>
+						<td width='70%'>{$post.frstnm} {$post.lstnm}</td>
+					</tr>
+					<tr>
+						<td >Phone Mobile</td>
+						<td >:</td>
+						<td >{$post.phmob}</td>
+					</tr>
+					<tr>
+						<td >Username</td>
+						<td >:</td>
+						<td >{$data.email_address}</td>
+					</tr>
+					<tr>
+						<td>Password</td>
+						<td>:</td>
+						<td>{$data.password}</td>
+					</tr>
+				</table>
+				<br>
 			</td>
 		</tr>
 		{elseif $type eq 'email-step2'}

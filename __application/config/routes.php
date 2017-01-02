@@ -44,6 +44,9 @@ $route['submit-services'] = 'backend/modul/service/submit_services';
 $route['getunitsize'] = 'backend/modul/service/unitsizebro';
 $route['getschedule'] = 'backend/modul/service/dataschedule';
 $route['schedule-detail'] = 'backend/modul/service/scheduledetail';
+$route['getsetting'] = 'backend/modul/service/datasetting';
+$route['setting-kalendar'] = 'backend/simpandata/settingkalendar';
+$route['remove-setting-kalendar'] = 'backend/simpandata/removesettingkalendar';
 
 $route['billing'] = 'backend/modul/billing/independent';
 $route['billing-detail'] = 'backend/modul/billing/independent_detail';
@@ -54,6 +57,8 @@ $route['submit-update-profile'] = 'backend/simpandata/submit_update_profile';
 $route['change-password'] = 'backend/modul/user/change_password';
 $route['submit-change-password'] = 'backend/simpandata/submit_change_password';
 
+$route['update-register'] = 'backend/modul/user/update_register';
+$route['submit-verification-profile'] = 'backend/simpandata/submit_verification_profile';
 
 $route['sitemap'] = 'frontend/getdisplay/sitemap';
 $route['karir'] = 'frontend/getdisplay/karir';

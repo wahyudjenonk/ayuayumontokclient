@@ -26,9 +26,13 @@
 							{foreach from=$datatransaction.data item=rows}
 								<tr >
 									<td>
+										{if $rows.flag eq 'P'}
 										<a class="btn btn-primary" id='detindetrx_{$rows.id}' onClick="kumpulAction('trxdetail', '{$rows.id}');" title='Confirm This Invoice'>
 											{$rows.no_invoice}
 										</a>
+										{else}
+											{$rows.no_invoice}
+										{/if}
 									</td>
 									<td>{$rows.apartment_name}</td>
 									<td>{$rows.date_invoice|date_format:"%d %b %Y"}</td>

@@ -113,17 +113,20 @@ class lib {
 		$subject = "";
 		switch($type){
 			case "email_register_step1":				
+				/*
 				$firstname = trim($p1['frstnm']);
 				$lastname = trim($p1['lstnm']);
-				//$datebirth = $p1['thn']."-".$p1['bln']."-".$p1['tgl'];
+				$datebirth = $p1['thn']."-".$p1['bln']."-".$p1['tgl'];
 				$emails = trim($p1['emadd']);
 				$phone = trim($p1['phmob']);
 				$encoding_word = $firstname."|".$lastname."|".$emails."|".$phone;
 				$encoding = $this->base64url_encode($encoding_word);
 				$link = $p2."register-step2/".$encoding;
+				*/
 				
+				$ci->nsmarty->assign('post', $p1);
+				$ci->nsmarty->assign('data', $p2);
 				$ci->nsmarty->assign('type', "email-step1");
-				$ci->nsmarty->assign('link', $link);
 				$html = $ci->nsmarty->fetch('backend/email-register.html');
 				$subject = "Register Step 1 - Homtel Services";
 			break;

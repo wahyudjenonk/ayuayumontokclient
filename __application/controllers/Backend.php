@@ -94,135 +94,6 @@ class Backend extends JINGGA_Controller {
 							$this->nsmarty->assign('compulsary', $compulsary);
 							$this->nsmarty->assign('editstatus', $editstatus);
 						break;
-						case "request_services":
-							$temp = 'backend/modul/'.$p1.'/formservices.html';
-							$id = $this->input->post('uuii');
-							$unit_name = $this->input->post('nmii');
-							$unit_size = $this->input->post('mii');
-							$dataservices = $this->mbackend->getdata('services');
-							
-							$arrayservice = array();
-							$arrayservice[0]['idserv'] = "1";
-							$arrayservice[0]['serv'] = "Independent";
-							$arrayservice[0]['icon'] = "gbr_indie.png";
-							$arrayservice[1]['idserv'] = "2";
-							$arrayservice[1]['serv'] = "Package";		
-							$arrayservice[1]['icon'] = "gbr_paket.png";							
-							
-							$this->nsmarty->assign('unit_name', $unit_name);
-							$this->nsmarty->assign('unit_size', $unit_size);
-							$this->nsmarty->assign('id', $id);
-							$this->nsmarty->assign('services', $arrayservice);
-						break;
-						case "detail_services":
-							$temp = 'backend/modul/'.$p1.'/detailservices.html';
-							$tpsr = $this->input->post('uuii');
-							$id = $this->input->post('uuiid');
-							
-							if($tpsr == 1){
-								$datadetailservice = $this->mbackend->getdata('detailservices', $tpsr);							
-								$this->nsmarty->assign('typeform', 'formdetailservices');
-								$this->nsmarty->assign('detailservices', $datadetailservice['data']);
-							}elseif($tpsr == 2){
-								$datapackageheader = $this->mbackend->getdata('servicepackageheader');								
-								$dataservice = array();
-								foreach($datapackageheader['data']['paket'] as $k => $v){
-									$dataservice[$k]['id'] = $v['id'];
-									$dataservice[$k]['tbl_services_id'] = $v['tbl_services_id'];
-									$dataservice[$k]['package_name'] = $v['package_name'];
-									$dataservice[$k]['package_desc'] = $v['package_desc'];
-									$dataservice[$k]['total_package'] = $v['total_package'];
-									$dataservice[$k]['detail'] = array();
-									$datapackagedetail = $this->mbackend->getdata('servicepackagedetail', $v['id']);
-									foreach($datapackagedetail['data']['detil'] as $j => $y){
-										$dataservice[$k]['detail'][$j]['id'] = $y['id'];
-										$dataservice[$k]['detail'][$j]['header'] = $y['header'];
-										$dataservice[$k]['detail'][$j]['header2'] = $y['header2'];
-										$dataservice[$k]['detail'][$j]['services_name'] = $y['services_name'];
-										$dataservice[$k]['detail'][$j]['tbl_package_header_id'] = $y['tbl_package_header_id'];
-										$dataservice[$k]['detail'][$j]['tbl_services_id'] = $y['tbl_services_id'];
-										$dataservice[$k]['detail'][$j]['qty'] = $y['qty'];
-										$dataservice[$k]['detail'][$j]['rate'] = $y['rate'];
-										$dataservice[$k]['detail'][$j]['of_unit'] = $y['of_unit'];
-										$dataservice[$k]['detail'][$j]['of_area_item'] = $y['of_area_item'];
-										$dataservice[$k]['detail'][$j]['percen'] = $y['percen'];
-									}
-								}
-								
-								$this->nsmarty->assign('typeform', 'formdetailservicespackage');
-								$this->nsmarty->assign('detailservices', $dataservice);
-							}
-							
-							$this->nsmarty->assign('typeservice', $tpsr);
-							$this->nsmarty->assign('id', $id);
-						break;
-						case "summary_services":
-							$temp = 'backend/modul/'.$p1.'/detailservices.html';
-							$tpsr = $this->input->post('arrsrv');
-							$id = $this->input->post('ipma');
-							$stslt = $this->input->post('stslt');
-							$arraylist = $this->input->post('arrlist');
-							$datasummaryservice = $this->mbackend->getdata('summaryservices', $tpsr);
-							
-							foreach($datasummaryservice['data'] as $k => $v){
-								$datasummaryservice['data'][$k]['flaglisting'] = '';
-								if($stslt == 'true'){
-									foreach($arraylist as $t){
-										if($v['id'] == $t){
-											$datasummaryservice['data'][$k]['flaglisting'] = 'true';
-										}
-									}
-								}
-							}
-							
-							$this->nsmarty->assign('typeform', 'summary');
-							$this->nsmarty->assign('id', $id);
-							$this->nsmarty->assign('stslt', $stslt);
-							$this->nsmarty->assign('summaryservices', $datasummaryservice['data']);							
-						break;
-						case "submit_services":
-							$temp = 'backend/modul/'.$p1.'/invoiceservice.html';
-							$post = array();
-							foreach($_POST as $k=>$v){
-								if($this->input->post($k)!=""){
-									$post[$k] = $this->input->post($k);
-								}else{
-									$post[$k] = null;
-								}
-							}
-							
-							$countinput = (count($post['prc']) - 1);
-							$insert = $this->mbackend->simpandata("submit_services", $post);
-							
-							//$this->lib->kirimemail('email_invoice', $this->auth['email_address'], $post, $countinput);
-							
-							$this->nsmarty->assign('type', "services_independent");
-							$this->nsmarty->assign('jmlpost', $countinput);
-							$this->nsmarty->assign('post', $post);
-							$this->nsmarty->display($temp);
-							exit;
-						break;
-						case "submit_services_package":
-							$temp = 'backend/modul/'.$p1.'/invoiceservice.html';
-							$post = array();
-							foreach($_POST as $k=>$v){
-								if($this->input->post($k)!=""){
-									$post[$k] = $this->input->post($k);
-								}else{
-									$post[$k] = null;
-								}
-							}
-							
-							$detailpaket = $this->mbackend->getdata('servicepackagedetail', $post['ipman']);
-							$insert = $this->mbackend->simpandata("submit_services_package", $post, $detailpaket['data']);
-							
-							//$this->lib->kirimemail('email_invoice_package', $this->auth['email_address'], $detailpaket['data']);
-							
-							$this->nsmarty->assign('type', "services_package");
-							$this->nsmarty->assign('datapaket', $detailpaket['data']);
-							$this->nsmarty->display($temp);
-							exit;
-						break;
 					}
 				break;
 				
@@ -234,24 +105,55 @@ class Backend extends JINGGA_Controller {
 						break;
 						case "detail":
 							$idsrv = $this->input->post('ipma');
+							$idunit = $this->input->post('idun');
 							$nmproperty = $this->input->post('lstma');
 							$flagservice = $this->input->post('flg');
 							
 							$this->nsmarty->assign('idtrx', $idsrv);
+							$this->nsmarty->assign('idunit', $idunit);
 							$this->nsmarty->assign('nmproperty', $nmproperty);
 							if($flagservice == "INDEPENDENT"){
 								$temp = 'backend/modul/'.$p1.'/detail-independent.html';
 								$dataplanning = $this->mbackend->getdata('planningindependent', $idsrv);
+								$propertydetil = $this->mbackend->getdata('property_detail', $idunit);
+								
 								$this->nsmarty->assign('dataplanning', $dataplanning['data']);
+								$this->nsmarty->assign('propertydetil', $propertydetil['data']['properti']);
 							}elseif($flagservice == "PAKET"){
 								$temp = 'backend/modul/'.$p1.'/detail-paket.html';
+								$propertydetil = $this->mbackend->getdata('property_detail', $idunit);
+								$okupansi = $this->mbackend->getdata('getokupansi', $idunit);
+								$confirmreservation = $this->mbackend->getdata('getconfirmasireservation', $idunit);
+								$datareservation = $this->mbackend->getdata('latestreservation', $idunit);
+								$gethargakamar = $this->mbackend->getdata('harga_kamar', $idsrv);
+								//print_r($propertydetil);exit;
 								
+								$this->nsmarty->assign('propertydetil', $propertydetil['data']['properti']);
+								$this->nsmarty->assign('okupansi', $okupansi['data']);
+								$this->nsmarty->assign('confirmreservation', $confirmreservation['data']);
+								$this->nsmarty->assign('datareservation', $datareservation['data']);
+								$this->nsmarty->assign('gethargakamar', $gethargakamar['data'][0]['rental_price']);
 							}
 						break;
 						case "request_services":
 							$temp = 'backend/modul/'.$p1.'/formrequestservice.html';
 							$dataservicepaket = $this->mbackend->getdata('servicepaket');
 							$dataproperty = $this->mbackend->getdata('propertyready');
+							$order = $this->input->post('order');
+							if(isset($order)){
+								if($order == "extra_order"){
+									$id_unit = $this->input->post('ip');
+									$txt_unit = $this->input->post('txtun');
+									$id_trx = $this->input->post('itrx');
+									
+									$this->nsmarty->assign('id_unit', $id_unit);
+									$this->nsmarty->assign('txt_unit', $txt_unit);
+									$this->nsmarty->assign('id_trx', $id_trx);
+									$this->nsmarty->assign('order', "extra_order");
+								}
+							}else{
+								$this->nsmarty->assign('order', "main_order");
+							}
 							
 							$arrayservice = array();
 							$arrayservice[0]['idserv'] = "1";
@@ -367,13 +269,14 @@ class Backend extends JINGGA_Controller {
 								$this->nsmarty->assign('type', "services_independent");
 								$this->nsmarty->assign('jmlpost', $countinput);
 								$this->nsmarty->assign('post', $post);
+								$this->nsmarty->display($temp);
 							}elseif($post['tpservice'] == 'package'){
 								$detailpaket = $this->mbackend->getdata('servicepackagedetail', $post['ipman']);
 								$insert = $this->mbackend->simpandata("submit_services_package", $post, $detailpaket['data']);
 								$this->nsmarty->assign('type', "services_package");
 								$this->nsmarty->assign('datapaket', $detailpaket['data']);
+								$this->nsmarty->display($temp);
 							}
-							$this->nsmarty->display($temp);
 							exit;
 						break;
 						case "unitsizebro":
@@ -409,6 +312,34 @@ class Backend extends JINGGA_Controller {
 							$detailrsv = $this->mbackend->getdata('detailreservation', $id_rsv);
 							$this->nsmarty->assign('data', $detailrsv['data']);
 						break;
+						
+						case "datasetting":
+							$id_unit = $this->input->post('idun');
+							$datasetting = $this->mbackend->getdata('datasetting', $id_unit);
+							$databalikan = array();
+							if(isset($datasetting['data'])){
+								$no = 1;
+								foreach($datasetting['data'] as $k => $v){
+									$databalikan[$k]['id'] = $no;
+									$databalikan[$k]['title'] = "";
+									$databalikan[$k]['start'] = $v['start_date'];
+									$databalikan[$k]['allDay'] = false;
+									$databalikan[$k]['editable'] = false;
+									$databalikan[$k]['backgroundColor'] = '#FFE6E4';
+									$databalikan[$k]['borderColor'] = '#FFE6E4';
+									$databalikan[$k]['idsw'] = $v['id'];
+									$no++;
+								}
+							}
+							echo json_encode($databalikan);
+							exit;
+						break;	
+						case "settingkalendar":
+							$id_trx = $this->input->post('idtrx');
+							$tanggalnya = $this->input->post('date');
+							
+							$detailrsv = $this->mbackend->simpandata('detailreservation', $id_rsv);
+						break;
 					}
 				break;
 				
@@ -421,36 +352,13 @@ class Backend extends JINGGA_Controller {
 						case "independent_detail":
 							$idtrx = $this->input->post('ipma');
 							$datatrxdetail = $this->mbackend->getdata('trxindependentdetail', $idtrx);
-							$this->nsmarty->assign('datatrxdetail', $datatrxdetail);
-						break;
-					}
-				break;
-				
-				case "transaction":
-					switch($p2){
-						case "independent":
-							$datatransaction = $this->mbackend->getdata('trxindependent');
-							$this->nsmarty->assign('datatransaction', $datatransaction);
-						break;
-						case "independent_detail":
-							$idtrx = $this->input->post('ipma');
-							$datatrxdetail = $this->mbackend->getdata('trxindependentdetail', $idtrx);
-							
-							$this->nsmarty->assign('datatrxdetail', $datatrxdetail);
-						break;
-						case "package":
-							$datatransaction = $this->mbackend->getdata('trxpackage');
-							$this->nsmarty->assign('datatransaction', $datatransaction);
-						break;
-						case "package_detail":
-							$idtrx = $this->input->post('ipma');
-							$datatrxdetail = $this->mbackend->getdata('trxpackagedetail', $idtrx);
+							//print_r($datatrxdetail);exit;
 							
 							$this->nsmarty->assign('datatrxdetail', $datatrxdetail);
 						break;
 					}
 				break;
-				
+								
 				case "listingmanagement":
 					switch($p2){
 						case "main":
@@ -498,6 +406,7 @@ class Backend extends JINGGA_Controller {
 				case "user":
 					switch($p2){
 						case "profile_setting":
+						case "update_register":
 							$dataprofile = $this->mbackend->getdata('dataprofile');
 							if($dataprofile['data']['date_of_birth']){
 								$tgl_lahir = explode('-', $dataprofile['data']['date_of_birth']);
@@ -520,6 +429,9 @@ class Backend extends JINGGA_Controller {
 							
 							$this->nsmarty->assign('dataprofile', $dataprofile['data']);
 						break;
+						
+						
+						//break;
 					}
 				break;
 			}

@@ -87,7 +87,6 @@
 	$('.akordionbro').on('click', function(){
 		 setTimeout(function() {
 			$('.main-panel').perfectScrollbar('update');
-			//alert('test');
 		}, 1000);
 	});
 </script>
@@ -102,7 +101,7 @@
 				<td width='10%' style="text-align:center;font-weight:bold;">Periodic</td>
 				<td width='10%' style="text-align:center;font-weight:bold;">Qty</td>
 				<td width='10%' style="text-align:center;font-weight:bold;">Amount</td>
-				<td width='10%' style="text-align:center;font-weight:bold;">::</td>
+				{* <td width='10%' style="text-align:center;font-weight:bold;">::</td> *}
 			</tr>
 		</thead>
 		<tbody>
@@ -136,14 +135,16 @@
 						<input type='hidden' class='amount' name='subtot[]' id='amount_{$smr.id}' value='0'/>
 						<span id='am_{$smr.id}'>0</span>
 					</td>
+					{*
 					<td style='text-align:center;'>
 						<a href='#'>Remove</a>
 					</td>
+					*}
 				</tr>
 			{/foreach}
 			<tr>
 				<td style="text-align:center;font-weight:bold;"> Total Charge </td>
-				<td colspan='4' style="text-align:center;font-weight:bold;"> 
+				<td colspan='3' style="text-align:center;font-weight:bold;"> 
 					IDR. <span id='tot'>0</span>
 					<input type='hidden' name='grandtot' id='grandtot' value='0' />
 				</td>

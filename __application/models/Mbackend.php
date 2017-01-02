@@ -105,12 +105,14 @@ class Mbackend extends CI_Model{
 			case "trxindependent":
 				$data['method'] = 'read';
 				$data['modul'] = 'invoice';
+				$data['member_user'] = $this->auth['member_user'];
 			break;
 			case "trxindependentdetail":
 				$data['method'] = 'read';
 				$data['modul'] = 'invoice';
 				$data['submodul'] = 'detil';
 				$data['id'] = $p1;
+				$data['member_user'] = $this->auth['member_user'];
 			break;
 			case "trxpackage":
 				$data['method'] = 'read';
@@ -167,6 +169,43 @@ class Mbackend extends CI_Model{
 				$data['submodul'] = '';
 				$data['id_transaction'] = $p1;
 			break;
+			
+			case "getokupansi":
+				$data['method'] = 'read';
+				$data['modul'] = 'okupansi';
+				$data['submodul'] = '';
+				$data['tbl_unit_member_id'] = $p1;
+				$data['member_user'] = $this->auth['member_user'];
+			break;
+			case "getconfirmasireservation":
+				$data['method'] = 'read';
+				$data['modul'] = 'confirm_data';
+				$data['submodul'] = '';
+				$data['tbl_unit_member_id'] = $p1;
+				$data['member_user'] = $this->auth['member_user'];
+			break;
+			case "latestreservation":
+				$data['method'] = 'read';
+				$data['modul'] = 'list_reservasi_unit';
+				$data['submodul'] = '';
+				$data['tbl_unit_member_id'] = $p1;
+				$data['member_user'] = $this->auth['member_user'];
+			break;
+			case "harga_kamar":
+				$data['method'] = 'read';
+				$data['modul'] = 'get_harga_kamar';
+				$data['submodul'] = '';
+				$data['id_transaction'] = $p1;
+			break;
+			
+			case "datasetting":
+				$data['method'] = 'read';
+				$data['modul'] = 'data_on_off';
+				$data['submodul'] = '';
+				$data['tbl_unit_member_id'] = $p1;
+				$data['member_user'] = $this->auth['member_user'];
+			break;
+			
 			
 		}
 		
@@ -352,11 +391,17 @@ class Mbackend extends CI_Model{
 				$data['grand_total'] = $post['grandtot'];
 				$data['tbl_unit_member_id'] = $post['ip'];
 				$data['flag'] = 'P';
+				if($post['ext'] == 'extra_order'){
+					$data['kode'] = "EXT";
+				}				
 				$data['tbl_pricing_services_id'] = $arraypricingid;
 				$data['qty'] = $arrayqty;
 				$data['total'] = $arraytot;
 				$data['flag_transaction'] = $arrayflag;
 				$data['listing_management'] = $arraylistingmanagement;
+				
+				//echo "<pre>";
+				//print_r($data);exit;
 			break;
 			case "submit_services_package":
 				$date = explode(' - ', $post['daterange']);
@@ -437,6 +482,67 @@ class Mbackend extends CI_Model{
 				}
 				
 			break;
+			case "submit_verification_profile":
+				if($post['reg_code'] == $this->auth['registration_code']){
+					$datalawas = $this->getdata('dataprofile');
+					$data['method'] = 'update';
+					$data['modul'] = 'profil';
+					$data['submodul'] = '';
+					$data['id'] = $datalawas['data']['id'];
+					$data['cl_owner_type_id'] = $post['typown'];
+					$data['title'] = $post['titown'];
+					$data['owner_name_first'] = $post['fname'];
+					$data['owner_name_last'] = $post['lname'];
+					$data['place_of_birth'] = $post['plofbirth'];
+					$data['date_of_birth'] = $post['thbirth']."-".$post['blbirth']."-".$post['tgbirth'];
+					$data['previous_education'] = $post['edown'];
+					$data['current_occupation'] = $post['jobown'];
+					$data['city'] = $post['citown'];
+					$data['state'] = $post['sttown'];
+					$data['zip_code'] = $post['zpown'];
+					$data['address'] = $post['addrown'];
+					$data['phone_home'] = $post['phhmown'];
+					$data['phone_mobile'] = $post['phmbown'];
+					$data['id_number'] = $post['idcrdown'];
+					
+					$path = "__repository/";
+					$t = microtime(true);
+					$micro = sprintf("%06d",($t - floor($t)) * 1000000);
+					$d = new DateTime( date('Y-m-d H:i:s.'.$micro, $t) );
+					
+					if($_FILES['idcrdfile']['name'] != ''){
+						$scanktp = str_replace(" ","", $post['fname']);
+						$file_scanktp = $d->format("YmdHisu")."_scanidcard_".strtolower($scanktp);
+						$filename_scanktp =  $this->lib->uploadnong($path."scanktp/", 'idcrdfile', $file_scanktp); 
+						if($filename_scanktp){
+							if($datalawas['data']['photo_id_number']){
+								unlink($path."scanktp/".$datalawas['data']['photo_id_number']);
+							}
+						}
+						$data['photo_id_number'] = $filename_scanktp;
+					}
+					
+					if($_FILES['photoprofile']['name'] != ''){
+						$profile = str_replace(" ","", $post['fname']);
+						$file_profile = $d->format("YmdHisu")."_profile_".strtolower($profile);
+						$filename_profile =  $this->lib->uploadnong($path."profile/", 'photoprofile', $file_profile); 
+						if($filename_profile){
+							if($datalawas['data']['photo_profile']){
+								unlink($path."profile/".$datalawas['data']['photo_profile']);
+							}
+						}
+						$data['photo_profile'] = $filename_profile;
+					}
+					
+					echo "<pre>";
+					print_r($data);exit;
+					//$uid = array("flag_complete_reg" => "1", "flag_ver_sms" => "1");
+					//$this->session->set_userdata($uid);
+				}else{
+					return 3; //verification salah
+					exit;
+				}
+			break;
 			
 			case "submit_confirmation":
 				$data['method'] = 'create';
@@ -455,6 +561,21 @@ class Mbackend extends CI_Model{
 				exit;
 				//*/
 			break;
+			
+			case "settingkalendar":
+				$data['method'] = 'create';
+				$data['modul'] = 'seting_reservasi';
+				$data['tbl_transaction_package_id'] = $post['idtrx'];
+				$data['start_date'] = $post['date'];
+				$data['end_date'] = $post['date'];
+				$data['flag'] = 'of';
+				$data['create_by'] = $this->auth['name'];
+			break;
+			case "removesettingkalendar":
+				$data['method'] = 'delete';
+				$data['modul'] = 'seting_reservasi';
+				$data['id'] = $post['idxw'];			
+			break;
 		}
 		
 		$res = $this->lib->jingga_curl($url,$data,$method,$balikan);
@@ -464,6 +585,7 @@ class Mbackend extends CI_Model{
 			if($table == 'submit_change_password'){
 				return $res['pesan'];
 			}else{
+				//return $res['pesan'];
 				return 0;
 				//return $res;
 			}

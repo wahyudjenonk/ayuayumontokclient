@@ -5,17 +5,29 @@
 			<form role="form" id='regserv' url='{$host}submit-services' method='post' enctype="multipart/form-data">	
 			<input type='hidden' id='mii' />
 			<input type='hidden' id='ip' name='ip' />
+			{if $order eq 'main_order'}
+			<input type='hidden' name='ext' value="main_order"/>
 			<div class="col-sm-12">
-					<div class="form-group">
-						<label>Choose Unit</label>
-						<select id='iplistunit' class="form-control">
-							<option value=''> -- Choose -- </option>
-							{foreach from=$dataproperty.data item=rows}
-								<option value='{$rows.id}'>{$rows.text}</option>
-							{/foreach}
-						</select>
-					</div>
+				<div class="form-group">
+					<label>Choose Unit</label>
+					<select id='iplistunit' class="form-control">
+						<option value=''> -- Choose -- </option>
+						{foreach from=$dataproperty.data item=rows}
+							<option value='{$rows.id}'>{$rows.text}</option>
+						{/foreach}
+					</select>
+				</div>
 			</div>
+			{elseif $order eq 'extra_order'}
+			<input type='hidden' name='ext' value="extra_order"/>
+			<div class="col-sm-12">
+				<div class="form-group">
+					<label>Unit For Extra Order</label>
+					<input type='text' class="form-control" value="{$txt_unit|default:''}" readonly />
+				</div>
+			</div>
+			{/if}
+
 			<div class="col-lg-12">
 				<div id='detailservice'>
 					<div class="form-group">
@@ -50,7 +62,11 @@
 	<button class="btn btn-danger" onClick="loadUrl('{$host}servicemanager');" >Back</button>
 </div>
 <div id='service2'>
-	<button class="btn btn-danger" onClick="kumpulAction('backservices');" onClick="" >Back</button>
+	{if $order eq 'main_order'}
+		<button class="btn btn-danger" onClick="kumpulAction('backservices');" >Back</button>
+	{elseif $order eq 'extra_order'}
+		<button class="btn btn-danger" onClick="kumpulAction('detaillayanan', '{$id_trx}', '{$txt_unit}', 'PAKET', '{$id_unit}');" >Back</button>
+	{/if}
 	<button class="btn btn-success" onClick="kumpulAction('nextservices');" >Submit</button>
 </div>
 <div id='service2-pckg'>
@@ -65,16 +81,26 @@
 <br/>
 
 <script>
+	var ord = "{$order|default:''}";
 	$('#service2').hide();
 	$('#service2-pckg').hide();
 	$('#service3').hide();
 	
-	$('#iplistunit').on('change', function(){
-		$.post(host+'getunitsize', { 'ipxca':$(this).val() }, function(lerpe){
-			$('#mii').val(lerpe);
+	if(ord == "main_order"){
+		$('#iplistunit').on('change', function(){
+			$.post(host+'getunitsize', { 'ipxca':$(this).val() }, function(lerpe){
+				$('#mii').val(lerpe);
+			});
+			$('#ip').val($(this).val());
 		});
-		$('#ip').val($(this).val());
-	});
+	}else if(ord == "extra_order"){
+		var ipun = "{$id_unit|default:''}"
+		$.post(host+'getunitsize', { 'ipxca':ipun }, function(lerpe){
+			$('#mii').val(lerpe);
+			$('#ip').val(ipun);
+		});
+		kumpulAction('detailrequestservice', 1, 'prepaid');
+	}
 </script>
 
 

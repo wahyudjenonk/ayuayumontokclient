@@ -7,19 +7,23 @@
 					 <li class="media">
 					    <div class="media-body">
 					    	<h4 class="media-heading">
-							<span style="font-weight: 500; background-color: #68B3C8; border-radius: 5px; padding: 2px; color: #fff; font-size: 12px;">TSM-A0816</span> {$nmproperty}</h4>
+							<span style="font-weight: 500; background-color: #68B3C8; border-radius: 5px; padding: 2px; color: #fff; font-size: 12px;">{$propertydetil.tag}-{$propertydetil.unit_number}</span> {$nmproperty}</h4>
 					  		<p>
-					  			<i><img src="{$host}__assets/app/ico/pin.png" style="max-width: 16px;"> Buahbatu, Bandung City, Jawa Barat - Indonesia 40286</i>
+					  			<i><img src="{$host}__assets/app/ico/pin.png" style="max-width: 16px;"> {$propertydetil.apartment_address} </i>
 					  			<ul class="tags">
-							    	<li>TSM</li>
-							    	<li>A0816</li>
+							    	<li>{$propertydetil.tag}</li>
+							    	<li>{$propertydetil.unit_number}</li>
 							    </ul>
 					  		</p>
 					    </div>
 					    <div class="media-left">
-						    <a href="#">
-						    	<img class="media-object" src="../assets/img/unit1.jpg" alt="unit Homtel" style="max-width: 160px;">
+						    {if $propertydetil.photo_unit|default:''  neq ''}
+							<a href="#">
+						    	<img class="media-object" src="{$host}__repository/property/{$propertydetil.photo_unit}" alt="{$nmproperty}" style="max-width: 160px;">
 						    </a>
+							{else}
+								<i>No Image</i>
+							{/if}
 					    </div>
 					 </li>
 				</ul>

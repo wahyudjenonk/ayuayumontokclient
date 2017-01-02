@@ -135,15 +135,17 @@ class Login extends JINGGA_Controller {
 			$responseRecapcai = $this->recaptcha->verifyResponse($captcha_answer);
 			
 			if($responseRecapcai['success']) {
-				$data['method'] = 'read';
-				$data['modul'] = 'forgot_pwd';
+				$data['method'] = 'create';
+				$data['modul'] = 'registrasi_awal';
 				$data['submodul'] = '';
 				$data['email_address'] = $post['emadd'];
 				$data['phone_mobile'] = $post['phmob'];
+				$data['first_name'] = $post['frstnm'];
+				$data['last_name'] = $post['lstnm'];
 				
 				$res = $this->lib->jingga_curl($url,$data,$method,$balikan);
-				if($res['data'] == ''){
-					$this->lib->kirimemail('email_register_step1', $post['emadd'], $post, $this->host);
+				if($res['msg'] == 'sukses'){
+					$this->lib->kirimemail('email_register_step1', $post['emadd'], $post, $res['data']);
 					$status = 1;
 				}else{
 					$status = 2;
